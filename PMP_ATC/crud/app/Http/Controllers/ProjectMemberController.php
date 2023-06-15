@@ -36,13 +36,13 @@ class ProjectMemberController extends Controller
     public function show($id)
     {
         $projectMember = ProjectMember::findOrFail($id);
-        return view('project-member.show', compact('projectMember'));
+        return view('project_member.show', compact('projectMember'));
     }
 
     public function edit($id)
     {
         $projectMember = ProjectMember::findOrFail($id);
-        return view('project-member.edit', compact('projectMember'));
+        return view('project_member.edit', compact('projectMember'));
     }
 
     public function update(Request $request, $id)

@@ -15,16 +15,29 @@ class ClientController extends Controller
     }
 
     public function create()
-    {
-        // You may pass any necessary data to the create view
-        return view('clients.create');
-    }
+{
+    return view('clients.create');
+}
 
-    public function store(Request $request)
-    {
-        $client = Client::create($request->all());
-        // Redirect to the show view or index view
-    }
+public function store(Request $request)
+{
+    // Validate the input
+    $validatedData = $request->validate([
+        'project_id' => 'required',
+        // Add validation rules for other fields if needed
+    ]);
+
+    // Create a new client
+    $client = new Client();
+    $client->project_id = $validatedData['project_id'];
+    // Set other client fields
+    
+    // Save the client
+    $client->save();
+    
+    return redirect()->route('clients.index')->with('success', 'Client created successfully.');
+}
+
 
     public function show(Client $client)
     {
@@ -37,14 +50,18 @@ class ClientController extends Controller
     }
 
     public function update(Request $request, Client $client)
-    {
-        $client->update($request->all());
-        // Redirect to the show view or index view
-    }
+{
+    $client->update($request->all());
+    
+    return redirect()->route('clients.index')->with('success', 'Client updated successfully.');
+}
 
-    public function destroy(Client $client)
-    {
-        $client->delete();
-        // Redirect to the index view
-    }
+
+public function destroy(Client $client)
+{
+    $client->delete();
+    
+    return redirect()->route('clients.index')->with('success', 'Client deleted successfully.');
+}
+
 }

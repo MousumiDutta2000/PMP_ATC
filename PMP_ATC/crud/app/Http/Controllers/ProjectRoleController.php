@@ -29,6 +29,12 @@ class ProjectRoleController extends Controller
         return redirect()->route('project-roles.index')->with('success', 'Project role created successfully.');
     }
 
+    public function show($id)
+    {
+        $projectRole = ProjectRole::findOrFail($id);
+        return view('project-role.show', compact('projectRole'));
+    }
+
     public function edit($id)
     {
         $projectRole = ProjectRole::findOrFail($id);

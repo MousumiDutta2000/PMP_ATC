@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('vertical_id');
-            $table->integer('designation_id');
+            $table->unsignedBigInteger('designation_id');
             $table->foreign('designation_id')->references('id')->on('designations');
             $table->integer('highest_educational_qualification_id');
             $table->string('image')->nullable();
