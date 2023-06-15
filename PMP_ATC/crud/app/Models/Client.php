@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-    protected $fillable = ['project_id'];
-    
-    // Define the relationship with the Project model
-    public function project()
-    {
-        return $this->belongsTo(Project::class);
-    }
+    use HasFactory;
+
+    protected $fillable = [
+        'client_name',
+        'phone_no',
+        'email_address',
+    ];
 }
 

@@ -13,8 +13,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Project ID</th>
-                    {{-- Add other column headings --}}
+                    <th>Client Name</th>
+                    <th>Phone Number</th>
+                    <th>Email Address</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -22,8 +23,9 @@
                 @foreach($clients as $client)
                     <tr>
                         <td>{{ $client->id }}</td>
-                        <td>{{ $client->project_id }}</td>
-                        {{-- Display other client fields --}}
+                        <td>{{ $client->client_name }}</td>
+                        <td>{{ $client->phone_no }}</td>
+                        <td>{{ $client->email_address }}</td>
                         <td>
                             <a href="{{ route('clients.edit', $client->id) }}">Edit</a>
                             <form action="{{ route('clients.destroy', $client->id) }}" method="POST" style="display: inline-block;">

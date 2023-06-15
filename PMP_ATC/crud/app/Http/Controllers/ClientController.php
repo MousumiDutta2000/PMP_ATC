@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -15,29 +14,22 @@ class ClientController extends Controller
     }
 
     public function create()
-{
-    return view('clients.create');
-}
+    {
+        return view('clients.create');
+    }
 
-public function store(Request $request)
-{
-    // Validate the input
-    $validatedData = $request->validate([
-        'project_id' => 'required',
-        // Add validation rules for other fields if needed
-    ]);
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'client_name' => 'required',
+            'phone_no' => 'required',
+            'email_address' => 'required|email',
+        ]);
 
-    // Create a new client
-    $client = new Client();
-    $client->project_id = $validatedData['project_id'];
-    // Set other client fields
-    
-    // Save the client
-    $client->save();
-    
-    return redirect()->route('clients.index')->with('success', 'Client created successfully.');
-}
+        Client::create($validatedData);
 
+        return redirect()->route('clients.index')->with('success', 'Client created successfully.');
+    }
 
     public function show(Client $client)
     {
@@ -50,18 +42,22 @@ public function store(Request $request)
     }
 
     public function update(Request $request, Client $client)
-{
-    $client->update($request->all());
-    
-    return redirect()->route('clients.index')->with('success', 'Client updated successfully.');
-}
+    {
+        $validatedData = $request->validate([
+            'client_name' => 'required',
+            'phone_no' => 'required',
+            'email_address' => 'required|email',
+        ]);
 
+        $client->update($validatedData);
 
-public function destroy(Client $client)
-{
-    $client->delete();
-    
-    return redirect()->route('clients.index')->with('success', 'Client deleted successfully.');
-}
+        return redirect()->route('clients.index')->with('success', 'Client updated successfully.');
+    }
 
+    public function destroy(Client $client)
+    {
+        $client->delete();
+
+        return redirect()->route('clients.index')->with('success', 'Client deleted successfully.');
+    }
 }
