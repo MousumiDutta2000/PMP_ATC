@@ -12,7 +12,7 @@
                         <li>{{$message}}</li>
                     </ul>
                 </div> -->
-                <script type ="text/javascript">
+                <!-- <script type ="text/javascript">
                     const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -29,17 +29,18 @@
                     icon: 'success',
                     title: '{{$message}}'
                     })
-                </script>
+                </script> -->
             @endif
             <div class="table">
                 <div class="table-filter">
-                    <div>
+                    <br>
+                    <!-- <div>
                         <ul class="table-filter-list">
                             <li>
                                 <p class="table-filter-link link-active">All</p>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
                 <form method = "GET" action="{{route('profiles.index')}}" accept-charset="UTF-8" role="search">
                 <div class="table-search">   

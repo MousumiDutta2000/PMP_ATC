@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->integer('contact_number')->unique();
-            $table->integer('line_manager_id');
+            $table->unsignedBigInteger('line_manager_id');
+            $table->foreign('line_manager_id')->references('id')->on('users');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('vertical_id');
