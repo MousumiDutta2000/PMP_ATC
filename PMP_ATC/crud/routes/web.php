@@ -9,6 +9,8 @@ use App\Http\Controllers\ProjectRoleController;
 use App\Http\Controllers\OpportunityStatusController;
 use App\Http\Controllers\OpportunityController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DesignationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,3 +60,5 @@ Route::resource('project-roles', ProjectRoleController::class);
 Route::resource('opportunity_status', OpportunityStatusController::class);
 Route::resource('opportunities', OpportunityController::class);
 Route::resource('clients', ClientController::class);
+Route::resource('profiles', ProfileController::class);
+Route::resource('designations', DesignationController::class);
