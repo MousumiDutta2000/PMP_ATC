@@ -11,6 +11,7 @@ use App\Http\Controllers\OpportunityController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\TechnologyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,3 +63,5 @@ Route::resource('opportunities', OpportunityController::class);
 Route::resource('clients', ClientController::class);
 Route::resource('profiles', ProfileController::class);
 Route::resource('designations', DesignationController::class);
+
+Route::resource('technologies', TechnologyController::class);
