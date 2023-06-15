@@ -6,6 +6,9 @@ use App\Http\Controllers\VerticalController;
 use App\Http\Controllers\HighestEducationValueController;
 use App\Http\Controllers\ProjectMemberController;
 use App\Http\Controllers\ProjectRoleController;
+use App\Http\Controllers\OpportunityStatusController;
+use App\Http\Controllers\OpportunityController;
+use App\Http\Controllers\ClientController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,3 +54,7 @@ Route::resource('highest-education-values', HighestEducationValueController::cla
 Route::resource('project-members', ProjectMemberController::class);
 
 Route::resource('project-roles', ProjectRoleController::class);
+
+Route::resource('opportunity_status', OpportunityStatusController::class);
+Route::resource('opportunities', OpportunityController::class);
+Route::resource('clients', ClientController::class);
