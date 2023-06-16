@@ -6,7 +6,7 @@
             @csrf
             <div class="titlebar">
                 <h1>Add Profile</h1>
-                <button>Save</button>
+                <!-- <button>Save</button> -->
             </div>
             @if($errors->any())
                 <div>
@@ -61,7 +61,7 @@
         </form>
         </section>
     </main>
-    <script>
+    <!-- <script>
         function showFile(event){
             var input = event.target;
             var reader = new FileReader();
@@ -72,5 +72,5 @@
             };
             reader.readAsDataURL(input.files[0]);
         }
-    </script>
+    </script> -->
 @endsection
