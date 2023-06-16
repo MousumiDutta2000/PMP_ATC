@@ -57,6 +57,14 @@
         <label for="">Vertical id:</label>
         <input type="text" name="vertical_id" id="vertical_id" required>
     </div>
+    <div>
+        <label for="">Technologies id:</label>
+        <input type="text" name="technologies_id" id="technologies_id" required>
+    </div>
+    <div>
+        <label for="">Client id:</label>
+        <input type="text" name="client_id" id="client_id" required>
+    </div>
     <button type="submit">Create</button>
 </form>
 

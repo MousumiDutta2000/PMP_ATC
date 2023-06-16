@@ -11,5 +11,7 @@
 <p><strong>Client Contact:</strong> {{ $project->client_spoc_contact }}</p>
 <p><strong>Client Status:</strong> {{ $project->project_status }}</p>
 <p><strong>Vertical ID:</strong> {{ $project->vertical_id }}</p>
+<p><strong>Vertical ID:</strong> {{ $project->technologies_id }}</p>
+<p><strong>Vertical ID:</strong> {{ $project->client_id }}</p>
 
 <a href="{{ route('projects.index') }}">Back</a>
