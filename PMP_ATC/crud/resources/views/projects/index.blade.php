@@ -16,6 +16,8 @@
             <th>Client Contact</th>
             <th>Project Status</th>
             <th>Vertical ID</th>
+            <th>Technologies ID</th>
+            <th>Client ID</th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +34,8 @@
             <td>{{ $project->client_spoc_contact }}</td>
             <td>{{ $project->project_status }}</td>
             <td>{{ $project->vertical_id }}</td>
+            <td>{{ $project->technologies_id }}</td>
+            <td>{{ $project->client_id }}</td>
             <td>
                 <a href="{{ route('projects.show', $project->id) }}">Show</a>
                 <a href="{{ route('projects.edit', $project->id) }}">Edit</a>

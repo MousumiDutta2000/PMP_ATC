@@ -25,6 +25,10 @@ return new class extends Migration
             $table->string('project_status');
             $table->unsignedBigInteger('vertical_id');
             $table->foreign('vertical_id')->references('id')->on('vertical');
+            $table->unsignedBigInteger('technologies_id');
+            $table->foreign('technologies_id')->references('id')->on('technologies');
+            $table->unsignedBigInteger('clients_id');
+            $table->foreign('clients_id')->references('id')->on('clients');
             $table->timestamps();
         });
     }
