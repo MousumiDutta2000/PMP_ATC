@@ -61,16 +61,5 @@
         </form>
         </section>
     </main>
-    <!-- <script>
-        function showFile(event){
-            var input = event.target;
-            var reader = new FileReader();
-            reader.onload = function(){
-                var dataURL = reader.result;
-                var output = document.getElementById('file-preview');
-                output.src = dataURL;
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    </script> -->
+
 @endsection

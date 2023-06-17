@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Opportunity Status Details</title>
-    <!-- Include your CSS and JS files here -->
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
     <h1>Opportunity Status Details</h1>
 
     <table class="table">
@@ -21,5 +17,4 @@
     </table>
 
     <a href="{{ route('opportunity_status.index') }}" class="btn btn-primary">Back to List</a>
-</body>
-</html>
+@endsection

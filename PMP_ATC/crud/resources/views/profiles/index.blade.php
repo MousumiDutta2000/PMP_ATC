@@ -6,42 +6,7 @@
                 <h1>Profiles</h1>
                 <a href="{{route('profiles.create')}}" class = 'btn-link'>Add Profile</a>
             </div>
-            @if($message = Session::get('success'))
-                <!-- <div>
-                    <ul>
-                        <li>{{$message}}</li>
-                    </ul>
-                </div> -->
-                <!-- <script type ="text/javascript">
-                    const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                    })
-
-                    Toast.fire({
-                    icon: 'success',
-                    title: '{{$message}}'
-                    })
-                </script> -->
-            @endif
             <div class="table">
-                <div class="table-filter">
-                    <br>
-                    <!-- <div>
-                        <ul class="table-filter-list">
-                            <li>
-                                <p class="table-filter-link link-active">All</p>
-                            </li>
-                        </ul>
-                    </div> -->
-                </div>
                 <form method = "GET" action="{{route('profiles.index')}}" accept-charset="UTF-8" role="search">
                 <div class="table-search">   
                     <div>
@@ -57,7 +22,7 @@
                     </div>
                 </div>
                 </form>
-                <table>
+                <table class="table">
                 <div class="table-product-head">
                    <tr>
                     <th>Image</th>
@@ -77,7 +42,6 @@
             @foreach($profiles as $profile)
                 <tr>
                     <td>{{$profile ->image}}</td>
-                    <!-- <td><img src="{{asset('images/' . $profile->image)}}"/></td>               -->
                     <td> {{$profile ->name}} </td>
                     <td>{{$profile ->email}}</td>
                     <td>{{$profile ->contact_number}}</td>
@@ -88,10 +52,8 @@
                     <td>{{$profile ->highest_educational_qualification_id}}</td>
                     <td>
                     <div style="display: flex">  
-                        <a href="{{route('profiles.edit', $profile->id)}}" class="btn-link btn btn-success" style="padding-top: 4px; padding-bottom: 4px">  
-                        <!-- <button class="btn btn-success" > -->
+                        <a href="{{route('profiles.edit', $profile->id)}}" class="btn-link btn btn-success" style="padding-top: 4px; padding-bottom: 4px">
                             <i class="fas fa-pencil-alt" ></i> 
-                        <!-- </button> -->
                         </a> 
                         <form method = "post" action ="{{route('profiles.destroy', $profile ->id)}}">
                             @method('delete')
@@ -112,13 +74,6 @@
     </table>
                 <div class="table-paginate">
                     {{$profiles->links('layouts.pagination')}}
-                    <!-- <div class="pagination">
-                        <a href="#" disabled>&laquo;</a>
-                        <a class="active-page">1</a>
-                        <a>2</a>
-                        <a>3</a>
-                        <a href="#">&raquo;</a>
-                    </div> -->
                 </div>
             </div>
         </section>

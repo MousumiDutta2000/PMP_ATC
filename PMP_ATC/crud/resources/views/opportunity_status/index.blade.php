@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Opportunity Statuses</title>
-    <!-- Include your CSS and JS files here -->
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
     <h1>Opportunity Statuses</h1>
 
     <a href="{{ route('opportunity_status.create') }}" class="btn btn-primary">Create New</a>
@@ -34,5 +30,4 @@
             @endforeach
         </tbody>
     </table>
-</body>
-</html>
+@endsection

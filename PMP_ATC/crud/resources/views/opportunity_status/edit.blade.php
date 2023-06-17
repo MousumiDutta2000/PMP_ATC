@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Opportunity Status</title>
-    <!-- Include your CSS and JS files here -->
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
     <h1>Edit Opportunity Status</h1>
 
     <form action="{{ route('opportunity_status.update', $opportunityStatus->id) }}" method="POST">
@@ -19,5 +15,4 @@
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
-</body>
-</html>
+@endsection
