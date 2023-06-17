@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Clients</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
     <h1>Clients</h1>
 
     @if($clients->isEmpty())
         <p>No clients found.</p>
     @else
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -27,11 +24,11 @@
                         <td>{{ $client->phone_no }}</td>
                         <td>{{ $client->email_address }}</td>
                         <td>
-                            <a href="{{ route('clients.edit', $client->id) }}">Edit</a>
+                            <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-primary">Edit</a>
                             <form action="{{ route('clients.destroy', $client->id) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">Delete</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -40,6 +37,5 @@
         </table>
     @endif
 
-    <a href="{{ route('clients.create') }}">Create Client</a>
-</body>
-</html>
+    <a href="{{ route('clients.create') }}" class="btn btn-primary">Create Client</a>
+@endsection
