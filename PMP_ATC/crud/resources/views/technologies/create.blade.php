@@ -1,5 +1,5 @@
 <!-- resources/views/technologies/create.blade.php -->
-@extends('layouts.app')
+@extends('layouts.side_nav')
 
 @section('content')
     <div class="container">

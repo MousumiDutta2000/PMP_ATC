@@ -1,5 +1,5 @@
 <!-- resources/views/highest_education_value/show.blade.php -->
-@extends('layouts.app')
+@extends('layouts.side_nav')
 
 @section('content')
     <h1>Highest Education Value Details</h1>

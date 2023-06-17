@@ -1,5 +1,5 @@
 <!-- resources/views/project_member/edit.blade.php -->
-@extends('layouts.app')
+@extends('layouts.side_nav')
 
 @section('content')
     <div class="container">
