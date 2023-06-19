@@ -12,6 +12,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\TechnologyController;
+use App\Http\Controllers\Auth\MicrosoftController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +25,7 @@ use App\Http\Controllers\TechnologyController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 
@@ -65,3 +66,23 @@ Route::resource('profiles', ProfileController::class);
 Route::resource('designations', DesignationController::class);
 
 Route::resource('technologies', TechnologyController::class);
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+
+//Microsoft Authentication Route
+
+Route::controller(MicrosoftController::class, '')->group(function () {
+
+    Route::get('auth/microsoft', 'redirectToProvider')->name('auth.microsoft');
+
+    Route::get('auth/microsoft/callback', 'handleProviderCallback');
+
+});
