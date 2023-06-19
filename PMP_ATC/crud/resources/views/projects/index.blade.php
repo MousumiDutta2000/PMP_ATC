@@ -1,7 +1,14 @@
 @extends('layouts.side_nav')
 
+@section('pageTitle', 'Projects')
 @section('content')
-    <h1>Project</h1>
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Projects</li>
+        </ol>
+    </nav>
 
     <a href="{{ route('projects.create') }}" class="btn btn-primary">Create project</a>
 
