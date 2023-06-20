@@ -98,11 +98,10 @@
                     </div>
 
                     <div class="form__social">
-                        <span class="form__social-text">Or Login with</span>
-                    </div>
-                    <div class="form__social-icon">
-                        <a href="{{ route('auth.microsoft') }}" class="socks">
-                            <img src="{{ asset('img/microsoft_logo.png') }}" alt="" style="height: 27px; width: 27px;"></a>
+                        <span class="form__social-text">
+                          <a href="{{ route('auth.microsoft') }}" class="socks">
+                            <img src="{{ asset('img/microsoft_logo.png') }}" alt="" style="height: 27px; width: 27px;"></a>Login With Microsoft
+                        </span>
                     </div>
 
                     <div class="col-12">

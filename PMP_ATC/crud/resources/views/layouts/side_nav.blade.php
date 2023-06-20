@@ -241,12 +241,14 @@
               <hr class="dropdown-divider">
             </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
+            <form method="POST" action="{{ route('logout') }}">
+              @csrf
+              <button type="submit" class="dropdown-item d-flex align-items-center">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sign Out</span>
+              </button>
+          </form>
+          
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
@@ -267,27 +269,6 @@
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
-          <i class="bi bi-person"></i>
-          <span>User-Management</span>
-        </a>
-      </li><!-- End user-management Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('clients.index') }}">
-          <i class="bi bi-person"></i>
-          <span>Clients</span>
-        </a>
-      </li><!-- End clients Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('projects.index') }}">
-          <i class="bi bi-person"></i>
-          <span>Projects</span>
-        </a>
-      </li><!-- End projects Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
