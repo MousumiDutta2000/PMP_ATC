@@ -261,26 +261,47 @@
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+<ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " href="{{ route('projects.index') }}">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+  <li class="nav-item">
+    <a class="nav-link " href="{{ route('dashboard') }}">
+      <i class="bi bi-grid"></i>
+      <span>Dashboard</span>
+    </a>
+  </li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
+      <i class="bi bi-person"></i>
+      <span>User-Management</span>
+    </a>
+  </li><!-- End user-management Nav -->
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="{{ route('clients.index') }}">
+      <i class="bi bi-person"></i>
+      <span>Clients</span>
+    </a>
+  </li><!-- End clients Nav -->
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="{{ route('projects.index') }}">
+      <i class="bi bi-person"></i>
+      <span>Projects</span>
+    </a>
+  </li><!-- End projects Nav -->
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
+      <i class="bi bi-person"></i>
+      <span>Profile</span>
+    </a>
+  </li><!-- End Profile Page Nav -->
 
 
-    </ul>
+</ul>
 
-  </aside><!-- End Sidebar-->
+</aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
