@@ -83,4 +83,10 @@ class ProfileController extends Controller
         $profile ->delete();
         return redirect('profiles')->with('success','Product deleted!');
     }
+
+    public function show($id)
+    {
+         $profile = Profile::find($id);
+        return view('profiles.show');
+    }
 }

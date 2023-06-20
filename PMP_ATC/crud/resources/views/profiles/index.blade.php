@@ -11,26 +11,11 @@
 <main class="container">
     <section>
         <div class="titlebar">
-            <a href="{{ route('profiles.create') }}" class="btn-link">Add Profile</a>
+            <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Profile</a>
         </div>
         <div class="table">
-            <form method="GET" action="{{ route('profiles.index') }}" accept-charset="UTF-8" role="search">
-                <div class="table-search">
-                    <div>
-                        <button class="search-select">
-                            Search Profile
-                        </button>
-                        <span class="search-select-arrow">
-                            <i class="fas fa-caret-down"></i>
-                        </span>
-                    </div>
-                    <div class="relative">
-                        <input class="search-input" type="text" name="search" placeholder="Search profile..." value="{{ request('search') }}">
-                    </div>
-                </div>
-            </form>
             <table class="table">
-                <div class="table-product-head">
+                <thead>
                     <tr>
                         <th>Image</th>
                         <th>Name</th>
@@ -43,8 +28,8 @@
                         <th>Highest Educational Qualification ID</th>
                         <th>Actions</th>
                     </tr>
-                </div>
-                <div class="table-product-body">
+                </thead>
+                <tbody>
                     @if(count($profiles)>0)
                     @foreach($profiles as $profile)
                     <tr>
@@ -58,50 +43,23 @@
                         <td>{{$profile->designation_id}}</td>
                         <td>{{$profile->highest_educational_qualification_id}}</td>
                         <td>
-                            <div style="display: flex">
-                                <a href="{{route('profiles.edit', $profile->id)}}" class="btn-link btn btn-success" style="padding-top: 4px; padding-bottom: 4px">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
+                            <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-info">Show</a>
+                            <!-- <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-primary">Edit</a> -->
                                 <form method="post" action="{{route('profiles.destroy', $profile->id)}}">
                                     @method('delete')
                                     @csrf
-                                    <button class="btn btn-danger" onclick="deleteConfirm(event)">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
-                            </div>
                         </td>
                     </tr>
-                </div>
+                </tbody>
                 @endforeach
                 @else
                 <p>Profile Not Found</p>
                 @endif
             </table>
-            <div class="table-paginate">
-                {{$profiles->links('layouts.pagination')}}
-            </div>
         </div>
     </section>
 </main>
-<script>
-    window.deleteConfirm = function(e){
-        e.preventDefault();
-        var form = e.target.form;
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                form.submit();
-            }
-        })
-    }
-</script>
 @endsection
 

@@ -4,7 +4,7 @@
         <section>
             <div class="titlebar">
                 <h1>Designations</h1>
-                <a href="{{route('designations.create')}}" class = 'btn-link'>Add Designation</a>
+                <a href="{{route('designations.create')}}" class = "btn btn-primary">Add Designation</a>
             </div>
             <!-- @if($message = Session::get('success')) -->
                 <!-- <div>
@@ -82,7 +82,7 @@
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger" onclick = "deleteConfirm(event)" >
-                                            <i class="far fa-trash-alt">Delete</i>
+                                           Delete
                                         </button>
                                     </form>
                                     
@@ -95,36 +95,8 @@
                                 <p>Designation Not Found</p>
                     @endif
                 </table>
-                <div class="table-paginate">
-                    {{$designations->links('layouts.pagination')}}
-                    <!-- <div class="pagination">
-                        <a href="#" disabled>&laquo;</a>
-                        <a class="active-page">1</a>
-                        <a>2</a>
-                        <a>3</a>
-                        <a href="#">&raquo;</a>
-                    </div> -->
                 </div>
             </div>
         </section>
 </main>
-<!-- <script>
-    window.deleteConfirm = function(e){
-        e.preventDefault();
-        var form = e.target.form;
-        Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-        if (result.isConfirmed) {
-            form.submit();
-  }
-})
-    }
-</script> -->
 @endsection
