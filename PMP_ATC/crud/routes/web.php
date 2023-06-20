@@ -29,7 +29,6 @@ Route::get('/', function () {
 });
 
 
-
 // Route::resource('projects', ProjectsController::class);
 // Route::get('projects/create', [ProjectsController::class, 'create'])->name('projects.create');
 
