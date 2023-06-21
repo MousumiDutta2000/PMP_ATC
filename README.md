@@ -61,27 +61,27 @@ To install and set up the PMP project locally, follow these steps:
   Once the installation is complete and the application is running, you can start using the PMP project management application. Here are 
   some general instructions:
 
-* User Management: As an administrator, you can create user accounts, assign roles, and manage their details.
+* <b>User Management:</b> As an administrator, you can create user accounts, assign roles, and manage their details.
   
-* Clients: Add and manage client profiles, including their contact information and project associations.
+* <b>Clients:</b> Add and manage client profiles, including their contact information and project associations.
   
-* Projects: Create and manage projects, assign team members, and track project progress.
+* <b>Projects:</b> Create and manage projects, assign team members, and track project progress.
   
-* Verticals: Define and manage different verticals or industries.
+* <b>Verticals:</b> Define and manage different verticals or industries.
   
-* Designations: Create and manage various designations within the organization.
+* <b>Designations:</b> Create and manage various designations within the organization.
   
-* Opportunities: Manage project opportunities, including their status, associated clients, and team members.
+* <b>Opportunities:</b> Manage project opportunities, including their status, associated clients, and team members.
   
-* Opportunity Status: Define and manage predefined statuses for project opportunities.
+* <b>Opportunity Status:</b> Define and manage predefined statuses for project opportunities.
   
-* Highest Education: Create and manage different educational qualifications.
+* <b>Highest Education:</b> Create and manage different educational qualifications.
   
-* Technologies: Manage the list of technologies required in projects.
+* <b>Technologies:</b> Manage the list of technologies required in projects.
   
-* Project Members: Associate team members with specific projects and assign roles.
+* <b>Project Members:</b> Associate team members with specific projects and assign roles.
   
-* Project Roles: Define and manage predefined roles that team members can have in projects.
+* <b>Project Roles:</b> Define and manage predefined roles that team members can have in projects.
   
 Please refer to the application's user interface and explore the different sections and features to make full use of the project management capabilities offered by PMP.
  
