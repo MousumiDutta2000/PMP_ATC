@@ -11,7 +11,7 @@
   <meta content="" name="keywords">
   <!-- Favicons -->
   <link href="{{ asset('img/favicon.png') }}" rel="icon">
-<link href="{{ asset('img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link href="{{ asset('img/apple-touch-icon.png') }}" rel="apple-touch-icon">
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -303,6 +303,20 @@
       <span>Profile</span>
     </a>
   </li><!-- End Profile Page Nav -->
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="{{ route('opportunity_status.index') }}">
+      <i class="bi bi-person"></i>
+      <span>Opportunity_Status</span>
+    </a>
+  </li><!-- End Opportunity_Status Page Nav -->
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="{{ route('opportunities.index') }}">
+      <i class="bi bi-person"></i>
+      <span>Opportunities</span>
+    </a>
+  </li><!-- End Opportunities Page Nav -->
 
 
 </ul>
