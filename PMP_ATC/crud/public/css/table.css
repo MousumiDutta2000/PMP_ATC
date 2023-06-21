@@ -192,3 +192,7 @@ div.dataTables_length select {
       width: 50px !important;
       display: inline-block;
   }
+
+  .titlebar{
+    margin-bottom: 15px;
+  }

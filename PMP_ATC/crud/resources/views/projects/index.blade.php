@@ -34,7 +34,7 @@
             <a href="{{ route('projects.create') }}" class="btn btn-primary">Add Project</a>
         </div>
 
-        <div class="table">
+        <div class="table-row">
             <table id="example" class="table table-hover responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
