@@ -52,17 +52,17 @@
                         <td>
                         <a href="#">
                             <div class="d-flex align-items-center">
-                            <div class="avatar avatar-blue mr-3">EB</div>
+                            <div class="avatar avatar-blue mr-3">{{$profile->image}}</div>
 
                             <div class="">
-                                <p class="font-weight-bold mb-0">Ethan Black</p>
-                                <p class="text-muted mb-0">ethan-black@example.com</p>
+                                <p class="font-weight-bold mb-0">{{$profile->name}}</p>
+                                <p class="text-muted mb-0">{{$profile->email}}</p>
                             </div>
                             </div>
                         </a>
                         </td>
-                        <td>(784) 667 8768</td>
-                        <td>Designer</td>
+                        <td>{{$profile->contact_number}}</td>
+                        <td>{{$profile->designation_id}}</td>
                         <td>09/04/1996</td>
                         <td>
                         <div class="badge badge-success badge-success-alt">Enabled</div>
