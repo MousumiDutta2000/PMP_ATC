@@ -26,8 +26,11 @@
   <link href="{{ asset('vendor/remixicon/remixicon.css') }}" rel="stylesheet">
   <link href="{{ asset('vendor/simple-datatables/style.css') }}" rel="stylesheet">
 
+
   <!-- Template Main CSS File -->
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/login-register-style.css') }}" rel="stylesheet">
+
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -40,13 +43,13 @@
 
 <body class="bimg">
 
-  <main>
+  <main class="bimg2">
     <div class="container">
 
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center shadow-lg" style="background-color: white;">
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
@@ -55,19 +58,19 @@
                 </a>
               </div>
 
-              <div class="card mb-3 xtraSpace">
+              <div class="card mb-3 shadow-none px-4">
 
                 <div class="card-body">
 
-                  <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                  <div class="d-none pt-4 pb-2">
+                    <h5 class="card-title d-none text-center pb-0 fs-4">Login to Your Account</h5>
                   </div>
 
-                  <form class="row g-3" method="POST" action="{{ route('login') }}">
+                  <form class="row g-3 mt-3" method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="col-12">
-                      <label for="email" class="form-label">{{ __('Email') }}</label>
+                      <label for="email" class="d-none form-label">{{ __('Email') }}</label>
                       <div class="input-group">
                         <input type="email" name="email" class="form-control" id="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="Enter your email">
                         @error('email')
@@ -77,7 +80,7 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="password" class="form-label">{{ __('Password') }}</label>
+                      <label for="password" class="d-none form-label">{{ __('Password') }}</label>
                       <input type="password" name="password" class="form-control" id="password" required autocomplete="current-password" placeholder="Enter your password">
                       @error('password')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -92,17 +95,20 @@
                     </div>
 
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">{{ __('Log in') }}</button>
+                      <button class="btn btn-primary w-100 mt-3" type="submit">{{ __('Log in') }}</button>
                     </div>
 
-                    <div class="form__social">
+                    <div class="my-4 text-center w-100" style="font-weight: 800;"> OR 
+                    </div>
+
+                    <div class="form__social mt-0">
                       <a href="{{ route('auth.microsoft') }}" class="socks" style="color:#5E6278">
                         <img src="{{ asset('img/microsoft_logo.png') }}" alt="" class="microIcon">Log in With Microsoft</a>
                     </div>
 
-                    <div class="col-12">
-                      <p class="small mb-0">Don't have an account? <a href="{{ route('register') }}">Create an account</a></p>
-                    </div>
+                    {{-- <div class="col-12">
+                      <p class="d-none small mb-0">Don't have an account? <a href="{{ route('register') }}">Create an account</a></p>
+                    </div> --}}
                   </form>
 
                 </div>

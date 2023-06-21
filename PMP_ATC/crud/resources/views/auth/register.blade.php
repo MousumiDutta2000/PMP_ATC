@@ -28,6 +28,7 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login-register-style.css') }}" rel="stylesheet">
 
     <!-- =======================================================
     * Template Name: NiceAdmin
