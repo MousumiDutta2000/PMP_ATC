@@ -21,11 +21,11 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Contact Number</th>
-                        <th>Line Manager ID</th>
-                        <th>User ID</th>
-                        <th>Vertical ID</th>
-                        <th>Designation ID</th>
-                        <th>Highest Educational Qualification ID</th>
+                        <th>Line Manager</th>
+                        <th>User</th>
+                        <th>Vertical</th>
+                        <th>Designation</th>
+                        <th>High Edu. Qual.</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -43,14 +43,24 @@
                         <td>{{$profile->designation_id}}</td>
                         <td>{{$profile->highest_educational_qualification_id}}</td>
                         <td>
-                            <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-info">Show</a>
-                            <!-- <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-primary">Edit</a> -->
-                                <form method="post" action="{{route('profiles.destroy', $profile->id)}}">
+                            <div class="btn-group" role="group">
+                                <a href="{{ route('profiles.show', ['profile' => $profile->id]) }}">
+                                    <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
+                                </a>
+                                <a href="{{ route('profiles.edit', ['profile' => $profile->id]) }}">
+                                    <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
+                                </a>
+                                <form method="post" action="{{ route('profiles.destroy', ['profile' => $profile->id]) }}">
                                     @method('delete')
                                     @csrf
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-link p-0">
+                                        <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
+                                    </button>
                                 </form>
+                            </div>
                         </td>
+
+
                     </tr>
                 </tbody>
                 @endforeach
