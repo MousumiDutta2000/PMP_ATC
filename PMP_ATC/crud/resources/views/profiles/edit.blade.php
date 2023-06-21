@@ -1,14 +1,19 @@
 @extends('layouts.side_nav')
+
+@section('pageTitle', 'Profile')
+
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Home</a></li>
+    <li class="breadcrumb-item " aria-current="page">Profiles</li>
+    <li class="breadcrumb-item active" aria-current="page">edit</li>
+@endsection
+
 @section('content')
     <main class ="container">
     <section>
         <form method = "post" action ="{{route('profiles.update', $profile->id)}}" enctype = "multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="titlebar">
-                <h1>Edit Profile</h1>
-                <button>Save</button>
-            </div>
             @if($errors->any())
                 <div>
                     <ul>
