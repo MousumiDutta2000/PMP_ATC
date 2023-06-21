@@ -50,7 +50,7 @@
                         <td>{{ $project->id }}</td>
                         <td>{{ $project->project_name }}</td>
                         <!-- <td>{{ $project->active ? 'Active' : 'Inactive' }}</td> -->
-                        <td><div class="badge badge-success badge-success-alt">Enabled</div></td>
+                        <td><div class="badge badge-success badge-success-alt text-success">Enabled</div></td>
                         <td>
                         <div class="btn-group" role="group">
                             <a href=""><i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i></a>
