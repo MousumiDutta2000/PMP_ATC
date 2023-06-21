@@ -35,7 +35,7 @@
             <table id="example" class="table table-hover responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Client Name</th>
+                        <th>Name</th>
                         <th>Phone Number</th>
                         <th>Line Manager</th>
                         <th>User</th>
