@@ -29,10 +29,10 @@
 <main class="container">
     <section>
         <div class="titlebar">
-            <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Profile</a>
+            <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Project</a>
         </div>
         <div class="table">
-            <table id="example" class="table table-hover responsive nowrap" style="width:100%">
+            <table id="example" class="table table-hover responsive" style="width:100%">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -52,10 +52,12 @@
                                 <td>
                                     <a href="#">
                                         <div class="d-flex align-items-center">
-                                            <div class="avatar avatar-blue mr-3">{{$profile->image}}</div>
+                                            <div class="avatar avatar-blue mr-3">
+                                                <img src="{{ asset('path_to_image_directory/' . $profile->image) }}" alt="Profile Image" width="50">
+                                            </div>
                                             <div class="">
                                                 <p class="font-weight-bold mb-0">{{$profile->name}}</p>
-                                                <p class="text-muted mb-0">{{$profile->email}}</p>
+                                                <p class="text-muted">{{$profile->email}}</p>
                                             </div>
                                         </div>
                                     </a>
