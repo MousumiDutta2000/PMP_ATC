@@ -349,6 +349,8 @@
   <!-- Template Main JS File -->
   <script src="{{ asset('js/main.js') }}"></script>
 
+  @yield('custom_css')
+  @yield('custom_js')
 </body>
 
 </html>
