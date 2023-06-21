@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+  @yield('custom_css')
+  @yield('custom_js')
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Dashboard - NiceAdmin Bootstrap Template</title>
@@ -349,8 +351,6 @@
   <!-- Template Main JS File -->
   <script src="{{ asset('js/main.js') }}"></script>
 
-  @yield('custom_css')
-  @yield('custom_js')
 </body>
 
 </html>
