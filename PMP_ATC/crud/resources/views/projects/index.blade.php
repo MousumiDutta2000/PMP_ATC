@@ -6,7 +6,7 @@
 <li class="breadcrumb-item">
     <a href="{{ route('projects.index') }}">Home</a>
 </li>
-<li class="breadcrumb-item active" aria-current="page">Profiles</li>
+<li class="breadcrumb-item active" aria-current="page">Projects</li>
 @endsection
 
 @section('custom_css')
@@ -31,7 +31,7 @@
 <main class="container">
     <section>
         <div class="titlebar">
-            <a href="{{ route('projects.create') }}" class="btn btn-primary">Add Profile</a>
+            <a href="{{ route('projects.create') }}" class="btn btn-primary">Add Project</a>
         </div>
 
         <div class="table">
@@ -52,36 +52,20 @@
                         <!-- <td>{{ $project->active ? 'Active' : 'Inactive' }}</td> -->
                         <td><div class="badge badge-success badge-success-alt">Enabled</div></td>
                         <td>
-                            <div class="btn-group" role="group">
-                                <a href="{{ route('projects.show', ['project' => $project->id]) }}">
-                                <i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i>
-                                </a>
-                                <a href="{{ route('projects.edit', ['project' => $project->id]) }}">
-                                <i class="fa-sharp fa-solid fa-flag text-info" style="margin-right: 10px"></i>
-                                </a>
-                                <a href="{{ route('projects.edit', ['project' => $project->id]) }}">
-                                <i class="fa-solid fa-gear text-secondary" style="margin-right: 10px"></i>
-                                </a>
-                                <form method="post" action="{{ route('projects.destroy', ['project' => $project->id]) }}">
-                                    @method('delete')
-                                    @csrf
-                                    <button type="submit" class="btn btn-link p-0">
-                                        <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                        <!-- <td>
-                            <a href="" class="btn btn-info">Manage</a>
-                            <a href="" class="btn btn-primary">Report</a>
-                            <a href="{{ route('projects.settings', $project->id) }}" class="btn btn-primary">Settings</a>
+                        <div class="btn-group" role="group">
+                            <a href=""><i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i></a>
+                            <a href=""> <i class="fa-sharp fa-solid fa-flag text-info" style="margin-right: 10px"></i></a>
+                            <a href="{{ route('projects.settings', ['project' => $project->id]) }}">
+                                <i class="fa-solid fa-gear text-secondary" style="margin-right: 10px"></i></a>
 
                             <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="submit" class="btn btn-link p-0">
+                                        <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
+                                    </button>
                             </form>
-                        </td> -->
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
