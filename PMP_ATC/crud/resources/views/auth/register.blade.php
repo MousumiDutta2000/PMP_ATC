@@ -38,7 +38,7 @@
     ======================================================== -->
 </head>
 
-<body>
+<body class="bimg">
 
     <main>
         <div class="container">
@@ -46,7 +46,7 @@
             <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                        <div class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
                                 <a href="index.html" class="logo d-flex align-items-center w-auto">
@@ -55,13 +55,13 @@
                                 </a>
                             </div><!-- End Logo -->
 
-                            <div class="card mb-3">
+                            <div class="card mb-3 xtraSpace">
 
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">{{ __('Create an Account') }}</h5>
-                                        <p class="text-center small">{{ __('Enter your personal details to create an account') }}</p>
+                                        {{-- <p class="text-center small">{{ __('Enter your personal details to create an account') }}</p> --}}
                                     </div>
 
                                     <form class="row g-3" method="POST" action="{{ route('register') }}">
@@ -69,28 +69,28 @@
 
                                         <div class="col-12">
                                             <x-label for="name" value="{{ __('Name') }}" />
-                                            <x-input id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                                            <x-input id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Enter your name" />
                                         </div>
 
                                         <div class="col-12">
                                             <x-label for="email" value="{{ __('Email Address') }}" />
-                                            <x-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                                            <x-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="Enter your email address" />
                                         </div>
 
                                         <div class="col-12">
                                             <x-label for="password" value="{{ __('Password') }}" />
-                                            <x-input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" />
+                                            <x-input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" placeholder="Enter your password" />
                                         </div>
 
                                         <div class="col-12">
                                             <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                                            <x-input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
+                                            <x-input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm your password" />
                                         </div>
 
                                         <div class="col-12">
                                           <div class="form-check">
-                                            <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                                            <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
+                                            <input class="form-check-input sizeBox" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                                            <label class="form-check-label sizeFont" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
                                             <div class="invalid-feedback">You must agree before submitting.</div>
                                           </div>
                                         </div>
