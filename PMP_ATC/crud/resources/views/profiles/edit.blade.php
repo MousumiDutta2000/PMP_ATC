@@ -111,20 +111,26 @@
                         <input type="text" class="form-control" name="email" id="email" value="{{ $profile->email }}" required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="designation_id">Designation:</label>
-                    <input type="text" class="form-control" name="designation_id" id="designation_id" value="{{ $profile->designation_id }}" required>
+                <div class ="col-md-4">
+                    <div class="form-group">
+                        <label for="designation_id">Designation:</label>
+                        <input type="text" class="form-control" name="designation_id" id="designation_id" value="{{ $profile->designation_id }}" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="line_manager_id">Line Manager:</label>
-                    <input type="text" class="form-control" name="line_manager_id" id="line_manager_id" value="{{ $profile->line_manager_id }}" required>
+                <div class ="col-md-4">
+                    <div class="form-group">
+                        <label for="line_manager_id">Line Manager:</label>
+                        <input type="text" class="form-control" name="line_manager_id" id="line_manager_id" value="{{ $profile->line_manager_id }}" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="user_id">User ID:</label>
-                    <input type="text" class="form-control" name="user_id" id="user_id" value="{{ $profile->user_id }}" required>
-                </div>
+                <div class ="col-md-4">
+                    <div class="form-group">
+                        <label for="user_id">User ID:</label>
+                        <input type="text" class="form-control" name="user_id" id="user_id" value="{{ $profile->user_id }}" required>
+                    </div>
+                </div> 
             </div>
-            <div class="text-center">
+            <div class="text-left">
                 <button type="submit" class="btn btn-primary">Update</button>
                 <a href="{{ route('profiles.index') }}" class="btn btn-danger">Cancel</a>
             </div>
