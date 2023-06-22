@@ -29,7 +29,7 @@
 <main class="container">
     <section>
         <div class="titlebar">
-            <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Project</a>
+            <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Profile</a>
         </div>
         <div>
             <table id="example" class="table table-hover responsive" style="width:100%">
