@@ -196,3 +196,7 @@ div.dataTables_length select {
   .titlebar{
     margin-bottom: 15px;
   }
+
+  .body{
+    margin-left: -13px;
+  }
