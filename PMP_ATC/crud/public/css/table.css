@@ -1,7 +1,3 @@
-body {
-  background: #f7f7f7;
-}
-
 .table .dropdown {
   display: inline-block;
 }
@@ -37,8 +33,8 @@ body {
 }
 
 .avatar {
-  width: 2.75rem;
-  height: 2.75rem;
+  /* width: 2.75rem;
+  height: 2.75rem; */
   line-height: 3rem;
   border-radius: 50%;
   display: inline-block;
@@ -187,8 +183,8 @@ table.dataTable {
     }
 
 
-div.dataTables_wrapper 
-div.dataTables_length select {
+  div.dataTables_wrapper 
+  div.dataTables_length select {
       width: 50px !important;
       display: inline-block;
   }
@@ -197,6 +193,13 @@ div.dataTables_length select {
     margin-bottom: 15px;
   }
 
+<<<<<<< HEAD
   .body{
     margin-left: -13px;
+=======
+  .name-container {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+>>>>>>> 6897e0a44b98c1c107f86ef7655e7fddcfca29e5
   }

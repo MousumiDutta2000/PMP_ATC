@@ -31,7 +31,7 @@
         <div class="titlebar">
             <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Profile</a>
         </div>
-        <div class="table">
+        <div>
             <table id="example" class="table table-hover responsive" style="width:100%">
                 <thead>
                     <tr>
@@ -41,6 +41,7 @@
                         <th>User</th>
                         <th>Vertical</th>
                         <th>Designation</th>
+                        <th>High Edu. Qual.</th>
                         <th>Date of Birth</th>
                         <th>Actions</th>
                     </tr>
@@ -53,20 +54,21 @@
                                     <a href="#">
                                         <div class="d-flex align-items-center">
                                             <div class="avatar avatar-blue mr-3">
-                                                <img src="{{ asset('path_to_image_directory/' . $profile->image) }}" alt="Profile Image" width="50">
+                                                <img class="avatar" src="{{ asset($profile->image) }}" width="50" style="height:2.95rem">
                                             </div>
-                                            <div class="">
-                                                <p class="font-weight-bold mb-0">{{$profile->name}}</p>
-                                                <p class="text-muted">{{$profile->email}}</p>
+                                            <div class="name-container">
+                                                <p class="font-weight-bold mb-0 name">{{ $profile->name }}</p>
+                                                <p class="text-muted">{{ $profile->email }}</p>
                                             </div>
                                         </div>
                                     </a>
                                 </td>
-                                <td>{{$profile->contact_number}}</td>
-                                <td>{{$profile->line_manager_id}}</td>
-                                <td>{{$profile->user_id}}</td>
-                                <td>{{$profile->vertical_id}}</td>
-                                <td>{{$profile->designation_id}}</td>
+                                <td>{{ $profile->contact_number }}</td>
+                                <td>{{ $profile->lineManager->name }}</td>
+                                <td>{{ $profile->user->name }}</td>
+                                <td>{{ $profile->vertical->name }}</td>
+                                <td>{{ $profile->designation_id }}</td>
+                                <td>{{ $profile->highest_educational_qualification_id }}</td>
                                 <td>09/04/1996</td>
                                 <td>
                                     <div class="btn-group" role="group">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profile;
+use App\Models\User;
+use App\Models\Vertical;
 
 class ProfileController extends Controller
 {
@@ -12,21 +14,29 @@ class ProfileController extends Controller
         $keyword = $request->get('search');
         $perPage = 5;
 
+        $query = Profile::with(['user', 'lineManager', 'vertical']);
+
         if (!empty($keyword)) {
-            $profiles = Profile::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
-                ->latest()
-                ->paginate($perPage);
-        } else {
-            $profiles = Profile::latest()->paginate($perPage);
+            $query->where('name', 'LIKE', "%$keyword%")
+                ->orWhereHas('user', function ($q) use ($keyword) {
+                    $q->where('name', 'LIKE', "%$keyword%");
+                })
+                ->orWhereHas('lineManager', function ($q) use ($keyword) {
+                    $q->where('name', 'LIKE', "%$keyword%");
+                });
         }
 
-        return view('profiles.index', compact('profiles'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $profiles = $query->latest()->paginate($perPage);
+
+        return view('profiles.index', compact('profiles'))->with('i', ($profiles->currentPage() - 1) * $perPage);
     }
 
     public function create()
     {
-        return view('profiles.create');
+        $users = User::all();
+        $verticals = Vertical::all();
+
+        return view('profiles.create', compact('users', 'verticals'));
     }
 
     public function store(Request $request)
@@ -65,10 +75,12 @@ class ProfileController extends Controller
         return redirect()->route('profiles.index')->with('success', 'Profile Added Successfully');
     }
 
-    public function edit($id)
+    public function edit(Profile $profile)
     {
-        $profile = Profile::findOrFail($id);
-        return view('profiles.edit', compact('profile'));
+        $users = User::all();
+        $verticals = Vertical::all();
+
+        return view('profiles.edit', compact('profile', 'users', 'verticals'));
     }
 
     public function update(Request $request, Profile $profile)
@@ -77,7 +89,9 @@ class ProfileController extends Controller
             'name' => 'required',
             'email' => 'required',
             'contact_number' => 'required',
+            'line_manager_id' => 'required',
             'designation_id' => 'required',
+            'vertical_id' => 'required',
             'highest_educational_qualification_id' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -85,7 +99,9 @@ class ProfileController extends Controller
         $profile->name = $request->name;
         $profile->email = $request->email;
         $profile->contact_number = $request->contact_number;
+        $profile->line_manager_id = $request->line_manager_id;
         $profile->designation_id = $request->designation_id;
+        $profile->vertical_id = $request->vertical_id;
         $profile->highest_educational_qualification_id = $request->highest_educational_qualification_id;
 
         if ($request->hasFile('image')) {
@@ -100,17 +116,15 @@ class ProfileController extends Controller
         return redirect()->route('profiles.index')->with('success', 'Profile Updated');
     }
 
-    public function destroy($id)
+    public function destroy(Profile $profile)
     {
-        $profile = Profile::findOrFail($id);
         $profile->delete();
 
         return redirect('profiles')->with('success', 'Profile deleted!');
     }
 
-    public function show($id)
+    public function show(Profile $profile)
     {
-        $profile = Profile::find($id);
         return view('profiles.show', compact('profile'));
     }
 }
