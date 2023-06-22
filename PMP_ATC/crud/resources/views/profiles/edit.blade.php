@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
             <label for="image">Current Image:</label>
-            <img src="{{ asset('path_to_image_directory/' . $profile->image) }}" alt="Current Image" class="img-product" id="file-preview">
+            <img src="{{ asset($profile->image) }}" alt="Current Image" class="img-product" id="file-preview">
             <br>
             <label for="new_image">Change Image:</label>
             <input type="file" name="new_image" accept="image/*" class="form-control" onchange="showFile(event)">
