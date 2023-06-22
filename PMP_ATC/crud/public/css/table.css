@@ -193,13 +193,6 @@ table.dataTable {
     margin-bottom: 15px;
   }
 
-<<<<<<< HEAD
   .body{
     margin-left: -13px;
-=======
-  .name-container {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
->>>>>>> 6897e0a44b98c1c107f86ef7655e7fddcfca29e5
   }
