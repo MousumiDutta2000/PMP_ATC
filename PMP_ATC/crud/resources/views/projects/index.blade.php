@@ -34,11 +34,7 @@
             <a href="{{ route('projects.create') }}" class="btn btn-primary">Add Project</a>
         </div>
 
-<<<<<<< HEAD
         <div>
-=======
-        <div class="table-row">
->>>>>>> 0b0c0cabac3e12b055e0079ef64b33e5bd8d06a1
             <table id="example" class="table table-hover responsive nowrap" style="width:100%">
                 <thead>
                     <tr>

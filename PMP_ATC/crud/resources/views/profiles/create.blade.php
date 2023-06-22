@@ -1,5 +1,13 @@
 @extends('layouts.side_nav')
 
+@section('pageTitle', 'Profile')
+
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+    <li class="breadcrumb-item" aria-current="page">Profiles</li>
+    <li class="breadcrumb-item active" aria-current="page">Add User</li>
+@endsection
+
 @section('content')
     <div class="titlebar">
         <h1>Add Profile</h1>

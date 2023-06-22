@@ -33,8 +33,8 @@
 }
 
 .avatar {
-  width: 2.75rem;
-  height: 2.75rem;
+  /* width: 2.75rem;
+  height: 2.75rem; */
   line-height: 3rem;
   border-radius: 50%;
   display: inline-block;
@@ -183,12 +183,18 @@ table.dataTable {
     }
 
 
-div.dataTables_wrapper 
-div.dataTables_length select {
+  div.dataTables_wrapper 
+  div.dataTables_length select {
       width: 50px !important;
       display: inline-block;
   }
 
   .titlebar{
     margin-bottom: 15px;
+  }
+
+  .name-container {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
