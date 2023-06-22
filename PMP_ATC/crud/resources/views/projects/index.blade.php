@@ -34,7 +34,7 @@
             <a href="{{ route('projects.create') }}" class="btn btn-primary">Add Project</a>
         </div>
 
-        <div class="table">
+        <div>
             <table id="example" class="table table-hover responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
@@ -50,7 +50,7 @@
                         <td>{{ $project->id }}</td>
                         <td>{{ $project->project_name }}</td>
                         <!-- <td>{{ $project->active ? 'Active' : 'Inactive' }}</td> -->
-                        <td><div class="badge badge-success badge-success-alt">Enabled</div></td>
+                        <td><div class="badge badge-success badge-success-alt text-success">Enabled</div></td>
                         <td>
                         <div class="btn-group" role="group">
                             <a href=""><i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i></a>

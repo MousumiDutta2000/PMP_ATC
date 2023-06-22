@@ -31,7 +31,7 @@
         <div class="titlebar">
             <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Project</a>
         </div>
-        <div class="table">
+        <div>
             <table id="example" class="table table-hover responsive" style="width:100%">
                 <thead>
                     <tr>

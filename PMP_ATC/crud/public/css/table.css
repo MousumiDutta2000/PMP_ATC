@@ -1,7 +1,3 @@
-body {
-  background: #f7f7f7;
-}
-
 .table .dropdown {
   display: inline-block;
 }
@@ -142,15 +138,9 @@ div.dataTables_wrapper div.dataTables_filter label {
 
 .badge {
   padding: 0.5em 0.75em;
-<<<<<<< HEAD
 }
 
 .badge-success-alt {
-=======
-  }
-  
-  .badge-success-alt {
->>>>>>> 9ca164243dbd22123265e35b0ca792928c6c967f
   background-color: #d7f2c2;
   color: #7bd235;
 }
