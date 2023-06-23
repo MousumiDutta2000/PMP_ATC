@@ -85,15 +85,15 @@
             <div class="col-md-6 mb-3">
                 <div class="form-group">
                     <label for="vertical_id">Vertical</label>
-                    <select id="vertical_id" name="project_status" required="required">
+                    {{-- <select id="vertical_id" name="project_status" required="required">
                     <option value="" selected="selected" disabled="disabled">Vertical</option>
                     <option>Vertical 1</option>
                     <option>Vertical 2</option>
                     <option>Vertical 3</option>
                     </select>
-                </div>
+                </div> --}}
 
-                 {{-- <input type="text" name="vertical_id" id="vertical_id" required="required"></div>  --}}
+                 <input type="text" name="vertical_id" id="vertical_id" required="required"></div> 
             </div>
 
             <hr>
@@ -101,14 +101,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="client_id">Client</label>
-                    <select id="client_id" name="project_status" required="required">
+                    {{-- <select id="client_id" name="project_status" required="required">
                     <option value="" selected="selected" disabled="disabled">Client</option>
                     <option>Client 1</option>
                     <option>Client 1</option>
                     <option>Client 1</option>
                     </select>
-                </div>
-                 {{-- <input type="text" name="clients_id" id="client_id" required="required"></div>  --}}
+                </div> --}}
+                 <input type="text" name="clients_id" id="client_id" required="required"></div> -->
             </div>
 
             <div class="col-md-6">
