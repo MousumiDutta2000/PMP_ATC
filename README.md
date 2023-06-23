@@ -4,9 +4,9 @@ This is a project management application built using the Laravel framework. It a
 
 # Table of Contents
 
-* Features
-* Installation
-* Usage
+[Features](#features)
+[Installation](#installation)
+[Usage](#usage)
 
 # Features
 
@@ -37,25 +37,43 @@ Projects: Allows the creation and management of projects, including project deta
 
 To install and set up the PMP project locally, follow these steps:
 
-* Clone the repository using the following command:<br>
-  git clone https://github.com/MousumiDutta2000/PMP_ATC.git
+* Clone the repository using the following command
+  ```
+    git clone https://github.com/MousumiDutta2000/PMP_ATC.git
+  ```
   
 * Navigate to the project directory:<br>
-  cd PMP_ATC<br>
-  cd crud
+  ```
+    cd PMP_ATC
+  ```
+  ```
+    cd crud
+  ```
   
 * Install the project dependencies using Composer:<br>
    composer install
+
+* Add .env file to your project
+  ```
+    cp .env.example .env
+  ```
+  ```
+    php artisan key:generate
+  ```
   
 * Configure the .env file with your database credentials and other necessary settings.
   
-* Run database migrations<br>
+* Run database migrations
+  ```
    php artisan migrate
+  ```
   
-* Start the development server:<br>
+* Start the development server
+  ```
    php artisan serve
+  ```
   
-* Access the application by visiting http://localhost:8000 in your web browser.
+* Access the application by visiting http://localhost:8000 or http://127.0.0.1:8000 if you are using your own domain http://<your_domain> in your web browser.
 
 # Usage
   Once the installation is complete and the application is running, you can start using the PMP project management application. Here are 
