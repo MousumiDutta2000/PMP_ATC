@@ -15,7 +15,7 @@
                           <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
               <h2>{{$profile->name}}</h2>
-              <h3>{{$profile->designation_id}}</h3>
+              <h3>L1A</h3>
             </div>
           </div>
 
@@ -82,7 +82,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Highest Educational Qualification</div>
-                    <div class="col-lg-9 col-md-8">{{$profile->highest_educational_qualification_id}}</div>
+                    <div class="col-lg-9 col-md-8">B.Tech</div>
                   </div>
                   <!-- <span style = "position:absolute; top:80px; right:15px;"><button class="btn btn-primary" data-bs-target="#profile-edit"><i class=" ri-edit-2-fill"></i></button></span>  -->
 
