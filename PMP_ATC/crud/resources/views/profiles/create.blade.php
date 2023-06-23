@@ -84,41 +84,41 @@
                     <div class ="col-md-3 mt-3">
                         <div class="form-group">
                             <label for="designation_id">Designation:</label>
-                            <select class="form-control" id="statusSelect" name="profile_designation" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
+                            <!-- <select class="form-control" id="statusSelect" name="profile_designation" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
                                 <option value="" selected="selected" disabled="disabled">Select Designation</option>
-                                <option></option>
-                            </select>
-                            <!-- <input type="text" class="form-control" name="designation_id" id="designation_id" required> -->
+                                <option>1</option>
+                            </select> -->
+                            <input type="text" class="form-control" name="designation_id" id="designation_id" required>
                         </div>
                     </div>
                     <div class ="col-md-3 mt-3">
                         <div class="form-group">
                             <label for="vertical_id">Vertical:</label>
-                            <select class="form-control" id="statusSelect" name="profile_vertical" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
+                            <!-- <select class="form-control" id="statusSelect" name="profile_vertical" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
                                 <option value="" selected="selected" disabled="disabled">Select Vertical</option>
-                                <option></option>
-                            </select>
-                            <!-- <input type="text" name="vertical_id" id="vertical_id" class="form-control" required> -->
+                                <option>1</option>
+                            </select> -->
+                            <input type="text" name="vertical_id" id="vertical_id" class="form-control" required>
                         </div>
                     </div>
                     <div class ="col-md-3 mt-3">
                         <div class="form-group">
                             <label for="line_manager_id">Line Manager</label>
-                            <select class="form-control" id="statusSelect" name="profile_manager" required="required" style="padding-top:5px; padding-bottom:5px; height:39px; border-radious:10px">
+                            <!-- <select class="form-control" id="statusSelect" name="profile_manager" required="required" style="padding-top:5px; padding-bottom:5px; height:39px; border-radious:10px">
                                 <option value="" selected="selected" disabled="disabled">Select Your Manager</option>
-                                <option></option>
-                            </select>
-                            <!-- <input type="text" class="form-control" name="line_manager_id" id="line_manager_id" required> -->
+                                <option>1</option>
+                            </select> -->
+                            <input type="text" class="form-control" name="line_manager_id" id="line_manager_id" required>
                         </div>
                     </div>
                     <div class ="col-md-3 mt-3">
                         <div class="form-group">
                             <label for="user_id">User ID</label>
-                            <!-- <input type="text" class="form-control" name="user_id" id="user_id" required> -->
-                            <select class="form-control" id="statusSelect" name="profile_users" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
+                            <input type="text" class="form-control" name="user_id" id="user_id" required>
+                            <!-- <select class="form-control" id="statusSelect" name="profile_users" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
                                 <option value="" selected="selected" disabled="disabled">Select User</option>
-                                <option></option>
-                            </select>
+                                <option>1</option>
+                            </select> -->
                         </div>
                     </div>
                  </div>

@@ -65,7 +65,7 @@
                                 </td>
                                 <td>{{ $profile->contact_number }}</td>
                                 <td>{{ $profile->lineManager->name }}</td>
-                                <td>{{ $profile->user->name }}</td>
+                                <!-- <td>{{ $profile->user->name }}</td> -->
                                 <td>{{ $profile->vertical->name }}</td>
                                 <td>{{ $profile->designation_id }}</td>
                                 <td>{{ $profile->highest_educational_qualification_id }}</td>
