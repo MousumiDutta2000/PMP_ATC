@@ -27,7 +27,7 @@
 
 @section('content')
 <main class="container">
-    <section>
+    <section class="body">
         <div class="titlebar">
             <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Profile</a>
         </div>
@@ -38,7 +38,7 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Line Manager</th>
-                        <th>User</th>
+                        <!-- <th>User</th> -->
                         <th>Vertical</th>
                         <th>Designation</th>
                         <th>High Edu. Qual.</th>
@@ -57,7 +57,7 @@
                                                 <img class="avatar" src="{{ asset($profile->image) }}" width="50" style="height:2.95rem">
                                             </div>
                                             <div class="name-container">
-                                                <p class="font-weight-bold mb-0 name">{{ $profile->name }}</p>
+                                                <p class="font-weight-bold mb-0 name">{{ $profile->user->name }}</p>
                                                 <p class="text-muted">{{ $profile->email }}</p>
                                             </div>
                                         </div>
@@ -65,11 +65,11 @@
                                 </td>
                                 <td>{{ $profile->contact_number }}</td>
                                 <td>{{ $profile->lineManager->name }}</td>
-                                <td>{{ $profile->user->name }}</td>
+                                <!-- <td>{{ $profile->user->name }}</td> -->
                                 <td>{{ $profile->vertical->name }}</td>
                                 <td>{{ $profile->designation_id }}</td>
                                 <td>{{ $profile->highest_educational_qualification_id }}</td>
-                                <td>09/04/1996</td>
+                                <td>{{ $profile->DOB }}</td>
                                 <td>
                                     <div class="btn-group" role="group">
                                         <a href="{{ route('profiles.show', ['profile' => $profile->id]) }}">
