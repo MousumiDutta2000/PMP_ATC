@@ -27,7 +27,7 @@
 
 @section('content')
 <main class="container">
-    <section>
+    <section class="body">
         <div class="titlebar">
             <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Profile</a>
         </div>
