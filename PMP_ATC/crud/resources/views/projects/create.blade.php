@@ -93,7 +93,7 @@
                     </select>
                 </div>
 
-                <!-- <input type="text" name="vertical_id" id="vertical_id" required="required"></div> -->
+                 {{-- <input type="text" name="vertical_id" id="vertical_id" required="required"></div>  --}}
             </div>
 
             <hr>
@@ -108,7 +108,7 @@
                     <option>Client 1</option>
                     </select>
                 </div>
-                <!-- <input type="text" name="clients_id" id="client_id" required="required"></div> -->
+                 {{-- <input type="text" name="clients_id" id="client_id" required="required"></div>  --}}
             </div>
 
             <div class="col-md-6">

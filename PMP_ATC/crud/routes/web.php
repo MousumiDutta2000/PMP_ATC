@@ -12,6 +12,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\TechnologyController;
+use App\Http\Controllers\SprintController;
 use App\Http\Controllers\Auth\MicrosoftController;
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,7 @@ Route::middleware([
     Route::resource('designations', DesignationController::class);
 
     Route::resource('technologies', TechnologyController::class);
+    Route::resource('sprints', SprintController::class);
 });
 
 //Microsoft Authentication Route

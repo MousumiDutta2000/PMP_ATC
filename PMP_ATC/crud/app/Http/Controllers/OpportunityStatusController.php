@@ -54,4 +54,10 @@ class OpportunityStatusController extends Controller
         return redirect()->route('opportunity_status.index')
             ->with('success', 'Opportunity status deleted successfully.');
     }
+
+
+    public function show(OpportunityStatus $opportunityStatus)
+    {
+        return view('opportunity_status.show', compact('opportunityStatus'));
+    }
 }
