@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Vertical;
+use App\Models\HighestEducationValue;
+
 
 class Profile extends Model
 {
@@ -27,4 +29,15 @@ class Profile extends Model
     {
         return $this->belongsTo(Vertical::class, 'vertical_id');
     }
+
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class);
+    }
+
+    public function highestEducationValue()
+    {
+        return $this->belongsTo(HighestEducationValue::class, 'highest_educational_qualification_id');
+    }
+
 }

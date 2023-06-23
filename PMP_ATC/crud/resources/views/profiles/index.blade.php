@@ -84,7 +84,7 @@
                                     <a href="#">
                                         <div class="d-flex align-items-center">
                                             <div class="avatar avatar-blue mr-3">
-                                                <img src="{{ asset($profile->image) }}" alt="Profile Image" width="50">
+                                                <img class="rounded-circle" src="{{ asset($profile->image) }}" alt="Profile Image" width="50" style="height: 3.2em;">
                                             </div>
                                             <div class="name-container"> <!-- Added CSS class name-container -->
                                                 <p class="font-weight-bold mb-0 name">{{ $profile->name }}</p>
@@ -96,9 +96,9 @@
                                 <td>{{ $profile->contact_number }}</td>
                                 <td>{{ $profile->lineManager->name }}</td>
                                 <!-- <td>{{ $profile->user->name }}</td> -->
-                                <td>{{ $profile->vertical->name }}</td>
-                                <td>{{ $profile->designation_id }}</td>
-                                <td>{{ $profile->highest_educational_qualification_id }}</td>
+                                <td>{{ $profile->vertical->vertical_name }}</td>
+                                <td>{{ $profile->designation->level }}</td>
+                                <td>{{ $profile->highestEducationValue->highest_education_value }}</td>
                                 <td>{{ $profile->DOB }}</td>
                                 <td>
                                     <div class="btn-group" role="group">

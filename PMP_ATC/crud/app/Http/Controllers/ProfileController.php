@@ -14,7 +14,7 @@ class ProfileController extends Controller
         $keyword = $request->get('search');
         $perPage = 5;
 
-        $query = Profile::with(['user', 'lineManager', 'vertical']);
+        $query = Profile::with(['user', 'lineManager', 'vertical',]);
 
         if (!empty($keyword)) {
             $query->where('name', 'LIKE', "%$keyword%")
@@ -109,7 +109,7 @@ class ProfileController extends Controller
         $profile->contact_number = $request->contact_number;
         $profile->line_manager_id = $request->line_manager_id;
         $profile->designation_id = $request->designation_id;
-        $profile->vertical_id = $request->vertical_id;
+        $profile->vertical_id = $request->input('vertical_id');
         $profile->highest_educational_qualification_id = $request->highest_educational_qualification_id;
 
         if ($request->hasFile('image')) {
