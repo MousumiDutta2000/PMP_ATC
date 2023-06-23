@@ -86,7 +86,7 @@
                                             <div class="avatar avatar-blue mr-3">
                                                 <img class="rounded-circle" src="{{ asset($profile->image) }}" alt="Profile Image" width="50" style="height: 3.2em;">
                                             </div>
-                                            <div class="name-container"> <!-- Added CSS class name-container -->
+                                            <div class="name-container">
                                                 <p class="font-weight-bold mb-0 name">{{ $profile->name }}</p>
                                                 <p class="text-muted">{{ $profile->email }}</p>
                                             </div>
