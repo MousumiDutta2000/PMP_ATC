@@ -9,13 +9,13 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="{{asset('img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
+              <img src="{{ asset($profile->image) }}" alt="Profile" class="rounded-circle">
               <div class="pt-2">
                           <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
                           <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
-              <h2>Kevin Anderson</h2>
-              <h3>L1A</h3>
+              <h2>{{$profile->name}}</h2>
+              <h3>{{$profile->designation_id}}</h3>
             </div>
           </div>
 
@@ -48,46 +48,55 @@
                   
                   
 
-                  <h5 class="card-title">Basic Details</h5>
+                  <h5 class="card-title">Personal Details</h5>
 
                   <div class="row">
                     
                     <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                    <div class="col-lg-9 col-md-8">{{$profile->name}}</div>
+                  </div>
+
+                  <div class="row">
+                    
+                    <div class="col-lg-3 col-md-4 label ">Father's Name</div>
+                    <div class="col-lg-9 col-md-8">{{$profile->father_name}}</div>
+                  </div>
+
+                  <div class="row">
+                    
+                    <div class="col-lg-3 col-md-4 label ">Date Of Birth</div>
+                    <div class="col-lg-9 col-md-8">{{$profile->DOB}}</div>
                   </div>
                   
-                  <!-- <span style = "position:absolute; top:80px; right:15px;"><button class="btn btn-primary" data-bs-target="#profile-edit"><i class=" ri-edit-2-fill"></i></button></span>  -->
-        
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
-                  </div>
-
-                  <h5 class="card-title">Additional Details</h5> 
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Line Manager</div>
-                    <div class="col-lg-9 col-md-8">Andrew Anderson</div>
+                    
+                    <div class="col-lg-3 col-md-4 label ">Work Location</div>
+                    <div class="col-lg-9 col-md-8">{{$profile->work_location}}</div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Vertical</div>
-                    <div class="col-lg-9 col-md-8">XYZ</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Designation</div>
-                    <div class="col-lg-9 col-md-8">L1A</div>
+                    
+                    <div class="col-lg-3 col-md-4 label ">Work Address</div>
+                    <div class="col-lg-9 col-md-8">{{$profile->work_address}}</div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Highest Educational Qualification</div>
-                    <div class="col-lg-9 col-md-8">B.Tech</div>
+                    <div class="col-lg-9 col-md-8">{{$profile->highest_educational_qualification_id}}</div>
                   </div>
+                  <!-- <span style = "position:absolute; top:80px; right:15px;"><button class="btn btn-primary" data-bs-target="#profile-edit"><i class=" ri-edit-2-fill"></i></button></span>  -->
+
+                  <h5 class="card-title">Contact Details</h5> 
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Email</div>
+                    <div class="col-lg-9 col-md-8">{{$profile->email}}</div>
+                  </div>
+
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Contact Number</div>
-                    <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                    <div class="col-lg-9 col-md-8">{{$profile->contact_number}}</div>
                   </div>
                 
 

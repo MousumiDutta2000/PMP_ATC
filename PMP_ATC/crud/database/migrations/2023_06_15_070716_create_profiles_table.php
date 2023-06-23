@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('father_name');
+            $table->date('DOB');
+            $table->string('work_location');
+            $table->string('work_address');
             $table->string('email')->unique();
             $table->string('contact_number')->unique();
             $table->unsignedBigInteger('line_manager_id');

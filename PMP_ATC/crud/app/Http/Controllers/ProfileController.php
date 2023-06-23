@@ -43,6 +43,10 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'father_name' => 'required',
+            'DOB' => 'required',
+            'work_location' => 'required',
+            'work_address' => 'required',
             'email' => 'required',
             'contact_number' => 'required',
             'line_manager_id' => 'required',
@@ -55,6 +59,10 @@ class ProfileController extends Controller
 
         $profile = new Profile;
         $profile->name = $request->name;
+        $profile->father_name = $request->father_name;
+        $profile->DOB = $request->DOB;
+        $profile->work_location = $request->work_location;
+        $profile->work_address = $request->work_address;
         $profile->email = $request->email;
         $profile->contact_number = $request->contact_number;
         $profile->line_manager_id = $request->line_manager_id;
