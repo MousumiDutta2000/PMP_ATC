@@ -4,9 +4,9 @@ This is a project management application built using the Laravel framework. It a
 
 # Table of Contents
 
-[Features](#features)
-[Installation](#installation)
-[Usage](#usage)
+-[Features](#features)
+-[Installation](#installation)
+-[Usage](#usage)
 
 # Features
 
