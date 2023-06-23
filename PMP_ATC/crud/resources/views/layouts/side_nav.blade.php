@@ -305,19 +305,19 @@
     </a>
   </li><!-- End Profile Page Nav -->
 
-  <li class="nav-item">
+  <!-- <li class="nav-item">
     <a class="nav-link collapsed" href="{{ route('opportunity_status.index') }}">
       <i class="bi bi-person"></i>
       <span>Opportunity_Status</span>
     </a>
-  </li><!-- End Opportunity_Status Page Nav -->
+  </li>End Opportunity_Status Page Nav
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="{{ route('opportunities.index') }}">
       <i class="bi bi-person"></i>
       <span>Opportunities</span>
     </a>
-  </li><!-- End Opportunities Page Nav -->
+  </li>End Opportunities Page Nav -->
 
 
 </ul>

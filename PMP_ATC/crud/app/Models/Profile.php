@@ -25,6 +25,6 @@ class Profile extends Model
 
     public function vertical()
     {
-        return $this->belongsTo(Vertical::class);
+        return $this->belongsTo(Vertical::class, 'vertical_id');
     }
 }
