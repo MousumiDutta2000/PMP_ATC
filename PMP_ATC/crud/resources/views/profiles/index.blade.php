@@ -69,7 +69,7 @@
                                 <td>{{ $profile->vertical->name }}</td>
                                 <td>{{ $profile->designation_id }}</td>
                                 <td>{{ $profile->highest_educational_qualification_id }}</td>
-                                <td>09/04/1996</td>
+                                <td>{{ $profile->DOB }}</td>
                                 <td>
                                     <div class="btn-group" role="group">
                                         <a href="{{ route('profiles.show', ['profile' => $profile->id]) }}">

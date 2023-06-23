@@ -30,6 +30,22 @@
                     <input type="text" name="name" id="name" class="form-control" required>
                 </div>
                 <div class="form-group">
+                    <label for="name">Father's Name:</label>
+                    <input type="text" name="father_name" id="father_name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">DOB:</label>
+                    <input type="date" name="DOB" id="DOB" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Work Location:</label>
+                    <input type="text" name="work_location" id="work_location" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Work Address:</label>
+                    <input type="text" name="work_address" id="work_address" class="form-control" required>
+                </div>
+                <div class="form-group">
                     <label for="highest_educational_qualification_id">Highest Educational Qualification:</label>
                     <input type="text" name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required>
                 </div>

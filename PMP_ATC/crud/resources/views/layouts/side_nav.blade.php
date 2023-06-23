@@ -4,6 +4,7 @@
 <head>
   @yield('custom_css')
   @yield('custom_js')
+  @yield('project_css')
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Dashboard - NiceAdmin Bootstrap Template</title>
