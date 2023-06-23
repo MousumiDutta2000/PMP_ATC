@@ -57,7 +57,7 @@
                                                 <img class="avatar" src="{{ asset($profile->image) }}" width="50" style="height:2.95rem">
                                             </div>
                                             <div class="name-container">
-                                                <p class="font-weight-bold mb-0 name">{{ $profile->user->name }}</p>
+                                                <p class="font-weight-bold mb-0 name">{{ $profile->name }}</p>
                                                 <p class="text-muted">{{ $profile->email }}</p>
                                             </div>
                                         </div>
