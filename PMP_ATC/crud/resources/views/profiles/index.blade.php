@@ -13,6 +13,13 @@
     <link rel='stylesheet' href='https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css'>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/boxicons@2.0.0/css/boxicons.min.css'>
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
+    <style>
+        .name-container {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
 @endsection
 
 @section('custom_js')
@@ -23,11 +30,34 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('js/table.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            adjustNameFieldWidth();
+
+            $(window).resize(function() {
+                adjustNameFieldWidth();
+            });
+
+            function adjustNameFieldWidth() {
+                $('.name-container').each(function() {
+                    var maxWidth = 150; // Maximum width for the name field
+                    var containerWidth = $(this).parent().width();
+                    var nameWidth = $(this).find('.name').width();
+
+                    if (nameWidth > maxWidth && nameWidth > containerWidth) {
+                        $(this).css('max-width', nameWidth + 10 + 'px');
+                    } else {
+                        $(this).css('max-width', '');
+                    }
+                });
+            }
+        });
+    </script>
 @endsection
 
 @section('content')
 <main class="container">
-    <section class="body">
+    <section>
         <div class="titlebar">
             <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Profile</a>
         </div>
@@ -54,7 +84,7 @@
                                     <a href="#">
                                         <div class="d-flex align-items-center">
                                             <div class="avatar avatar-blue mr-3">
-                                                <img class="avatar" src="{{ asset($profile->image) }}" width="50" style="height:2.95rem">
+                                                <img class="rounded-circle" src="{{ asset($profile->image) }}" alt="Profile Image" width="50" style="height: 3.2em;">
                                             </div>
                                             <div class="name-container">
                                                 <p class="font-weight-bold mb-0 name">{{ $profile->name }}</p>
@@ -66,9 +96,9 @@
                                 <td>{{ $profile->contact_number }}</td>
                                 <td>{{ $profile->lineManager->name }}</td>
                                 <!-- <td>{{ $profile->user->name }}</td> -->
-                                <td>{{ $profile->vertical->name }}</td>
-                                <td>{{ $profile->designation_id }}</td>
-                                <td>{{ $profile->highest_educational_qualification_id }}</td>
+                                <td>{{ $profile->vertical->vertical_name }}</td>
+                                <td>{{ $profile->designation->level }}</td>
+                                <td>{{ $profile->highestEducationValue->highest_education_value }}</td>
                                 <td>{{ $profile->DOB }}</td>
                                 <td>
                                     <div class="btn-group" role="group">
