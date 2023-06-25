@@ -219,7 +219,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{ route('profiles.index') }}">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('profiles.show', ['profile' => $profile->id]) }}">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -299,7 +299,7 @@
   </li><!-- End projects Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
+    <a class="nav-link collapsed" href="{{ route('profiles.show', ['profile' => $profile->id]) }}">
       <i class="bi bi-person"></i>
       <span>Profile</span>
     </a>
