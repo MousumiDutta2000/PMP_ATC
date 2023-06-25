@@ -29,7 +29,7 @@
 <main class="container">
     <section class="body">
         <div class="titlebar">
-            <a href="{{ route('sprints.create') }}" class="btn btn-primary">Create New Sprint</a>
+            <a href="{{ route('sprints.create') }}" class="btn btn-primary">Add New</a>
         </div>
         @if ($sprints->count() > 0)
             <table id="sprint-table" class="table table-hover responsive" style="width:100%">
@@ -37,8 +37,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Sprint Name</th>
-                        <th>Project ID</th>
                         <th>Is Global Sprint</th>
+                        <th>Project ID</th>
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Status</th>
@@ -52,8 +52,8 @@
                         <tr>
                             <td>{{ $sprint->id }}</td>
                             <td>{{ $sprint->sprint_name }}</td>
-                            <td>{{ $sprint->project_id }}</td>
                             <td>{{ $sprint->is_global_sprint }}</td>
+                            <td>{{ $sprint->project_id }}</td>   
                             <td>{{ $sprint->start_date }}</td>
                             <td>{{ $sprint->end_date }}</td>
                             <td>{{ $sprint->status }}</td>

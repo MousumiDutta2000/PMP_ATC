@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class SprintController extends Controller
 {
+
+//     public function index()
+// {
+//     $sprints = Sprint::with('project')->get();
+//     return view('sprints.index', compact('sprints'));
+// }
     public function index()
     {
         $sprints = Sprint::all();
