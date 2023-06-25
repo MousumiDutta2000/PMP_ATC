@@ -1,10 +1,3 @@
-/* body {
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    margin: 0;
-    padding: 20px;
-} */
-
 .form-container {
     margin: 0 auto;
     background-color: #dee1fa;
@@ -70,14 +63,134 @@ textarea {
     list-style-type: none;
 }
 
-.cke_top {
+/* .cke_top {
     background-color: #e1daf4 !important;
   }
 
 .cke_bottom {
     background-color: #e1daf4 !important;
-} 
+}  */
 
 .plus-icon:hover {
     cursor: pointer;
+}
+
+/* Style the modal */
+.modal {
+    display: none; /* Hide the modal by default */
+    position: fixed; /* Position it on top of other elements */
+    z-index: 1; /* Set a high z-index to make sure it's on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+  }
+  
+  /* Style the modal content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* 80% width */
+  }
+  
+  /* Style the close button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-image {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    padding-bottom: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+  }
+  
+  .profile-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .user-details {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .user-name {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #000000;
+  }
+  
+  .designation {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .edit-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 14px;
+    color: #888;
+    visibility: hidden;
+    transition: visibility 0.3s;
+  }
+  
+  .card:hover .edit-icon {
+    visibility: visible;
+    cursor: pointer;
+  }
+
+/* Add this CSS to your project.css file or inline style tag */
+#memberCardContainer .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  margin-left: 13px;
+}
+
+@media (max-width: 576px) {
+  #memberCardContainer .card {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  #memberCardContainer .card {
+    width: calc(50% - 10px); /* Adjust the spacing as per your preference */
+    margin-right: 10px;
+  }
+
+  #memberCardContainer .card:nth-child(2n) {
+    margin-right: 0;
+  }
 }
