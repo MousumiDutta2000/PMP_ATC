@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Profile;
 use App\Models\User;
 use App\Models\Vertical;
+use App\Models\Designation;
+use App\Models\HighestEducationValue;
 
 class ProfileController extends Controller
 {
@@ -35,8 +37,11 @@ class ProfileController extends Controller
     {
         $users = User::all();
         $verticals = Vertical::all();
-
-        return view('profiles.create', compact('users', 'verticals'));
+        $designations = Designation::all();
+        $lineManagers = User::all();
+        $qualifications = HighestEducationValue::all();
+    
+        return view('profiles.create', compact('users', 'verticals', 'designations', 'lineManagers', 'qualifications'));
     }
 
     public function store(Request $request)

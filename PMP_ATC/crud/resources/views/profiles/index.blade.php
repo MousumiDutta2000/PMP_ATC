@@ -40,7 +40,7 @@
 
             function adjustNameFieldWidth() {
                 $('.name-container').each(function() {
-                    var maxWidth = 150; // Maximum width for the name field
+                    var maxWidth = 150;
                     var containerWidth = $(this).parent().width();
                     var nameWidth = $(this).find('.name').width();
 
@@ -78,8 +78,8 @@
                 </thead>
                 <tbody>
                     @if(count($profiles)>0)
-                        @foreach($profiles as $profile)
-                            <tr>
+                        @foreach($profiles as $index => $profile)
+                            <tr class="{{ $index % 2 != 0 ? 'table-secondary' : 'table-primary' }}">
                                 <td>
                                     <a href="#">
                                         <div class="d-flex align-items-center">
