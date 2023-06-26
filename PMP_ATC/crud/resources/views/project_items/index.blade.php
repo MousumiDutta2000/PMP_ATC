@@ -35,16 +35,16 @@
             <table id="sprint-table" class="table table-hover responsive" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        {{-- <th>ID</th> --}}
                         <th>Item Name</th>
-                        <th>Details</th>
+                        {{-- <th>Details</th> --}}
                         <th>Project</th>
                         <th>Item</th>
                         <th>Sprint</th>
-                        <th>Status</th>
+                        <th style="padding-left:35px">Status</th>
                         <th>Expected Delivery</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
+                        {{-- <th>Start Date</th> --}}
+                        {{-- <th>End Date</th> --}}
                         <th>Assigned To</th>
                         <th>Assigned By</th>
                         <th>Actions</th>
@@ -53,18 +53,33 @@
                 <tbody>
                     @foreach ($projectItems as $projectItem)
                         <tr>
-                            <td>{{ $projectItem->id }}</td>
+                            {{-- <td>{{ $projectItem->id }}</td> --}}
                         <td>{{ $projectItem->item_name }}</td>
-                        <td>{{ $projectItem->details }}</td>
+                        {{-- <td>{{ $projectItem->details }}</td> --}}
                         {{-- <td>{{ $projectItem->project_id }}</td> --}}
                         <td>{{ $projectItem->project->project_name }}</td>
                         <td>{{ $projectItem->itemStatus->status }}</td>
                         {{-- <td>{{ $projectItem->item_id }}</td> --}}
                         <td>{{ $projectItem->sprint->sprint_name }}</td>
-                        <td>{{ $projectItem->status }}</td>
+                        <td>
+                            @if($projectItem->status == 'Under discussion')
+                                <div class="badge badge-success-light text-success font-weight-bold" style="background-color: #79c57f;">{{ $projectItem->status }}</div>
+                            @elseif($projectItem->status == 'Delay')
+                                <div class="badge badge-warning-light text-warning font-weight-bold" style="background-color: #fbe99f; margin-left:16px; padding-left:18px; padding-right:18px;">{{ $projectItem->status }}</div>
+                            @elseif($projectItem->status == 'Pending')
+                                <div class="badge badge-danger-light text-danger font-weight-bold" style="background-color: #f1909b; margin-left:16px;">{{ $projectItem->status }}</div>
+                            @elseif($projectItem->status == 'Under development')
+                                <div class="badge badge-primary-light text-primary font-weight-bold" style="background-color: #6ec6ff;">{{ $projectItem->status }}</div>
+                            @elseif($projectItem->status == 'In queue')
+                                <div class="badge badge-info-light text-info font-weight-bold" style="background-color: #17a2b8; margin-left:16px;">{{ $projectItem->status }}</div>
+                            @elseif($projectItem->status == 'Not Started')
+                                <div class="badge badge-danger-light text-danger font-weight-bold" style="background-color: #f07f8c; margin-left:12px;">{{ $projectItem->status }}</div>
+                            @endif
+                        </td>
+                        {{-- <td>{{ $projectItem->status }}</td> --}}
                         <td>{{ $projectItem->expected_delivery }}</td>
-                        <td>{{ $projectItem->start_date }}</td>
-                        <td>{{ $projectItem->end_date }}</td>
+                        {{-- <td>{{ $projectItem->start_date }}</td> --}}
+                        {{-- <td>{{ $projectItem->end_date }}</td> --}}
                         <td>{{ $projectItem->assigned_to }}</td>
                         <td>{{ $projectItem->assigned_by }}</td>
                         <td>

@@ -28,14 +28,16 @@
 @section('content')
 <main class="container">
     <section class="body">
-        <div class="titlebar">
-            <a href="{{ route('sprints.create') }}" class="btn btn-primary">Add New</a>
+        <div class="titlebar" style="display: flex; align-items: center;">
+            <a href="{{ route('sprints.create') }}" class="btn btn-primary" style="margin-right: 10px;">Add New</a>
+            <i class="far fa-file-excel" style="color: #007508; font-size:30px;"></i>
+            
         </div>
         @if ($sprints->count() > 0)
             <table id="sprint-table" class="table table-hover responsive" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        {{-- <th>ID</th> --}}
                         <th>Sprint Name</th>
                         <th>Is Global Sprint</th>
                         <th>Project ID</th>
@@ -50,7 +52,7 @@
                 <tbody>
                     @foreach ($sprints as $sprint)
                         <tr>
-                            <td>{{ $sprint->id }}</td>
+                            {{-- <td>{{ $sprint->id }}</td> --}}
                             <td>{{ $sprint->sprint_name }}</td>
                             <td>{{ $sprint->is_global_sprint }}</td>
                             <td>{{ $sprint->project_id }}</td>   
