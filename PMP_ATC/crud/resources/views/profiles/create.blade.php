@@ -44,38 +44,38 @@
                             <input type="date" name="DOB" id="DOB" class="form-control" required>
                         </div>
                     </div>
-                    <div class ="col-md-6">
+                    <div class ="col-md-6 mt-3">
                         <div class="form-group">
                             <label for="highest_educational_qualification_id">Highest Educational Qualification:</label>
                             <input type="text" name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required>
                         </div>
                     </div>
-                    <div class ="col-md-6">
+                    <div class ="col-md-6 mt-3">
                         <div class="form-group">
                             <label for="image">Add Image:</label>
                             <img src="" alt="" class="img-product" id="file-preview">
                             <input type="file" name="image" accept="image/*" class="form-control" onchange="showFile(event)">
                         </div>
                     </div>
-                    <div class ="col-md-6">
+                    <div class ="col-md-6 mt-3">
                         <div class="form-group">
                             <label for="contact_number">Contact Number:</label>
                             <input type="text" class="form-control" name="contact_number" id="contact_number" required>
                         </div>
                     </div>
-                    <div class ="col-md-6">
+                    <div class ="col-md-6 mt-3">
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input type="text" class="form-control" name="email" id="email" required>
                         </div>
                     </div>
-                    <div class ="col-md-6">
+                    <div class ="col-md-6 mt-3">
                         <div class="form-group">
                             <label for="name">Work Location:</label>
                             <input type="text" name="work_location" id="work_location" class="form-control" required>
                         </div>
                     </div>
-                    <div class ="col-md-6">
+                    <div class ="col-md-6 mt-3">
                         <div class="form-group">
                             <label for="name">Work Address:</label>
                             <input type="text" name="work_address" id="work_address" class="form-control" required>
@@ -122,7 +122,7 @@
                         </div>
                     </div>
                  </div>
-                <div class="form-actions mt-2">
+                <div class="form-actions mt-3 text-end">
                     <button type="submit" class="btn btn-primary">Create</button>
                     <a href="{{ route('profiles.index') }}" class="btn btn-danger">Cancel</a>
                 </div>
