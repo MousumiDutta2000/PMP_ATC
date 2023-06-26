@@ -22,9 +22,14 @@
 
 @section('content')
 
-<div class="form-container">
+<!-- <div class="form-container">
     <form action="{{ route('projects.updateSettings', $project->id) }}" method="POST" class="form">
         @csrf 
+        @method('PUT') -->
+
+        <div class="form-container">
+    <form action="{{ route('projects.updateSettings', $project->id) }}" method="POST">
+        @csrf
         @method('PUT')
 
         <div class="row">
@@ -214,10 +219,13 @@
                                 </select>
                             </div>
 
+                            <!-- Bootstrap edit member button start -->
                             <div class="col-md-12 mt-3 text-end">
                                 <button type="button" class="btn btn-primary" id="updateMemberBtn">Update</button>
                                 <button type="button" class="btn btn-primary" id="removeBtn">Remove</button>
                             </div>
+
+                            <!-- Bootstrap edit member button end -->
                         </div>
                     </div>
                 </div>
@@ -226,12 +234,12 @@
 
         <!-- Bootstrap edit member modal end -->
 
-        <!-- Bootstrap edit member button start -->
+        
         <div class="col-md-6 mb-3">
             <button type="submit" class="btn btn-primary">Save</button>
             <a href="{{ route('projects.index') }}" class="btn btn-danger">Cancel</a>
         </div>
-        <!-- Bootstrap edit member button end -->
+        
     </form>
 
     <!-- Bootstrap form end -->
