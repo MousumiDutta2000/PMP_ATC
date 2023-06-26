@@ -50,7 +50,7 @@
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Create</button>
-                <a href="{{ route('projects.index') }}" class="btn btn-danger">Cancel</a>
+                <a href="{{ route('project_item_statuses.index') }}" class="btn btn-danger">Cancel</a>
             </div>
 
     </form>

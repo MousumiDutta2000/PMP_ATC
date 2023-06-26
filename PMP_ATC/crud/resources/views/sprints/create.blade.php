@@ -58,10 +58,10 @@
                 <div class="form-group">
                     <label for="status">Status</label>
                     <select name="status" id="status">
-                        <option value="Under discussion">Under Discussion</option>
-                        <option value="Under development">Under Development</option>
+                        <option value="Under discussion">Under discussion</option>
+                        <option value="Under development">Under development</option>
                         <option value="In queue">In queue</option>
-                        <option value="Not Started">Not Started</option>
+                        <option value="Not Started">Not started</option>
                         <option value="Pending">Pending</option>
                         <option value="Delay">Delay</option>
                     </select>
@@ -99,7 +99,7 @@
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Create</button>
-                <a href="{{ route('projects.index') }}" class="btn btn-danger">Cancel</a>
+                <a href="{{ route('sprints.index') }}" class="btn btn-danger">Cancel</a>
             </div>
 
     </form>
