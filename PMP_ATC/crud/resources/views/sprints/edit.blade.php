@@ -2,10 +2,12 @@
 
 @section('pageTitle', 'Sprints') 
 
+
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{{ route('sprints.index') }}">Home</a></li>
 <li class="breadcrumb-item" aria-current="page"><a href="{{ route('sprints.index') }}">Sprints</a></li>
-<li class="breadcrumb-item active" aria-current="page">Add</li>
+<li class="breadcrumb-item">{{ $sprint->sprint_name }}</li>
+<li class="breadcrumb-item active" aria-current="page">Edit</li>
 @endsection 
 
 @section('project_css')
@@ -98,11 +100,12 @@
               </div>
             </div>
 
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Update</button>
-                <a href="{{ route('sprints.index') }}" class="btn btn-danger">Cancel</a>
-            </div>
-
+                
+        <div class="col-md-6 mb-3">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <a href="{{ route('sprints.index') }}" class="btn btn-danger">Cancel</a>
+      </div>
+      
     </form>
 
 </div>
