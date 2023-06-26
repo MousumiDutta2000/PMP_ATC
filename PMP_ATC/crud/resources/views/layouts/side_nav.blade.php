@@ -280,28 +280,28 @@
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
-      <i class="bi bi-person"></i>
+      <i class="fa-solid fa-people-roof"></i>
       <span>User-Management</span>
     </a>
   </li><!-- End user-management Nav -->
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="{{ route('clients.index') }}">
-      <i class="bi bi-person"></i>
+      <i class="fa-solid fa-building-user"></i>
       <span>Clients</span>
     </a>
   </li><!-- End clients Nav -->
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="{{ route('projects.index') }}">
-      <i class="bi bi-person"></i>
+      <i class="fa-solid fa-folder"></i>
       <span>Projects</span>
     </a>
   </li><!-- End projects Nav -->
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="">
-      <i class="bi bi-person"></i>
+      <i class="fa-solid fa-address-card"></i>
       <span>Profile</span>
     </a>
   </li><!-- End Profile Page Nav -->
