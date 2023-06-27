@@ -21,7 +21,7 @@
             </ul>
         </div>
     @endif
-    <div class="card" style="background-color:#DEE1FA">
+    <div class="card">
         <div class="card-body">
             <form method="post" action="{{ route('profiles.store') }}" enctype="multipart/form-data">
                 @csrf

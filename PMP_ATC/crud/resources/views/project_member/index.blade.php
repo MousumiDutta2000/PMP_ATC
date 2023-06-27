@@ -30,7 +30,7 @@
 <main class="container">
     <section>
         <div class="titlebar">
-            <a href="{{ route('project-roles.create') }}" class="btn btn-primary">Add Project Member</a>
+            <a href="{{ route('project-members.create') }}" class="btn btn-primary">Add Project Member</a>
         </div>
 
         <div class="table-row">
