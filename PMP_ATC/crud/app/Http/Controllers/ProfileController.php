@@ -92,8 +92,11 @@ class ProfileController extends Controller
     {
         $users = User::all();
         $verticals = Vertical::all();
+        $designations = Designation::all();
+        $lineManagers = User::all();
+        $qualifications = HighestEducationValue::all();
 
-        return view('profiles.edit', compact('profile', 'users', 'verticals'));
+        return view('profiles.edit', compact('profile', 'users', 'verticals', 'designations', 'lineManagers', 'qualifications'));
     }
 
     public function update(Request $request, Profile $profile)
@@ -114,7 +117,7 @@ class ProfileController extends Controller
         $profile->contact_number = $request->contact_number;
         $profile->line_manager_id = $request->line_manager_id;
         $profile->designation_id = $request->designation_id;
-        $profile->vertical_id = $request->input('vertical_id');
+        $profile->vertical_id = $request->vertical_id;
         $profile->highest_educational_qualification_id = $request->highest_educational_qualification_id;
 
         if ($request->hasFile('image')) {

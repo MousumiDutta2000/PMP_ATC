@@ -79,16 +79,28 @@
                         <input type="text" name="name" id="name" class="form-control" value="{{ $profile->name }}" required>
                     </div>
                 </div>
-                <div class ="col-md-4">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="highest_educational_qualification_id">Highest Educational Qualification:</label>
-                        <input type="text" name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" value="{{ $profile->highest_educational_qualification_id }}" required>
+                        <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required>
+                            @foreach ($qualifications as $qualification)
+                                <option value="{{ $qualification->id }}" {{ $profile->highest_educational_qualification_id == $qualification->id ? 'selected' : '' }}>
+                                    {{ $qualification->highest_education_value }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-                <div class ="col-md-4">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="vertical_id">Vertical:</label>
-                        <input type="text" name="vertical_id" id="vertical_id" class="form-control" value="{{ $profile->vertical_id }}" required>
+                        <select name="vertical_id" id="vertical_id" class="form-control" required>
+                            @foreach ($verticals as $vertical)
+                                <option value="{{ $vertical->id }}" {{ $profile->vertical_id == $vertical->id ? 'selected' : '' }}>
+                                    {{ $vertical->vertical_name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             
@@ -111,26 +123,44 @@
                         <input type="text" class="form-control" name="email" id="email" value="{{ $profile->email }}" required>
                     </div>
                 </div>
-                <div class ="col-md-4">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="designation_id">Designation:</label>
-                        <input type="text" class="form-control" name="designation_id" id="designation_id" value="{{ $profile->designation_id }}" required>
+                        <select name="designation_id" id="designation_id" class="form-control" required>
+                            @foreach($designations as $designation)
+                                <option value="{{ $designation->id }}" {{ $profile->designation_id == $designation->id ? 'selected' : '' }}>
+                                    {{ $designation->level }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-                <div class ="col-md-4">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="line_manager_id">Line Manager:</label>
-                        <input type="text" class="form-control" name="line_manager_id" id="line_manager_id" value="{{ $profile->line_manager_id }}" required>
+                        <select name="line_manager_id" id="line_manager_id" class="form-control" required>
+                            @foreach($lineManagers as $lineManager)
+                                <option value="{{ $lineManager->id }}" {{ $profile->line_manager_id == $lineManager->id ? 'selected' : '' }}>
+                                    {{ $lineManager->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-                <div class ="col-md-4">
+                <div class="col-md-4">
                     <div class="form-group">
-                        <label for="user_id">User ID:</label>
-                        <input type="text" class="form-control" name="user_id" id="user_id" value="{{ $profile->user_id }}" required>
+                        <label for="user_id">User</label>
+                        <select name="user_id" id="user_id" class="form-control" required>
+                            @foreach($users as $user)
+                                <option value="{{ $user->id }}" {{ $profile->user_id == $user->id ? 'selected' : '' }}>
+                                    {{ $user->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div> 
             </div>
-            <div class="text-left">
+            <div class="text-end">
                 <button type="submit" class="btn btn-primary">Update</button>
                 <a href="{{ route('profiles.index') }}" class="btn btn-danger">Cancel</a>
             </div>

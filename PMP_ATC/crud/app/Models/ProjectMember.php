@@ -18,4 +18,19 @@ class ProjectMember extends Model
         'project_role_id',
         'is_project_admin',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
+    public function projectRole()
+    {
+        return $this->belongsTo(ProjectRole::class);
+    }
 }
