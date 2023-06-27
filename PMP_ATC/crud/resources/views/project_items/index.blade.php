@@ -32,7 +32,7 @@
             <a href="{{ route('project-items.create') }}" class="btn btn-primary">Add New</a>
         </div>
         @if ($projectItems->count() > 0)
-            <table id="sprint-table" class="table table-hover responsive" style="width:100%">
+            <table id="example" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
                         {{-- <th>ID</th> --}}
@@ -52,7 +52,7 @@
                 </thead>
                 <tbody>
                     @foreach ($projectItems as $projectItem)
-                        <tr>
+                        <tr class="shadow" style="border-radius:15px;">>
                             {{-- <td>{{ $projectItem->id }}</td> --}}
                         <td>{{ $projectItem->item_name }}</td>
                         {{-- <td>{{ $projectItem->details }}</td> --}}

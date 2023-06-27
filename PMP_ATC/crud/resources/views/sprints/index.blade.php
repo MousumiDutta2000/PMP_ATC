@@ -34,7 +34,7 @@
             
         </div>
         @if ($sprints->count() > 0)
-            <table id="sprint-table" class="table table-hover responsive" style="width:100%">
+            <table id="sprint-table" class="table table-hover responsive" style="width: 100%;">
                 <thead>
                     <tr>
                         {{-- <th>ID</th> --}}
