@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('project_name');
             $table->string('project_type');
-            $table->string('project_manager');
+            $table->unsignedBigInteger('Project_manager_id');
+            $table->foreign('Project_manager_id')->references('id')->on('users');
             $table->text('project_description');
             $table->string('client_spoc_name');
             $table->string('client_spoc_email');
@@ -25,10 +26,14 @@ return new class extends Migration
             $table->string('project_status');
             $table->unsignedBigInteger('vertical_id');
             $table->foreign('vertical_id')->references('id')->on('vertical');
-            $table->unsignedBigInteger('technologies_id');
-            $table->foreign('technologies_id')->references('id')->on('technologies');
-            $table->unsignedBigInteger('clients_id');
-            $table->foreign('clients_id')->references('id')->on('clients');
+            $table->unsignedBigInteger('technology_id');
+            $table->foreign('technology_id')->references('id')->on('technologies');
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('id')->on('clients');
+            // $table->unsignedBigInteger('Project_Members_id');
+            // $table->foreign('Project_Members_id')->references('id')->on('users');
+            // $table->unsignedBigInteger('projectRoles_id');
+            // $table->foreign('projectRoles_id')->references('id')->on('project_role');
             $table->timestamps();
         });
     }
