@@ -10,7 +10,10 @@
                 <label for="member_role_type">Member Role Type</label>
                 <input type="text" name="member_role_type" class="form-control" id="member_role_type">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a href="{{ route('project-roles.index') }}" class="btn btn-danger">Cancel</a>
+            </div>
         </form>
     </div>
 @endsection

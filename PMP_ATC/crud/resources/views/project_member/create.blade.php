@@ -64,6 +64,8 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
+            <a href="{{ route('project-members.index') }}" class="btn btn-danger">Cancel</a>
+         </div>
         </form>
     </div>
 @endsection

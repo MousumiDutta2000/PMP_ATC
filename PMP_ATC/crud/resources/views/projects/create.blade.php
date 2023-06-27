@@ -236,7 +236,7 @@
             </div>
          </div> -->
         </div>
-         <div class="col-md-6 mb-3">
+        <div class="form-actions">
             <button type="submit" class="btn btn-primary">Create</button>
             <a href="{{ route('projects.index') }}" class="btn btn-danger">Cancel</a>
          </div>
