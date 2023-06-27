@@ -151,7 +151,7 @@ div.dataTables_wrapper div.dataTables_filter label {
 
 .table a:hover,
 .table a:focus {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 table.dataTable {

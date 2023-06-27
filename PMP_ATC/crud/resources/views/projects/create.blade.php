@@ -241,9 +241,9 @@
                             </div>
 
                             <div class="modal-footer">
-    <button type="button" class="btn btn-danger" id="removeBtn">Remove</button>
-    <button type="button" class="btn btn-primary" id="updateMemberBtn">Update</button>
-</div>
+                                <button type="button" class="btn btn-danger" id="removeBtn">Remove</button>
+                                <button type="button" class="btn btn-primary" id="updateMemberBtn">Update</button>
+                            </div>
 
 
                         </div>

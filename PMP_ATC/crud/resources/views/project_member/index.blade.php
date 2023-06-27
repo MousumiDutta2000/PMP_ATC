@@ -1,5 +1,12 @@
 @extends('layouts.side_nav')
 
+@section('pageTitle', 'Project Member')
+
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Project Member</li>
+@endsection
+
 @section('content')
 @section('breadcrumb')
 <li class="breadcrumb-item">
@@ -37,11 +44,11 @@
             <table id="example" class="table table-hover responsive nowrap" style="width:100%">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <!-- <th>ID</th> -->
                     <th>Is Active</th>
-                    <th>User ID</th>
-                    <th>Project ID</th>
-                    <th>Project Role ID</th>
+                    <th>User</th>
+                    <th>Project</th>
+                    <th>Project Role</th>
                     <th>Is Project Admin</th>
                     <th>Action</th>
                 </tr>
@@ -49,12 +56,12 @@
             <tbody>
                 @foreach ($projectMembers as $projectMember)
                     <tr>
-                        <td>{{ $projectMember->id }}</td>
-                        <td>{{ $projectMember->is_active }}</td>
-                        <td>{{ $projectMember->user_id }}</td>
-                        <td>{{ $projectMember->project_id }}</td>
-                        <td>{{ $projectMember->project_role_id }}</td>
-                        <td>{{ $projectMember->is_project_admin }}</td>
+                        <!-- <td>{{ $projectMember->id }}</td> -->
+                        <td>{{ $projectMember->is_active ? 'Yes' : 'No' }}</td>
+                        <td>{{ $projectMember->user->name }}</td>
+                        <td>{{ $projectMember->project->project_name }}</td>
+                        <td>{{ $projectMember->projectRole->member_role_type }}</td>
+                        <td>{{ $projectMember->is_project_admin ? 'Yes' : 'No' }}</td>
                         <td>
                             <a href="{{ route('project-members.show', $projectMember->id) }}" class="btn btn-info">View</a>
                             <a href="{{ route('project-members.edit', $projectMember->id) }}" class="btn btn-primary">Edit</a>

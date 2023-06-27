@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProjectMember;
+use App\Models\User;
+use App\Models\Project;
+use App\Models\ProjectRole;
 use Illuminate\Http\Request;
 
 class ProjectMemberController extends Controller
@@ -15,20 +18,28 @@ class ProjectMemberController extends Controller
 
     public function create()
     {
-        return view('project_member.create');
+        $users = User::all();
+        $projects = Project::all();
+        $projectRoles = ProjectRole::all();
+
+        return view('project_member.create', compact('users', 'projects', 'projectRoles'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'is_active' => 'required|boolean',
-            'user_id' => 'required|integer',
-            'project_id' => 'required|integer',
-            'project_role_id' => 'required|integer',
-            'is_project_admin' => 'required|boolean',
+            'is_active' => 'nullable|boolean',
+            'user_id' => 'required|integer|exists:users,id',
+            'project_id' => 'required|integer|exists:project,id',
+            'project_role_id' => 'required|integer|exists:project_role,id',
+            'is_project_admin' => 'nullable|boolean',
         ]);
 
-        ProjectMember::create($request->all());
+        $requestData = $request->all();
+        $requestData['is_active'] = $requestData['is_active'] ?? 0;
+        $requestData['is_project_admin'] = $requestData['is_project_admin'] ?? 0;
+
+        ProjectMember::create($requestData);
 
         return redirect()->route('project-members.index')->with('success', 'Project member created successfully.');
     }
@@ -42,25 +53,32 @@ class ProjectMemberController extends Controller
     public function edit($id)
     {
         $projectMember = ProjectMember::findOrFail($id);
-        return view('project_member.edit', compact('projectMember'));
+        $users = User::all();
+        $projects = Project::all();
+        $projectRoles = ProjectRole::all();
+
+        return view('project_member.edit', compact('projectMember', 'users', 'projects', 'projectRoles'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'is_active' => 'required|boolean',
+            'is_active' => 'nullable|boolean',
             'user_id' => 'required|integer',
             'project_id' => 'required|integer',
             'project_role_id' => 'required|integer',
-            'is_project_admin' => 'required|boolean',
+            'is_project_admin' => 'nullable|boolean',
         ]);
 
+        $requestData = $request->all();
+        $requestData['is_active'] = $requestData['is_active'] ?? 0;
+        $requestData['is_project_admin'] = $requestData['is_project_admin'] ?? 0;
         $projectMember = ProjectMember::findOrFail($id);
-        $projectMember->update($request->all());
+        $projectMember->update($requestData);
 
         return redirect()->route('project-members.index')->with('success', 'Project member updated successfully.');
     }
-
+    
     public function destroy($id)
     {
         $projectMember = ProjectMember::findOrFail($id);

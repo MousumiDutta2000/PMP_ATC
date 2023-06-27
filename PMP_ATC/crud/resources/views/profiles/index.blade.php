@@ -62,7 +62,7 @@
             <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Profile</a>
         </div>
         <div>
-            <table id="example" class="table table-hover responsive" style="width:100%">
+            <table id="example" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px;">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -76,10 +76,10 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     @if(count($profiles)>0)
                         @foreach($profiles as $index => $profile)
-                            <tr class="{{ $index % 2 != 0 ? 'table-secondary' : 'table-primary' }}">
+                            <tr class="shadow" style="border-radius:15px;">
                                 <td>
                                     <a href="#">
                                         <div class="d-flex align-items-center">
