@@ -72,7 +72,7 @@
                 </tbody>
             </table>
         @else
-            <p>No project_items found.</p>
+            <p>No verticals found.</p>
         @endif
     </section>
 </main>
