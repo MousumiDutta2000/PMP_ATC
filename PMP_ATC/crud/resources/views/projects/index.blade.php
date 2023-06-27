@@ -31,7 +31,7 @@
         <div class="titlebar">
             <a href="{{ route('projects.create') }}" class="btn btn-primary">Add Project</a>
         </div>    
-            <table id="example" class="table table-hover responsive" style="width:100%">
+            <table id="example" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
                         <th>Project ID</th>
@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                     @foreach ($projects as $project)
-                    <tr>
+                    <tr class="shadow" style="border-radius:15px;">
                         <td>{{ $project->id }}</td>
                         <td>{{ $project->project_name }}</td>
                         <!-- <td>{{ $project->active ? 'Active' : 'Inactive' }}</td> -->
@@ -51,7 +51,7 @@
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href=""><i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i></a>
+                                <a href="{{ route('sprints.index', ['sprints' => $project->id]) }}"><i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i></a>
                                 <a href=""> <i class="fa-sharp fa-solid fa-flag text-info" style="margin-right: 10px"></i></a>
                                 <a href="{{ route('projects.settings', ['project' => $project->id]) }}">
                                 <i class="fa-solid fa-gear text-secondary" style="margin-right: 10px"></i></a>

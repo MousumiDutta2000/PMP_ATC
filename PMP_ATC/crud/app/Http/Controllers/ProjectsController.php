@@ -69,7 +69,9 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {
-        return view('projects.show', compact('project'));
+        $projects = Project::all();
+        $sprints = Sprint::all();
+        return view('projects.show', compact('project', 'sprints'));
     }
 
     public function destroy(Project $project)

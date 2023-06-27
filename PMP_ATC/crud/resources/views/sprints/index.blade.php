@@ -34,7 +34,7 @@
             
         </div>
         @if ($sprints->count() > 0)
-            <table id="sprint-table" class="table table-hover responsive" style="width:100%">
+            <table id="example" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
                         {{-- <th>ID</th> --}}
@@ -51,7 +51,7 @@
                 </thead>
                 <tbody>
                     @foreach ($sprints as $sprint)
-                        <tr>
+                        <tr class="shadow" style="border-radius:15px;">
                             {{-- <td>{{ $sprint->id }}</td> --}}
                             <td>{{ $sprint->sprint_name }}</td>
                             <td>{{ $sprint->is_global_sprint }}</td>
