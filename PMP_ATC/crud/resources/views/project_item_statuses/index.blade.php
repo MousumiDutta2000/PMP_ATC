@@ -30,11 +30,11 @@
 @section('content')
 <main class="container">
     <section class="body">
-        <div class="titlebar">
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
             <a href="{{ route('project_item_statuses.create') }}" class="btn btn-primary">Add New</a>
         </div>
         @if ($statuses->count() > 0)
-            <table id="sprint-table" class="table table-hover responsive" style="width:100%">
+            <table id="example" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                     @foreach ($statuses as $status)
-                        <tr>
+                        <tr class="shadow" style="border-radius:15px;">
                             <td>{{ $status->id }}</td>
                             <td>
                                 @if($status->status == 'Under discussion')

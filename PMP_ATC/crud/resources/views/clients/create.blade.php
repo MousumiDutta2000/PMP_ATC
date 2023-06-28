@@ -1,25 +1,63 @@
-@extends('layouts.side_nav')
+@extends('layouts.side_nav') 
 
-@section('content')
-    <div class="container">
-        <h1>Create Client</h1>
+@section('pageTitle', 'Clients') 
 
-        <form method="POST" action="{{ route('clients.store') }}">
-            @csrf
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{ route('clients.index') }}">Home</a></li>
+<li class="breadcrumb-item" aria-current="page"><a href="{{ route('clients.index') }}">Clients</a></li>
+<li class="breadcrumb-item active" aria-current="page">Add</li>
+@endsection 
+
+@section('project_css')
+<link rel="stylesheet" href="{{ asset('css/project.css') }}"> 
+@endsection 
+
+@section('content') 
+
+@if ($errors->any())
+<div class="error-messages">
+    <strong>Validation Errors:</strong>
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+<div class="form-container">
+    <form action="{{ route('clients.store') }}" method="POST">
+        @csrf
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="client_name">Client Name</label>
+                    <input type="text" name="client_name" id="client_name" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="phone_no">Phone Number</label>
+                    <input type="text" name="phone_no" id="phone_no" class="form-control" required>
+                </div>
+            </div>
+
             <div class="form-group">
-                <label for="client_name">Client Name:</label>
-                <input type="text" name="client_name" id="client_name" class="form-control" required>
-                <br>
-                <label for="phone_no">Phone Number:</label>
-                <input type="text" name="phone_no" id="phone_no" class="form-control" required>
-                <br>
                 <label for="email_address">Email Address:</label>
                 <input type="email" name="email_address" id="email_address" class="form-control" required>
-                <br>
             </div>
-            <button type="submit" class="btn btn-primary">Create</button>
-        </form>
 
-        <a href="{{ route('clients.index') }}" class="btn btn-primary">Back to Clients</a>
-    </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a href="{{ route('clients.index') }}" class="btn btn-danger">Cancel</a>
+            </div>
+
+    </form>
+
+</div>
+
 @endsection
+
+
+

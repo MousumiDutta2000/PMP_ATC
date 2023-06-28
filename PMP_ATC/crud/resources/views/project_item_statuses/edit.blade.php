@@ -50,10 +50,11 @@
             </div>
         </div>
 
-        <div class="mb-3">
+        <div class="form-actions">
             <button type="submit" class="btn btn-primary">Save</button>
             <a href="{{ route('project_item_statuses.index') }}" class="btn btn-danger">Cancel</a>
         </div>
+
         </form>
     </div>
 @endsection

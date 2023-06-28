@@ -30,11 +30,11 @@
 @section('content')
 <main class="container">
     <section>
-        <div class="titlebar">
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
             <a href="{{ route('clients.create') }}" class="btn btn-primary">Add Client</a>
         </div>
         <div class="table">
-            <table id="example" class="table table-hover responsive" style="width:100%">
+            <table id="example" class="table table-hover responsive"  style="width: 100%;border-spacing: 0 10px;">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -46,7 +46,7 @@
                 </thead>
                 <tbody>
                         @foreach($clients as $client)
-                            <tr>
+                            <tr class="shadow" style="border-radius:15px;">
                                 <td>{{$client->id}}</td>
                                 <td>{{$client->client_name}}</td>
                                 <td>{{$client->phone_no}}</td>

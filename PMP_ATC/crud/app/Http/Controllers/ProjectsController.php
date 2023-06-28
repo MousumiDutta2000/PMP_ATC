@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Vertical;
 use App\Models\Client;
 use App\Models\Technology;
+use App\Models\ProjectRole;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
@@ -24,8 +25,10 @@ class ProjectsController extends Controller
         $clients = Client::all();
         $projectManagers = User::all();
         $technologies = Technology::all();
-    
-        return view('projects.create', compact('users', 'verticals', 'clients', 'projectManagers', 'technologies'));
+        $projectMembers = User::all();
+        $projectRoles = ProjectRole::all();
+
+        return view('projects.create', compact('users', 'verticals', 'clients', 'projectManagers', 'technologies', 'projectMembers', 'projectRoles'));
     }
 
     public function store(Request $request)
@@ -44,7 +47,8 @@ class ProjectsController extends Controller
             'vertical_id' => 'required',
             'technology_id' => 'required',
             'client_id' => 'required',
-            
+            'project_members_id' => 'required',
+            'project_role_id' => 'required',
         ]);
 
         $project = new Project;
@@ -61,6 +65,8 @@ class ProjectsController extends Controller
         $project->vertical_id = $request->vertical_id;
         $project->technology_id = $request->technology_id;
         $project->client_id = $request->client_id;
+        $project->project_members_id = $request->project_members_id;
+        $project->project_role_id = $request->project_role_id;
 
         $project->save();
 
@@ -84,18 +90,57 @@ class ProjectsController extends Controller
         return view('projects.settings', compact('project'));
     }
 
+    public function edit(Project $project)
+    {
+        $projectManagers = User::all();
+        $users = User::all();
+        $technologies = Technology::all();
+        $verticals = Vertical::all();
+        $clients = Client::all();
+        $projectRoles = ProjectRole::all();
+        $projectMembers = User::all();
+
+        return view('projects.edit', compact('project', 'projectManagers', 'users', 'technologies', 'verticals', 'clients', 'projectRoles', 'projectMembers'));
+    }
+
     public function updateSettings(Request $request, Project $project)
     {
         $request->validate([
             'project_name' => 'required',
+            'project_type' => 'required',
             'project_description' => 'required',
+            'project_manager_id' => 'required',
             'project_startDate' => 'required|date',
             'project_endDate' => 'required|date',
             'project_status' => 'required',
+            'client_spoc_name' => 'required',
+            'client_spoc_email' => 'required|email',
+            'client_spoc_contact' => 'required',
+            'vertical_id' => 'required',
+            'technology_id' => 'required',
+            'client_id' => 'required',
+            'project_members_id' => 'required',
+            'project_role_id' => 'required',
         ]);
 
-        $project->update($request->all());
+        $project->project_name = $request->project_name;
+        $project->project_type = $request->project_type;
+        $project->project_description = $request->project_description;
+        $project->project_manager_id = $request->project_manager_id;
+        $project->project_startDate = $request->project_startDate;
+        $project->project_endDate = $request->project_endDate;
+        $project->project_status = $request->project_status;
+        $project->client_spoc_name = $request->client_spoc_name;
+        $project->client_spoc_email = $request->client_spoc_email;
+        $project->client_spoc_contact = $request->client_spoc_contact;
+        $project->vertical_id = $request->vertical_id;
+        $project->technology_id = $request->technology_id;
+        $project->client_id = $request->client_id;
+        $project->project_members_id = $request->project_members_id;
+        $project->project_role_id = $request->project_role_id;
 
-        return redirect()->route('projects.index', $project->id)->with('success', 'Project settings updated successfully.');
+        $project->save();
+
+        return redirect()->route('projects.index')->with('success', 'Project settings updated successfully.');
     }
 }
