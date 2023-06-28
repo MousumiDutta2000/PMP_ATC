@@ -102,7 +102,7 @@
                 </div>
             </div>
 
-            <hr>
+            <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
 
             <div class="col-md-6">
                 <div class="form-group">
@@ -137,7 +137,7 @@
                 </div>
             </div>
 
-            <hr>
+            <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
 
             <div class="form-group">
                 <label for="technology_id">Technologies</label>
