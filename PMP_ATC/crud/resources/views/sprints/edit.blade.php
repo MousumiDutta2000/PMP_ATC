@@ -49,7 +49,6 @@
               </div>
             </div>
 
-        
             <div class="col-md-6">
               <div class="form-group">
                 <label for="project_id">Project ID:</label>

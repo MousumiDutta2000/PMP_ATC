@@ -41,6 +41,6 @@ class ProjectItem extends Model
 
     public function sprint()
     {
-        return $this->belongsTo(Sprint::class);
+        return $this->belongsTo(Sprint::class, 'sprint_id');
     }
 }

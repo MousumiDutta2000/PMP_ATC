@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 
 use App\Models\ProjectItem;
 use Illuminate\Http\Request;
+use App\Models\Project;
+use App\Models\ProjectItemStatus;
+use App\Models\Sprint;
 
 class ProjectItemController extends Controller
 {
@@ -22,8 +25,18 @@ class ProjectItemController extends Controller
 
     public function create()
     {
-        return view('project_items.create');
+        $projects = Project::all();
+        $statuses = ProjectItemStatus::all();
+        $sprints = Sprint::all();
+        
+    
+        return view('project_items.create', compact('projects', 'statuses', 'sprints'));
     }
+
+    // public function create()
+    // {
+    //     return view('project_items.create');
+    // }
 
     public function store(Request $request)
     {

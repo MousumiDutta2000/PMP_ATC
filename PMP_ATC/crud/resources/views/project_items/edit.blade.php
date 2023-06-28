@@ -60,6 +60,13 @@
 
             <div class="col-md-6 mb-3">
                 <label for="project_id">Project ID</label>
+                {{-- <select name="project_id" id="project_id" class="form-control" required>
+                    @foreach ($projects as $project)
+                        <option value="{{ $project->id }}" {{ $projectItem->project_id == $project->id ? 'selected' : '' }}>
+                            {{ $project->project_name }}
+                        </option>
+                    @endforeach
+                </select> --}}
                 <input type="text" name="project_id" id="project_id" class="form-control" value="{{ $projectItem->project_id }}" required>
             </div>
 
@@ -70,6 +77,15 @@
 
             <div class="col-md-6 mb-3">
                 <label for="sprint_id">Sprint ID</label>
+                {{-- <select name="sprint_id" id="sprint_id" class="form-control" required>
+                    <option value="">Select Sprint</option>
+                    @foreach($sprints as $sprint)
+                    <option value="{{ $sprint->id }}" {{ $projectItem->sprint_id == $sprint->id ? 'selected' : '' }}>
+                        {{ $sprint->sprint_name }}
+                    </option>
+                    @endforeach
+                </select> --}}
+                
                 <input type="text" name="sprint_id" id="sprint_id" class="form-control" value="{{ $projectItem->sprint_id }}" required>
             </div>
 
