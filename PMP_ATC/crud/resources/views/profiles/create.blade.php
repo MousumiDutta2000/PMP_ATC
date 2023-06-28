@@ -1,6 +1,6 @@
 @extends('layouts.side_nav')
 
-@section('pageTitle', 'Profile')
+@section('pageTitle', 'Add users')
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
@@ -10,7 +10,6 @@
 
 @section('content')
     <div class="titlebar">
-        <h1>Add users</h1>
     </div>
     @if($errors->any())
         <div>
@@ -28,8 +27,13 @@
                 <div class="row mt-3">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" name="name" id="name" class="form-control" required>
+                            <label for="profile_name">Name:</label>
+                            <select name="profile_name" id="profile_name" class="form-control" required>
+                                <option value="">Select User</option>
+                                @foreach ($profile_names as $profile_name)
+                                    <option value="{{ $profile_name->id }}">{{ $profile_name->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -86,7 +90,7 @@
                             <input type="text" name="work_address" id="work_address" class="form-control" required>
                         </div>
                     </div>
-                    <div class="col-md-3 mt-3">
+                    <div class="col-md-4 mt-3">
                         <div class="form-group">
                             <label for="designation_id">Designation:</label>
                             <select name="designation_id" id="designation_id" class="form-control" required>
@@ -97,7 +101,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3 mt-3">
+                    <div class="col-md-4 mt-3">
                         <div class="form-group">
                             <label for="vertical_id">Vertical:</label>
                             <select name="vertical_id" id="vertical_id" class="form-control" required>
@@ -108,7 +112,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3 mt-3">
+                    <div class="col-md-4 mt-3">
                         <div class="form-group">
                             <label for="line_manager_id">Line Manager:</label>
                             <select name="line_manager_id" id="line_manager_id" class="form-control" required>
@@ -119,7 +123,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3 mt-3">
+                    <!-- <div class="col-md-3 mt-3">
                         <div class="form-group">
                             <label for="user_id">User:</label>
                             <select name="user_id" id="user_id" class="form-control" required>
@@ -129,7 +133,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="form-actions mt-3 text-end">
                     <button type="submit" class="btn btn-primary">Create</button>

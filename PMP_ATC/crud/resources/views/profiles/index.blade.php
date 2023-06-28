@@ -87,15 +87,14 @@
                                                 <img class="rounded-circle" src="{{ asset($profile->image) }}" alt="Profile Image" width="50" style="height: 3.2em;">
                                             </div>
                                             <div class="name-container">
-                                                <p class="font-weight-bold mb-0 name">{{ $profile->name }}</p>
-                                                <p class="text-muted">{{ $profile->email }}</p>
+                                                <p class="font-weight-bold mb-0 name">{{ $profile->profileName->name }}</p>
+                                                <!-- <p class="text-muted">{{ $profile->email }}</p> -->
                                             </div>
                                         </div>
                                     </a>
                                 </td>
                                 <td>{{ $profile->contact_number }}</td>
                                 <td>{{ $profile->lineManager->name }}</td>
-                                <!-- <td>{{ $profile->user->name }}</td> -->
                                 <td>{{ $profile->vertical->vertical_name }}</td>
                                 <td>{{ $profile->designation->level }}</td>
                                 <td>{{ $profile->highestEducationValue->highest_education_value }}</td>
