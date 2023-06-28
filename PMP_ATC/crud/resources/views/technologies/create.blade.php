@@ -35,6 +35,24 @@
                     <input type="text" name="technology_name" class="form-control" id="technology_name">
                 </div>
             </div>
+<<<<<<< HEAD
+=======
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="vertical_head_name">Vertical Head Name</label>
+                    <input type="text" name="vertical_head_name" id="vertical_head_name" class="form-control" required>
+                </div>
+            </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="vertical_head_emailId">Vertical Head Email:</label>
+                <input type="email" name="vertical_head_emailId" id="vertical_head_emailId" class="form-control" required>
+            </div>
+        </div>
+
+>>>>>>> 792c4c034942fef487b91bea6948e72500f00e7b
        
            <div class="col-md-6">
             <div class="form-group">
