@@ -30,10 +30,10 @@ return new class extends Migration
             $table->foreign('technology_id')->references('id')->on('technologies');
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients');
-            // $table->unsignedBigInteger('Project_Members_id');
-            // $table->foreign('Project_Members_id')->references('id')->on('users');
-            // $table->unsignedBigInteger('projectRoles_id');
-            // $table->foreign('projectRoles_id')->references('id')->on('project_role');
+            $table->unsignedBigInteger('project_members_id');
+            $table->foreign('project_members_id')->references('id')->on('users');
+            $table->unsignedBigInteger('project_role_id');
+            $table->foreign('project_role_id')->references('id')->on('project_role');
             $table->timestamps();
         });
     }

@@ -22,6 +22,8 @@ class Project extends Model
         'vertical_id',
         'technology_id',
         'client_id',
+        'project_members_id',
+        'project_role_id',
     ];
 
     // Relationships
@@ -44,5 +46,15 @@ class Project extends Model
     public function client()
     {
         return $this->belongsTo(Client::class, 'client_id');
+    }
+
+    public function projectMember()
+    {
+        return $this->belongsTo(User::class, 'project_members_id');
+    }
+
+    public function projectRole()
+    {
+        return $this->belongsTo(User::class, 'project_role_id');
     }
 }

@@ -32,7 +32,7 @@
             <a href="{{ route('verticals.create') }}" class="btn btn-primary">Add New</a>
         </div>
         @if ($verticals->count() > 0)
-            <table id="sprint-table" class="table table-hover responsive" style="width:100%">
+            <table id="example" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
             <tr>
                 <th>Name</th>
@@ -44,7 +44,7 @@
         </thead>
         <tbody>
             @foreach ($verticals as $vertical)
-            <tr>
+            <tr class="shadow" style="border-radius:15px;">
                 <td>{{ $vertical->vertical_name }}</td>
                 <td>{{ $vertical->vertical_head_name }}</td>
                 <td>{{ $vertical->vertical_head_emailId }}</td>
