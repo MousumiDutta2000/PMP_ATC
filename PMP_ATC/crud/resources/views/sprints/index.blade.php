@@ -28,7 +28,7 @@
 @section('content')
 <main class="container">
     <section class="body">
-        <div class="titlebar" style="display: flex; align-items: center;">
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
             <a href="{{ route('sprints.create') }}" class="btn btn-primary" style="margin-right: 10px;">Add New</a>
             <i class="far fa-file-excel" style="color: #007508; font-size:30px;"></i>
             

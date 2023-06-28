@@ -28,7 +28,7 @@
 @section('content')
 <main class="container">
     <section class="body">
-        <div class="titlebar">
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
             <a href="{{ route('verticals.create') }}" class="btn btn-primary">Add New</a>
         </div>
         @if ($verticals->count() > 0)

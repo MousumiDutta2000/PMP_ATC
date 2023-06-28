@@ -30,7 +30,7 @@
 @section('content')
 <main class="container">
     <section>
-        <div class="titlebar">
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
             <a href="{{ route('clients.create') }}" class="btn btn-primary">Add Client</a>
         </div>
         <div class="table">

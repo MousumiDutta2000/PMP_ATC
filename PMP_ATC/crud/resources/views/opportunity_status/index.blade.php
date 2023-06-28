@@ -30,7 +30,7 @@
 @section('content')
 <main class="container">
     <section>
-        <div class="titlebar">
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
             <a href="{{ route('opportunity_status.create') }}" class="btn btn-primary">Add New</a>
         </div>
         <div class="table">
