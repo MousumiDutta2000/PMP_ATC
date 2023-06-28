@@ -16,7 +16,7 @@ class ProfileController extends Controller
         $keyword = $request->get('search');
         $perPage = 5;
 
-        $query = Profile::with(['user', 'lineManager', 'vertical',]);
+        $query = Profile::with(['user', 'lineManager', 'profileName']);
 
         if (!empty($keyword)) {
             $query->where('name', 'LIKE', "%$keyword%")
@@ -24,6 +24,9 @@ class ProfileController extends Controller
                     $q->where('name', 'LIKE', "%$keyword%");
                 })
                 ->orWhereHas('lineManager', function ($q) use ($keyword) {
+                    $q->where('name', 'LIKE', "%$keyword%");
+                })
+                ->orWhereHas('profileName', function ($q) use ($keyword) {
                     $q->where('name', 'LIKE', "%$keyword%");
                 });
         }
@@ -40,14 +43,15 @@ class ProfileController extends Controller
         $designations = Designation::all();
         $lineManagers = User::all();
         $qualifications = HighestEducationValue::all();
+        $profile_names = User::all();
     
-        return view('profiles.create', compact('users', 'verticals', 'designations', 'lineManagers', 'qualifications'));
+        return view('profiles.create', compact('users', 'verticals', 'designations', 'lineManagers', 'qualifications', 'profile_names'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'profile_name' => 'required',
             'father_name' => 'required',
             'DOB' => 'required',
             'work_location' => 'required',
@@ -55,7 +59,6 @@ class ProfileController extends Controller
             'email' => 'required',
             'contact_number' => 'required',
             'line_manager_id' => 'required',
-            'user_id' => 'required',
             'designation_id' => 'required',
             'vertical_id' => 'required',
             'highest_educational_qualification_id' => 'required',
@@ -63,7 +66,7 @@ class ProfileController extends Controller
         ]);
 
         $profile = new Profile;
-        $profile->name = $request->name;
+        $profile->profile_name = $request->profile_name;
         $profile->father_name = $request->father_name;
         $profile->DOB = $request->DOB;
         $profile->work_location = $request->work_location;
@@ -71,7 +74,6 @@ class ProfileController extends Controller
         $profile->email = $request->email;
         $profile->contact_number = $request->contact_number;
         $profile->line_manager_id = $request->line_manager_id;
-        $profile->user_id = $request->user_id;
         $profile->designation_id = $request->designation_id;
         $profile->vertical_id = $request->vertical_id;
         $profile->highest_educational_qualification_id = $request->highest_educational_qualification_id;
@@ -102,7 +104,7 @@ class ProfileController extends Controller
     public function update(Request $request, Profile $profile)
     {
         $request->validate([
-            'name' => 'required',
+            'profile_name' => 'required',
             'email' => 'required',
             'contact_number' => 'required',
             'line_manager_id' => 'required',
@@ -112,7 +114,7 @@ class ProfileController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $profile->name = $request->name;
+        $profile->profile_name = $request->profile_name;
         $profile->email = $request->email;
         $profile->contact_number = $request->contact_number;
         $profile->line_manager_id = $request->line_manager_id;

@@ -73,13 +73,13 @@
             @csrf
             @method('PUT')
             <div class="row">
-                <div class ="col-md-4">
+                <!-- <div class ="col-md-4">
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" name="name" id="name" class="form-control" value="{{ $profile->name }}" required>
                     </div>
-                </div>
-                <div class="col-md-4">
+                </div> -->
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="highest_educational_qualification_id">Highest Educational Qualification:</label>
                         <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required>
@@ -91,7 +91,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="vertical_id">Vertical:</label>
                         <select name="vertical_id" id="vertical_id" class="form-control" required>
@@ -111,18 +111,18 @@
                     <label for="image">Change Image:</label>
                     <input type="file" name="image" accept="image/*" class="form-control" onchange="showFile(event)">
                 </div>
-                <div class ="col-md-6">
+                <div class ="col-md-4">
                     <div class="form-group">
                         <label for="contact_number">Contact Number:</label>
                         <input type="text" class="form-control" name="contact_number" id="contact_number" value="{{ $profile->contact_number }}" required>
                     </div>
                 </div>
-                <div class ="col-md-6">
+                <!-- <div class ="col-md-6">
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="text" class="form-control" name="email" id="email" value="{{ $profile->email }}" required>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="designation_id">Designation:</label>
@@ -147,7 +147,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                     <div class="form-group">
                         <label for="user_id">User</label>
                         <select name="user_id" id="user_id" class="form-control" required>
@@ -158,7 +158,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div> 
+                </div>  -->
             </div>
             <div class="text-end">
                 <button type="submit" class="btn btn-primary">Update</button>

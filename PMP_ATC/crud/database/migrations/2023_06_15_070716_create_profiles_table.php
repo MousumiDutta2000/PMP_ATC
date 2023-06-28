@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->unsignedBigInteger('profile_name');
+            $table->foreign('profile_name')->references('id')->on('users');
             $table->string('father_name');
             $table->date('DOB');
             $table->string('work_location');
@@ -22,8 +23,6 @@ return new class extends Migration
             $table->string('contact_number')->unique();
             $table->unsignedBigInteger('line_manager_id');
             $table->foreign('line_manager_id')->references('id')->on('users');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('vertical_id');
             $table->foreign('vertical_id')->references('id')->on('vertical');
             $table->unsignedBigInteger('designation_id');
