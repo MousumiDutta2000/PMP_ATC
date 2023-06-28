@@ -34,11 +34,7 @@
             
         </div>
         @if ($sprints->count() > 0)
-<<<<<<< HEAD
-            <table id="sprint-table" class="table table-hover responsive" style="width: 100%;">
-=======
             <table id="example" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
->>>>>>> 5c7d5f2b9098b2f681437156250dbd8652c5ad64
                 <thead>
                     <tr>
                         {{-- <th>ID</th> --}}
