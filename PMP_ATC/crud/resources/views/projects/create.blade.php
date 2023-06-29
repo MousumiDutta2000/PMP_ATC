@@ -33,15 +33,15 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="project_name">Project Name</label>
-                    <input type="text" class="shadow-sm" name="project_name" id="project_name" required="required">
+                    <input type="text" class="shadow-sm" name="project_name" id="project_name" placeholder="Enter project name" required="required" style="font-size: 14px;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="typeSelect">Project Type</label>
-                    <select id="typeSelect" class="shadow-sm" name="project_type" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
-                        <option value="" selected="selected" disabled="disabled">Type</option>
+                    <select id="typeSelect" class="shadow-sm" name="project_type" required="required" style="padding-top:5px; padding-bottom:5px; height:39px; color:#999; font-size: 14px;">
+                        <option value="" selected="selected" disabled="disabled">Select type</option>
                         <option>Internal</option>
                         <option>External</option>
                     </select>
@@ -56,21 +56,21 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="project_startDate">Project Start Date</label>
-                    <input type="date" class="shadow-sm" name="project_startDate" id="project_startDate" required="required">
+                    <input type="date" class="shadow-sm" name="project_startDate" id="project_startDate" required="required" style="color:#999; font-size: 14px;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="project_endDate">Project End Date</label>
-                    <input type="date" class="shadow-sm" name="project_endDate" id="project_endDate" required="required">
+                    <input type="date" class="shadow-sm" name="project_endDate" id="project_endDate" required="required" style="color:#999; font-size: 14px;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="project_manager_id">Project Manager:</label>
-                        <select name="project_manager_id" class="shadow-sm" id="project_manager_id" class="form-control" required style="padding-bottom: 6px; height: 39.1px;">
+                        <select name="project_manager_id" class="shadow-sm" id="project_manager_id" class="form-control" required style="padding-bottom: 6px; height: 39.1px; color:#999; font-size: 14px;">
                             <option value="">Select Project Manager</option>
                             @foreach ($projectManagers as $projectManager)
                                 <option value="{{ $projectManager->id }}">{{ $projectManager->name }}</option>
@@ -82,8 +82,8 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="statusSelect">Status</label>
-                    <select id="statusSelect" class="shadow-sm" name="project_status" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
-                    <option value="" selected="selected" disabled="disabled">Status</option>
+                    <select id="statusSelect" class="shadow-sm" name="project_status" required="required" style="padding-top:5px; padding-bottom:5px; height:39px; color:#999; font-size: 14px;">
+                    <option value="" selected="selected" disabled="disabled">Select status</option>
                     <option>Not Started</option>
                     <option>Delay</option>
                     <option>Pending</option>
@@ -93,10 +93,10 @@
                 </div>
             </div>
 
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-0">
                 <div class="form-group">
                     <label for="vertical_id">Vertical</label>
-                    <select name="vertical_id" class="shadow-sm" id="vertical_id" class="form-control" required style="padding-bottom: 6px;">
+                    <select name="vertical_id" class="shadow-sm" id="vertical_id" class="form-control" required style="padding-bottom: 6px; color:#999; font-size: 14px;">
                         <option value="">Select Vertical</option>
                             @foreach ($verticals as $vertical)
                                 <option value="{{ $vertical->id }}">{{ $vertical->vertical_name }}</option>
@@ -110,7 +110,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="client_id">Client</label>
-                    <select id="client_id" class="shadow-sm" name="client_id" class="form-control" required style="height: 38.1px;">
+                    <select id="client_id" class="shadow-sm" name="client_id" class="form-control" required style="height: 38.1px; color:#999; font-size: 14px;">
                     <option value="">Select Client</option>
                     @foreach($clients as $client)
                         <option value="{{ $client->id }}">{{ $client->client_name }}</option>
@@ -122,21 +122,21 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="client_spoc_name">Client Name [SPOC]</label>
-                    <input type="text" class="shadow-sm" name="client_spoc_name" id="client_spoc_name" required="required">
+                    <input type="text" class="shadow-sm" name="client_spoc_name" id="client_spoc_name" placeholder=" Enter client name" required="required" style="color:#999;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="client_spoc_email">Client Email [SPOC]</label>
-                    <input type="email" class="shadow-sm" name="client_spoc_email" id="client_spoc_email" required="required">
+                    <input type="email" class="shadow-sm" name="client_spoc_email" id="client_spoc_email" placeholder=" Enter client email" required="required" style="color:#999;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="client_spoc_contact">Client Contact [SPOC]</label>
-                    <input type="text" class="shadow-sm" name="client_spoc_contact" id="client_spoc_contact" required="required">
+                    <input type="text" class="shadow-sm" name="client_spoc_contact" id="client_spoc_contact" placeholder="Enter client contact" required="required" style="color:#999;">
                 </div>
             </div>
 
@@ -144,7 +144,7 @@
 
             <div class="form-group">
                 <label for="technology_id">Technologies</label>
-                <select id="technology_id" class="shadow-sm" name="technology_id" class="form-control" required style="height:39px;">
+                <select id="technology_id" class="shadow-sm" name="technology_id" class="form-control" required style="height:39px; color:#999; font-size: 14px;">
                     <option value="">Select Technology</option>
                     @foreach($technologies as $technology)
                         <option value="{{ $technology->id }}">{{ $technology->technology_name }}</option>
@@ -162,9 +162,9 @@
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="close">
                 <div class="modal-dialog modal-dialog-centered" role="document" style="z-index: 1060;">
                     <div class="modal-content">
-                        <div class="modal-header p-0">
-                            <h5 class="modal-title" id="myModalLabel">Add Member</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="modal-header p-0" style="margin-left:15px;">
+                            <h4 class="modal-title" id="myModalLabel" style="font-weight:bold; color: #012970;">Add Member</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-right:9px;"></button>
                         </div>
                             <div class="modal-body">
                                 <div class="row">
@@ -172,7 +172,7 @@
                                         <label for="fieldName" class="form-label mb-3">Member Name</label>
                                     </div>
                     
-                                    <div class="col-md-6">
+                                    <div class="col-md-6" style="font-size:14px;">
                                         <select id="project_members_id" name="project_members_id" class="js-example-basic-single" required style="width:100%;">
                                             <option value="">Select Member</option>
                                             @foreach($projectMembers as $projectMember)
@@ -195,7 +195,7 @@
                                     </div>
 
                                     <div class="col-md-12 mt-3 text-end">
-                                        <button type="button" class="btn btn-primary" id="addMemberBtn">Add Member</button>
+                                        <button type="button" class="btn" id="addMemberBtn" style="background-color: #012970; color: white;">Add Member</button>
                                     </div>
 
                                 </div>
@@ -268,7 +268,7 @@
 <script>
 $(document).ready(function() {
     $('.js-example-basic-single').select2({
-    placeholder: 'Select an option',
+    placeholder: 'Select Member',
     dropdownParent:'#myModal'
     });
 });
