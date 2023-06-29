@@ -1,4 +1,4 @@
-<!-- resources/views/project_member/edit.blade.php -->
+
 @extends('layouts.side_nav')
 
 @section('pageTitle', 'Project Member')

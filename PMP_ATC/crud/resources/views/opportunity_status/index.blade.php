@@ -34,7 +34,7 @@
             <a href="{{ route('opportunity_status.create') }}" class="btn btn-primary">Add New</a>
         </div>
         <div class="table">
-            <table id="example" class="table table-hover responsive" style="width:100%">
+            <table id="opportunityStatusTable" class="table table-hover responsive" style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>

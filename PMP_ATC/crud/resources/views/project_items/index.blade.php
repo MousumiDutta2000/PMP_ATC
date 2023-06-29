@@ -32,7 +32,7 @@
             <a href="{{ route('project-items.create') }}" class="btn btn-primary">Add New</a>
         </div>
         @if ($projectItems->count() > 0)
-            <table id="example" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
+            <table id="projectItemTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
                         {{-- <th>ID</th> --}}
