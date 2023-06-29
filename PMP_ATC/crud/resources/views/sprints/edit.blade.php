@@ -52,8 +52,15 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="project_id">Project ID:</label>
-                <input type="text" name="project_id" id="project_id" class="form-control" value="{{ old('project_id', $sprint->project_id) }}">
-              </div> 
+                <select name="project_id" id="project_id" class="form-control" required>
+                    @foreach ($projects as $project)
+                        <option value="{{ $project->id }}" {{ $sprint->project_id == $project->id ? 'selected' : '' }}>
+                            {{ $project->project_name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            
             </div>
 
             <div class="col-md-6">
@@ -87,16 +94,30 @@
             <div class="col-md-6 mb-3">
               <div class="form-group">
                 <label for="assigned_to">Assigned To:</label>
-                <input type="text" name="assigned_to" id="assigned_to" class="form-control" value="{{ old('assigned_to', $sprint->assigned_to) }}">
-              </div>
+                <select name="assigned_to" id="assigned_to" class="form-control" required>
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}" {{ $sprint->assigned_to == $user->id ? 'selected' : '' }}>
+                            {{ $user->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            
             </div>
 
 
             <div class="col-md-6">
               <div class="form-group">
                 <label for="assigned_by">Assigned By:</label>
-                <input type="text" name="assigned_by" id="assigned_by" class="form-control" value="{{ old('assigned_by', $sprint->assigned_by) }}">
-              </div>
+                <select name="assigned_by" id="assigned_by" class="form-control" required>
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}" {{ $sprint->assigned_by == $user->id ? 'selected' : '' }}>
+                            {{ $user->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            
             </div>
 
                 

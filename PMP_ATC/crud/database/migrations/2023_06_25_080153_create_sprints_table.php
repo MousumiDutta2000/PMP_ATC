@@ -16,11 +16,17 @@ class CreateSprintsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('status', ['Under discussion', 'Under development', 'In queue', 'Not Started', 'Pending', 'Delay']);
-            $table->string('assigned_to');
-            $table->string('assigned_by');
+            $table->unsignedBigInteger('assigned_to');
+            $table->unsignedBigInteger('assigned_by');
+
+            // $table->string('assigned_to');
+            // $table->string('assigned_by');
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('project')->onDelete('set null');
+            $table->foreign('assigned_to')->references('id')->on('users');
+            $table->foreign('assigned_by')->references('id')->on('users');
+
         });
     }
 

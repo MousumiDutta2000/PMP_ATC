@@ -49,9 +49,14 @@
         
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="project_id">Project ID</label>
-                    <input type="text" name="project_id" id="project_id" value="{{ old('project_id') }}">
-                </div>  
+                    <label for="project_id">Project ID:</label>
+                    <select name="project_id" id="project_id" class="form-control" required>
+                        <option value="">Select Project</option>
+                        @foreach ($projects as $project)
+                            <option value="{{ $project->id }}">{{ $project->project_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
 
             <div class="col-md-6">
@@ -84,16 +89,27 @@
 
             <div class="col-md-6 mb-3">
                 <div class="form-group">
-                    <label for="assigned_to">Assigned To</label>
-                    <input type="text" name="assigned_to" id="assigned_to" value="{{ old('assigned_to') }}">
+                    <label for="assigned_to">Assigned To:</label>
+                    <select name="assigned_to" id="assigned_to" class="form-control" required>
+                        <option value="">Select User</option>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
+                
             </div>
 
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="assigned_by">Assigned By</label>
-                    <input type="text" name="assigned_by" id="assigned_by" value="{{ old('assigned_by') }}">
+                    <label for="assigned_by">Assigned By:</label>
+                    <select name="assigned_by" id="assigned_by" class="form-control" required>
+                        <option value="">Select User</option>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 

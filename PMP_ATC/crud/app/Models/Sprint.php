@@ -23,7 +23,18 @@ class Sprint extends Model
     ];
 
     public function project()
-{
-    return $this->belongsTo(Project::class, 'project_id');
-}
+    {
+        return $this->belongsTo(Project::class, 'project_id');
+    }
+
+    public function assignedTo()
+    {
+        return $this->belongsTo(User::class, 'assigned_to');
+    }
+
+    public function assignedBy()
+    {
+        return $this->belongsTo(User::class, 'assigned_by');
+    }
+
 }

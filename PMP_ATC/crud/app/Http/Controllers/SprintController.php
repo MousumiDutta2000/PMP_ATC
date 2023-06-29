@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Sprint;
 use Illuminate\Http\Request;
+use App\Models\Project;
+use App\Models\User;
 
 class SprintController extends Controller
 {
@@ -21,13 +23,17 @@ class SprintController extends Controller
 
     public function create()
     {
-        return view('sprints.create');
+        $users = User::all();
+        $projects= Project::all();
+
+        return view('sprints.create', compact('users', 'projects'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'sprint_name' => 'required',
+            'project_id' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
             'status' => 'required',
@@ -46,15 +52,22 @@ class SprintController extends Controller
         return view('sprints.show', compact('sprint'));
     }
 
-    public function edit(Sprint $sprint)
+    public function edit($id)
     {
-        return view('sprints.edit', compact('sprint'));
+        $users = User::all();
+        $projects = Project::all();
+    
+        $sprint = Sprint::findOrFail($id);
+    
+        return view('sprints.edit', compact('users', 'projects', 'sprint'));
     }
+    
 
     public function update(Request $request, Sprint $sprint)
     {
         $request->validate([
             'sprint_name' => 'required',
+            'project_id' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
             'status' => 'required',
