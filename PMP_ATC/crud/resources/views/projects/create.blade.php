@@ -10,6 +10,7 @@
 
 @section('project_css')
 <link rel="stylesheet" href="{{ asset('css/project.css') }}"> 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection 
 
 @section('content') 
@@ -102,7 +103,7 @@
                 </div>
             </div>
 
-            <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
+            <hr>
 
             <div class="col-md-6">
                 <div class="form-group">
@@ -137,70 +138,73 @@
                 </div>
             </div>
 
-            <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
+            <hr>
 
             <div class="form-group">
-                <label for="technology_id">Technologies</label>
-                <select id="technology_id" name="technology_id" class="form-control" required>
-                <option value="">Select Technology</option>
-                    @foreach($technologies as $technology)
-                                    <option value="{{ $technology->id }}">{{ $technology->technology_name }}</option>
-                                @endforeach
-                    </select>
-                
-                </select>
-            </div>
-
-            <div class="col-md-6 mb-3">
-                <label for="memberInput" class="form-label" style="height:20px;">Member</label>
-                <i class="fa fa-plus-circle" id="plusSign" style="color: #7d4287; cursor: pointer;"></i>
-                <div class="row" id="memberCardContainer"></div>
-            </div>
-
-<!-- Bootstrap Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header p-0">
-                <h5 class="modal-title" id="myModalLabel">Add Member</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="fieldName" class="form-label mb-3">Member Name</label>
-                    </div>
-                    <div class="col-md-6">
-                        <select id="project_members_id" name="project_members_id" class="form-control" required>
-                            <option value="">Select Member</option>
-                            @foreach($projectMembers as $projectMember)
-                            <option value="{{ $projectMember->id }}">{{ $projectMember->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="project_role_id" class="form-label mb-3">Role</label>
-                    </div>
-
-                    <div class="col-md-6">
-                        <select id="project_role_id" name="project_role_id" class="form-control" required>
-                            <option value="">Select Role</option>
-                            @foreach ($projectRoles as $projectRole)
-                            <option value="{{ $projectRole->id }}">{{ $projectRole->member_role_type }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-12 mt-3 text-end">
-                        <button type="button" class="btn btn-primary" id="addMemberBtn">Add Member</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <label for="technology_id">Technologies</label>
+    <select id="technology_id" class="shadow-sm " name="technology_id" class="form-control" required style="height:39px;">
+        <option value="">Select Technology</option>
+        @foreach($technologies as $technology)
+            <option value="{{ $technology->id }}">{{ $technology->technology_name }}</option>
+        @endforeach
+    </select>
 </div>
 
+             <div class="col-md-6 mb-3">
+    <label for="memberInput" class="form-label" style="height:20px;">Member</label>
+    <i class="fa fa-plus-circle" id="plusSign" style="color: #7d4287; cursor: pointer;"></i>
+    <div class="row" id="memberCardContainer"></div>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="close">
+  <div class="modal-dialog modal-dialog-centered" role="document" style="z-index: 1060;">
+    <div class="modal-content">
+      <div class="modal-header p-0">
+        <h5 class="modal-title" id="myModalLabel">Add Member</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="fieldName" class="form-label mb-3">Member Name</label>
+          </div>
+          
+        <div class="col-md-6">
+            <select id="project_members_id" name="project_members_id" class="js-example-basic-single" required style="width:100%;">
+                <option value="">Select Member</option>
+                @foreach($projectMembers as $projectMember)
+                <option value="{{ $projectMember->id }}">{{ $projectMember->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+
+
+          
+          <div class="col-md-6">
+            <label for="project_role_id" class="form-label mb-3">Role</label>
+          </div>
+
+          <div class="col-md-6">
+            <select id="project_role_id" name="project_role_id" class="form-control" required>
+              <option value="">Select Role</option>
+              @foreach ($projectRoles as $projectRole)
+              <option value="{{ $projectRole->id }}">{{ $projectRole->member_role_type }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="col-md-12 mt-3 text-end">
+            <button type="button" class="btn btn-primary" id="addMemberBtn">Add Member</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+                    
 <!-- <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -243,106 +247,119 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>  -->
 
-        
-        <div class="form-actions">
+</div>
+<div class="form-actions">
             <button type="submit" class="btn btn-primary">Create</button>
             <a href="{{ route('projects.index') }}" class="btn btn-danger">Cancel</a>
          </div>
 
-         </form>
+</form>
 </div>
 
 <!-- Include necessary scripts here -->
-
 <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function() {
+    $('.js-example-basic-single').select2({
+      placeholder: 'Select an option',
+      dropdownParent:'#myModal'
+    });
+  });
+</script>
+
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.ckeditor').ckeditor();
     });
 </script>
 
-
 <script>
-    $(document).ready(function () {
-        // Plus sign click event handler
-        $('#plusSign').click(function () {
-            // Show the add member modal
-            $('#myModal').modal('show');
-        });
-
-        // Add member button click event handler
-        $("#addMemberBtn").click(function () {
-            var memberName = $("#project_members_id option:selected").text();
-            var role = $("#project_role_id option:selected").text();
-
-            if (memberName && role) {
-                var cardHtml = `
-                    <div class="col-md-3">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <p class="card-title user-name">${memberName}</p>
-                                <p class="card-text role">${role}</p>
-                                <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
-                            </div>
-                        </div>
-                    </div>`;
-
-                $("#memberCardContainer").append(cardHtml);
-            }
-
-            $("#myModal").modal("hide");
-        });
-
-        // Edit Member button click event handler
-        $(document).on('click', '.edit-icon', function () {
-            // Get the current member name and role from the card
-            var card = $(this).closest('.card');
-            var memberName = card.find('.user-name').text();
-            var memberRole = card.find('.role').text();
-
-            // Set the values in the edit modal input fields
-            $('#editFieldName').val(memberName);
-            $('#editRoleSelect').val(memberRole);
-
-            // Store a reference to the card being edited
-            $('#editModal').data('card', card);
-
-            // Show the edit modal
-            $('#editModal').modal('show');
-        });
-
-// Update Member button click event handler
-$('#updateMemberBtn').click(function () {
-    // Get the updated member role from the edit modal input field
-    var updatedMemberRole = $('#editRoleSelect option:selected').text();
-
-    // Get the reference to the card being edited
-    var card = $('#editModal').data('card');
-
-    // Update the card with the new member role
-    card.find('.role').text(updatedMemberRole);
-
-    // Hide the edit modal
-    $('#editModal').modal('hide');
-});
-
-        // Remove Member button click event handler
-        $('#removeBtn').click(function () {
-            // Get the reference to the card being edited
-            var card = $('#editModal').data('card');
-
-            // Remove the card from the container
-            card.parent().remove();
-
-            // Hide the edit modal
-            $('#editModal').modal('hide');
-        });
+  $(document).ready(function() {
+    // Plus sign click event handler
+    $('#plusSign').click(function() {
+      // Show the add member modal
+      $('#myModal').modal('show');
     });
+
+    // Add member button click event handler
+    $("#addMemberBtn").click(function() {
+      var memberName = $("#project_members_id option:selected").text();
+      var role = $("#project_role_id option:selected").text();
+
+      if (memberName && role) {
+        var cardHtml = `
+          <div class="col-md-3">
+            <div class="card mb-3">
+              <div class="card-body">
+                <p class="card-title user-name">${memberName}</p>
+                <p class="card-text role">${role}</p>
+                <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
+              </div>
+            </div>
+          </div>`;
+
+        $("#memberCardContainer").append(cardHtml);
+      }
+
+      $("#myModal").modal("hide");
+    });
+
+    // Edit Member button click event handler
+    $(document).on('click', '.edit-icon', function() {
+      // Get the current member name and role from the card
+      var card = $(this).closest('.card');
+      var memberName = card.find('.user-name').text();
+      var memberRole = card.find('.role').text();
+
+      // Set the values in the edit modal input fields
+      $('#editFieldName').val(memberName);
+      $('#editRoleSelect').val(memberRole);
+
+      // Store a reference to the card being edited
+      $('#editModal').data('card', card);
+
+      // Show the edit modal
+      $('#editModal').modal('show');
+    });
+
+    // Update Member button click event handler
+    $('#updateMemberBtn').click(function() {
+      // Get the updated member role from the edit modal input field
+      var updatedMemberRole = $('#editRoleSelect option:selected').text();
+
+      // Get the reference to the card being edited
+      var card = $('#editModal').data('card');
+
+      // Update the card with the new member role
+      card.find('.role').text(updatedMemberRole);
+
+      // Hide the edit modal
+      $('#editModal').modal('hide');
+    });
+
+    // Remove Member button click event handler
+    $('#removeBtn').click(function() {
+      // Get the reference to the card being edited
+      var card = $('#editModal').data('card');
+
+      // Remove the card from the container
+      card.parent().remove();
+
+      // Hide the edit modal
+      $('#editModal').modal('hide');
+    });
+  });
+  
 </script>
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
 
 @endsection

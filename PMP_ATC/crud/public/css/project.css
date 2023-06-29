@@ -194,3 +194,50 @@ textarea {
     margin-right: 0;
   }
 }
+
+/* select option[data-value=""] {
+  display: none;
+}
+
+select option:before {
+  content: "\25CF ";
+  color: yellow;
+  margin-right: 5px;
+} */
+
+/* .custom-dropdown select {
+  position: relative;
+}
+
+.circle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: yellow;
+  text-align: center;
+  line-height: 20px;
+  margin-right: 5px;
+}
+
+.custom-dropdown select option:before {
+  content: attr(data-first-letter);
+  color: black;
+  font-weight: bold;
+} */
+
+.circle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: yellow;
+  text-align: center;
+  line-height: 20px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.select2-container {
+  z-index: 1061 !important;  /* Adjust the z-index value to be higher than the modal */
+}
