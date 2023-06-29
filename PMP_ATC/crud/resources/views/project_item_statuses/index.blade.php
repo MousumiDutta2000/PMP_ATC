@@ -37,28 +37,28 @@
             <table id="example" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th style="padding-left:35px">Status</th>
+                        {{-- <th>ID</th> --}}
+                        <th style="padding-left:120px;">Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($statuses as $status)
                         <tr class="shadow" style="border-radius:15px;">
-                            <td>{{ $status->id }}</td>
-                            <td>
+                            {{-- <td>{{ $status->id }}</td> --}}
+                            <td style="padding-left: 95px;">
                                 @if($status->status == 'Under discussion')
-                                    <div class="badge badge-success-light text-success font-weight-bold" style="background-color: #79c57f;">{{ $status->status }}</div>
+                                    <div class="badge badge-success-light text-white font-weight-bold" style="background-color: #79c57f;">{{ $status->status }}</div>
                                 @elseif($status->status == 'Delay')
-                                    <div class="badge badge-warning-light text-warning font-weight-bold" style="background-color: #fbe99f; margin-left:16px; padding-left:18px; padding-right:18px;">{{ $status->status }}</div>
+                                    <div class="badge badge-warning text-white font-weight-bold" style="background-color: #fbe99f; margin-left:16px; padding-left:18px; padding-right:18px;">{{ $status->status }}</div>
                                 @elseif($status->status == 'Pending')
-                                    <div class="badge badge-danger-light text-danger font-weight-bold" style="background-color: #f1909b; margin-left:16px;">{{ $status->status }}</div>
+                                    <div class="badge badge-danger-light text-white font-weight-bold" style="background-color: #f1909b; margin-left:16px;">{{ $status->status }}</div>
                                 @elseif($status->status == 'Under development')
-                                    <div class="badge badge-primary-light text-primary font-weight-bold" style="background-color: #6ec6ff;">{{ $status->status }}</div>
+                                    <div class="badge badge-primary-light text-white font-weight-bold" style="background-color: #6ec6ff;">{{ $status->status }}</div>
                                 @elseif($status->status == 'In queue')
-                                    <div class="badge badge-info-light text-info font-weight-bold" style="background-color: #17a2b8; margin-left:16px;">{{ $status->status }}</div>
+                                    <div class="badge badge-info-light text-white font-weight-bold" style="background-color: #17a2b8; margin-left:16px;">{{ $status->status }}</div>
                                 @elseif($status->status == 'Not Started')
-                                    <div class="badge badge-danger-light text-danger font-weight-bold" style="background-color: #f07f8c; margin-left:12px;">{{ $status->status }}</div>
+                                    <div class="badge badge-danger-light text-white font-weight-bold" style="background-color: #f07f8c; margin-left:12px;">{{ $status->status }}</div>
                                 @endif
                             </td>
                             {{-- <td>{{ $status->status }}</td> --}}
