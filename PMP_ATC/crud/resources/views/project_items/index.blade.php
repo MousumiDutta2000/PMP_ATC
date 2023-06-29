@@ -53,7 +53,7 @@
                 </thead>
                 <tbody>
                     @foreach ($projectItems as $projectItem)
-                        <tr class="shadow" style="border-radius:15px;">>
+                        <tr class="shadow" style="border-radius:15px;">
                             {{-- <td>{{ $projectItem->id }}</td> --}}
                         <td>{{ $projectItem->item_name }}</td>
                         <td>

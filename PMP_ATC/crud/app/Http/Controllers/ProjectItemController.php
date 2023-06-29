@@ -67,12 +67,32 @@ class ProjectItemController extends Controller
 
     public function edit($id)
     {
+        $projects = Project::all();
+        $statuses = ProjectItemStatus::all();
+        $sprints = Sprint::all();
+        
         $projectItem = ProjectItem::findOrFail($id);
-        return view('project_items.edit', compact('projectItem'));
+        
+        return view('project_items.edit', compact('projects', 'statuses', 'sprints', 'projectItem'));
     }
+    
 
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'item_name' => 'required',
+            'details' => 'required',
+            'project_id' => 'required',
+            'item_id' => 'required',
+            'sprint_id' => 'required',
+            'status' => 'required',
+            'expected_delivery' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'assigned_to' => 'required',
+            'assigned_by' => 'required',
+        ]);
         $projectItem = ProjectItem::findOrFail($id);
 
         // Update the project item fields based on the form data
@@ -95,6 +115,10 @@ class ProjectItemController extends Controller
 
     public function destroy($id)
     {
-        // Delete the project item
+        $projectItem = ProjectItem::findOrFail($id);
+        $projectItem->delete();
+
+        return redirect()->route('project-items.index')->with('success', 'Project Item deleted successfully');
+       
     }
 }

@@ -30,7 +30,7 @@
     <section class="body">
         <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
             <a href="{{ route('sprints.create') }}" class="btn btn-primary" style="margin-right: 10px;">Add New</a>
-            <i class="far fa-file-excel" style="color: #007508; font-size:30px;"></i>
+            <i class="fa-solid fa-file-export" style="font-size: 30px;"></i>
             
         </div>
         @if ($sprints->count() > 0)
@@ -40,7 +40,7 @@
                         {{-- <th>ID</th> --}}
                         <th>Sprint Name</th>
                         <th>Is Global Sprint</th>
-                        <th>Project ID</th>
+                        {{-- <th>Project ID</th> --}}
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th style="padding-left:35px">Status</th>
@@ -55,7 +55,7 @@
                             {{-- <td>{{ $sprint->id }}</td> --}}
                             <td>{{ $sprint->sprint_name }}</td>
                             <td>{{ $sprint->is_global_sprint }}</td>
-                            <td>{{ $sprint->project_id }}</td>   
+                            {{-- <td>{{ $sprint->project_id }}</td>    --}}
                             <td>{{ $sprint->start_date }}</td>
                             <td>{{ $sprint->end_date }}</td>
                             <td>
