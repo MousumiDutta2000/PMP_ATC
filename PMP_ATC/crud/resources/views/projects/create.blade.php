@@ -33,42 +33,44 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="project_name">Project Name</label>
-                    <input type="text" name="project_name" id="project_name" required="required"></div>
+                    <input type="text" class="shadow-sm" name="project_name" id="project_name" required="required">
+                </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="typeSelect">Project Type</label>
-                    <select id="typeSelect" name="project_type" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
-                <option value="" selected="selected" disabled="disabled">Type</option>
-                <option>Internal</option>
-                <option>External</option>
-            </select>
+                    <select id="typeSelect" class="shadow-sm" name="project_type" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
+                        <option value="" selected="selected" disabled="disabled">Type</option>
+                        <option>Internal</option>
+                        <option>External</option>
+                    </select>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="project_description">Description</label>
-                <textarea class="ckeditor form-control" name="project_description" id="project_description" required="required"></textarea>
+                <textarea class="ckeditor form-control" class="shadow-sm" name="project_description" id="project_description" required="required"></textarea>
             </div>
+
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="project_startDate">Project Start Date</label>
-                    <input type="date" name="project_startDate" id="project_startDate" required="required">
+                    <input type="date" class="shadow-sm" name="project_startDate" id="project_startDate" required="required">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="project_endDate">Project End Date</label>
-                    <input type="date" name="project_endDate" id="project_endDate" required="required">
+                    <input type="date" class="shadow-sm" name="project_endDate" id="project_endDate" required="required">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="project_manager_id">Project Manager:</label>
-                        <select name="project_manager_id" id="project_manager_id" class="form-control" required>
+                        <select name="project_manager_id" class="shadow-sm" id="project_manager_id" class="form-control" required style="padding-bottom: 6px; height: 39.1px;">
                             <option value="">Select Project Manager</option>
                             @foreach ($projectManagers as $projectManager)
                                 <option value="{{ $projectManager->id }}">{{ $projectManager->name }}</option>
@@ -80,7 +82,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="statusSelect">Status</label>
-                    <select id="statusSelect" name="project_status" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
+                    <select id="statusSelect" class="shadow-sm" name="project_status" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
                     <option value="" selected="selected" disabled="disabled">Status</option>
                     <option>Not Started</option>
                     <option>Delay</option>
@@ -94,21 +96,21 @@
             <div class="col-md-6 mb-3">
                 <div class="form-group">
                     <label for="vertical_id">Vertical</label>
-                        <select name="vertical_id" id="vertical_id" class="form-control" required>
+                    <select name="vertical_id" class="shadow-sm" id="vertical_id" class="form-control" required style="padding-bottom: 6px;">
                         <option value="">Select Vertical</option>
-                                @foreach ($verticals as $vertical)
-                                    <option value="{{ $vertical->id }}">{{ $vertical->vertical_name }}</option>
-                                @endforeach
-                        </select>
+                            @foreach ($verticals as $vertical)
+                                <option value="{{ $vertical->id }}">{{ $vertical->vertical_name }}</option>
+                            @endforeach
+                    </select>
                 </div>
             </div>
 
-            <hr>
+            <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="client_id">Client</label>
-                    <select id="client_id" name="client_id" class="form-control" required>
+                    <select id="client_id" class="shadow-sm" name="client_id" class="form-control" required style="height: 38.1px;">
                     <option value="">Select Client</option>
                     @foreach($clients as $client)
                         <option value="{{ $client->id }}">{{ $client->client_name }}</option>
@@ -120,142 +122,140 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="client_spoc_name">Client Name [SPOC]</label>
-                    <input type="text" name="client_spoc_name" id="client_spoc_name" required="required">
+                    <input type="text" class="shadow-sm" name="client_spoc_name" id="client_spoc_name" required="required">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="client_spoc_email">Client Email [SPOC]</label>
-                    <input type="email" name="client_spoc_email" id="client_spoc_email" required="required">
+                    <input type="email" class="shadow-sm" name="client_spoc_email" id="client_spoc_email" required="required">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="client_spoc_contact">Client Contact [SPOC]</label>
-                    <input type="text" name="client_spoc_contact" id="client_spoc_contact" required="required">
+                    <input type="text" class="shadow-sm" name="client_spoc_contact" id="client_spoc_contact" required="required">
                 </div>
             </div>
 
-            <hr>
+            <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
 
             <div class="form-group">
-    <label for="technology_id">Technologies</label>
-    <select id="technology_id" class="shadow-sm " name="technology_id" class="form-control" required style="height:39px;">
-        <option value="">Select Technology</option>
-        @foreach($technologies as $technology)
-            <option value="{{ $technology->id }}">{{ $technology->technology_name }}</option>
-        @endforeach
-    </select>
-</div>
-
-             <div class="col-md-6 mb-3">
-    <label for="memberInput" class="form-label" style="height:20px;">Member</label>
-    <i class="fa fa-plus-circle" id="plusSign" style="color: #7d4287; cursor: pointer;"></i>
-    <div class="row" id="memberCardContainer"></div>
-</div>
-
-<!-- Bootstrap Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="close">
-  <div class="modal-dialog modal-dialog-centered" role="document" style="z-index: 1060;">
-    <div class="modal-content">
-      <div class="modal-header p-0">
-        <h5 class="modal-title" id="myModalLabel">Add Member</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6">
-            <label for="fieldName" class="form-label mb-3">Member Name</label>
-          </div>
-          
-        <div class="col-md-6">
-            <select id="project_members_id" name="project_members_id" class="js-example-basic-single" required style="width:100%;">
-                <option value="">Select Member</option>
-                @foreach($projectMembers as $projectMember)
-                <option value="{{ $projectMember->id }}">{{ $projectMember->name }}</option>
-                @endforeach
-            </select>
-        </div>
-
-
-
-          
-          <div class="col-md-6">
-            <label for="project_role_id" class="form-label mb-3">Role</label>
-          </div>
-
-          <div class="col-md-6">
-            <select id="project_role_id" name="project_role_id" class="form-control" required>
-              <option value="">Select Role</option>
-              @foreach ($projectRoles as $projectRole)
-              <option value="{{ $projectRole->id }}">{{ $projectRole->member_role_type }}</option>
-              @endforeach
-            </select>
-          </div>
-          <div class="col-md-12 mt-3 text-end">
-            <button type="button" class="btn btn-primary" id="addMemberBtn">Add Member</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-                    
-<!-- <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header p-0">
-                <h5 class="modal-title" id="editModalLabel">Edit Member</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <label for="technology_id">Technologies</label>
+                <select id="technology_id" class="shadow-sm" name="technology_id" class="form-control" required style="height:39px;">
+                    <option value="">Select Technology</option>
+                    @foreach($technologies as $technology)
+                        <option value="{{ $technology->id }}">{{ $technology->technology_name }}</option>
+                    @endforeach
+                </select>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="editFieldName" class="form-label mb-3">Member Name</label>
-                    </div>
-                    <div class="col-md-6">
-                        <select id="editFieldName" name="editFieldName" class="form-control" required>
-                            <option value="">Select Member</option>
-                            @foreach($projectMembers as $projectMember)
-                            <option value="{{ $projectMember->id }}">{{ $projectMember->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
 
-                    <div class="col-md-6">
-                        <label for="editRoleSelect" class="form-label mb-3">Role</label>
-                    </div>
+            <div class="col-md-6 mb-3">
+                <label for="memberInput" class="form-label" style="height:20px;">Member</label>
+                <i class="fa fa-plus-circle" id="plusSign" style="color: #7d4287; cursor: pointer;"></i>
+                <div class="row" id="memberCardContainer"></div>
+            </div>
 
-                    <div class="col-md-6">
-                        <select id="editRoleSelect" name="editRoleSelect" class="form-control" required>
-                            <option value="">Select Role</option>
-                            @foreach ($projectRoles as $projectRole)
-                            <option value="{{ $projectRole->id }}">{{ $projectRole->member_role_type }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+            <!-- Bootstrap Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="close">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="z-index: 1060;">
+                    <div class="modal-content">
+                        <div class="modal-header p-0">
+                            <h5 class="modal-title" id="myModalLabel">Add Member</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="fieldName" class="form-label mb-3">Member Name</label>
+                                    </div>
+                    
+                                    <div class="col-md-6">
+                                        <select id="project_members_id" name="project_members_id" class="js-example-basic-single" required style="width:100%;">
+                                            <option value="">Select Member</option>
+                                            @foreach($projectMembers as $projectMember)
+                                            <option value="{{ $projectMember->id }}">{{ $projectMember->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+      
+                                    <div class="col-md-6">
+                                        <label for="project_role_id" class="form-label mb-3">Role</label>
+                                    </div>
 
-                    <div class="col-md-12 mt-3 text-end">
-                        <button type="button" class="btn btn-primary" id="updateMemberBtn">Update</button>
-                        <button type="button" class="btn btn-primary" id="removeBtn">Remove</button>
+                                    <div class="col-md-6">
+                                        <select id="project_role_id" name="project_role_id" class="form-control" required>
+                                            <option value="">Select Role</option>
+                                                @foreach ($projectRoles as $projectRole)
+                                                    <option value="{{ $projectRole->id }}">{{ $projectRole->member_role_type }}</option>
+                                                @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-12 mt-3 text-end">
+                                        <button type="button" class="btn btn-primary" id="addMemberBtn">Add Member</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
+                                
+             <!-- <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header p-0">
+                            <h5 class="modal-title" id="editModalLabel">Edit Member</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="editFieldName" class="form-label mb-3">Member Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <select id="editFieldName" name="editFieldName" class="form-control" required>
+                                        <option value="">Select Member</option>
+                                        @foreach($projectMembers as $projectMember)
+                                        <option value="{{ $projectMember->id }}">{{ $projectMember->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="editRoleSelect" class="form-label mb-3">Role</label>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <select id="editRoleSelect" name="editRoleSelect" class="form-control" required>
+                                        <option value="">Select Role</option>
+                                        @foreach ($projectRoles as $projectRole)
+                                        <option value="{{ $projectRole->id }}">{{ $projectRole->member_role_type }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-md-12 mt-3 text-end">
+                                    <button type="button" class="btn btn-primary" id="updateMemberBtn">Update</button>
+                                    <button type="button" class="btn btn-primary" id="removeBtn">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>  -->
             </div>
-        </div>
-    </div>
-</div>  -->
 
-</div>
-<div class="form-actions">
-            <button type="submit" class="btn btn-primary">Create</button>
-            <a href="{{ route('projects.index') }}" class="btn btn-danger">Cancel</a>
-         </div>
-
-</form>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Create</button>
+                    <a href="{{ route('projects.index') }}" class="btn btn-danger">Cancel</a>
+            </div>
+    </form>
 </div>
 
 <!-- Include necessary scripts here -->
@@ -263,103 +263,101 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<!-- Select2 JS -->
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     $('.js-example-basic-single').select2({
-      placeholder: 'Select an option',
-      dropdownParent:'#myModal'
+    placeholder: 'Select an option',
+    dropdownParent:'#myModal'
     });
-  });
+});
 </script>
 
-
+<!-- CSK Editor JS -->
 <script type="text/javascript">
     $(document).ready(function () {
         $('.ckeditor').ckeditor();
     });
 </script>
 
+<!-- ADD Member $ EDIT Member JS -->
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     // Plus sign click event handler
     $('#plusSign').click(function() {
-      // Show the add member modal
-      $('#myModal').modal('show');
+    // Show the add member modal
+    $('#myModal').modal('show');
     });
 
     // Add member button click event handler
     $("#addMemberBtn").click(function() {
-      var memberName = $("#project_members_id option:selected").text();
-      var role = $("#project_role_id option:selected").text();
+    var memberName = $("#project_members_id option:selected").text();
+    var role = $("#project_role_id option:selected").text();
 
-      if (memberName && role) {
+    if (memberName && role) {
         var cardHtml = `
-          <div class="col-md-3">
+        <div class="col-md-3">
             <div class="card mb-3">
-              <div class="card-body">
+            <div class="card-body">
                 <p class="card-title user-name">${memberName}</p>
                 <p class="card-text role">${role}</p>
                 <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
-              </div>
             </div>
-          </div>`;
+            </div>
+        </div>`;
 
         $("#memberCardContainer").append(cardHtml);
-      }
+    }
 
-      $("#myModal").modal("hide");
+    $("#myModal").modal("hide");
     });
 
     // Edit Member button click event handler
     $(document).on('click', '.edit-icon', function() {
-      // Get the current member name and role from the card
-      var card = $(this).closest('.card');
-      var memberName = card.find('.user-name').text();
-      var memberRole = card.find('.role').text();
+    // Get the current member name and role from the card
+    var card = $(this).closest('.card');
+    var memberName = card.find('.user-name').text();
+    var memberRole = card.find('.role').text();
 
-      // Set the values in the edit modal input fields
-      $('#editFieldName').val(memberName);
-      $('#editRoleSelect').val(memberRole);
+    // Set the values in the edit modal input fields
+    $('#editFieldName').val(memberName);
+    $('#editRoleSelect').val(memberRole);
 
-      // Store a reference to the card being edited
-      $('#editModal').data('card', card);
+    // Store a reference to the card being edited
+    $('#editModal').data('card', card);
 
-      // Show the edit modal
-      $('#editModal').modal('show');
+    // Show the edit modal
+    $('#editModal').modal('show');
     });
 
     // Update Member button click event handler
     $('#updateMemberBtn').click(function() {
-      // Get the updated member role from the edit modal input field
-      var updatedMemberRole = $('#editRoleSelect option:selected').text();
+    // Get the updated member role from the edit modal input field
+    var updatedMemberRole = $('#editRoleSelect option:selected').text();
 
-      // Get the reference to the card being edited
-      var card = $('#editModal').data('card');
+    // Get the reference to the card being edited
+    var card = $('#editModal').data('card');
 
-      // Update the card with the new member role
-      card.find('.role').text(updatedMemberRole);
+    // Update the card with the new member role
+    card.find('.role').text(updatedMemberRole);
 
-      // Hide the edit modal
-      $('#editModal').modal('hide');
+    // Hide the edit modal
+    $('#editModal').modal('hide');
     });
 
     // Remove Member button click event handler
     $('#removeBtn').click(function() {
-      // Get the reference to the card being edited
-      var card = $('#editModal').data('card');
+    // Get the reference to the card being edited
+    var card = $('#editModal').data('card');
 
-      // Remove the card from the container
-      card.parent().remove();
+    // Remove the card from the container
+    card.parent().remove();
 
-      // Hide the edit modal
-      $('#editModal').modal('hide');
+    // Hide the edit modal
+    $('#editModal').modal('hide');
     });
-  });
-  
+});
 </script>
-
-
-<!-- <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
 
 @endsection
