@@ -73,8 +73,8 @@
                                     <div class="badge badge-danger-light text-white font-weight-bold" style="background-color: #f07f8c; margin-left:12px;">{{ $sprint->status }}</div>
                                 @endif
                             </td>
-                            <td>{{ $sprint->assigned_to }}</td>
-                            <td>{{ $sprint->assigned_by }}</td>
+                            <td>{{ $sprint->assignedTo->name }}</td>
+                            <td>{{ $sprint->assignedBy->name }}</td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <a href="#" data-toggle="modal" data-target="#showModal_{{ $sprint->id }}">
@@ -156,11 +156,11 @@
                             </tr>
                             <tr>
                                 <th>Assigned To:</th>
-                                <td>{{ $sprint->assigned_to }}</td>
+                                <td>{{ $sprint->assignedTo->name }}</td>
                             </tr>
                             <tr>
                                 <th>Assigned By:</th>
-                                <td>{{ $sprint->assigned_by }}</td>
+                                <td>{{ $sprint->assignedBy->name }}</td>
                             </tr>
                         </tbody>
                     </table>
