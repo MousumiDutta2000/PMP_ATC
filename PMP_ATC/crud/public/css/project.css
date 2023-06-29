@@ -241,3 +241,12 @@ select option:before {
 .select2-container {
   z-index: 1061 !important;  /* Adjust the z-index value to be higher than the modal */
 }
+
+#project_role_id{
+  height:30px; 
+  padding:inherit; 
+  color:#999; 
+  font-size: 14px; 
+  border: 1px solid #999; 
+  border-radius: 4px;
+}
