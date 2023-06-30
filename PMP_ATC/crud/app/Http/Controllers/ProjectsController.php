@@ -8,6 +8,7 @@ use App\Models\Vertical;
 use App\Models\Client;
 use App\Models\Technology;
 use App\Models\ProjectRole;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
@@ -25,7 +26,7 @@ class ProjectsController extends Controller
         $clients = Client::all();
         $projectManagers = User::all();
         $technologies = Technology::all();
-        $projectMembers = User::all();
+        $projectMembers = Profile::all();
         $projectRoles = ProjectRole::all();
 
         return view('projects.create', compact('users', 'verticals', 'clients', 'projectManagers', 'technologies', 'projectMembers', 'projectRoles'));
@@ -68,6 +69,13 @@ class ProjectsController extends Controller
         $project->project_members_id = $request->project_members_id;
         $project->project_role_id = $request->project_role_id;
 
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/profiles'), $imageName);
+            $profile->image = 'images/profiles/' . $imageName;
+        }
+
         $project->save();
 
         return redirect()->route('projects.index')->with('success', 'Project created successfully.');
@@ -98,7 +106,7 @@ class ProjectsController extends Controller
         $verticals = Vertical::all();
         $clients = Client::all();
         $projectRoles = ProjectRole::all();
-        $projectMembers = User::all();
+        $projectMembers = Profile::all();
 
         return view('projects.edit', compact('project', 'users', 'technologies', 'verticals', 'clients', 'projectRoles', 'projectMembers', 'projectManagers'));
     }

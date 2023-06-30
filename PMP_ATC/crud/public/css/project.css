@@ -168,31 +168,34 @@ textarea {
   }
 
 /* Add this CSS to your project.css file or inline style tag */
+#memberCardContainer {
+  display: flex;
+  /* justify-content: center; */
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 #memberCardContainer .card {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   width: 150px;
-  margin-right: 20px;
+  /* margin-right: 20px;
   margin-bottom: 20px;
-  margin-left: 0px;
-}
-
-@media (max-width: 576px) {
-  #memberCardContainer .card {
-    margin-right: 0;
-  }
+  margin-left: 0px; */
 }
 
 @media (max-width: 767px) {
   #memberCardContainer .card {
-    width: calc(50% - 10px); /* Adjust the spacing as per your preference */
-    margin-right: 10px;
+    width: calc(50% - 10px);
+    /* margin-right: 100px; */
   }
 
-  #memberCardContainer .card:nth-child(2n) {
+  /* #memberCardContainer .card:nth-child(2n) {
     margin-right: 0;
-  }
+  } */
 }
 
 /* select option[data-value=""] {
@@ -249,4 +252,12 @@ select option:before {
   font-size: 14px; 
   border: 1px solid #999; 
   border-radius: 4px;
+}
+
+.rounded_circle{
+  margin-top: 16px; 
+  height: 5.7em; 
+  width: 90px; 
+  margin-left: 6px; 
+  border-radius: 50%;
 }

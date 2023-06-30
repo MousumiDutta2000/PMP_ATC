@@ -152,7 +152,7 @@
 
             <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
 
-            <!-- <div class="form-group">
+            <div class="form-group">
                 <label for="technology_id">Technologies</label>
                 <div class="custom-select">
                     <div class="select-selected">Select Technology</div>
@@ -165,16 +165,6 @@
                         @endforeach
                     </div>
                 </div>
-            </div> -->
-
-            <div class="form-group">
-                <label for="technology_id">Technologies</label>
-                <select id="technology_id" name="technology_id" class="form-control" required>
-                <option value="">Select Technology</option>
-                    @foreach($technologies as $technology)
-                        <option value="{{ $technology->id }}">{{ $technology->technology_name }}</option>
-                    @endforeach
-                </select>
             </div>
 
             <div class="col-md-6 mb-3">
@@ -203,7 +193,7 @@
                                     <select id="project_members_id" name="project_members_id" class="js-example-basic-single" required style="width:100%;">
                                         <option value="">Select Member</option>
                                         @foreach($projectMembers as $projectMember)
-                                        <option value="{{ $projectMember->id }}">{{ $projectMember->name }}</option>
+                                        <option value="{{ $projectMember->id }}">{{ $projectMember->profileName->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -317,11 +307,15 @@ $(document).ready(function() {
 
     if (memberName && role) {
         var cardHtml = `
+        
         <div class="col-md-3">
-            <div class="card mb-3">
+            <div class="card mb-0">
             <div class="card-body">
+            <div class="avatar avatar-blue mr-3">
+            <img class="rounded_circle" src="{{ asset($projectMember->image) }}" alt="Profile Image" width="50">
+            </div>
                 <p class="card-title user-name">${memberName}</p>
-                <p class="card-text role">${role}</p>
+                <p class="card-text role" style="margin-bottom: 0rem; font-size: 12px; font-weight: 400; margin-top: -10px">${role}</p>
                 <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
             </div>
             </div>
