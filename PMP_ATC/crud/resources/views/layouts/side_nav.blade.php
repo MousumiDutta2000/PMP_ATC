@@ -244,6 +244,16 @@
             </li>
 
             <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('register') }}">
+              <i class="fa-regular fa-address-card"></i>
+                <span>Register</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
               <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
@@ -303,12 +313,6 @@
     </a>
   </li><!-- End projects Nav -->
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="{{ route('profiles.show', auth()->user()->profile->id) }}">
-      <i class="fa-solid fa-address-card"></i>
-      <span>Profile</span>
-    </a>
-  </li><!-- End Profile Page Nav -->
 
   <!-- <li class="nav-item">
     <a class="nav-link collapsed" href="{{ route('opportunity_status.index') }}">

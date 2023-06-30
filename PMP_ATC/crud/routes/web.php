@@ -95,3 +95,9 @@ Route::controller(MicrosoftController::class, '')->group(function () {
     Route::get('auth/microsoft/callback', 'handleProviderCallback');
 
 });
+
+Route::get('register', [App\Http\Controllers\RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [App\Http\Controllers\RegisterController::class, 'register']);
+Route::get('profile/register', function () {
+    return view('register.register');
+})->name('profile_register');
