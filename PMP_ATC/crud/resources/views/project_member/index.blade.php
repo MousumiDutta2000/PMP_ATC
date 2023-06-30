@@ -41,7 +41,7 @@
         </div>
 
         <div class="table-row">
-            <table id="example" class="table table-hover responsive nowrap" style="width:100%">
+            <table id="projectMemberTable" class="table table-hover responsive nowrap" style="width:100%">
                 <thead>
                 <tr>
                     <!-- <th>ID</th> -->

@@ -62,21 +62,39 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="project_id">Project ID</label>
-                    <input type="text" name="project_id" id="project_id" class="form-control" required>
+                    <select name="project_id" id="project_id" class="form-control" required>
+                        <option value="">Select Project</option>
+                        @foreach($projects as $project)
+                            <option value="{{ $project->id }}">{{ $project->project_name }}</option>
+                        @endforeach
+                    </select>
+                    {{-- <input type="text" name="project_id" id="project_id" class="form-control" required> --}}
                 </div>    
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="item_id">Item ID</label>
-                     <input type="text" name="item_id" id="item_id" class="form-control" required>
+                    <select name="item_id" id="item_id" class="form-control" required>
+                        <option value="">Select Item</option>
+                        @foreach($statuses as $status)
+                            <option value="{{ $status->id }}">{{ $status->status }}</option>
+                        @endforeach
+                    </select>
+                     {{-- <input type="text" name="item_id" id="item_id" class="form-control" required> --}}
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="sprint_id">Sprint ID</label>
-                    <input type="text" name="sprint_id" id="sprint_id" class="form-control" required>
+                    <select name="sprint_id" id="sprint_id" class="form-control" required>
+                        <option value="">Select Sprint</option>
+                        @foreach($sprints as $sprint)
+                            <option value="{{ $sprint->id }}">{{ $sprint->sprint_name }}</option>
+                        @endforeach
+                    </select>
+                    {{-- <input type="text" name="sprint_id" id="sprint_id" class="form-control" required> --}}
                 </div>
             </div>
 

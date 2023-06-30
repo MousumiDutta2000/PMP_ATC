@@ -39,7 +39,7 @@
 
         <div class="table-row">
             <table
-                id="example"
+                id="projectRoleTable"
                 class="table table-hover responsive nowrap"
                 style="width:100%">
                 <thead>

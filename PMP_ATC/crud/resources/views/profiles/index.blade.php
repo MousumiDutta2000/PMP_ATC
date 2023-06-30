@@ -62,7 +62,7 @@
             <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Profile</a>
         </div>
         <div>
-            <table id="example" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px;">
+            <table id="profileTable" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px;">
                 <thead>
                     <tr>
                         <th>Name</th>

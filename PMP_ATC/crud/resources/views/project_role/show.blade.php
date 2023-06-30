@@ -1,4 +1,4 @@
-<!-- resources/views/project_role/show.blade.php -->
+
 @extends('layouts.side_nav')
 
 @section('content')

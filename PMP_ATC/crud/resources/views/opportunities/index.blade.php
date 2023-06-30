@@ -33,7 +33,7 @@
             <a href="{{ route('opportunities.create') }}" class="btn btn-primary">Add Opportunities</a>
         </div>
         <div class="table" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
-            <table id="example" class="table table-hover responsive" style="width:100%">
+            <table id="opportunitiesTable" class="table table-hover responsive" style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>

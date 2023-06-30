@@ -2,7 +2,7 @@
 @section('content')
 <main class="container">
         <section>
-            <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
+            <div class="titlebar">
                 <h1>Designations</h1>
                 <a href="{{route('designations.create')}}" class = "btn btn-primary">Add Designation</a>
             </div>
