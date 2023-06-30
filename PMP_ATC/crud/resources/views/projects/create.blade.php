@@ -152,7 +152,7 @@
 
             <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="technology_id">Technologies</label>
                 <div class="custom-select">
                     <div class="select-selected">Select Technology</div>
@@ -165,6 +165,16 @@
                         @endforeach
                     </div>
                 </div>
+            </div> -->
+
+            <div class="form-group">
+                <label for="technology_id">Technologies</label>
+                <select id="technology_id" name="technology_id" class="form-control" required>
+                <option value="">Select Technology</option>
+                    @foreach($technologies as $technology)
+                        <option value="{{ $technology->id }}">{{ $technology->technology_name }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="col-md-6 mb-3">
