@@ -82,6 +82,8 @@ Route::middleware([
     Route::resource('sprints', SprintController::class);
     Route::resource('project_item_statuses', ProjectItemStatusController::class);
     Route::resource('project-items', ProjectItemController::class);
+
+    Route::get('/get-profile-email/{id}', 'ProfileController@getProfileEmail');
 });
 
 //Microsoft Authentication Route

@@ -207,20 +207,24 @@
 
             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
               <img src="{{ asset('img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-              <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+              <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
             </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>L1A</span>
+              <h6>{{ auth()->user()->name }}</h6>
+              <span>
+                @if (auth()->user()->profile)
+                    {{ auth()->user()->profile->designation->level }}
+                @endif
+              </span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('profiles.show', auth()->user()->profile->id) }}">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -300,7 +304,7 @@
   </li><!-- End projects Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="">
+    <a class="nav-link collapsed" href="{{ route('profiles.show', auth()->user()->profile->id) }}">
       <i class="fa-solid fa-address-card"></i>
       <span>Profile</span>
     </a>

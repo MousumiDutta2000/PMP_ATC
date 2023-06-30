@@ -81,8 +81,17 @@ class ProfileController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/profiles'), $imageName);
-            $profile->image = 'images/profiles/' . $imageName;
+
+            // Check if the image file already exists
+            $existingImage = public_path('images/profiles/' . $imageName);
+            if (file_exists($existingImage)) {
+                // If the image already exists, assign the existing path to the profile
+                $profile->image = 'images/profiles/' . $imageName;
+            } else {
+                // If the image doesn't exist, move it to the destination folder
+                $image->move(public_path('images/profiles'), $imageName);
+                $profile->image = 'images/profiles/' . $imageName;
+            }
         }
 
         $profile->save();
@@ -104,8 +113,6 @@ class ProfileController extends Controller
     public function update(Request $request, Profile $profile)
     {
         $request->validate([
-            'profile_name' => 'required',
-            'email' => 'required',
             'contact_number' => 'required',
             'line_manager_id' => 'required',
             'designation_id' => 'required',
@@ -114,8 +121,6 @@ class ProfileController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $profile->profile_name = $request->profile_name;
-        $profile->email = $request->email;
         $profile->contact_number = $request->contact_number;
         $profile->line_manager_id = $request->line_manager_id;
         $profile->designation_id = $request->designation_id;

@@ -9,8 +9,8 @@
 @endsection
 
 @section('content')
-    <div class="titlebar">
-    </div>
+    <div class="titlebar"></div>
+
     @if($errors->any())
         <div>
             <ul>
@@ -20,35 +20,49 @@
             </ul>
         </div>
     @endif
+
     <div class="card">
         <div class="card-body">
             <form method="post" action="{{ route('profiles.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row mt-3">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="profile_name">Name:</label>
                             <select name="profile_name" id="profile_name" class="form-control" required>
                                 <option value="">Select User</option>
                                 @foreach ($profile_names as $profile_name)
-                                    <option value="{{ $profile_name->id }}">{{ $profile_name->name }}</option>
+                                    <option value="{{ $profile_name->id }}" data-email="{{ $profile_name->email }}">{{ $profile_name->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="text" class="form-control" name="email" id="email" required readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="name">Father's Name:</label>
                             <input type="text" name="father_name" id="father_name" class="form-control" required>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="name">DOB:</label>
                             <input type="date" name="DOB" id="DOB" class="form-control" required>
                         </div>
                     </div>
-                    <div class="col-md-6 mt-3">
+                    <div class="col-md-4 mt-3">
+                        <div class="form-group">
+                            <label for="image">Add Image:</label>
+                            <img src="" alt="" class="img-product" id="file-preview" style="max-width: 150px;">
+                            <input type="file" name="image" accept="image/*" class="form-control" onchange="showFile(event)">
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-3">
                         <div class="form-group">
                             <label for="highest_educational_qualification_id">Highest Educational Qualification:</label>
                             <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required>
@@ -59,23 +73,10 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6 mt-3">
-                        <div class="form-group">
-                            <label for="image">Add Image:</label>
-                            <img src="" alt="" class="img-product" id="file-preview" style="max-width: 150px;">
-                            <input type="file" name="image" accept="image/*" class="form-control" onchange="showFile(event)">
-                        </div>
-                    </div>
-                    <div class="col-md-6 mt-3">
+                    <div class="col-md-4 mt-3">
                         <div class="form-group">
                             <label for="contact_number">Contact Number:</label>
                             <input type="text" class="form-control" name="contact_number" id="contact_number" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mt-3">
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="text" class="form-control" name="email" id="email" required>
                         </div>
                     </div>
                     <div class="col-md-6 mt-3">
@@ -123,17 +124,6 @@
                             </select>
                         </div>
                     </div>
-                    <!-- <div class="col-md-3 mt-3">
-                        <div class="form-group">
-                            <label for="user_id">User:</label>
-                            <select name="user_id" id="user_id" class="form-control" required>
-                                <option value="">Select User</option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="form-actions mt-3 text-end">
                     <button type="submit" class="btn btn-primary">Create</button>
@@ -154,5 +144,16 @@
             };
             reader.readAsDataURL(file);
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var profileNameSelect = document.getElementById("profile_name");
+            var emailInput = document.getElementById("email");
+
+            profileNameSelect.addEventListener("change", function() {
+                var selectedOption = profileNameSelect.options[profileNameSelect.selectedIndex];
+                var selectedEmail = selectedOption.getAttribute("data-email");
+                emailInput.value = selectedEmail;
+            });
+        });
     </script>
 @endsection

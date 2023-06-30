@@ -53,7 +53,7 @@
                   <div class="row">
                     
                     <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                    <div class="col-lg-9 col-md-8">{{$profile->name}}</div>
+                    <div class="col-lg-9 col-md-8">{{ $profile->profileName->name }}</div>
                   </div>
 
                   <div class="row">

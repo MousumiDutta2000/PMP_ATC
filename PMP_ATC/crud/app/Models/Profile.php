@@ -27,7 +27,7 @@ class Profile extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'profile_name', 'id');
     }
 
     public function vertical()
@@ -43,11 +43,6 @@ class Profile extends Model
     public function highestEducationValue()
     {
         return $this->belongsTo(HighestEducationValue::class, 'highest_educational_qualification_id');
-    }
-
-    public function profile()
-    {
-        return $this->hasOne(Profile::class);
     }
 
 }
