@@ -30,13 +30,13 @@
 <main class="container">
     <section>
         <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
-            <a href="{{ route('opportunities.create') }}" class="btn btn-primary">Add Opportunities</a>
+            <a href="{{ route('opportunities.create') }}" class="btn btn-primary">Add New</a>
         </div>
         <div class="table">
             <table id="opportunitiesTable" class="table table-hover responsive" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        {{-- <th>ID</th> --}}
                         <th>Opporunity Status</th>
                         <th>Proposal</th>
                         <th>Initial Stage</th>
@@ -47,7 +47,7 @@
                 <tbody>
                         @foreach($opportunities as $opportunity)
                             <tr>
-                                <td>{{$opportunity->id}}</td>
+                                {{-- <td>{{$opportunity->id}}</td> --}}
                                 <td>{{$opportunity->opportunity_status_id}}</td>
                                 <td>{{$opportunity->proposal}}</td>
                                 <td>{{$opportunity->initial_stage}}</td>

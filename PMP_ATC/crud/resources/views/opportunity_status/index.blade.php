@@ -37,16 +37,16 @@
             <table id="opportunityStatusTable" class="table table-hover responsive" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Project Goal</th>
+                        {{-- <th>ID</th> --}}
+                        <th style="padding-left:110px;">Project Goal</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                         @foreach($opportunityStatuses as $opportunityStatus)
                             <tr>
-                                <td>{{$opportunityStatus->id}}</td>
-                                <td>{{$opportunityStatus->project_goal}}</td>
+                                {{-- <td>{{$opportunityStatus->id}}</td> --}}
+                                <td style="padding-left:120px;">{{$opportunityStatus->project_goal}}</td>
                                
                                 <td>
                                     <div class="btn-group" role="group">
