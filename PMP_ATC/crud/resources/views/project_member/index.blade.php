@@ -8,10 +8,9 @@
 @endsection
 
 @section('content')
+
 @section('breadcrumb')
-<li class="breadcrumb-item">
-    <a href="{{ route('projects.index') }}">Home</a>
-</li>
+<li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Home</a></li>
 <li class="breadcrumb-item active" aria-current="page">Projects</li>
 @endsection
 
@@ -36,14 +35,14 @@
 @section('content')
 <main class="container">
     <section>
-        <div class="titlebar">
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
             <a href="{{ route('project-members.create') }}" class="btn btn-primary">Add Project Member</a>
         </div>
 
         <div class="table-row">
             <table id="projectMemberTable" class="table table-hover responsive nowrap" style="width:100%">
                 <thead>
-                <tr>
+                    <tr>
                     <!-- <th>ID</th> -->
                     <th>Is Active</th>
                     <th>User</th>
