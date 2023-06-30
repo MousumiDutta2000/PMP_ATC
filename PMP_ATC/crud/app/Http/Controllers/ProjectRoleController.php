@@ -32,7 +32,7 @@ class ProjectRoleController extends Controller
     public function show($id)
     {
         $projectRole = ProjectRole::findOrFail($id);
-        return view('project-role.show', compact('projectRole'));
+        return view('project_role.show', compact('projectRole'));
     }
 
     public function edit($id)

@@ -37,8 +37,8 @@
             <table id="clientTable" class="table table-hover responsive"  style="width: 100%;border-spacing: 0 10px;">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Client Name</th>
+                        {{-- <th>ID</th> --}}
+                        <th style="padding-left: 80px;">Client Name</th>
                         <th>Phone Number</th>
                         <th>Email Address</th>
                         <th>Actions</th>
@@ -47,8 +47,8 @@
                 <tbody>
                         @foreach($clients as $client)
                             <tr class="shadow" style="border-radius:15px;">
-                                <td>{{$client->id}}</td>
-                                <td>{{$client->client_name}}</td>
+                                {{-- <td>{{$client->id}}</td> --}}
+                                <td style="padding-left: 82px;">{{$client->client_name}}</td>
                                 <td>{{$client->phone_no}}</td>
                                 <td>{{$client->email_address}}</td>
                                

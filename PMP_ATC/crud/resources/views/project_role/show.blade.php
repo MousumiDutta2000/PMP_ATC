@@ -17,6 +17,6 @@
 
             </tbody>
         </table>
-        <a href="{{ route('project-members.index') }}" class="btn btn-primary">Back</a>
+        <a href="{{ route('project-roles.index') }}" class="btn btn-primary">Back</a>
     </div>
 @endsection

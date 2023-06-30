@@ -35,16 +35,16 @@
             <table id="highEducationTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Highest Education Value</th>
+                        {{-- <th>#</th> --}}
+                        <th style="padding-left:120px;">Highest Education Value</th>
                         <th>Action</th>
                     </tr>
         </thead>
         <tbody>
             @foreach ($highestEducationValues as $highestEducationValue)
             <tr class="shadow" style="border-radius:15px;">
-                <td>{{ $highestEducationValue->id }}</td>
-                <td>{{ $highestEducationValue->highest_education_value }}</td>
+                {{-- <td>{{ $highestEducationValue->id }}</td> --}}
+                <td style="padding-left:120px;">{{ $highestEducationValue->highest_education_value }}</td>
                 <td>
                             
                                 <div class="btn-group" role="group">
