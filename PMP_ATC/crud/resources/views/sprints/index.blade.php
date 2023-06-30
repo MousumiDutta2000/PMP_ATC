@@ -30,7 +30,9 @@
     <section class="body">
         <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
             <a href="{{ route('sprints.create') }}" class="btn btn-primary" style="margin-right: 10px;">Add New</a>
-            <i class="fa-solid fa-file-export" style="font-size: 30px;color:blue"></i>
+            <img src="{{ asset('img/icon-export-icon.png') }}" style="width:30px; height:35px;" alt="Icon-export">
+
+            {{-- <i class="fa-solid fa-file-export" style="font-size: 30px;color:blue"></i> --}}
             
         </div>
         @if ($sprints->count() > 0)
