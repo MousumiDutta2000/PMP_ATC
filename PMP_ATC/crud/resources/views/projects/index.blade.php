@@ -33,7 +33,7 @@
     <a href="{{ route('projects.create') }}" class="btn btn-primary">Add Project</a>
 </div>
 
-            <table id="projectTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
+            <table id="example" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
                         <th>Project ID</th>
@@ -55,7 +55,7 @@
                             <div class="btn-group" role="group">
                                 <a href="{{ route('sprints.index', ['sprints' => $project->id]) }}"><i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i></a>
                                 <a href=""> <i class="fa-sharp fa-solid fa-flag text-info" style="margin-right: 10px"></i></a>
-                                <a href="{{ route('projects.settings', ['project' => $project->id]) }}">
+                                <a href="{{ route('projects.edit', ['project' => $project->id]) }}">
                                 <i class="fa-solid fa-gear text-secondary" style="margin-right: 10px"></i></a>
 
                                 <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">

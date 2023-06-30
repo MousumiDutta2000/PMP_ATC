@@ -43,7 +43,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="project_name">Project Name</label>
-                    <input type="text" class="shadow-sm" name="project_name" id="project_name" placeholder="Enter project name" required="required" style="font-size: 14px;">
+                    <input type="text" class="shadow-sm" name="project_name" id="project_name" placeholder="Enter project name" required="required" style="color:#999; font-size: 14px;">
                 </div>
             </div>
 
@@ -79,7 +79,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="project_manager_id">Project Manager:</label>
+                    <label for="project_manager_id">Project Manager</label>
                         <select name="project_manager_id" class="shadow-sm" id="project_manager_id" class="form-control" required style="padding-bottom: 6px; height: 39.1px; color:#999; font-size: 14px;">
                             <option value="">Select Project Manager</option>
                             @foreach ($projectManagers as $projectManager)
@@ -154,12 +154,17 @@
 
             <div class="form-group">
                 <label for="technology_id">Technologies</label>
-                <select id="technology_id" class="shadow-sm" name="technology_id" class="form-control" required style="height:39px; color:#999; font-size: 14px;">
-                    <option value="">Select Technology</option>
-                    @foreach($technologies as $technology)
-                        <option value="{{ $technology->id }}">{{ $technology->technology_name }}</option>
-                    @endforeach
-                </select>
+                <div class="custom-select">
+                    <div class="select-selected">Select Technology</div>
+                    <div class="select-items select-hide">
+                        @foreach($technologies as $technology)
+                            <div>
+                                <span class="circle">{{ substr($technology->technology_name, 0, 1) }}</span>
+                                {{ $technology->technology_name }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-6 mb-3">
@@ -167,6 +172,7 @@
                 <i class="fa fa-plus-circle" id="plusSign" style="color: #7d4287; cursor: pointer;"></i>
                 <div class="row" id="memberCardContainer"></div>
             </div>
+
 
             <!-- Bootstrap Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="close">
@@ -176,43 +182,43 @@
                             <h4 class="modal-title" id="myModalLabel" style="font-weight:bold; color: #012970;">Add Member</h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-right:9px;"></button>
                         </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="fieldName" class="form-label mb-3">Member Name</label>
-                                    </div>
-                    
-                                    <div class="col-md-6" style="font-size:14px;">
-                                        <select id="project_members_id" name="project_members_id" class="js-example-basic-single" required style="width:100%;">
-                                            <option value="">Select Member</option>
-                                            @foreach($projectMembers as $projectMember)
-                                            <option value="{{ $projectMember->id }}">{{ $projectMember->name }}</option>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="fieldName" class="form-label mb-3">Member Name</label>
+                                </div>
+                
+                                <div class="col-md-6" style="font-size:14px;">
+                                    <select id="project_members_id" name="project_members_id" class="js-example-basic-single" required style="width:100%;">
+                                        <option value="">Select Member</option>
+                                        @foreach($projectMembers as $projectMember)
+                                        <option value="{{ $projectMember->id }}">{{ $projectMember->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+    
+                                <div class="col-md-6">
+                                    <label for="project_role_id" class="form-label mb-3">Role</label>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <select id="project_role_id" name="project_role_id" class="form-control" required>
+                                        <option value="">Select Role</option>
+                                            @foreach ($projectRoles as $projectRole)
+                                                <option value="{{ $projectRole->id }}">{{ $projectRole->member_role_type }}</option>
                                             @endforeach
-                                        </select>
-                                    </div>
-      
-                                    <div class="col-md-6">
-                                        <label for="project_role_id" class="form-label mb-3">Role</label>
-                                    </div>
+                                    </select>
+                                </div>
 
-                                    <div class="col-md-6">
-                                        <select id="project_role_id" name="project_role_id" class="form-control" required>
-                                            <option value="">Select Role</option>
-                                                @foreach ($projectRoles as $projectRole)
-                                                    <option value="{{ $projectRole->id }}">{{ $projectRole->member_role_type }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-12 mt-3 text-end">
-                                        <button type="button" class="btn" id="addMemberBtn" style="background-color: #012970; color: white;">Add Member</button>
-                                    </div>
-
+                                <div class="col-md-12 mt-3 text-end">
+                                    <button type="button" class="btn" id="addMemberBtn" style="background-color: #012970; color: white;">Add Member</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
                                 
@@ -362,6 +368,76 @@ $(document).ready(function() {
     $('#editModal').modal('hide');
     });
 });
+</script>
+
+<!-- <script>
+    // JavaScript code to update the circle based on the selected technology
+    var selectElement = document.getElementById("technology_id");
+    var containerElement = document.getElementById("selectedTechnologyContainer");
+
+    selectElement.addEventListener("change", function() {
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        var technologyName = selectedOption.text;
+        var firstName = technologyName.split(" ")[0];
+        
+        // Remove existing circle, if any
+        while (containerElement.firstChild) {
+            containerElement.removeChild(containerElement.firstChild);
+        }
+        
+        if (firstName) {
+            var circleElement = document.createElement("div");
+            circleElement.style.display = "inline-block";
+            circleElement.style.width = "20px";
+            circleElement.style.height = "20px";
+            circleElement.style.borderRadius = "50%";
+            circleElement.style.backgroundColor = "gray";
+            circleElement.style.marginRight = "5px";
+            circleElement.style.textAlign = "center";
+            circleElement.style.color = "white";
+            circleElement.style.fontSize = "12px";
+            circleElement.style.lineHeight = "20px";
+            circleElement.textContent = firstName.charAt(0).toUpperCase();
+            
+            containerElement.appendChild(circleElement);
+        }
+    });
+</script> -->
+
+<script>
+  var selectContainer = document.querySelector('.custom-select');
+  var selectSelected = selectContainer.querySelector('.select-selected');
+  var selectItems = selectContainer.querySelector('.select-items');
+  var selectOptions = selectItems.querySelectorAll('div');
+  var circle = selectSelected.querySelector('.circle');
+
+  selectSelected.addEventListener('click', function () {
+    selectItems.classList.toggle('select-hide');
+  });
+
+  for (var i = 0; i < selectOptions.length; i++) {
+    selectOptions[i].addEventListener('click', function () {
+      var selectedOption = this.textContent.trim();
+
+      selectSelected.textContent = selectedOption;
+      selectItems.classList.add('select-hide');
+    });
+  }
+
+  document.addEventListener('click', function (event) {
+    if (!selectContainer.contains(event.target)) {
+      selectItems.classList.add('select-hide');
+    }
+  });
+
+  // Update circle based on the selected option
+  selectContainer.addEventListener('change', function () {
+    var selectedOption = selectContainer.value;
+    var selectedOptionText = selectOptions[selectedOption].textContent.trim();
+    var selectedOptionFirstLetter = selectedOptionText.charAt(0).toUpperCase();
+
+    circle.textContent = selectedOptionFirstLetter;
+  });
 </script>
 
 @endsection

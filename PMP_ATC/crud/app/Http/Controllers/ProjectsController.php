@@ -85,10 +85,10 @@ class ProjectsController extends Controller
         return redirect()->route('projects.index')->with('success', 'Project deleted successfully.');
     }
 
-    public function settings(Project $project)
-    {
-        return view('projects.settings', compact('project'));
-    }
+    // public function settings(Project $project)
+    // {
+    //     return view('projects.settings', compact('project'));
+    // }
 
     public function edit(Project $project)
     {
@@ -100,10 +100,10 @@ class ProjectsController extends Controller
         $projectRoles = ProjectRole::all();
         $projectMembers = User::all();
 
-        return view('projects.edit', compact('project', 'projectManagers', 'users', 'technologies', 'verticals', 'clients', 'projectRoles', 'projectMembers'));
+        return view('projects.edit', compact('project', 'users', 'technologies', 'verticals', 'clients', 'projectRoles', 'projectMembers', 'projectManagers'));
     }
 
-    public function updateSettings(Request $request, Project $project)
+    public function update(Request $request, Project $project)
     {
         $request->validate([
             'project_name' => 'required',
