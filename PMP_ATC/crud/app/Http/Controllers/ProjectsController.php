@@ -8,6 +8,7 @@ use App\Models\Vertical;
 use App\Models\Client;
 use App\Models\Technology;
 use App\Models\ProjectRole;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
@@ -25,7 +26,7 @@ class ProjectsController extends Controller
         $clients = Client::all();
         $projectManagers = User::all();
         $technologies = Technology::all();
-        $projectMembers = User::all();
+        $projectMembers = Profile::all();
         $projectRoles = ProjectRole::all();
 
         return view('projects.create', compact('users', 'verticals', 'clients', 'projectManagers', 'technologies', 'projectMembers', 'projectRoles'));
@@ -98,7 +99,7 @@ class ProjectsController extends Controller
         $verticals = Vertical::all();
         $clients = Client::all();
         $projectRoles = ProjectRole::all();
-        $projectMembers = User::all();
+        $projectMembers = Profile::all();
 
         return view('projects.edit', compact('project', 'users', 'technologies', 'verticals', 'clients', 'projectRoles', 'projectMembers', 'projectManagers'));
     }

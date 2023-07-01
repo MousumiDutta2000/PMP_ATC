@@ -50,7 +50,7 @@ class Project extends Model
 
     public function projectMember()
     {
-        return $this->belongsTo(User::class, 'project_members_id');
+        return $this->belongsTo(Profile::class, 'project_members_id');
     }
 
     public function projectRole()
