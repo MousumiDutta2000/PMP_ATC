@@ -31,7 +31,7 @@ return new class extends Migration
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients');
             $table->unsignedBigInteger('project_members_id');
-            $table->foreign('project_members_id')->references('id')->on('users');
+            $table->foreign('project_members_id')->references('id')->on('profiles');
             $table->unsignedBigInteger('project_role_id');
             $table->foreign('project_role_id')->references('id')->on('project_role');
             $table->timestamps();

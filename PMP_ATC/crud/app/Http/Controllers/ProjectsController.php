@@ -69,13 +69,6 @@ class ProjectsController extends Controller
         $project->project_members_id = $request->project_members_id;
         $project->project_role_id = $request->project_role_id;
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/profiles'), $imageName);
-            $profile->image = 'images/profiles/' . $imageName;
-        }
-
         $project->save();
 
         return redirect()->route('projects.index')->with('success', 'Project created successfully.');

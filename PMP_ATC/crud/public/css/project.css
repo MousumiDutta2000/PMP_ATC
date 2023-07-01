@@ -1,263 +1,225 @@
 .form-container {
-    margin: 0 auto;
-    background-color: white; /*#dee1fa; */
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  background-color: white; /*#dee1fa; */
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    color: #5f6368;
-    font-size: 24px;
-    margin-top: 0;
-    margin-bottom: 20px;
+  color: #5f6368;
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .label {
-    font-weight: bold;
-    color: #202124;
-    display: block;
-    margin-bottom: 5px;
-}
+  display: block;
+  margin-bottom: 5px;
+} 
 
 input[type="text"],
 input[type="date"],
 input[type="email"],
 select,
 textarea {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-    font-size: 14px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  font-size: 14px;
 }
 
 select {
-    height: 36px;
+  height: 36px;
 }
 
 textarea {
-    height: 100px;
+  height: 100px;
 }
 
 .form-actions {
-    margin-top: 20px;
-    text-align: right;
+  margin-top: 20px;
+  text-align: right;
 }
 
 .form-actions button {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .error-messages {
-    color: #ff0000;
-    margin-top: 10px;
+  color: #ff0000;
+  margin-top: 10px;
 }
 
 .error-messages li {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 /* .cke_top {
-    background-color: #e1daf4 !important;
-  }
+  background-color: #e1daf4 !important;
+}
 
 .cke_bottom {
-    background-color: #e1daf4 !important;
+  background-color: #e1daf4 !important;
 }  */
 
 .plus-icon:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* Style the modal */
 .modal {
-    display: none; /* Hide the modal by default */
-    position: fixed; /* Position it on top of other elements */
-    z-index: 1; /* Set a high z-index to make sure it's on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
-  }
-  
-  /* Style the modal content */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* 80% width */
-  }
-  
-  /* Style the close button */
-  .close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  .card:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-image {
-    position: relative;
-    width: 50px;
-    height: 50px;
-    padding-bottom: 50px;
-    border-radius: 50px;
-    overflow: hidden;
-  }
-  
-  .profile-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .user-details {
-    margin-top: 10px;
-    text-align: center;
-  }
-  
-  .user-name {
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #000000;
-  }
-  
-  .designation {
-    font-size: 12px;
-    color: #888;
-  }
-  
-  .edit-icon {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    font-size: 14px;
-    color: #888;
-    visibility: hidden;
-    transition: visibility 0.3s;
-  }
-  
-  .card:hover .edit-icon {
-    visibility: visible;
-    cursor: pointer;
-  }
+  display: none; /* Hide the modal by default */
+  position: fixed; /* Position it on top of other elements */
+  z-index: 1; /* Set a high z-index to make sure it's on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+}
+
+/* Style the modal content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* 80% width */
+}
+
+/* Style the close button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  padding-bottom: 50px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.profile-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-details {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.user-name {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #000000;
+}
+
+.designation {
+  font-size: 12px;
+  color: #888;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 14px;
+  color: #888;
+  visibility: hidden;
+  transition: visibility 0.3s;
+}
+
+.card:hover .edit-icon {
+  visibility: visible;
+  cursor: pointer;
+}
 
 /* Add this CSS to your project.css file or inline style tag */
 #memberCardContainer {
-  display: flex;
-  /* justify-content: center; */
-  flex-wrap: wrap;
-  gap: 20px;
+display: flex;
+/* justify-content: center; */
+flex-wrap: wrap;
+gap: 20px;
 }
 
 #memberCardContainer .card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 150px;
-  /* margin-right: 20px;
-  margin-bottom: 20px;
-  margin-left: 0px; */
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+width: 150px;
+/* margin-right: 20px;
+margin-bottom: 20px;
+margin-left: 0px; */
 }
 
 @media (max-width: 767px) {
-  #memberCardContainer .card {
-    width: calc(50% - 10px);
-    /* margin-right: 100px; */
-  }
-
-  /* #memberCardContainer .card:nth-child(2n) {
-    margin-right: 0;
-  } */
-}
-
-/* select option[data-value=""] {
-  display: none;
-}
-
-select option:before {
-  content: "\25CF ";
-  color: yellow;
-  margin-right: 5px;
-} */
-
-/* .custom-dropdown select {
-  position: relative;
-}
+#memberCardContainer .card {
+  width: calc(50% - 10px);
+  /* margin-right: 100px; */
+}}
 
 .circle {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: yellow;
-  text-align: center;
-  line-height: 20px;
-  margin-right: 5px;
-}
-
-.custom-dropdown select option:before {
-  content: attr(data-first-letter);
-  color: black;
-  font-weight: bold;
-} */
-
-.circle {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: yellow;
-  text-align: center;
-  line-height: 20px;
-  font-weight: bold;
-  margin-right: 5px;
+display: inline-block;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background-color: yellow;
+text-align: center;
+line-height: 20px;
+font-weight: bold;
+margin-right: 5px;
 }
 
 .select2-container {
-  z-index: 1061 !important;  /* Adjust the z-index value to be higher than the modal */
+z-index: 1061 !important; 
 }
 
- #project_role_id{
-  height:30px; 
-  padding:inherit; 
-  color:#999; 
-  font-size: 14px; 
-  border: 1px solid #999; 
-  border-radius: 4px;
+#project_role_id{
+height:30px; 
+padding:inherit; 
+color:#999; 
+font-size: 14px; 
+border: 1px solid #999; 
+border-radius: 4px;
 }
 
 .rounded_circle{
-  margin-top: 16px; 
-  height: 5.7em; 
-  width: 90px; 
-  margin-left: 6px; 
-  border-radius: 50%;
+margin-top: 16px; 
+height: 5.7em; 
+width: 90px; 
+margin-left: 6px; 
+border-radius: 50%;
 }
