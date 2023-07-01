@@ -31,7 +31,7 @@
         <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
             <a href="{{ route('technologies.create') }}" class="btn btn-primary">Add New</a>
         </div>
-        @if ($technologies->count() > 0)
+        {{-- @if ($technologies->count() > 0) --}}
             <table id="technologiesTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
@@ -69,9 +69,9 @@
                     @endforeach
                 </tbody>
             </table>
-        @else
+        {{-- @else
             <p>No Technologies found.</p>
-        @endif
+        @endif --}}
     </section>
 </main>
 @endsection

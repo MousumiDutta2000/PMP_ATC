@@ -33,7 +33,7 @@
         <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
             <a href="{{ route('project_item_statuses.create') }}" class="btn btn-primary">Add New</a>
         </div>
-        @if ($statuses->count() > 0)
+        {{-- @if ($statuses->count() > 0) --}}
             <table id="projectItemStatusesTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
@@ -83,9 +83,9 @@
                     @endforeach
                 </tbody>
             </table>
-        @else
+        {{-- @else
             <p>No sprints found.</p>
-        @endif
+        @endif --}}
     </section>
 </main>
 @endsection
