@@ -16,6 +16,7 @@ use App\Http\Controllers\SprintController;
 use App\Http\Controllers\ProjectItemStatusController;
 use App\Http\Controllers\ProjectItemController;
 use App\Http\Controllers\Auth\MicrosoftController;
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -92,7 +93,7 @@ Route::controller(MicrosoftController::class, '')->group(function () {
 
     Route::get('auth/microsoft', 'redirectToProvider')->name('auth.microsoft');
 
-    Route::get('auth/microsoft/callback', 'handleProviderCallback');
+    Route::get('auth/microsoft/callback', 'handleProviderCallback')->name('auth.microsoft.callback');
 
 });
 

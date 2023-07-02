@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -13,12 +14,14 @@ class RegisterController extends Controller
         return view('register.register');
     }
 
+
     public function register(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
+            
         ]);
 
         // Create the user
@@ -26,7 +29,9 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            
         ]);
+        
 
         // You can add any additional logic here if needed, like sending a confirmation email, etc.
 
