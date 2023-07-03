@@ -31,12 +31,12 @@
         <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
             <a href="{{ route('technologies.create') }}" class="btn btn-primary">Add New</a>
         </div>
-        @if ($technologies->count() > 0)
+        {{-- @if ($technologies->count() > 0) --}}
             <table id="technologiesTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Technology Name</th>
+                        {{-- <th>ID</th> --}}
+                        <th style="padding-left: 90px;">Technology Name</th>
                         <th>Expertise</th>
                         <th>Actions</th>
                     </tr>
@@ -44,8 +44,8 @@
         <tbody>
             @foreach ($technologies as $technology)
             <tr class="shadow" style="border-radius:15px;">
-                <td>{{ $technology->id }}</td>
-                <td>{{ $technology->technology_name }}</td>
+                {{-- <td>{{ $technology->id }}</td> --}}
+                <td style="padding-left: 110px;">{{ $technology->technology_name }}</td>
                 <td>{{ $technology->expertise }}</td>
                 <td>
                             
@@ -69,9 +69,9 @@
                     @endforeach
                 </tbody>
             </table>
-        @else
+        {{-- @else
             <p>No Technologies found.</p>
-        @endif
+        @endif --}}
     </section>
 </main>
 @endsection

@@ -35,7 +35,7 @@
             {{-- <i class="fa-solid fa-file-export" style="font-size: 30px;color:blue"></i> --}}
             
         </div>
-        @if ($sprints->count() > 0)
+        {{-- @if ($sprints->count() > 0) --}}
             <table id="sprintTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
@@ -104,11 +104,11 @@
     <div class="modal fade" id="showModal_{{ $sprint->id }}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $sprint->id }}" aria-hidden="true">
         <div class="modal-dialog modal-md modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header" style="background-color: #DBF3FA">
-                    <h5 class="modal-title" id="showModalLabel_{{ $sprint->id }}" style="color: black; font-weight: bolder;">Sprint Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="showModalLabel_{{ $sprint->id }}" style="color: #012970;; font-weight: bolder;">Sprint Details</h5>
+                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button> --}}
                 </div>
                 <div class="modal-body" style="text-align: center;">
                     <table class="table" style="margin: 0 auto;">
@@ -167,16 +167,19 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color:#D22B2B">Close</button>
+                </div>
             </div>
         </div>
     </div>
 @endforeach
 
-        @else
+        {{-- @else
             <div class="alert alert-info mt-4" role="alert">
                 No sprints found.
             </div>
-        @endif
+        @endif --}}
     </section>
 </main>
 @endsection

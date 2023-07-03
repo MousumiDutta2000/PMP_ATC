@@ -229,6 +229,7 @@
                 <span>My Profile</span>
               </a>
             </li>
+
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -243,12 +244,15 @@
               <hr class="dropdown-divider">
             </li>
 
+            @if (Auth::check() && Auth::user()->role_id === 1)
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{ route('register') }}">
-              <i class="fa-regular fa-address-card"></i>
-                <span>Register</span>
+               <a class="dropdown-item d-flex align-items-center" href="{{ route('register') }}">
+               <i class="fa-regular fa-address-card"></i>
+               <span>Register</span>
               </a>
             </li>
+            @endif
+
             <li>
               <hr class="dropdown-divider">
             </li>

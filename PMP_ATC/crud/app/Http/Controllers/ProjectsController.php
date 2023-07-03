@@ -8,6 +8,7 @@ use App\Models\Vertical;
 use App\Models\Client;
 use App\Models\Technology;
 use App\Models\ProjectRole;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
@@ -25,7 +26,7 @@ class ProjectsController extends Controller
         $clients = Client::all();
         $projectManagers = User::all();
         $technologies = Technology::all();
-        $projectMembers = User::all();
+        $projectMembers = Profile::all();
         $projectRoles = ProjectRole::all();
 
         return view('projects.create', compact('users', 'verticals', 'clients', 'projectManagers', 'technologies', 'projectMembers', 'projectRoles'));
@@ -63,7 +64,8 @@ class ProjectsController extends Controller
         $project->client_spoc_email = $request->client_spoc_email;
         $project->client_spoc_contact = $request->client_spoc_contact;
         $project->vertical_id = $request->vertical_id;
-        $project->technology_id = $request->technology_id;
+        // $project->technology_id = $request->technology_id;
+        $project->technology_id = implode(',', $request->technology_id); 
         $project->client_id = $request->client_id;
         $project->project_members_id = $request->project_members_id;
         $project->project_role_id = $request->project_role_id;
@@ -98,7 +100,7 @@ class ProjectsController extends Controller
         $verticals = Vertical::all();
         $clients = Client::all();
         $projectRoles = ProjectRole::all();
-        $projectMembers = User::all();
+        $projectMembers = Profile::all();
 
         return view('projects.edit', compact('project', 'users', 'technologies', 'verticals', 'clients', 'projectRoles', 'projectMembers', 'projectManagers'));
     }
@@ -134,11 +136,11 @@ class ProjectsController extends Controller
         $project->client_spoc_email = $request->client_spoc_email;
         $project->client_spoc_contact = $request->client_spoc_contact;
         $project->vertical_id = $request->vertical_id;
-        $project->technology_id = $request->technology_id;
+        // $project->technology_id = $request->technology_id;
+        $project->technology_id = implode(',', $request->technology_id); 
         $project->client_id = $request->client_id;
         $project->project_members_id = $request->project_members_id;
         $project->project_role_id = $request->project_role_id;
-
         $project->save();
 
         return redirect()->route('projects.index')->with('success', 'Project settings updated successfully.');

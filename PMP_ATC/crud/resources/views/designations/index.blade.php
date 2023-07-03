@@ -66,7 +66,7 @@
                                 </tr>
                             </div>
                             <div>
-                        @if(count($designations)>0)
+                        {{-- @if(count($designations)>0) --}}
                         @foreach($designations as $designation)
                             <tr>
                                 <td>{{$designation ->id}}</td>
@@ -90,10 +90,8 @@
                                 </td>
                             </tr>
                             </div>
-                        @endforeach
-                    @else
-                                <p>Designation Not Found</p>
-                    @endif
+                     @endforeach
+                  
                 </table>
                 </div>
             </div>
