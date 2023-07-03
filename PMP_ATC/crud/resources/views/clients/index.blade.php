@@ -1,6 +1,5 @@
 @extends('layouts.side_nav')
 
-
 @section('pageTitle', 'Clients')
 
 @section('breadcrumb')
@@ -25,7 +24,6 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('js/table.js') }}"></script>
 @endsection
-
 
 @section('content')
 <main class="container">
@@ -70,8 +68,7 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
-                    
+                        @endforeach          
                 </tbody>
             </table>
         </div>

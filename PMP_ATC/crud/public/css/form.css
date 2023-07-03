@@ -1,0 +1,62 @@
+.form-container {
+  margin: 0 auto;
+  background-color: white; /*#dee1fa; */
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #5f6368;
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+} 
+
+input[type="text"],
+input[type="date"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+select {
+  height: 36px;
+}
+
+textarea {
+  height: 100px;
+}
+
+.form-actions {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.form-actions button {
+  margin-right: 10px;
+}
+
+.error-messages {
+  color: #ff0000;
+  margin-top: 10px;
+}
+
+.error-messages li {
+  list-style-type: none;
+}
