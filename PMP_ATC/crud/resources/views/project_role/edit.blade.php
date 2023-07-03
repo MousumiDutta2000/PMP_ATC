@@ -35,20 +35,16 @@
     <div class="row">
         <div class="col-md-6 mb-3">
             <div class="form-group">
-                <label for="member_role_type">Member Role Type</label>
-                <input type="text" name="member_role_type" class="form-control" id="member_role_type" value="{{ $projectRole->member_role_type }}">
+                <label for="member_role_type" style="font-size:15px;">Member Role Type</label>
+                <input type="text" class="shadow-sm" name="member_role_type" id="member_role_type" value="{{ $projectRole->member_role_type }}" style="color: #999; font-size: 14px">
             </div>
         </div>
 
-
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{ route('project-roles.index') }}" class="btn btn-danger">Cancel</a>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{{ route('project-roles.index') }}" class="btn btn-danger">Cancel</a>
+        </div>
     </div>
-
-
-        </form>
-    </div>
+    </form>
+</div>
 @endsection
-
-

@@ -31,8 +31,8 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="member_role_type">Member Role Type</label>
-                    <input type="text" name="member_role_type" class="form-control" id="member_role_type">
+                    <label for="member_role_type" style="font-size:15px;">Member Role Type</label>
+                    <input type="text" class="shadow-sm" name="member_role_type" placeholder="Enter member role" id="member_role_type" style="color: #999; font-size: 14px">
                 </div>
             </div>
 
@@ -40,10 +40,7 @@
                 <button type="submit" class="btn btn-primary">Create</button>
                 <a href="{{ route('project-roles.index') }}" class="btn btn-danger">Cancel</a>
             </div>
-
     </form>
-
 </div>
 
 @endsection
-

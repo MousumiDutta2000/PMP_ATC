@@ -7,6 +7,7 @@
     <li class="breadcrumb-item active" aria-current="page">Project</li>
 @endsection
 
+
 @section('custom_css')
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css'>
@@ -30,56 +31,55 @@
 <main class="container">
     <section class="body">
         <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
-            <a href="{{ route('projects.create') }}" class="btn btn-primary">Add Project</a>
+        <a href="{{ route('projects.create') }}" class="btn btn-primary">Add Project</a>
         </div>
-        <table id="projectTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
-            <thead>
-                <tr>
-                    <th>Project ID</th>
-                    <th>Project Name</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                @foreach ($projects as $project)
-                <tr class="shadow" style="border-radius:15px;">
-                    <td>{{ $project->id }}</td>
-                    <td>{{ $project->project_name }}</td>
-                    <td>
-                        @if($project->project_status == 'Not Started')
-                            <div class="badge badge-success-light text-white font-weight-bold" style="background-color: #ed5768; ">{{ $project->project_status }}</div>
-                        @elseif($project->project_status == 'Delay')
-                            <div class="badge badge-warning-light text-white font-weight-bold" style="background-color: #c25eea; padding-left:18px; padding-right:18px;">{{ $project->project_status }}</div>
-                        @elseif($project->project_status == 'Pending')
-                            <div class="badge badge-danger-light text-white font-weight-bold" style="background-color: #ffc500">{{ $project->project_status }}</div>
-                        @elseif($project->project_status == 'Ongoing')
-                            <div class="badge badge-primary-light text-white font-weight-bold" style="background-color: #1b74ae;">{{ $project->project_status }}</div>
-                        @elseif($project->project_status == 'Completed')
-                            <div class="badge badge-info-light text-white font-weight-bold" style="background-color: #17b85d">{{ $project->project_status }}</div>
-                        @endif
-                    </td>
-                    
-                    <td>
-                        <div class="btn-group" role="group">
-                            <a href="{{ route('sprints.index', ['sprints' => $project->id]) }}"><i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i></a>
-                            <a href=""> <i class="fa-sharp fa-solid fa-flag text-info" style="margin-right: 10px"></i></a>
-                            <a href="{{ route('projects.edit', ['project' => $project->id]) }}">
-                            <i class="fa-solid fa-gear text-secondary" style="margin-right: 10px"></i></a>
 
-                            <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">
-                                @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-link p-0">
-                                    <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
-                                </button>
-                            </form>
-                        </div>    
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+            <table id="projectTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
+                <thead>
+                    <tr>
+                        <th>Sl. No</th>
+                        <th>Project Name</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($projects as $index => $project)
+                    <tr class="shadow" style="border-radius:15px;">
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $project->project_name }}</td>
+                        <td>
+                            @if($project->project_status == 'Not Started')
+                                <div class="badge badge-success-light text-white font-weight-bold" style="background-color: #ed5768; ">{{ $project->project_status }}</div>
+                            @elseif($project->project_status == 'Delay')
+                                <div class="badge badge-warning-light text-white font-weight-bold" style="background-color: #c25eea; padding-left:18px; padding-right:18px;">{{ $project->project_status }}</div>
+                            @elseif($project->project_status == 'Pending')
+                                <div class="badge badge-danger-light text-white font-weight-bold" style="background-color: #ffc500">{{ $project->project_status }}</div>
+                            @elseif($project->project_status == 'Ongoing')
+                                <div class="badge badge-primary-light text-white font-weight-bold" style="background-color: #1b74ae;">{{ $project->project_status }}</div>
+                            @elseif($project->project_status == 'Completed')
+                                <div class="badge badge-info-light text-white font-weight-bold" style="background-color: #17b85d">{{ $project->project_status }}</div>
+                            @endif
+                        </td>
+                        
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="{{ route('sprints.index', ['sprints' => $project->id]) }}"><i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i></a>
+                                <a href=""> <i class="fa-sharp fa-solid fa-flag text-info" style="margin-right: 10px"></i></a>
+                                <a href="{{ route('projects.edit', ['project' => $project->id]) }}">
+                                <i class="fa-solid fa-gear text-secondary" style="margin-right: 10px"></i></a>
+
+                                <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="btn btn-link p-0">
+                                        <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
+                                    </button>
+                                </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
     </section>
 </main>
 

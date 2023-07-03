@@ -29,9 +29,9 @@ class ProjectMemberController extends Controller
     {
         $request->validate([
             'is_active' => 'nullable|boolean',
-            'user_id' => 'required|integer|exists:users,id',
-            'project_id' => 'required|integer|exists:project,id',
-            'project_role_id' => 'required|integer|exists:project_role,id',
+            'user_id' => 'required',
+            'project_id' => 'required',
+            'project_role_id' => 'required',
             'is_project_admin' => 'nullable|boolean',
         ]);
 
@@ -64,9 +64,9 @@ class ProjectMemberController extends Controller
     {
         $request->validate([
             'is_active' => 'nullable|boolean',
-            'user_id' => 'required|integer',
-            'project_id' => 'required|integer',
-            'project_role_id' => 'required|integer',
+            'user_id' => 'required',
+            'project_id' => 'required',
+            'project_role_id' => 'required',
             'is_project_admin' => 'nullable|boolean',
         ]);
 

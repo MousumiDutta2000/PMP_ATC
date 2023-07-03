@@ -64,7 +64,8 @@ class ProjectsController extends Controller
         $project->client_spoc_email = $request->client_spoc_email;
         $project->client_spoc_contact = $request->client_spoc_contact;
         $project->vertical_id = $request->vertical_id;
-        $project->technology_id = $request->technology_id;
+        // $project->technology_id = $request->technology_id;
+        $project->technology_id = implode(',', $request->technology_id); 
         $project->client_id = $request->client_id;
         $project->project_members_id = $request->project_members_id;
         $project->project_role_id = $request->project_role_id;
@@ -135,11 +136,11 @@ class ProjectsController extends Controller
         $project->client_spoc_email = $request->client_spoc_email;
         $project->client_spoc_contact = $request->client_spoc_contact;
         $project->vertical_id = $request->vertical_id;
-        $project->technology_id = $request->technology_id;
+        // $project->technology_id = $request->technology_id;
+        $project->technology_id = implode(',', $request->technology_id); 
         $project->client_id = $request->client_id;
         $project->project_members_id = $request->project_members_id;
         $project->project_role_id = $request->project_role_id;
-
         $project->save();
 
         return redirect()->route('projects.index')->with('success', 'Project settings updated successfully.');
