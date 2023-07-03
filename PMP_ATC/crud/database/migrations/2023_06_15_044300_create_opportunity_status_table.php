@@ -10,7 +10,8 @@ class CreateOpportunityStatusTable extends Migration
     {
         Schema::create('opportunity_status', function (Blueprint $table) {
             $table->id();
-            $table->enum('project_goal', ['Achieved', 'Lost']);
+            // $table->enum('project_goal', ['Achieved', 'Lost']);
+            $table->string('project_goal');
             $table->timestamps();
         });
     }
