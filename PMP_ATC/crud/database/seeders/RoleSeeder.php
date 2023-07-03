@@ -9,7 +9,6 @@ class RoleSeeder extends Seeder
 {
     public function run()
     {
-        // Define the data for the roles
         $data = [
             [
                 'role_name' => 'Admin',
@@ -27,8 +26,6 @@ class RoleSeeder extends Seeder
                 'role_name' => 'Project Manager',
             ],
         ];
-
-        // Insert the data into the roles table
         Role::insert($data);
     }
 }

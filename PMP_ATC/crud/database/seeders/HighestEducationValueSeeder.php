@@ -9,7 +9,7 @@ class HighestEducationValueSeeder extends Seeder
 {
     public function run()
     {
-        // Define the data for the highest education values
+
         $data = [
             ['highest_education_value' => 'High School'],
             ['highest_education_value' => 'Associate Degree'],
@@ -18,7 +18,6 @@ class HighestEducationValueSeeder extends Seeder
             ['highest_education_value' => 'PhD'],
         ];
 
-        // Insert the data into the highest_education_value table
         HighestEducationValue::insert($data);
     }
 }

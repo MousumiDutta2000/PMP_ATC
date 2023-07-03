@@ -9,7 +9,6 @@ class VerticalSeeder extends Seeder
 {
     public function run()
     {
-        // Define the data for the verticals
         $data = [
             [
                 'vertical_name' => 'Sales',
@@ -23,10 +22,8 @@ class VerticalSeeder extends Seeder
                 'vertical_head_emailId' => 'jane@example.com',
                 'vertical_head_contact' => '9876543210',
             ],
-            // Add more verticals as needed
         ];
 
-        // Insert the data into the vertical table
         Vertical::insert($data);
     }
 }
