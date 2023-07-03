@@ -9,7 +9,6 @@ class TechnologiesSeeder extends Seeder
 {
     public function run()
     {
-        // Define the data for the technologies
         $data = [
             [
                 'technology_name' => 'PHP',
@@ -23,10 +22,7 @@ class TechnologiesSeeder extends Seeder
                 'technology_name' => 'Python',
                 'expertise' => 'Beginner',
             ],
-            // Add more data as needed
         ];
-
-        // Insert the data into the technologies table
         Technology::insert($data);
     }
 }

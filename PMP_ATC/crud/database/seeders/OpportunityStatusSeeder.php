@@ -9,7 +9,7 @@ class OpportunityStatusSeeder extends Seeder
 {
     public function run()
     {
-        // Define the data for the opportunity status
+
         $data = [
             [
                 'project_goal' => 'Achieved',
@@ -19,7 +19,6 @@ class OpportunityStatusSeeder extends Seeder
             ],
         ];
 
-        // Insert the data into the opportunity_status table
         OpportunityStatus::insert($data);
     }
 }

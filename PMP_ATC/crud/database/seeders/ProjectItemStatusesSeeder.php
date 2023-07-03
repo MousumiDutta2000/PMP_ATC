@@ -9,7 +9,7 @@ class ProjectItemStatusesSeeder extends Seeder
 {
     public function run()
     {
-        // Define the data for the project item statuses
+
         $data = [
             [
                 'status' => 'Under discussion',
@@ -29,10 +29,9 @@ class ProjectItemStatusesSeeder extends Seeder
             [
                 'status' => 'Delay',
             ],
-            // Add more data as needed
+
         ];
 
-        // Insert the data into the project_item_statuses table
         ProjectItemStatus::insert($data);
     }
 }

@@ -9,7 +9,8 @@
 @endsection 
 
 @section('project_css')
-<link rel="stylesheet" href="{{ asset('css/project.css') }}"> 
+<link rel="stylesheet" href="{{ asset('css/project.css') }}">
+<link rel="stylesheet" href="{{ asset('css/form.css') }}"> 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection 
 
@@ -189,7 +190,7 @@
                                     <select id="project_members_id" name="project_members_id[]" class="js-example-basic-single" required style="width:100%;">
                                         <option value="">Select Member</option>
                                         @foreach($projectMembers as $projectMember)
-                                        <option value="{{ $projectMember->id }}">{{ $projectMember->profileName->name }}</option>
+                                        <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -234,7 +235,7 @@
                                 <select id="edit_project_members_id" name="project_members_id" class="select" required style="width:100%;">
                                     <option value="">Select Member</option>
                                     @foreach($projectMembers as $projectMember)
-                                    <option value="{{ $projectMember->id }}">{{ $projectMember->profileName->name }}</option>
+                                    <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
