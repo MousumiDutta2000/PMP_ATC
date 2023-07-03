@@ -48,7 +48,7 @@
                         @foreach($opportunities as $opportunity)
                             <tr>
                                 {{-- <td>{{$opportunity->id}}</td> --}}
-                                <td>{{$opportunity->opportunity_status_id}}</td>
+                                <td>{{$opportunity->opportunityStatus->project_goal}}</td>
                                 <td>{{$opportunity->proposal}}</td>
                                 <td>{{$opportunity->initial_stage}}</td>
                                 <td>{{$opportunity->technical_stage}}</td>
