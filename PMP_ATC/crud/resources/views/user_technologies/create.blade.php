@@ -1,17 +1,20 @@
 @extends('layouts.side_nav') 
 
-@section('pageTitle', 'Skills') 
+@section('pageTitle', 'Add User Technologies') 
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-    <li class="breadcrumb-item" aria-current="page">Skills</li>
-    <li class="breadcrumb-item active" aria-current="page">Add Skill</li>
+    <li class="breadcrumb-item" aria-current="page">User Technologies</li>
+    <li class="breadcrumb-item active" aria-current="page">Add User Technologies</li>
+@endsection
+
+@section('project_css')
+<link rel="stylesheet" href="{{ asset('css/project.css') }}"> 
 @endsection
 
 @section('content')
-    <div class="titlebar">
-        <h1>Add Skill</h1>
-    </div>
+
+    <div class="titlebar"></div>
     @if($errors->any())
         <div>
             <ul>
@@ -21,7 +24,7 @@
             </ul>
         </div>
     @endif
-    <div class="card" style="background-color:white">
+    <div class="card">
         <div class="card-body">
             <form method="post" action="{{ route('user_technologies.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -59,10 +62,12 @@
                             </select>
                         </div>
                     </div>
+
+                    
                     <div class ="col-md-6">
                         <div class="form-group">
                             <label for="details">Details:</label>
-                            <input type="text" name="details" id="details" class="form-control" required>
+                            <textarea class="form-control" class="shadow-sm" name="details" id="details" required="required"></textarea>
                         </div>
                     </div>
                     <div class ="col-md-6">
@@ -73,15 +78,16 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="typeSelect">Is Current Company</label>
+                            <label for="typeSelect">Is Under Current Company:</label>
                             <input type="checkbox" name="is_current_company" id="is_current_company" value="1" {{ old('is_current_company') ? 'checked' : '' }}>
 
                         </div>
                     </div>
-                    <div class="form-actions mt-2">
-                        <button type="submit" class="btn btn-primary">Create</button>
-                        <a href="{{ route('user_technologies.index') }}" class="btn btn-danger">Cancel</a>
-                    </div>
+                </div>
+                <div class="form-actions mt-2">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <a href="{{ route('user_technologies.index') }}" class="btn btn-danger">Cancel</a>
+                </div>
             </form>
         </div>
     </div>

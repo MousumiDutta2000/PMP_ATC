@@ -55,49 +55,51 @@
     </script>
 @endsection
 
-
 @section('content')
-<main class="container">
+    <main class="container">
         <section>
             <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
                 <a href="{{route('designations.create')}}" class = "btn btn-primary">Add Designation</a>
             </div>
             
             <div class="table">
-            <table id="example" class="table table-hover responsive" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Level</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @if(count($designations)>0)
-                        @foreach($designations as $designation)
-                            <tr class = "shadow" style="border-radius:15px;">
-                                <td> {{$designation ->level}} </td>
-                                <td>
-                                <div class="btn-group" role="group">
-                                        <a href="#" data-toggle="modal" data-target="#showModal_{{ $designation->id }}">
-                                            <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
-                                        </a>
-                                        <a href="{{ route('designations.edit', ['designation' => $designation->id]) }}">
-                                            <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
-                                        </a>
-                                        <form method="post" action="{{ route('designations.destroy', ['designation' => $designation->id]) }}">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" class="btn btn-link p-0">
-                                                <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            </div>
-                     @endforeach                  
+                <table id="example" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px;">
+                    <thead>
+                        <tr>
+                            <th>Level</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(count($designations)>0)
+                                @foreach($designations as $designation)
+                                    <tr class = "shadow" style="border-radius:15px;">
+                                        <td> {{$designation ->level}} </td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                    <a href="#" data-toggle="modal" data-target="#showModal_{{ $designation->id }}">
+                                                        <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
+                                                    </a>
+                                                    <a href="{{ route('designations.edit', ['designation' => $designation->id]) }}">
+                                                        <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
+                                                    </a>
+                                                    <form method="post" action="{{ route('designations.destroy', ['designation' => $designation->id]) }}">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-link p-0">
+                                                            <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
+                                                        </button>
+                                                    </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            @endforeach
+                        @endif
+                    </tbody>                  
                 </table>
-            @endif
+            </div>
+        </section>
+    </main>
                 <!-- Show Modal -->
              @foreach ($designations as $designation)
                 <div class="modal fade" id="showModal_{{ $designation->id }}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $designation->id }}" aria-hidden="true">
@@ -128,6 +130,4 @@
             @endforeach
                 </div>
             </div>
-        </section>
-</main>
 @endsection

@@ -52,10 +52,6 @@ class UserTechnologyController extends Controller
         $user_technology->is_current_company = $request->has('is_current_company');
 
         $user_technology->save();
-        $technologies = Technology::all();
-        $project_roles = ProjectRole::all();
-        $users = User::all();
-        $user_technologies = UserTechnology::all();
         return redirect()->route('user_technologies.index')->with('success', 'Skill added successfully.');
     }
 
