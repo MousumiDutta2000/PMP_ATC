@@ -35,9 +35,16 @@
     <div class="row">
         <div class="col-md-6 mb-3">
             <div class="form-group">
-                <label for="opportunity_status_id">Opportunity Status ID</label>
-                <input type="text" name="opportunity_status_id" id="opportunity_status_id" value="{{ $opportunity->opportunity_status_id }}" class="form-control" required>
+                <label for="opportunity_status_id">Opportunity Status ID:</label>
+                <select name="opportunity_status_id" id="opportunity_status_id" class="form-control" required>
+                    @foreach ($opportunityStatuses as $opportunityStatus)
+                        <option value="{{ $opportunityStatus->id }}" {{ $opportunity->opportunity_status_id == $opportunityStatus->id ? 'selected' : '' }}>
+                            {{ $opportunityStatus->project_goal }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
+          
         </div>
 
         <div class="col-md-6 mb-3">
@@ -60,9 +67,6 @@
                 <input type="text" name="technical_stage" id="technical_stage" value="{{ $opportunity->technical_stage }}" class="form-control" required>
             </div>
         </div>
-  
-        
-        
 
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Save</button>
