@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('profile_name');
-            $table->foreign('profile_name')->references('id')->on('users');
+            $table->string('profile_name');
             $table->string('father_name');
             $table->date('DOB');
             $table->string('work_location');
@@ -22,7 +21,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('contact_number')->unique();
             $table->unsignedBigInteger('line_manager_id');
-            $table->foreign('line_manager_id')->references('id')->on('users');
+            $table->foreign('line_manager_id')->references('id')->on('users')->nullable();
             $table->unsignedBigInteger('vertical_id');
             $table->foreign('vertical_id')->references('id')->on('vertical');
             $table->unsignedBigInteger('designation_id');
@@ -30,6 +29,8 @@ return new class extends Migration
             $table->unsignedBigInteger('highest_educational_qualification_id');
             $table->foreign('highest_educational_qualification_id')->references('id')->on('highest_education_value');
             $table->string('image')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -29,18 +29,19 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="profile_name">Name:</label>
-                            <select name="profile_name" id="profile_name" class="form-control" required>
-                                <option value="">Select User</option>
-                                @foreach ($profile_names as $profile_name)
-                                    <option value="{{ $profile_name->id }}" data-email="{{ $profile_name->email }}">{{ $profile_name->name }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" name="profile_name" id="profile_name" class="form-control" value="{{ old('profile_name') }}" required>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="text" class="form-control" name="email" id="email" required readonly>
+                            <input type="text" class="form-control" name="email" id="email" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" name="password" id="password" required>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -49,7 +50,7 @@
                             <input type="text" name="father_name" id="father_name" class="form-control" required>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4 mt-3">
                         <div class="form-group">
                             <label for="name">DOB:</label>
                             <input type="date" name="DOB" id="DOB" class="form-control" required>
@@ -79,13 +80,13 @@
                             <input type="text" class="form-control" name="contact_number" id="contact_number" required>
                         </div>
                     </div>
-                    <div class="col-md-6 mt-3">
+                    <div class="col-md-4 mt-3">
                         <div class="form-group">
                             <label for="name">Work Location:</label>
                             <input type="text" name="work_location" id="work_location" class="form-control" required>
                         </div>
                     </div>
-                    <div class="col-md-6 mt-3">
+                    <div class="col-md-4 mt-3">
                         <div class="form-group">
                             <label for="name">Work Address:</label>
                             <input type="text" name="work_address" id="work_address" class="form-control" required>
@@ -144,16 +145,5 @@
             };
             reader.readAsDataURL(file);
         }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            var profileNameSelect = document.getElementById("profile_name");
-            var emailInput = document.getElementById("email");
-
-            profileNameSelect.addEventListener("change", function() {
-                var selectedOption = profileNameSelect.options[profileNameSelect.selectedIndex];
-                var selectedEmail = selectedOption.getAttribute("data-email");
-                emailInput.value = selectedEmail;
-            });
-        });
     </script>
 @endsection

@@ -16,7 +16,7 @@ class ProfileController extends Controller
         $keyword = $request->get('search');
         $perPage = 5;
 
-        $query = Profile::with(['user', 'lineManager', 'profileName']);
+        $query = Profile::with(['user', 'lineManager']);
 
         if (!empty($keyword)) {
             $query->where('name', 'LIKE', "%$keyword%")
@@ -24,9 +24,6 @@ class ProfileController extends Controller
                     $q->where('name', 'LIKE', "%$keyword%");
                 })
                 ->orWhereHas('lineManager', function ($q) use ($keyword) {
-                    $q->where('name', 'LIKE', "%$keyword%");
-                })
-                ->orWhereHas('profileName', function ($q) use ($keyword) {
                     $q->where('name', 'LIKE', "%$keyword%");
                 });
         }
@@ -42,10 +39,9 @@ class ProfileController extends Controller
         $verticals = Vertical::all();
         $designations = Designation::all();
         $lineManagers = User::all();
-        $qualifications = HighestEducationValue::all();
-        $profile_names = User::all();
-    
-        return view('profiles.create', compact('users', 'verticals', 'designations', 'lineManagers', 'qualifications', 'profile_names'));
+        $qualifications = HighestEducationValue::all(); 
+        $profile = new Profile;
+        return view('profiles.create', compact('users', 'verticals', 'designations', 'lineManagers', 'qualifications', 'profile'));
     }
 
     public function store(Request $request)
@@ -63,8 +59,18 @@ class ProfileController extends Controller
             'vertical_id' => 'required',
             'highest_educational_qualification_id' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'password' => 'required|min:8', // Add a validation rule for the password
         ]);
-
+    
+        // Create a new User instance
+        $user = new User;
+        $user->name = $request->profile_name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password); // Hash the password
+    
+        $user->save(); // Save the user to the users table
+    
+        // Create a new Profile instance
         $profile = new Profile;
         $profile->profile_name = $request->profile_name;
         $profile->father_name = $request->father_name;
@@ -77,27 +83,22 @@ class ProfileController extends Controller
         $profile->designation_id = $request->designation_id;
         $profile->vertical_id = $request->vertical_id;
         $profile->highest_educational_qualification_id = $request->highest_educational_qualification_id;
-
+    
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-            // Check if the image file already exists
-            $existingImage = public_path('images/profiles/' . $imageName);
-            if (file_exists($existingImage)) {
-                // If the image already exists, assign the existing path to the profile
-                $profile->image = 'images/profiles/' . $imageName;
-            } else {
-                // If the image doesn't exist, move it to the destination folder
-                $image->move(public_path('images/profiles'), $imageName);
-                $profile->image = 'images/profiles/' . $imageName;
-            }
+            $image->move(public_path('images/profiles'), $imageName);
+            $profile->image = 'images/profiles/' . $imageName;
         }
-
-        $profile->save();
-
+    
+        // Assign the user_id to the profile
+        $profile->user_id = $user->id;
+    
+        $profile->save(); // Save the profile
+    
         return redirect()->route('profiles.index')->with('success', 'Profile Added Successfully');
     }
+    
 
     public function edit(Profile $profile)
     {
