@@ -42,14 +42,14 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="project_name" style="font-size: 15px;">Project Name</label>
+                    <label for="project_name" class="mb-1" style="font-size: 15px;">Project Name</label>
                     <input type="text" class="shadow-sm" name="project_name" id="project_name" placeholder="Enter project name" required="required" style="color:#999; font-size: 14px;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="typeSelect" style="font-size: 15px;">Project Type</label>
+                    <label for="typeSelect" class="mb-1" style="font-size: 15px;">Project Type</label>
                     <select id="typeSelect" class="shadow-sm" name="project_type" required="required" style="padding-top:5px; padding-bottom:5px; height:39px; color:#999; font-size: 14px;">
                         <option value="" selected="selected" disabled="disabled">Select type</option>
                         <option>Internal</option>
@@ -59,27 +59,27 @@
             </div>
 
             <div class="form-group">
-                <label for="project_description" style="font-size: 15px;">Description</label>
+                <label for="project_description" class="mb-1" style="font-size: 15px;">Description</label>
                 <textarea class="ckeditor form-control" class="shadow-sm" name="project_description" id="project_description" required="required"></textarea>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="project_startDate" style="font-size: 15px;">Project Start Date</label>
+                    <label for="project_startDate" class="mb-1" style="font-size: 15px;">Project Start Date</label>
                     <input type="date" class="shadow-sm" name="project_startDate" id="project_startDate" required="required" style="color:#999; font-size: 14px;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="project_endDate" style="font-size: 15px;">Project End Date</label>
+                    <label for="project_endDate" class="mb-1" style="font-size: 15px;">Project End Date</label>
                     <input type="date" class="shadow-sm" name="project_endDate" id="project_endDate" required="required" style="color:#999; font-size: 14px;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="project_manager_id" style="font-size: 15px;">Project Manager</label>
+                    <label for="project_manager_id" class="mb-1" style="font-size: 15px;">Project Manager</label>
                         <select name="project_manager_id" class="shadow-sm" id="project_manager_id" class="form-control" required style="padding-bottom: 6px; height: 39.1px; color:#999; font-size: 14px;">
                             <option value="">Select Project Manager</option>
                             @foreach ($projectManagers as $projectManager)
@@ -91,7 +91,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="status" style="font-size: 15px;">Status</label>
+                    <label for="status" class="mb-1" style="font-size: 15px;">Status</label>
                     <select id="status" class="shadow-sm" name="project_status" required="required" style="padding-top:5px; padding-bottom:5px; height:39px; color:#999; font-size: 14px;">
                     <option value="" selected="selected" disabled="disabled">Select status</option>
                     <option value="Not Started">Not started</option>
@@ -105,7 +105,7 @@
 
             <div class="col-md-6 mb-0">
                 <div class="form-group">
-                    <label for="vertical_id" style="font-size: 15px;">Vertical</label>
+                    <label for="vertical_id" class="mb-1" style="font-size: 15px;">Vertical</label>
                     <select name="vertical_id" class="shadow-sm" id="vertical_id" class="form-control" required style="padding-bottom: 6px; color:#999; font-size: 14px;">
                         <option value="">Select Vertical</option>
                             @foreach ($verticals as $vertical)
@@ -119,7 +119,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="client_id" style="font-size: 15px;">Client</label>
+                    <label for="client_id" class="mb-1" style="font-size: 15px;">Client</label>
                     <select id="client_id" class="shadow-sm" name="client_id" class="form-control" required style="height: 38.1px; color:#999; font-size: 14px;">
                     <option value="">Select Client</option>
                     @foreach($clients as $client)
@@ -131,21 +131,21 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="client_spoc_name" style="font-size: 15px;">Client Name [SPOC]</label>
+                    <label for="client_spoc_name" class="mb-1" style="font-size: 15px;">Client Name [SPOC]</label>
                     <input type="text" class="shadow-sm" name="client_spoc_name" id="client_spoc_name" placeholder=" Enter client name" required="required" style="color:#999;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="client_spoc_email" style="font-size: 15px;">Client Email [SPOC]</label>
+                    <label for="client_spoc_email" class="mb-1" style="font-size: 15px;">Client Email [SPOC]</label>
                     <input type="email" class="shadow-sm" name="client_spoc_email" id="client_spoc_email" placeholder=" Enter client email" required="required" style="color:#999;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="client_spoc_contact" style="font-size: 15px;">Client Contact [SPOC]</label>
+                    <label for="client_spoc_contact" class="mb-1" style="font-size: 15px;">Client Contact [SPOC]</label>
                     <input type="text" class="shadow-sm" name="client_spoc_contact" id="client_spoc_contact" placeholder="Enter client contact" required="required" style="color:#999;">
                 </div>
             </div>
@@ -153,7 +153,7 @@
             <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
 
             <div class="form-group">
-                <label for="technology_id" style="font-size: 15px;">Technologies</label>
+                <label for="technology_id" class="mb-1" style="font-size: 15px;">Technologies</label>
                 <div id="technology-wrapper" class="shadow-sm" style="font-size: 14px;">
                     <select id="technology_id" name="technology_id[]" class="technology" required style="width: 100%;" multiple>
                         <option value="">Select technologies</option>
@@ -350,12 +350,12 @@ $(document).ready(function() {
         
         <div class="col-md-3">
             <div class="card mb-0">
-            <div class="card-body">
-            <div class="avatar avatar-blue mr-3">
-            <img class="rounded_circle" src="{{ asset($projectMember->image) }}" alt="Profile Image" width="50">
+            <div class="card-body mb-2" style="padding: 0 21px 0 21px;">
+            <div class="avatar avatar-blue" style=" margin-left: 34px;">
+            <img class="rounded_circle mb-1 mt-3" src="{{ asset($projectMember->image) }}" alt="Profile Image" width="50">
             </div>
-                <p class="card-title user-name">${memberName}</p>
-                <p class="card-text role" style="margin-bottom: 0rem; font-size: 12px; font-weight: 400; margin-top: -10px">${role}</p>
+                <p id="card-title" class="card-title user-name">${memberName}</p>
+                <p class="card-text role" style="margin-bottom: 0rem; font-size: 11px; font-weight: 400; margin-top: -10px">${role}</p>
                 <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
             </div>
             </div>
