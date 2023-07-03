@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('user_technologies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('profile_name');
+            $table->foreign('profile_name')->references('id')->on('users');
             $table->unsignedBigInteger('project_role_id');
             $table->foreign('project_role_id')->references('id')->on('project_role');
             $table->unsignedBigInteger('technology_id');
             $table->foreign('technology_id')->references('id')->on('technologies');
-            $table->string('details');
-            $table->string('years_of_experience');
+            $table->text('details');
+            $table->integer('years_of_experience');
             $table->boolean('is_current_company');
             $table->timestamps();
         });
