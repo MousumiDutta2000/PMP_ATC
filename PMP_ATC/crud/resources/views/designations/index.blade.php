@@ -90,10 +90,8 @@
                                 </td>
                             </tr>
                             </div>
-                        {{-- @endforeach
-                    @else
-                                <p>Designation Not Found</p>
-                    @endif --}}
+                     @endforeach
+                  
                 </table>
                 </div>
             </div>
