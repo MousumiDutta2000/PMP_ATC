@@ -179,10 +179,8 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 text-align: center;
-width: 150px;
-/* margin-right: 20px;
-margin-bottom: 20px;
-margin-left: 0px; */
+width: 130px;
+height: 140px;
 }
 
 @media (max-width: 767px) {
@@ -210,24 +208,23 @@ margin-left: 0px; */
   color: whitesmoke;
 }
 
-
-.select2-container {
+#myModal .select2-container {
 z-index: 1061 !important; 
 }
 
-/* #project_role_id{
-height:30px; 
-padding:inherit; 
-color:#999; 
-font-size: 14px; 
-border: 1px solid #999; 
-border-radius: 4px;
-} */
-
 .rounded_circle{
-margin-top: 16px; 
-height: 5.7em; 
-width: 90px; 
-margin-left: 6px; 
+margin-top: 13px; 
+height: 70px; 
+width: 70px; 
+/* margin-left: 6px;  */
 border-radius: 50%;
+margin-right: 34px;
+}
+
+#card-title{
+padding: 0px;
+font-size: 12px;
+font-weight: 500;
+color: #012970;
+font-family: "Poppins", sans-serif;
 }

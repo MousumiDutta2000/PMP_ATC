@@ -74,7 +74,7 @@
                 <tbody>
                 @if(count($designations)>0)
                         @foreach($designations as $designation)
-                            <tr class = "shadow">
+                            <tr class = "shadow" style="border-radius:15px;">
                                 <td> {{$designation ->level}} </td>
                                 <td>
                                 <div class="btn-group" role="group">
@@ -95,11 +95,9 @@
                                 </td>
                             </tr>
                             </div>
-                        @endforeach
-                    @else
-                                <p>Designation Not Found</p>
-                    @endif
+                     @endforeach                  
                 </table>
+            @endif
                 <!-- Show Modal -->
              @foreach ($designations as $designation)
                 <div class="modal fade" id="showModal_{{ $designation->id }}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $designation->id }}" aria-hidden="true">
