@@ -240,12 +240,6 @@
                                     @csrf
                                     <div class="row mt-3">
                                       <div class ="col-md-4">
-                                          <div class="form-group">
-                                              <label for="user_id">User ID:</label>
-                                              <input value="{{$profile->user_id}}" name="user_id" id="user_id" class="form-control" readonly required>
-                                          </div>                                    
-                                      </div>
-                                      <div class ="col-md-4">
                                               <div class="form-group">
                                                   <label for="technology_id">Technology:</label>
                                                   <select name="technology_id" id="technology_id" class="form-control" required>
