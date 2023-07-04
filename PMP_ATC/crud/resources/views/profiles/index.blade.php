@@ -13,13 +13,7 @@
     <link rel='stylesheet' href='https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css'>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/boxicons@2.0.0/css/boxicons.min.css'>
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
-    <style>
-        .name-container {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/profiles.css') }}">
 @endsection
 
 @section('custom_js')
@@ -30,29 +24,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('js/table.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            adjustNameFieldWidth();
-
-            $(window).resize(function() {
-                adjustNameFieldWidth();
-            });
-
-            function adjustNameFieldWidth() {
-                $('.name-container').each(function() {
-                    var maxWidth = 150;
-                    var containerWidth = $(this).parent().width();
-                    var nameWidth = $(this).find('.name').width();
-
-                    if (nameWidth > maxWidth && nameWidth > containerWidth) {
-                        $(this).css('max-width', nameWidth + 10 + 'px');
-                    } else {
-                        $(this).css('max-width', '');
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="{{ asset('js/profiles.js') }}"></script>
 @endsection
 
 @section('content')
@@ -68,7 +40,6 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Line Manager</th>
-                        <!-- <th>User</th> -->
                         <th>Vertical</th>
                         <th>Designation</th>
                         <th>High Edu. Qual.</th>
