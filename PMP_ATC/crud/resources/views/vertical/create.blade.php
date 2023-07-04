@@ -32,21 +32,21 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="vertical_name">Vertical Name</label>
-                    <input type="text" name="vertical_name" id="vertical_name" class="form-control" required>
+                    <input type="text" name="vertical_name" id="vertical_name" class="form-control shadow-sm" required>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="vertical_head_name">Vertical Head Name</label>
-                    <input type="text" name="vertical_head_name" id="vertical_head_name" class="form-control" required>
+                    <input type="text" name="vertical_head_name" id="vertical_head_name" class="form-control shadow-sm" required>
                 </div>
             </div>
 
         <div class="col-md-6">
             <div class="form-group">
                 <label for="vertical_head_emailId">Vertical Head Email:</label>
-                <input type="email" name="vertical_head_emailId" id="vertical_head_emailId" class="form-control" required>
+                <input type="email" name="vertical_head_emailId" id="vertical_head_emailId" class="form-control shadow-sm" required>
             </div>
         </div>
 
@@ -54,7 +54,7 @@
            <div class="col-md-6">
             <div class="form-group">
                 <label for="vertical_head_contact">Vertical Head Contact:</label>
-                <input type="text" name="vertical_head_contact" id="vertical_head_contact" class="form-control" required>
+                <input type="text" name="vertical_head_contact" id="vertical_head_contact" class="form-control shadow-sm" required>
             </div>
         </div>
 

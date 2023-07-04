@@ -32,7 +32,7 @@
             {{-- <div class="col-md-6"> --}}
                 <div class="form-group">
                     <label for="status">Status</label>
-                    <select name="status" id="status" class="form-control">
+                    <select name="status" id="status" class="form-control shadow-sm">
                         <option value="Under discussion">Under discussion</option>
                         <option value="Under development">Under development</option>
                         <option value="In queue">In queue</option>
@@ -58,34 +58,3 @@
 </div>
 
 @endsection
-
-
-
-
-
-
-{{-- @extends('layouts.side_nav')
-
-@section('content')
-    <div class="container">
-        <h2>Create New Project Item Status</h2>
-        <form action="{{ route('project_item_statuses.store') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="status">Status</label>
-                <select name="status" id="status" class="form-control">
-                    <option value="Under discussion">Under discussion</option>
-                    <option value="Under development">Under development</option>
-                    <option value="In queue">In queue</option>
-                    <option value="Not Started">Not Started</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Delay">Delay</option>
-                </select>
-                @error('status')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-primary">Create</button>
-        </form>
-    </div>
-@endsection --}}

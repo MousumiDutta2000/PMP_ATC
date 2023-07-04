@@ -28,10 +28,9 @@
 @section('content')
 <main class="container">
     <section class="body">
-        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -86px; margin-bottom: 50px; padding: 20px 30px; margin-right: -30px;">
             <a href="{{ route('project-items.create') }}" class="btn btn-primary">Add New</a>
         </div>
-        {{-- @if ($projectItems->count() > 0) --}}
             <table id="projectItemTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
@@ -105,9 +104,6 @@
                     @endforeach
                 </tbody>
             </table>
-        {{-- @else
-            <p>No project_items found.</p>
-        @endif --}}
     </section>
 </main>
 @endsection

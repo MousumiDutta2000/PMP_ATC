@@ -32,7 +32,7 @@
           <div class="col-md-6">
             <div class="form-group">
                 <label for="opportunity_status_id">Opportunity Status ID:</label>
-                <select name="opportunity_status_id" id="opportunity_status_id" class="form-control" required>
+                <select name="opportunity_status_id" id="opportunity_status_id" class="form-control shadow-sm" required>
                     <option value="">Select Status</option>
                     @foreach ($opportunityStatuses as $opportunityStatus)
                         <option value="{{ $opportunityStatus->id }}">{{ $opportunityStatus->project_goal }}</option>
@@ -45,25 +45,25 @@
             <div class="col-md-6">  
               <div class="form-group">
                 <label for="proposal">Proposal:</label>
-                <input type="text" name="proposal" id="proposal" class="form-control" required>
+                <input type="text" name="proposal" id="proposal" class="form-control shadow-sm" required>
               </div>
             </div>
 
             <div class="col-md-6">  
               <div class="form-group">
                 <label for="initial_stage">Initial Stage:</label>
-                <input type="text" name="initial_stage" id="initial_stage" class="form-control" required>
+                <input type="text" name="initial_stage" id="initial_stage" class="form-control shadow-sm" required>
               </div>
             </div>
 
             <div class="col-md-6">  
               <div class="form-group">
                 <label for="technical_stage">Technical Stage:</label>
-                <input type="text" name="technical_stage" id="technical_stage" class="form-control" required>
+                <input type="text" name="technical_stage" id="technical_stage" class="form-control shadow-sm" required>
               </div>
             </div>
 
-            <div class="form-actions">
+            <div class="form-actions mt-3 text-end">
                 <button type="submit" class="btn btn-primary">Create</button>
                 <a href="{{ route('opportunities.index') }}" class="btn btn-danger">Cancel</a>
             </div>

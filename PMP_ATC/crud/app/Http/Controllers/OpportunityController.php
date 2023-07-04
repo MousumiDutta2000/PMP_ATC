@@ -50,8 +50,7 @@ class OpportunityController extends Controller
     {
         $opportunityStatuses = OpportunityStatus::all();
 
-        return view('profiles.edit', compact('profile', 'users', 'verticals', 'designations', 'lineManagers', 'qualifications'));
-        return view('opportunities.edit', compact('opportunity', opportunityStatuses));
+        return view('opportunities.edit', compact('opportunity', 'opportunityStatuses'));
     }
 
     public function update(Request $request, Opportunity $opportunity)

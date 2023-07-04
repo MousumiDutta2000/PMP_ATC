@@ -32,14 +32,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="technology_name">Technology Name</label>
-                    <input type="text" name="technology_name" class="form-control" id="technology_name">
+                    <input type="text" name="technology_name" class="form-control shadow-sm" id="technology_name">
                 </div>
             </div>
        
            <div class="col-md-6">
             <div class="form-group">
                 <label for="expertise">Expertise</label>
-                <input type="text" name="expertise" class="form-control" id="expertise">
+                <input type="text" name="expertise" class="form-control shadow-sm" id="expertise">
             </div>
         </div>
 
