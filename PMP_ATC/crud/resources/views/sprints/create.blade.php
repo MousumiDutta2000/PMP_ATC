@@ -32,14 +32,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="sprint_name">Sprint Name</label>
-                    <input type="text" name="sprint_name" id="sprint_name" value="{{ old('sprint_name') }}">
+                    <input type="text" name="sprint_name" id="sprint_name" class="form-control shadow-sm" value="{{ old('sprint_name') }}">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="is_global_sprint">Is Global Sprint</label>
-                    <select name="is_global_sprint" id="is_global_sprint">
+                    <select name="is_global_sprint" id="is_global_sprint" class="form-control shadow-sm">
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                     </select>
@@ -50,7 +50,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="project_id">Project ID:</label>
-                    <select name="project_id" id="project_id" class="form-control" required>
+                    <select name="project_id" id="project_id" class="form-control shadow-sm" required>
                         <option value="">Select Project</option>
                         @foreach ($projects as $project)
                             <option value="{{ $project->id }}">{{ $project->project_name }}</option>
@@ -62,7 +62,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="status">Status</label>
-                    <select name="status" id="status">
+                    <select name="status" id="status" class="form-control shadow-sm">
                         <option value="Under discussion">Under discussion</option>
                         <option value="Under development">Under development</option>
                         <option value="In queue">In queue</option>
@@ -76,21 +76,21 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="start_date">Start Date</label>
-                    <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}">
+                    <input type="date" name="start_date" id="start_date" class="form-control shadow-sm" value="{{ old('start_date') }}">
                 </div>        
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="end_date">End Date</label>
-                    <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}">
+                    <input type="date" name="end_date" id="end_date" class="form-control shadow-sm" value="{{ old('end_date') }}">
                 </div>
             </div>
 
             <div class="col-md-6 mb-3">
                 <div class="form-group">
                     <label for="assigned_to">Assigned To:</label>
-                    <select name="assigned_to" id="assigned_to" class="form-control" required>
+                    <select name="assigned_to" id="assigned_to" class="form-control shadow-sm"" required>
                         <option value="">Select User</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -104,7 +104,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="assigned_by">Assigned By:</label>
-                    <select name="assigned_by" id="assigned_by" class="form-control" required>
+                    <select name="assigned_by" id="assigned_by" class="form-control shadow-sm"" required>
                         <option value="">Select User</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>

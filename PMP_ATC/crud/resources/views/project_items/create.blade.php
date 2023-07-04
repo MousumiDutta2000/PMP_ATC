@@ -88,7 +88,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="sprint_id">Sprint ID</label>
-                    <select name="sprint_id" id="sprint_id" class="form-control" required>
+                    <select name="sprint_id" id="sprint_id" class="form-control shadow-sm" required>
                         <option value="">Select Sprint</option>
                         @foreach($sprints as $sprint)
                             <option value="{{ $sprint->id }}">{{ $sprint->sprint_name }}</option>
@@ -101,14 +101,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="expected_delivery">Expected Delivery</label>
-                    <input type="date" name="expected_delivery" id="expected_delivery" class="form-control" required>
+                    <input type="date" name="expected_delivery" id="expected_delivery" class="form-control shadow-sm" required>
                 </div>
             </div>
 
             <div class="col-md-6 mb-3">
                 <div class="form-group">
                     <label for="start_date">Start Date</label>
-                    <input type="date" name="start_date" id="start_date" class="form-control" required>
+                    <input type="date" name="start_date" id="start_date" class="form-control shadow-sm" required>
                 </div>
             </div>
 
@@ -116,21 +116,21 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="end_date">End Date</label>
-                    <input type="date" name="end_date" id="end_date" class="form-control" required>
+                    <input type="date" name="end_date" id="end_date" class="form-control shadow-sm" required>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="assigned_to">Assigned To</label>
-                    <input type="text" name="assigned_to" id="assigned_to" class="form-control" required>
+                    <input type="text" name="assigned_to" id="assigned_to" class="form-control shadow-sm" required>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="assigned_by">Assigned By</label>
-                    <input type="text" name="assigned_by" id="assigned_by" class="form-control" required>
+                    <input type="text" name="assigned_by" id="assigned_by" class="form-control shadow-sm" required>
                 </div>    
             </div>
 

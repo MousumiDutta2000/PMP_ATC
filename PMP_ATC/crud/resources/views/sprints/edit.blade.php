@@ -42,7 +42,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="is_global_sprint">Is Global Sprint:</label>
-                <select name="is_global_sprint" id="is_global_sprint" class="form-control">
+                <select name="is_global_sprint" id="is_global_sprint" class="form-control shadow-sm">
                   <option value="yes" {{ $sprint->is_global_sprint === 'yes' ? 'selected' : '' }}>Yes</option>
                   <option value="no" {{ $sprint->is_global_sprint === 'no' ? 'selected' : '' }}>No</option>
                 </select>
@@ -52,7 +52,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="project_id">Project ID:</label>
-                <select name="project_id" id="project_id" class="form-control" required>
+                <select name="project_id" id="project_id" class="form-controlcl shadow-sm" required>
                     @foreach ($projects as $project)
                         <option value="{{ $project->id }}" {{ $sprint->project_id == $project->id ? 'selected' : '' }}>
                             {{ $project->project_name }}
@@ -66,7 +66,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="status">Status:</label>
-                <select name="status" id="status" class="form-control">
+                <select name="status" id="status" class="form-control shadow-sm">
                   <option value="Under discussion" {{ $sprint->status === 'Under discussion' ? 'selected' : '' }}>Under discussion</option>
                   <option value="Under development" {{ $sprint->status === 'Under development' ? 'selected' : '' }}>Under development</option>
                   <option value="In queue" {{ $sprint->status === 'In queue' ? 'selected' : '' }}>In queue</option>
@@ -80,21 +80,21 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="start_date">Start Date:</label>
-                <input type="date" name="start_date" id="start_date" class="form-control" value="{{ old('start_date', $sprint->start_date) }}" required="required">
+                <input type="date" name="start_date" id="start_date" class="form-control shadow-sm" value="{{ old('start_date', $sprint->start_date) }}" required="required">
               </div>        
             </div>
 
             <div class="col-md-6">
               <div class="form-group">
                 <label for="end_date">End Date:</label>
-                <input type="date" name="end_date" id="end_date" class="form-control" value="{{ old('end_date', $sprint->end_date) }}" required="required">
+                <input type="date" name="end_date" id="end_date" class="form-control shadow-sm" value="{{ old('end_date', $sprint->end_date) }}" required="required">
               </div>
             </div>
 
             <div class="col-md-6 mb-3">
               <div class="form-group">
                 <label for="assigned_to">Assigned To:</label>
-                <select name="assigned_to" id="assigned_to" class="form-control" required>
+                <select name="assigned_to" id="assigned_to" class="form-control shadow-sm" required>
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}" {{ $sprint->assigned_to == $user->id ? 'selected' : '' }}>
                             {{ $user->name }}
@@ -109,7 +109,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="assigned_by">Assigned By:</label>
-                <select name="assigned_by" id="assigned_by" class="form-control" required>
+                <select name="assigned_by" id="assigned_by" class="form-control shadow-sm" required>
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}" {{ $sprint->assigned_by == $user->id ? 'selected' : '' }}>
                             {{ $user->name }}

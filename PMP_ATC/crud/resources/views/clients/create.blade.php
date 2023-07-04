@@ -32,20 +32,20 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="client_name">Client Name</label>
-                    <input type="text" name="client_name" id="client_name" class="form-control" required>
+                    <input type="text" name="client_name" id="client_name" class="form-control shadow-sm" required>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="phone_no">Phone Number</label>
-                    <input type="text" name="phone_no" id="phone_no" class="form-control" required>
+                    <input type="text" name="phone_no" id="phone_no" class="form-control shadow-sm" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="email_address">Email Address:</label>
-                <input type="email" name="email_address" id="email_address" class="form-control" required>
+                <input type="email" name="email_address" id="email_address" class="form-control shadow-sm" required>
             </div>
 
             <div class="form-actions">

@@ -83,46 +83,6 @@
                     @endforeach
                 </tbody>
             </table>
-        {{-- @else
-            <p>No sprints found.</p>
-        @endif --}}
     </section>
 </main>
 @endsection
-
-{{-- 
-@section('content')
-    <div class="container">
-        <h2>Project Item Statuses</h2>
-        <a class="btn btn-primary" href="{{ route('project_item_statuses.create') }}">Create New Status</a>
-        @if ($statuses->count() > 0)
-            <table class="table mt-3">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($statuses as $status)
-                        <tr>
-                            <td>{{ $status->id }}</td>
-                            <td>{{ $status->status }}</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="{{ route('project_item_statuses.edit', $status->id) }}">Edit</a>
-                                <form action="{{ route('project_item_statuses.destroy', $status->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this status?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @else
-            <p>No project item statuses found.</p>
-        @endif
-    </div>
-@endsection --}}
