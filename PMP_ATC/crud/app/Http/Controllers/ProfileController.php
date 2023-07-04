@@ -70,6 +70,7 @@ class ProfileController extends Controller
         $user->name = $request->profile_name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password); // Hash the password
+        $user->is_admin = $request->has('is_admin');
     
         $user->save(); // Save the user to the users table
     

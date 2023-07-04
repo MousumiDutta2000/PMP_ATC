@@ -32,7 +32,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="highest_education_value">Highest Education Value:</label>
-                    <input type="text" name="highest_education_value" id="highest_education_value" class="form-control" required>
+                    <input type="text" name="highest_education_value" id="highest_education_value" class="form-control shadow-sm" required>
                 </div>
             </div>
 

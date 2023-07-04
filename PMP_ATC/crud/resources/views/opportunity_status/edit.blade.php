@@ -36,7 +36,7 @@
         <div class="col-md-6 mb-3">
             <div class="form-group">
                 <label for="project_goal">Project Goal</label>
-                <select name="project_goal" id="project_goal" class="form-control">
+                <select name="project_goal" id="project_goal" class="form-control shadow-sm">
                     <option value="Achieved" {{ $opportunityStatus->project_goal === 'Achieved' ? 'selected' : '' }}>Achieved</option>
                     <option value="Lost" {{ $opportunityStatus->project_goal === 'Lost' ? 'selected' : '' }}>Lost</option>
                 </select>
@@ -44,36 +44,12 @@
         </div>
 
 
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{ route('opportunity_status.index') }}" class="btn btn-danger">Cancel</a>
-    </div>
+        <div class="form-actions mt-3 text-end">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{{ route('opportunity_status.index') }}" class="btn btn-danger">Cancel</a>
+        </div>
 
 
         </form>
     </div>
 @endsection
-
-
-
-
-
-
-{{-- @extends('layouts.side_nav')
-
-@section('content')
-    <h1>Edit Opportunity Status</h1>
-
-    <form action="{{ route('opportunity_status.update', $opportunityStatus->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="form-group">
-            <label for="project_goal">Project Goal</label>
-            <select name="project_goal" id="project_goal" class="form-control">
-                <option value="Achieved" {{ $opportunityStatus->project_goal === 'Achieved' ? 'selected' : '' }}>Achieved</option>
-                <option value="Lost" {{ $opportunityStatus->project_goal === 'Lost' ? 'selected' : '' }}>Lost</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-    </form>
-@endsection --}}

@@ -22,6 +22,12 @@ class VerticalSeeder extends Seeder
                 'vertical_head_emailId' => 'jane@example.com',
                 'vertical_head_contact' => '9876543210',
             ],
+            [
+                'vertical_name' => 'Full Stack',
+                'vertical_head_name' => 'Bivash Kanti Pal',
+                'vertical_head_emailId' => 'bivashkanti.pal@adamastech.in',
+                'vertical_head_contact' => '8981172322',
+            ],
         ];
 
         Vertical::insert($data);

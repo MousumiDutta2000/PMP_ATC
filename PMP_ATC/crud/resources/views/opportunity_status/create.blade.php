@@ -32,14 +32,14 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="project_goal">Project Goal</label>
-                <select name="project_goal" id="project_goal" class="form-control">
+                <select name="project_goal" id="project_goal" class="form-control shadow-sm">
                   <option value="Achieved">Achieved</option>
                   <option value="Lost">Lost</option>
                 </select>
               </div>
             </div>
 
-            <div class="form-actions">
+            <div class="form-actions mt-3 text-end">
                 <button type="submit" class="btn btn-primary">Create</button>
                 <a href="{{ route('opportunity_status.index') }}" class="btn btn-danger">Cancel</a>
             </div>
