@@ -58,7 +58,7 @@
 @section('content')
 <main class="container">
     <section class="body">
-        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -86px; margin-bottom: 50px; padding: 20px 30px; margin-right: -30px;">
             <a href="{{ route('user_technologies.create') }}" class="btn btn-primary">Add User Technologies</a>
         </div> 
         <div class="table">
