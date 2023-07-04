@@ -165,10 +165,10 @@
                 </div>
             </div>
 
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
                 <label for="memberInput" class="form-label" style="height:20px; font-size: 15px;">Member</label>
                 <i class="fa fa-plus-circle" id="plusSign" style="color: #7d4287; cursor: pointer;"></i>
-                <div class="row" id="memberCardContainer"></div>
+                <div id="memberCardContainer"></div>
             </div>
 
             <!-- Bootstrap Modal -->
@@ -274,15 +274,15 @@
 
 <script>
 
-    function addMember() {
-        // Add member logic here
+//     function addMember() {
+//         // Add member logic here
 
-        closeModal(); // Close the modal after adding a member
+//         closeModal(); // Close the modal after adding a member
         
-        // Remove focus from the select element
-        $('#technology_id').blur();
-    }
-</script>
+//         // Remove focus from the select element
+//         $('#technology_id').blur();
+//     }
+// </script>
 
 <!-- Select2 JS -->
 <script>
@@ -349,18 +349,18 @@ $(document).ready(function() {
     if (memberName && role) {
         var cardHtml = `
         
-        <div class="col-md-3">
+
             <div class="card mb-0">
-            <div class="card-body mb-2" style="padding: 0 21px 0 21px;">
-            <div class="avatar avatar-blue" style=" margin-left: 34px;">
-            <img class="rounded_circle mb-1 mt-3" src="{{ asset($projectMember->image) }}" alt="Profile Image" width="50">
-            </div>
+                <div class="card-body mb-2" style="padding: 0 21px 0 21px;">
+                <div class="avatar avatar-blue" style=" margin-left: 34px;">
+                <img class="rounded_circle mb-1 mt-3" src="{{ asset($projectMember->image) }}" alt="Profile Image" width="50">
+                </div>
                 <p id="card-title" class="card-title user-name">${memberName}</p>
                 <p class="card-text role" style="margin-bottom: 0rem; font-size: 11px; font-weight: 400; margin-top: -10px">${role}</p>
                 <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
-            </div>
-            </div>
-        </div>`;
+                </div>
+            </div>`;
+        // </div>`;
 
         $("#memberCardContainer").append(cardHtml);
     }
