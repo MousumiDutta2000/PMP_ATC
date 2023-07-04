@@ -96,7 +96,7 @@
                             <input type="text" name="work_address" id="work_address" class="form-control" required>
                         </div>
                     </div>
-                    <div class="col-md-4 mt-3">
+                    <div class="col-md-3 mt-3">
                         <div class="form-group">
                             <label for="designation_id">Designation:</label>
                             <select name="designation_id" id="designation_id" class="form-control" required>
@@ -107,7 +107,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-4 mt-3">
+                    <div class="col-md-3 mt-3">
                         <div class="form-group">
                             <label for="vertical_id">Vertical:</label>
                             <select name="vertical_id" id="vertical_id" class="form-control" required>
@@ -118,7 +118,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-4 mt-3">
+                    <div class="col-md-3 mt-3">
                         <div class="form-group">
                             <label for="line_manager_id">Line Manager:</label>
                             <select name="line_manager_id" id="line_manager_id" class="form-control" required>
@@ -127,6 +127,12 @@
                                     <option value="{{ $lineManager->id }}">{{ $lineManager->name }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mt-5">
+                        <div class="form-group form-check form-switch">
+                            <label class="form-check-label" for="is_admin">Is Admin</label>
+                            <input class="form-check-input" role="switch" type="checkbox" name="is_admin" id="is_admin">
                         </div>
                     </div>
                 </div>

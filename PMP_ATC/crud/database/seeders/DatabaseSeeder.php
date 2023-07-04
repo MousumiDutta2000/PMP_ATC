@@ -20,19 +20,18 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            RoleSeeder::class,
+            UsersTableSeeder::class,
+            HighestEducationValueSeeder::class,
             VerticalSeeder::class,
             DesignationSeeder::class,
-            HighestEducationValueSeeder::class,
-            UsersTableSeeder::class,
             ProfilesTableSeeder::class,
-            RoleSeeder::class,
             OpportunityStatusSeeder::class,
             OpportunitiesSeeder::class,
             ProjectRoleSeeder::class,
             TechnologiesSeeder::class,
             ClientsSeeder::class,
             ProjectItemStatusesSeeder::class,
-            
         ]);
     }
 }

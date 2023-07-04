@@ -9,118 +9,95 @@
 @endsection
 
 @section('project_css')
-<link rel="stylesheet" href="{{ asset('css/form.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}"> 
 @endsection 
 
 @section('content')
 
-    <div class="form-container">
-        @if($errors->any())
-            <div>
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <form method="post" action="{{ route('profiles.update', ['profile' => $profile->id]) }}" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="row">
-                <!-- <div class ="col-md-4">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" name="name" id="name" class="form-control" value="{{ $profile->name }}" required>
-                    </div>
-                </div> -->
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="highest_educational_qualification_id">Highest Educational Qualification:</label>
-                        <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required>
-                            @foreach ($qualifications as $qualification)
-                                <option value="{{ $qualification->id }}" {{ $profile->highest_educational_qualification_id == $qualification->id ? 'selected' : '' }}>
-                                    {{ $qualification->highest_education_value }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="vertical_id">Vertical:</label>
-                        <select name="vertical_id" id="vertical_id" class="form-control" required>
-                            @foreach ($verticals as $vertical)
-                                <option value="{{ $vertical->id }}" {{ $profile->vertical_id == $vertical->id ? 'selected' : '' }}>
-                                    {{ $vertical->vertical_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-            
+<div class="form-container">
+    @if($errors->any())
+        <div>
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form method="post" action="{{ route('profiles.update', ['profile' => $profile->id]) }}" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <div class="row">
+            <div class="col-md-6">
                 <div class="form-group">
-                    <label for="image">Current Image:</label>
-                    <img src="{{ asset($profile->image) }}" alt="Current Image" class="img-product" id="file-preview">
-                    <br>
-                    <label for="image">Change Image:</label>
-                    <input type="file" name="image" accept="image/*" class="form-control" onchange="showFile(event)">
+                    <label for="highest_educational_qualification_id">Highest Educational Qualification:</label>
+                    <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required>
+                        @foreach ($qualifications as $qualification)
+                            <option value="{{ $qualification->id }}" {{ $profile->highest_educational_qualification_id == $qualification->id ? 'selected' : '' }}>
+                                {{ $qualification->highest_education_value }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class ="col-md-4">
-                    <div class="form-group">
-                        <label for="contact_number">Contact Number:</label>
-                        <input type="text" class="form-control" name="contact_number" id="contact_number" value="{{ $profile->contact_number }}" required>
-                    </div>
-                </div>
-                <!-- <div class ="col-md-6">
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="text" class="form-control" name="email" id="email" value="{{ $profile->email }}" required>
-                    </div>
-                </div> -->
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="designation_id">Designation:</label>
-                        <select name="designation_id" id="designation_id" class="form-control" required>
-                            @foreach($designations as $designation)
-                                <option value="{{ $designation->id }}" {{ $profile->designation_id == $designation->id ? 'selected' : '' }}>
-                                    {{ $designation->level }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="line_manager_id">Line Manager:</label>
-                        <select name="line_manager_id" id="line_manager_id" class="form-control" required>
-                            @foreach($lineManagers as $lineManager)
-                                <option value="{{ $lineManager->id }}" {{ $profile->line_manager_id == $lineManager->id ? 'selected' : '' }}>
-                                    {{ $lineManager->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <!-- <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="user_id">User</label>
-                        <select name="user_id" id="user_id" class="form-control" required>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}" {{ $profile->user_id == $user->id ? 'selected' : '' }}>
-                                    {{ $user->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>  -->
             </div>
-            <div class="text-end">
-                <button type="submit" class="btn btn-primary">Update</button>
-                <a href="{{ route('profiles.index') }}" class="btn btn-danger">Cancel</a>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="contact_number">Contact Number:</label>
+                    <input type="text" class="form-control" name="contact_number" id="contact_number" value="{{ $profile->contact_number }}" required>
+                </div>
             </div>
-        </form>
-    </div>
+        </div>
+        <div class="form-group">
+            <label for="image">Current Image:</label>
+            <img src="{{ asset($profile->image) }}" alt="Current Image" class="img-product" id="file-preview" style="width:80px;height:80px">
+            <br>
+            <label for="image">Change Image:</label>
+            <input type="file" name="image" accept="image/*" class="form-control" onchange="showFile(event)">
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            <div class="form-group">
+                    <label for="vertical_id">Vertical:</label>
+                    <select name="vertical_id" id="vertical_id" class="form-control" required>
+                        @foreach ($verticals as $vertical)
+                            <option value="{{ $vertical->id }}" {{ $profile->vertical_id == $vertical->id ? 'selected' : '' }}>
+                                {{ $vertical->vertical_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="designation_id">Designation:</label>
+                    <select name="designation_id" id="designation_id" class="form-control" required>
+                        @foreach($designations as $designation)
+                            <option value="{{ $designation->id }}" {{ $profile->designation_id == $designation->id ? 'selected' : '' }}>
+                                {{ $designation->level }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="line_manager_id">Line Manager:</label>
+                    <select name="line_manager_id" id="line_manager_id" class="form-control" required>
+                        @foreach($lineManagers as $lineManager)
+                            <option value="{{ $lineManager->id }}" {{ $profile->line_manager_id == $lineManager->id ? 'selected' : '' }}>
+                                {{ $lineManager->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="text-end">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="{{ route('profiles.index') }}" class="btn btn-danger">Cancel</a>
+        </div>
+    </form>
+</div>
 @endsection
 
 @section('custom_js')
