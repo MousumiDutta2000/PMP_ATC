@@ -189,7 +189,7 @@
                                     <select id="project_members_id" name="project_members_id[]" class="js-example-basic-single" required style="width:100%;">
                                         <option value="">Select Member</option>
                                         @foreach($projectMembers as $projectMember)
-                                        <option value="{{ $projectMember->id }}">{{ $projectMember->profileName->name }}</option>
+                                        <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -234,7 +234,7 @@
                                 <select id="edit_project_members_id" name="project_members_id" class="select" required style="width:100%;">
                                     <option value="">Select Member</option>
                                     @foreach($projectMembers as $projectMember)
-                                    <option value="{{ $projectMember->id }}">{{ $projectMember->profileName->name }}</option>
+                                    <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
