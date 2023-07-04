@@ -9,7 +9,7 @@
 @endsection 
 
 @section('project_css')
-<link rel="stylesheet" href="{{ asset('css/project.css') }}"> 
+<link rel="stylesheet" href="{{ asset('css/form.css') }}"> 
 @endsection 
 
 @section('content') 
@@ -88,9 +88,7 @@
                 <a href="{{ route('project-members.index') }}" class="btn btn-danger">Cancel</a>
             </div>
         </div>       
-
     </form>
-
 </div>
 
 @endsection

@@ -8,6 +8,10 @@
     <li class="breadcrumb-item active" aria-current="page">Add User</li>
 @endsection
 
+@section('project_css')
+<link rel="stylesheet" href="{{ asset('css/form.css') }}"> 
+@endsection 
+
 @section('content')
     <div class="titlebar"></div>
 

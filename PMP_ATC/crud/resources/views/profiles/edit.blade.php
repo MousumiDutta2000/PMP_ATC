@@ -8,58 +8,13 @@
     <li class="breadcrumb-item active" aria-current="page">edit</li>
 @endsection
 
+@section('project_css')
+<link rel="stylesheet" href="{{ asset('css/form.css') }}"> 
+@endsection 
+
 @section('content')
-    <style>
-        .card {
-            /* width: 400px; */
-            margin: 0 auto;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
 
-        .titlebar {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .img-product {
-            display: block;
-            max-width: 150px; /* Updated the max-width to make the image smaller */
-            height: auto;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-primary {
-            background-color: #4285f4;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            background-color: #3367d6;
-        }
-
-        .btn-secondary {
-            background-color: #ccc;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
-        .btn-secondary:hover {
-            background-color: #999;
-        }
-    </style>
-    <div class="card">
+    <div class="form-container">
         @if($errors->any())
             <div>
                 <ul>

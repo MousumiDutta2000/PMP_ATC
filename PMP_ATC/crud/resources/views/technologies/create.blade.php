@@ -9,7 +9,7 @@
 @endsection 
 
 @section('project_css')
-<link rel="stylesheet" href="{{ asset('css/project.css') }}"> 
+<link rel="stylesheet" href="{{ asset('css/form.css') }}"> 
 @endsection 
 
 @section('content') 
