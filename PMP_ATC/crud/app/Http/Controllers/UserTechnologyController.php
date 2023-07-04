@@ -50,6 +50,7 @@ class UserTechnologyController extends Controller
         $user_technology->details = $request->details;
         $user_technology->years_of_experience = $request->years_of_experience;
         $user_technology->is_current_company = $request->has('is_current_company');
+        // $profile->user_id = $user->id;
 
         $user_technology->save();
         return redirect()->route('user_technologies.index')->with('success', 'Skill added successfully.');
