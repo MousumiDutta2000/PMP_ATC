@@ -13,13 +13,7 @@
     <link rel='stylesheet' href='https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css'>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/boxicons@2.0.0/css/boxicons.min.css'>
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
-    <style>
-        .name-container {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/designations.css') }}">
 @endsection
 
 @section('custom_js')
@@ -30,29 +24,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('js/table.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            adjustNameFieldWidth();
-
-            $(window).resize(function() {
-                adjustNameFieldWidth();
-            });
-
-            function adjustNameFieldWidth() {
-                $('.name-container').each(function() {
-                    var maxWidth = 150;
-                    var containerWidth = $(this).parent().width();
-                    var nameWidth = $(this).find('.name').width();
-
-                    if (nameWidth > maxWidth && nameWidth > containerWidth) {
-                        $(this).css('max-width', nameWidth + 10 + 'px');
-                    } else {
-                        $(this).css('max-width', '');
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="{{ asset('js/designations.js') }}"></script>
 @endsection
 
 @section('content')
@@ -100,32 +72,29 @@
             </div>
         </section>
     </main>
-                <!-- Show Modal -->
-             @foreach ($designations as $designation)
-                <div class="modal fade" id="showModal_{{ $designation->id }}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $designation->id }}" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="showModalLabel_{{ $designation->id }}">Level Details</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table">
-                                    <tbody>
-                                    <tr>
-                                            <th>Level</th>
-                                            <td>{{ $designation->level }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
+    @endsection
+    <!-- Show Modal -->
+    @foreach ($designations as $designation)
+    <div class="modal fade" id="showModal_{{ $designation->id }}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $designation->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style=" background-color:#061148;">
+                    <h5 class="modal-title" id="showModalLabel_{{ $designation->id }}" style="color: white;font-weight: bolder;">Level Details</h5>
                 </div>
-            @endforeach
-@endsection
+                <div class="modal-body">
+                    <table class="table table-striped" style="margin: 0 auto;">
+                        <tbody>
+                            <tr>
+                                <th style="font-weight: 600; padding-left:30px;">Level</th>
+                                <td style="font-weight: 500">{{ $designation->level }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color:#D22B2B">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach

@@ -33,7 +33,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Level:</label>
-                            <input type="text" name ="level" id ="level" class="form-control" required>
+                            <input type="text" name ="level" id ="level" class="form-control shadow-sm" required>
                         </div>
                     </div>
                 </div>

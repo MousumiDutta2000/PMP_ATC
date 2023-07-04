@@ -76,7 +76,6 @@ class UserTechnologyController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'user_id' => 'required',
             'project_role_id' => 'required',
             'technology_id' => 'required',
             'details' => 'required',
