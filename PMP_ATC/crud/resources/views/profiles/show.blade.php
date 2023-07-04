@@ -138,7 +138,7 @@
               <br>
               <main class="container">
                 <section>
-                  <table id="example" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px;">
+                  <table id="example" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px; border-collapse: separate;">
                   <br>
                     <thead>
                         <tr>

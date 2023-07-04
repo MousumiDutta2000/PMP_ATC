@@ -56,26 +56,25 @@
 @endsection
 
 @section('content')
-    <main class="container">
-        <section>
-            <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
-                <a href="{{ route('user_technologies.create') }}" class="btn btn-primary">Add Skill</a>
-            </div> 
-
-            <div class = "table">
-                <table id="example" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px;">
-                    <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Role</th>
-                            <th>Technology</th>
-                            <th>Details</th>
-                            <th>Years Of Experience</th>
-                            <th>Is Under Current Company</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+<main class="container">
+    <section class="body">
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -74px; margin-bottom: 50px;">
+            <a href="{{ route('user_technologies.create') }}" class="btn btn-primary">Add User Technologies</a>
+        </div> 
+        <div class="table">
+        <table id="userTechnologyTable" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px;">  
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Role</th>
+                        <th>Technology</th>
+                        <th>Details</th>
+                        <th>Years Of Experience</th>
+                        <th>Is Under Current Company</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
                     @if ($user_technologies->count() > 0) 
                         @foreach ($user_technologies as $user_technology)
                         <tr class = "shadow" style="border-radius:15px;">
@@ -113,61 +112,59 @@
                         </tr>
                         @endforeach
                     @endif
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
-                <!-- Show Modal -->
-                @foreach ($user_technologies as $user_technology)
-                    <div class="modal fade" id="showModal_{{ $user_technology->id }}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $user_technology->id }}" aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="showModalLabel_{{ $user_technology->id }}">Skill Details</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <th>User</th>
-                                                <td>{{ $user_technology->user->name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Role</th>
-                                                <td>{{ $user_technology->project_role->member_role_type }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Technology</th>
-                                                <td>{{ $user_technology->technology->technology_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Details</th>
-                                                <td>{{ $user_technology->details }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Years Of Experience</th>
-                                                <td>{{$user_technology->years_of_experience}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Is Under Current Company</th>
-                                                    @if($user_technology->is_current_company == 0)
-                                                        <td>No</td>
-                                                    @elseif($user_technology->is_current_company == 1)
-                                                        <td>Yes</td>                                
-                                                    @endif
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+             <!-- Show Modal -->
+             @foreach ($user_technologies as $user_technology)
+                <div class="modal fade" id="showModal_{{ $user_technology->id }}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $user_technology->id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="showModalLabel_{{ $user_technology->id }}">Skill Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>User</th>
+                                            <td>{{ $user_technology->user->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Technology</th>
+                                            <td>{{ $user_technology->technology->technology_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Details</th>
+                                            <td>{{ $user_technology->details }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Years Of Experience</th>
+                                            <td>{{$user_technology->years_of_experience}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Is Current Company</th>
+                                                @if($user_technology->is_current_company == 0)
+                                                    <td>No</td>
+                                                @elseif($user_technology->is_current_company == 1)
+                                                    <td>Yes</td>                                
+                                                @endif
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                </div>
+            @endforeach
+
 @endsection

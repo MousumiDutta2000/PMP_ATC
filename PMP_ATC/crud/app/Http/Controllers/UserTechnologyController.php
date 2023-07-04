@@ -61,7 +61,7 @@ class UserTechnologyController extends Controller
         $technologies = Technology::all();
         $project_roles = ProjectRole::all();
         $users = User::all();
-        return view('user_technologies.show', compact('user_technology'));
+        return view('user_technologies.show', compact('user_technology','project_roles','technologies','users'));
     }
 
     public function edit($id)
@@ -70,7 +70,7 @@ class UserTechnologyController extends Controller
         $technologies = Technology::all();
         $project_roles = ProjectRole::all();
         $users = User::all();
-        return view('user_technologies.edit', compact('user_technology'));
+        return view('user_technologies.edit', compact('user_technology', 'project_roles','technologies','users'));
     }
 
     public function update(Request $request, $id)

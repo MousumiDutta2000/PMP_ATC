@@ -63,7 +63,7 @@
             </div>
             
             <div class="table">
-                <table id="example" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px;">
+                <table id="designationTable" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px;">
                     <thead>
                         <tr>
                             <th>Level</th>
@@ -128,6 +128,4 @@
                     </div>
                 </div>
             @endforeach
-                </div>
-            </div>
 @endsection
