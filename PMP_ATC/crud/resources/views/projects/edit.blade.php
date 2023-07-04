@@ -2,7 +2,9 @@
 
 @section('pageTitle', 'Project') 
 
+
 @section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Home</a></li>
 <li class="breadcrumb-item">{{ $project->project_name }}</li>
 <li class="breadcrumb-item active" aria-current="page">Settings</li>
 @endsection 
@@ -10,8 +12,8 @@
 @section('project_css')
 <link rel="stylesheet" href="{{ asset('css/project.css') }}"> 
 <link rel="stylesheet" href="{{ asset('css/form.css') }}"> 
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-@endsection 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />@endsection 
+@section('content') 
 
 <!-- Include necessary scripts here -->
 
@@ -19,11 +21,21 @@
 <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="{{ asset('js/project.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection
 
 @section('content')
+
+@if ($errors->any())
+<div class="error-messages">
+    <strong>Validation Errors:</strong>
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 <div class="form-container">
     <form action="{{ route('projects.update', $project->id) }}" method="POST">
@@ -38,15 +50,15 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="project_name" style="font-size: 15px;">Project Name</label>
-                    <input type="text" class="shadow-sm" name="project_name" id="project_name" value="{{ $project->project_name }}" required="required" style="color:#999; font-size: 14px;">
+                    <label for="project_name" class="mb-1" style="font-size: 15px;">Project Name</label>
+                    <input type="text" class="shadow-sm" name="project_name" id="project_name" value="{{ $project->project_name }}" required="required" style="color: #858585; font-size: 14px;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="typeSelect" style="font-size: 15px;">Project Type</label>
-                    <select id="typeSelect" class="shadow-sm" name="project_type" required="required" style="padding-top:5px; padding-bottom:5px; height:39px; color:#999; font-size: 14px;">
+                    <label for="typeSelect" class="mb-1" style="font-size: 15px;">Project Type</label>
+                    <select id="typeSelect" class="shadow-sm" name="project_type" required="required" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                         <option value="Internal" {{ $project->project_type === 'Internal' ? 'selected' : '' }}>Internal</option>
                         <option value="External" {{ $project->project_type === 'External' ? 'selected' : '' }}>External</option>
                     </select>
@@ -54,24 +66,24 @@
             </div>
 
             <div class="mb-3">
-                <label for="projectDescriptionInput" class="form-label" style="font-size: 15px;">Project Description</label>
-                <textarea class="ckeditor form-control" name="project_description" id="project_description" required="required" placeholder="Describe the project" style="color: #999; font-size: 14px;">{{ $project->project_description }}</textarea>
+                <label for="projectDescriptionInput" class="mb-1" class="form-label" style="font-size: 15px;">Project Description</label>
+                <textarea class="ckeditor form-control" name="project_description" id="project_description" required="required" placeholder="Describe the project" style="color: #858585; font-size: 14px;">{{ $project->project_description }}</textarea>
             </div>
 
             <div class="col-md-6 mb-3">
-                <label for="projectStartInput" class="form-label" style="font-size: 15px;">Project Start</label>
-                <input type="date" id="projectStartInput" class="shadow-sm" name="project_start" value="{{ $project->project_startDate }}" required="required" style="color: #999; font-size: 14px;">
+                <label for="project_startDate" class="mb-1" class="form-label" style="font-size: 15px;">Project Start</label>
+                <input type="date" id="project_startDate" class="shadow-sm" name="project_startDate" value="{{ $project->project_startDate }}" required="required" style="color: #858585; font-size: 14px;">
             </div>
 
             <div class="col-md-6 mb-3">
-                <label for="projectEndInput" class="form-label" style="font-size: 15px;">Project End</label>
-                <input type="date" id="projectEndInput" class="shadow-sm" name="project_end" value="{{ $project->project_endDate }}" required="required" style="color: #999; font-size: 14px;">
+                <label for="project_endtDate" class="mb-1" class="form-label" style="font-size: 15px;">Project End</label>
+                <input type="date" id="project_endDate" class="shadow-sm" name="project_endDate" value="{{ $project->project_endDate }}" required="required" style="color: #858585; font-size: 14px;">
             </div>
 
             <div class="col-md-6">
               <div class="form-group">
-                  <label for="project_manager_id" style="font-size: 15px;">Project Manager</label>
-                  <select name="project_manager_id" class="shadow-sm" id="project_manager_id" class="form-control" required style="padding-bottom: 6px; height: 39.1px; color:#999; font-size: 14px;">
+                  <label for="project_manager_id" class="mb-1" style="font-size: 15px;">Project Manager</label>
+                  <select name="project_manager_id" class="shadow-sm" id="project_manager_id" class="form-control" required style="padding-bottom: 6px; height: 39.1px; color: #858585; font-size: 14px;">
                       @foreach ($projectManagers as $projectManager)
                           <option value="{{ $projectManager->id }}" {{ $project->project_manager_id == $projectManager->id ? 'selected' : '' }}>
                               {{ $projectManager->name }}
@@ -83,8 +95,8 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="statusSelect" class="form-label" style="margin-bottom: 0.3rem; font-size: 15px;">Status</label>
-                    <select id="statusSelect" name="status" class="shadow-sm" required="required" style="padding-top:5px; padding-bottom:5px; height:39px;">
+                    <label for="status" class="form-label mb-1" style="margin-bottom: 0.3rem; font-size: 15px;">Status</label>
+                    <select id="status" name="project_status" class="shadow-sm" required="required" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                     <option value="Not Started" {{ $project->project_status === 'Not Started' ? 'selected' : '' }}>Not Started</option>
                     <option value="Pending" {{ $project->project_status === 'Pending' ? 'selected' : '' }}>Pending</option>
                     <option value="Delay" {{ $project->project_status === 'Delay' ? 'selected' : '' }}>Delay</option>
@@ -96,8 +108,8 @@
             
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="vertical_id" style="font-size: 15px;">Vertical</label>
-                    <select name="vertical_id" id="vertical_id" class="shadow-sm" required style="color: #999; font-size: 14px;">
+                    <label for="vertical_id" class="mb-1" style="font-size: 15px;">Vertical</label>
+                    <select name="vertical_id" id="vertical_id" class="shadow-sm" required style="color: #858585; font-size: 14px;">
                         @foreach ($verticals as $vertical)
                             <option value="{{ $vertical->id }}" {{ $project->vertical_id == $vertical->id ? 'selected' : '' }}>
                                 {{ $vertical->vertical_name }}
@@ -111,8 +123,8 @@
 
             <div class="col-md-6">
               <div class="form-group">
-                  <label for="client_id" style="font-size: 15px;">Client</label>
-                  <select name="client_id" class="shadow-sm" id="client_id" class="form-control" required style="padding-bottom: 6px; height: 39.1px; color:#999; font-size: 14px;">
+                  <label for="client_id" class="mb-1" style="font-size: 15px;">Client</label>
+                  <select name="client_id" class="shadow-sm" id="client_id" class="form-control" required style="padding-bottom: 6px; height: 39.1px; color: #858585; font-size: 14px;">
                       @foreach($clients as $client)
                           <option value="{{ $client->id }}" {{ $project->client_id == $client->id ? 'selected' : '' }}>
                               {{ $client->client_name }}
@@ -124,30 +136,30 @@
 
             <div class="col-md-6">
               <div class="form-group">
-                <label for="client_spoc_name" style="font-size: 15px;">Client Name [SPOC]</label>
-                <input type="text" class="shadow-sm" name="client_spoc_name" id="client_spoc_name" value="{{ $project->client_spoc_name }}" required="required" style="color: #999; font-size: 14px;">
+                <label for="client_spoc_name" class="mb-1" style="font-size: 15px;">Client Name [SPOC]</label>
+                <input type="text" class="shadow-sm" name="client_spoc_name" id="client_spoc_name" value="{{ $project->client_spoc_name }}" required="required" style="color: #858585; font-size: 14px;">
               </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="client_spoc_email" style="font-size: 15px;">Client Email [SPOC]</label>
-                    <input type="email" class="shadow-sm" name="client_spoc_email" id="client_spoc_email" value="{{ $project->client_spoc_email }}" required="required" style="color: #999; font-size: 14px;">
+                    <label for="client_spoc_email" class="mb-1" style="font-size: 15px;">Client Email [SPOC]</label>
+                    <input type="email" class="shadow-sm" name="client_spoc_email" id="client_spoc_email" value="{{ $project->client_spoc_email }}" required="required" style="color: #858585; font-size: 14px;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="client_spoc_contact" style="font-size: 15px;">Client Contact [SPOC]</label>
-                    <input type="text" class="shadow-sm" name="client_spoc_contact" id="client_spoc_contact" value="{{ $project->client_spoc_contact }}" required="required" style="color: #999; font-size: 14px;">
+                    <label for="client_spoc_contact" class="mb-1" style="font-size: 15px;">Client Contact [SPOC]</label>
+                    <input type="text" class="shadow-sm" name="client_spoc_contact" id="client_spoc_contact" value="{{ $project->client_spoc_contact }}" required="required" style="color: #858585; font-size: 14px;">
                 </div>
             </div>
 
             <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
             
             <div class="form-group">
-                <label for="technology_id" style="font-size: 15px;">Technologies</label>
-                <div id="technology-wrapper" class="shadow-sm" style="font-size: 14px;">
+                <label for="technology_id" class="mb-1" style="font-size: 15px;">Technologies</label>
+                <div id="technology-wrapper" class="shadow-sm">
                     <select id="technology_id" name="technology_id[]" class="technology" required style="width: 100%;" multiple>
                         <option value="">Select technologies</option>
                         @foreach($technologies as $technology)
@@ -158,10 +170,10 @@
             </div>
         </div>
 
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
                 <label for="memberInput" class="form-label" style="height:20px; font-size: 15px;">Member</label>
                 <i class="fa fa-plus-circle" id="plusSign" style="color: #7d4287; cursor: pointer;"></i>
-                <div class="row" id="memberCardContainer"></div>
+                <div id="memberCardContainer"></div>
             </div>
 
             <!-- Bootstrap Modal -->
@@ -175,8 +187,8 @@
 
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label for="fieldName" class="form-label mb-3">Member Name</label>
+                                <div class="col-md-6 mt-1">
+                                    <label for="fieldName" class="form-label mb-4">Member Name</label>
                                 </div>
                 
                                 <div class="col-md-6" style="font-size:14px;">
@@ -188,7 +200,7 @@
                                     </select>
                                 </div>
     
-                                <div class="col-md-6">
+                                <div class="col-md-6 mt-2">
                                     <label for="project_role_id" class="form-label mb-3">Role</label>
                                 </div>
 
@@ -220,8 +232,8 @@
 
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-6">
-                                <label for="editFieldName" class="form-label mb-3">Member Name</label>
+                            <div class="col-md-6 mt-1">
+                                <label for="editFieldName" class="form-label mb-4">Member Name</label>
                             </div>
 
                             <div class="col-md-6" style="font-size:14px;">
@@ -233,7 +245,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mt-2">
                                 <label for="editRoleSelect" class="form-label mb-3">Role</label>
                             </div>
 
@@ -329,16 +341,14 @@ $(document).ready(function() {
     if (memberName && role) {
         var cardHtml = `
         
-        <div class="col-md-3">
-            <div class="card mb-0">
-            <div class="card-body">
-            <div class="avatar avatar-blue mr-3">
-            <img class="rounded_circle" src="{{ asset($projectMember->image) }}" alt="Profile Image" width="50">
+        <div class="card mb-0">
+            <div class="card-body mb-2" style="padding: 0 21px 0 21px;">
+            <div class="avatar avatar-blue" style=" margin-left: 34px;">
+            <img class="rounded_circle mb-1 mt-3" src="{{ asset($projectMember->image) }}" alt="Profile Image" width="50">
             </div>
-                <p class="card-title user-name">${memberName}</p>
-                <p class="card-text role" style="margin-bottom: 0rem; font-size: 12px; font-weight: 400; margin-top: -10px">${role}</p>
-                <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
-            </div>
+            <p id="card-title" class="card-title user-name">${memberName}</p>
+            <p class="card-text role" style="margin-bottom: 0rem; font-size: 11px; font-weight: 400; margin-top: -10px">${role}</p>
+            <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
             </div>
         </div>`;
 
@@ -400,3 +410,4 @@ $('#updateMemberBtn').click(function() {
 </script>
 
 @endsection
+

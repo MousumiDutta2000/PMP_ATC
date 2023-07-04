@@ -30,24 +30,24 @@
 
 <main class="container">
     <section>
-        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -86px; margin-bottom: 50px; padding: 20px 30px; margin-right: -30px;">
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -67px; margin-bottom: 50px; padding: 2px 30px; margin-right: -30px;">
             <a href="{{ route('projects.create') }}" class="btn btn-primary">Add New</a>
         </div>
 
             <table id="projectTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
-                        <th style="width: 150px; padding-left: 15px;">UUID</th>
-                        <th style="width: 55%;">Project Name</th>
-                        <th style="width: 167px;">Status</th>
-                        <th style="width: 12%;">Actions</th>
+                        <th style="width: 150px; padding-left: 37px;">UUID</th>
+                        <th style="width: 380px;">Project Name</th>
+                        <th style="width: 182px;">Status</th>
+                        <th style="width: 113px;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($projects as $project)
                     <tr class="shadow" style="border-radius:15px;">
                         <!-- <td>{{ $project->short_uuid }}</td> -->
-                        <td style="padding-left:15px;">{{ $project->uuid }}</td>
+                        <td style="padding-left:37px;">{{ $project->uuid }}</td>
                         <td>{{ $project->project_name }}</td>
                         <td>
                             @if($project->project_status == 'Not Started')
