@@ -223,6 +223,38 @@ $(document).ready(function() {
     ]
   });
 
+  $("#designationTable").DataTable({
+    aaSorting: [],
+    responsive: true,
+
+    columnDefs: [
+      {
+        responsivePriority: 1,
+        targets: 0
+      },
+      {
+        responsivePriority: 2,
+        targets: -1
+      }
+    ]
+  });
+
+  $("#userTechnologyTable").DataTable({
+    aaSorting: [],
+    responsive: true,
+
+    columnDefs: [
+      {
+        responsivePriority: 1,
+        targets: 0
+      },
+      {
+        responsivePriority: 2,
+        targets: -1
+      }
+    ]
+  });
+
   $(".dataTables_filter input")
     .attr("placeholder", "Search here...")
     .css({

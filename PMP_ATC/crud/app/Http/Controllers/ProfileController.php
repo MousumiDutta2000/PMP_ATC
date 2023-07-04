@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Models\Vertical;
 use App\Models\Designation;
 use App\Models\HighestEducationValue;
+use App\Models\UserTechnology;
+use App\Models\ProjectRole;
+use App\Models\Technology;
 
 class ProfileController extends Controller
 {
@@ -29,7 +32,7 @@ class ProfileController extends Controller
         }
 
         $profiles = $query->latest()->paginate($perPage);
-
+        $user_technologies = UserTechnology :: all();
         return view('profiles.index', compact('profiles'))->with('i', ($profiles->currentPage() - 1) * $perPage);
     }
 
@@ -107,13 +110,15 @@ class ProfileController extends Controller
         $designations = Designation::all();
         $lineManagers = User::all();
         $qualifications = HighestEducationValue::all();
-
-        return view('profiles.edit', compact('profile', 'users', 'verticals', 'designations', 'lineManagers', 'qualifications'));
+        $user_technologies = UserTechnology :: all();
+        return view('profiles.edit', compact('profile', 'users', 'verticals', 'designations', 'lineManagers', 'qualifications', 'user_technologies'));
     }
 
     public function update(Request $request, Profile $profile)
     {
         $request->validate([
+            'profile_name' => 'required',
+            'email' => 'required',
             'contact_number' => 'required',
             'line_manager_id' => 'required',
             'designation_id' => 'required',
@@ -122,6 +127,8 @@ class ProfileController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        $profile->profile_name = $request->profile_name;
+        $profile->email = $request->email;
         $profile->contact_number = $request->contact_number;
         $profile->line_manager_id = $request->line_manager_id;
         $profile->designation_id = $request->designation_id;
@@ -136,19 +143,23 @@ class ProfileController extends Controller
         }
 
         $profile->save();
-
+        $user_technologies = UserTechnology :: all();
         return redirect()->route('profiles.index')->with('success', 'Profile Updated');
     }
 
     public function destroy(Profile $profile)
     {
         $profile->delete();
-
+        $user_technologies = UserTechnology :: all();
         return redirect('profiles')->with('success', 'Profile deleted!');
     }
 
     public function show(Profile $profile)
     {
-        return view('profiles.show', compact('profile'));
+        $users = User::all();
+        $user_technologies = UserTechnology :: all();
+        $project_roles = ProjectRole :: all();
+        $technologies = Technology :: all();
+        return view('profiles.show', compact('profile','users','user_technologies', 'project_roles','technologies'));
     }
 }

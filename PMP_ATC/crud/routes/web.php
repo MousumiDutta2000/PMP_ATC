@@ -15,6 +15,7 @@ use App\Http\Controllers\TechnologyController;
 use App\Http\Controllers\SprintController;
 use App\Http\Controllers\ProjectItemStatusController;
 use App\Http\Controllers\ProjectItemController;
+use App\Http\Controllers\UserTechnologyController;
 use App\Http\Controllers\Auth\MicrosoftController;
 use App\Http\Controllers\Auth\LoginController;
 /*
@@ -83,6 +84,7 @@ Route::middleware([
     Route::resource('sprints', SprintController::class);
     Route::resource('project_item_statuses', ProjectItemStatusController::class);
     Route::resource('project-items', ProjectItemController::class);
+    Route::resource('user_technologies', UserTechnologyController::class);
 
     Route::get('/get-profile-email/{id}', 'ProfileController@getProfileEmail');
 });

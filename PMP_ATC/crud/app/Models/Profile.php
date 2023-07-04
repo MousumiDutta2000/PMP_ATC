@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Vertical;
 use App\Models\HighestEducationValue;
+use App\Models\UserTechnology;
+use App\Models\ProjectRole;
 
 
 class Profile extends Model
@@ -27,7 +29,7 @@ class Profile extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'profile_name', 'id');
+        return $this->belongsTo(User::class);
     }
 
     public function vertical()
@@ -45,4 +47,18 @@ class Profile extends Model
         return $this->belongsTo(HighestEducationValue::class, 'highest_educational_qualification_id');
     }
 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function user_technology()
+    {
+        return $this->belongsTo(UserTechnology::class, 'user_technology_id');
+    }
+
+    public function project_role()
+    {
+        return $this->belongsTo(ProjectRole::class, 'project_role_id');
+    }
 }

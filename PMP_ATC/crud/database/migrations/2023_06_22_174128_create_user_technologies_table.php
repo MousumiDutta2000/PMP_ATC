@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreign('project_role_id')->references('id')->on('project_role');
             $table->unsignedBigInteger('technology_id');
             $table->foreign('technology_id')->references('id')->on('technologies');
-            $table->string('details');
-            $table->string('years_of_experience');
+            $table->text('details');
+            $table->integer('years_of_experience');
             $table->boolean('is_current_company');
             $table->timestamps();
         });

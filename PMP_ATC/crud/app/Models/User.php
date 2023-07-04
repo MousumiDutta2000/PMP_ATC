@@ -68,4 +68,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function user_technology()
+    {
+        return $this->belongsTo(UserTechnology::class, 'user_technology_id');
+    }
 }
