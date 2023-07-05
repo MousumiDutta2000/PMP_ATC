@@ -29,24 +29,25 @@
 @section('content')
 
 <main class="container">
-    <section class="body">
-        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -86px; margin-bottom: 50px; padding: 20px 30px; margin-right: -30px;">
-        <a href="{{ route('projects.create') }}" class="btn btn-primary">Add Project</a>
+    <section>
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -67px; margin-bottom: 50px; padding: 2px 30px; margin-right: -30px;">
+            <a href="{{ route('projects.create') }}" class="btn btn-primary">Add New</a>
         </div>
 
             <table id="projectTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
-                        <th>Sl. No</th>
-                        <th>Project Name</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+                        <th style="width: 150px; padding-left: 37px;">UUID</th>
+                        <th style="width: 380px;">Project Name</th>
+                        <th style="width: 182px;">Status</th>
+                        <th style="width: 113px;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($projects as $index => $project)
+                    @foreach ($projects as $project)
                     <tr class="shadow" style="border-radius:15px;">
-                        <td>{{ $index + 1 }}</td>
+                        <!-- <td>{{ $project->short_uuid }}</td> -->
+                        <td style="padding-left:37px;">{{ $project->uuid }}</td>
                         <td>{{ $project->project_name }}</td>
                         <td>
                             @if($project->project_status == 'Not Started')
@@ -75,6 +76,7 @@
                                         <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
                                     </button>
                                 </form>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
