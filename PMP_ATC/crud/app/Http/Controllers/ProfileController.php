@@ -118,8 +118,6 @@ class ProfileController extends Controller
     public function update(Request $request, Profile $profile)
     {
         $request->validate([
-            'profile_name' => 'required',
-            'email' => 'required',
             'contact_number' => 'required',
             'line_manager_id' => 'required',
             'designation_id' => 'required',
@@ -128,8 +126,6 @@ class ProfileController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $profile->profile_name = $request->profile_name;
-        $profile->email = $request->email;
         $profile->contact_number = $request->contact_number;
         $profile->line_manager_id = $request->line_manager_id;
         $profile->designation_id = $request->designation_id;
