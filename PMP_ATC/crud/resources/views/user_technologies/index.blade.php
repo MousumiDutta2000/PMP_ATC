@@ -90,48 +90,48 @@
 
 <!-- Show Modal -->
 @foreach ($user_technologies as $user_technology)                  
-<div class="modal fade" id="showModal_{{ $user_technology->id }}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $user_technology->id }}" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style=" background-color:#061148; ">
-        <h5 class="modal-title" id="showModalLabel_{{  $user_technology->id }}" style="color: white;font-weight: bolder;">Skill Details</h5>
-      </div>
-      <div class="modal-body">
-        <table class="table table-striped" style="margin: 0 auto;">
-          <tbody>
-            <tr>
-                <th style="font-weight: 600; padding-left:30px;">Technology:</th>
-                <td style="font-weight: 500">{{ $user_technology->technology->technology_name }}</td>
-            </tr>
-            <tr>
-                <th style="font-weight: 600; padding-left:30px;">Years Of Experience:</th>
-                <td style="font-weight: 500; padding-left:30px;">{{ $user_technology->years_of_experience }}</td>
-            </tr>
-            <tr>
-                <th style="font-weight: 600; padding-left:30px;">Role:</th>
-                <td style="font-weight: 500">{{ $user_technology->project_role->member_role_type }}</td>
-            </tr>
-            <tr>
-                <th style="font-weight: 600; padding-left:30px;">Details:</th>
-                <td style="font-weight: 500">{{ $user_technology->details }}</td>
-            </tr>
-            <tr>
-                <th style="font-weight: 600; padding-left:30px;">Is Under Current Company:</th>
-                @if($user_technology->is_current_company == 0)
-                    <td style="font-weight: 500; padding-left:30px;">No</td>
-                @elseif($user_technology->is_current_company == 1)            
-                    <td style="font-weight: 500; padding-left:30px;">Yes</td>                  
-                @endif
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color:#D22B2B">Close</button>
-      </div>
+    <div class="modal fade" id="showModal_{{ $user_technology->id }}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $user_technology->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style=" background-color:#061148; ">
+                    <h5 class="modal-title" id="showModalLabel_{{  $user_technology->id }}" style="color: white;font-weight: bolder;">Skill Details</h5>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped" style="margin: 0 auto;">
+                        <tbody>
+                            <tr>
+                                <th style="font-weight: 600; padding-left:30px;">Technology:</th>
+                                <td style="font-weight: 500">{{ $user_technology->technology->technology_name }}</td>
+                            </tr>
+                            <tr>
+                                <th style="font-weight: 600; padding-left:30px;">Years Of Experience:</th>
+                                <td style="font-weight: 500; padding-left:30px;">{{ $user_technology->years_of_experience }}</td>
+                            </tr>
+                            <tr>
+                                <th style="font-weight: 600; padding-left:30px;">Role:</th>
+                                <td style="font-weight: 500">{{ $user_technology->project_role->member_role_type }}</td>
+                            </tr>
+                            <tr>
+                                <th style="font-weight: 600; padding-left:30px;">Details:</th>
+                                <td style="font-weight: 500">{{ $user_technology->details }}</td>
+                            </tr>
+                            <tr>
+                                <th style="font-weight: 600; padding-left:30px;">Is Under Current Company:</th>
+                                @if($user_technology->is_current_company == 0)
+                                    <td style="font-weight: 500; padding-left:30px;">No</td>
+                                @elseif($user_technology->is_current_company == 1)            
+                                    <td style="font-weight: 500; padding-left:30px;">Yes</td>                  
+                                @endif
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color:#D22B2B">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 @endforeach
     
 

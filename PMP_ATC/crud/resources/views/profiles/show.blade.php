@@ -216,7 +216,7 @@
 
 <!--Add skill modal-->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">                
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header" style=" background-color:#061148; ">
         <h5 class="modal-title" id="addModalLabel" style="color: white;font-weight: bolder;">Add Skill Details</h5>
@@ -233,15 +233,9 @@
       <div class="modal-body">
         <form method="post" action="{{ route('user_technologies.store') }}" enctype="multipart/form-data">
           @csrf
-          <div class="row mt-3">
-            <div class ="col-md-2">
-              <div class="form-group">
-                <label for="user_id">User ID:</label>
-                <input value="{{$profile->user_id}}" name="user_id" id="user_id" class="form-control" readonly required>
-              </div>                                    
-            </div>
-
-            <div class ="col-md-6">
+          <div class="row mt-3">  
+            <input value="{{$profile->user_id}}" name="user_id" id="user_id" class="form-control " hidden required>
+            <div class ="col-md-12">
               <div class="form-group">
                 <label for="technology_id">Technology:</label>
                 <select name="technology_id" id="technology_id" class="form-control" required>
@@ -253,14 +247,14 @@
               </div>
             </div>
 
-            <div class ="col-md-3">
+            <div class ="col-md-12">
               <div class="form-group">
                 <label for="years_of_experience">Years Of Experience:</label>
                 <input type="text" name="years_of_experience" id="years_of_experience" class="form-control" required>
               </div>
             </div>
 
-            <div class ="col-md-6">
+            <div class ="col-md-12">
               <div class="form-group">
                 <label for="project_role_id">Role:</label>
                 <select name="project_role_id" id="project_role_id" class="form-control" required>
@@ -298,7 +292,7 @@
 <!--Edit skill modal-->
 @foreach ($user_technologies as $user_technology)
   <div class="modal fade" id="editModal_{{ $user_technology->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel_{{ $user_technology->id }}" aria-hidden="true">                
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header" style=" background-color:#061148; ">
           <h5 class="modal-title" id="editModalLabel_{{ $user_technology->id }}" style="color: white;font-weight: bolder;">Edit Skill</h5>
@@ -318,7 +312,7 @@
             @method('PUT')
 
             <div class="row">
-              <div class ="col-md-6">
+              <div class ="col-md-12">
                 <div class="form-group">
                   <label for="technology_id">Technology:</label>
                   <select name="technology_id" id="technology_id" class="form-control" required>
@@ -331,14 +325,14 @@
                 </div>
               </div>
 
-              <div class ="col-md-3">
+              <div class ="col-md-12">
                 <div class="form-group">
                     <label for="years_of_experience">Years Of Experience:</label>
                     <input type="text" name="years_of_experience" id="years_of_experience" class="form-control" value="{{ old('years_of_experience', $user_technology->years_of_experience) }}" required>
                 </div>                                        
               </div>
 
-              <div class ="col-md-6">
+              <div class ="col-md-12">
                 <div class="form-group">
                   <label for="project_role_id">Role:</label>
                   <select name="project_role_id" id="project_role_id" class="form-control" required>
@@ -356,10 +350,10 @@
                 <textarea class="form-control" class="shadow-sm" name="details" id="details" required="required">{{ $user_technology->details }}</textarea>
               </div>                                 
                                           
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label for="typeSelect">Is Under Current Company:</label>
-                  <input type="checkbox" name="is_current_company" id="is_current_company" value="1" {{ old('is_current_company') ? 'checked' : '' }}>
+                  <input type="checkbox" name="is_current_company" id="is_current_company" value="1" {{ $user_technology->is_current_company ? 'checked' : '' }}>
                 </div>
               </div>
 
