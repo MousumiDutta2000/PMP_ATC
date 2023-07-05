@@ -16,7 +16,7 @@ class ClientsSeeder extends Seeder
                 'email_address' => 'support-in@google.com',
             ],
             [
-                'client_name' => 'Mirosoft',
+                'client_name' => 'Microsoft',
                 'phone_no' => '1800-642-7676',
                 'email_address' => 'support-in@microsoft.com',
             ],

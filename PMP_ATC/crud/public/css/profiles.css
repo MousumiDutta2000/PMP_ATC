@@ -3,3 +3,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+#password{
+    padding: 8px !important;
+}
+
+#profile_name{
+    font-size: 14px;
+}
