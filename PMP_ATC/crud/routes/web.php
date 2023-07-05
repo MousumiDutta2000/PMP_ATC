@@ -82,6 +82,7 @@ Route::middleware([
 
     Route::resource('technologies', TechnologyController::class);
     Route::resource('sprints', SprintController::class);
+    Route::get('/exports', [SprintController::class, 'export'])->name('sprints.export');
     Route::resource('project_item_statuses', ProjectItemStatusController::class);
     Route::resource('project-items', ProjectItemController::class);
     Route::resource('user_technologies', UserTechnologyController::class);

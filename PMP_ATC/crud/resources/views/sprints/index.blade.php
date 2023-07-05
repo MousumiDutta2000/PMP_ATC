@@ -30,7 +30,9 @@
     <section class="body">
         <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -67px; margin-bottom: 50px; padding: 2px 30px; margin-right: -30px;">
             <a href="{{ route('sprints.create') }}" class="btn btn-primary" style="margin-right: 10px;">Add New</a>
-            <img src="{{ asset('img/icon-export-icon.png') }}" style="width:30px; height:35px;" alt="Icon-export">
+            <a href="{{ route('sprints.export') }}">
+                <img src="{{ asset('img/icon-export-icon.png') }}" style="width:30px; height:35px;" alt="Icon-export">
+            </a>
             
         </div>
 
