@@ -30,8 +30,8 @@ return new class extends Migration
             $table->string('technology_id', 255);
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients');
-            $table->string('project_members_id', 255);
-            $table->string('project_role_id', 255);
+            $table->string('project_members_id');
+            $table->string('project_role_id');
             $table->timestamps();
         });
     }

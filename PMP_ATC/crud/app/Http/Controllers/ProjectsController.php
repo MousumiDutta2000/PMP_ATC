@@ -22,7 +22,6 @@ class ProjectsController extends Controller
 
     public function create()
     {
-        // $project->uuid = Str::uuid();
         $users = User::all();
         $verticals = Vertical::all();
         $clients = Client::all();
@@ -35,49 +34,48 @@ class ProjectsController extends Controller
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'project_name' => 'required',
-        'project_type' => 'required',
-        'project_description' => 'required',
-        'project_manager_id' => 'required',
-        'project_startDate' => 'required|date',
-        'project_endDate' => 'required|date',
-        'project_status' => 'required',
-        'client_spoc_name' => 'required',
-        'client_spoc_email' => 'required|email',
-        'client_spoc_contact' => 'required',
-        'vertical_id' => 'required',
-        'technology_id' => 'required',
-        'client_id' => 'required',
-        'project_members_id' => 'required',
-        'project_role_id' => 'required',
-    ]);
+    {
+        $request->validate([
+            'project_name' => 'required',
+            'project_type' => 'required',
+            'project_description' => 'required',
+            'project_manager_id' => 'required',
+            'project_startDate' => 'required|date',
+            'project_endDate' => 'required|date',
+            'project_status' => 'required',
+            'client_spoc_name' => 'required',
+            'client_spoc_email' => 'required|email',
+            'client_spoc_contact' => 'required',
+            'vertical_id' => 'required',
+            'technology_id' => 'required',
+            'client_id' => 'required',
+            'project_members_id' => 'required',
+            'project_role_id' => 'required',
+        ]);
 
-    $project = new Project;
-    // $project->uuid = Str::uuid();
-    $project->uuid = substr(Str::uuid()->toString(), 0, 8);
-    $project->project_name = $request->project_name;
-    $project->project_type = $request->project_type;
-    $project->project_description = $request->project_description;
-    $project->project_manager_id = $request->project_manager_id;
-    $project->project_startDate = $request->project_startDate;
-    $project->project_endDate = $request->project_endDate;
-    $project->project_status = $request->project_status;
-    $project->client_spoc_name = $request->client_spoc_name;
-    $project->client_spoc_email = $request->client_spoc_email;
-    $project->client_spoc_contact = $request->client_spoc_contact;
-    $project->vertical_id = $request->vertical_id;
-    $project->technology_id = implode(',', $request->technology_id); 
-    $project->client_id = $request->client_id;
-    $project->project_members_id = $request->project_members_id;
-    $project->project_role_id = $request->project_role_id;
+        $project = new Project;
+        $project->uuid = substr(Str::uuid()->toString(), 0, 8);
+        $project->project_name = $request->project_name;
+        $project->project_type = $request->project_type;
+        $project->project_description = $request->project_description;
+        $project->project_manager_id = $request->project_manager_id;
+        $project->project_startDate = $request->project_startDate;
+        $project->project_endDate = $request->project_endDate;
+        $project->project_status = $request->project_status;
+        $project->client_spoc_name = $request->client_spoc_name;
+        $project->client_spoc_email = $request->client_spoc_email;
+        $project->client_spoc_contact = $request->client_spoc_contact;
+        $project->vertical_id = $request->vertical_id;
+        // $project->technology_id = $request->technology_id;
+        $project->technology_id = implode(',', $request->technology_id); 
+        $project->client_id = $request->client_id;
+        $project->project_members_id = $request->project_members_id;
+        $project->project_role_id = $request->project_role_id;
 
-    $project->save();
+        $project->save();
 
-    return redirect()->route('projects.index')->with('success', 'Project created successfully.');
-}
-
+        return redirect()->route('projects.index')->with('success', 'Project created successfully.');
+    }
 
     public function show(Project $project)
     {
@@ -129,6 +127,7 @@ class ProjectsController extends Controller
             'project_role_id' => 'required',
         ]);
 
+        $project->uuid = substr(Str::uuid()->toString(), 0, 8);
         $project->project_name = $request->project_name;
         $project->project_type = $request->project_type;
         $project->project_description = $request->project_description;

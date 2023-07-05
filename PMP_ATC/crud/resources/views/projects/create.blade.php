@@ -177,7 +177,7 @@
                     <div class="modal-content">
                         <div class="modal-header p-0" style="margin-left:15px;">
                             <h4 class="modal-title" id="myModalLabel" style="font-weight:bold; color: #012970;">Add Member</h4>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-right:9px;" onclick="closeModal()"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-right:9px;"></button>
                         </div>
 
                         <div class="modal-body">
@@ -187,7 +187,7 @@
                                 </div>
                 
                                 <div class="col-md-6" style="font-size:14px;">
-                                    <select id="project_members_id" name="project_members_id[]" class="js-example-basic-single" required style="width:100%;">
+                                    <select id="project_members_id" name="project_members_id" class="js-example-basic-single" required style="width:100%;">
                                         <option value="">Select Member</option>
                                         @foreach($projectMembers as $projectMember)
                                         <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
@@ -200,7 +200,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <select id="project_role_id" name="project_role_id[]" class="form-control" required>
+                                    <select id="project_role_id" name="project_role_id" class="form-control" required>
                                         <option value="">Select Role</option>
                                             @foreach ($projectRoles as $projectRole)
                                                 <option value="{{ $projectRole->id }}">{{ $projectRole->member_role_type }}</option>
