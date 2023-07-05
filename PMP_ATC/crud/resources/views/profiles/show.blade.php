@@ -353,8 +353,8 @@
                                         
               <div class="form-group">
                 <label for="details">Details:</label>
-                <textarea class="form-control" class="shadow-sm" name="details" id="details" value="{{ $user_technology->details}}" required></textarea>
-              </div>                                   
+                <textarea class="form-control" class="shadow-sm" name="details" id="details" required="required">{{ $user_technology->details }}</textarea>
+              </div>                                 
                                           
               <div class="col-md-6">
                 <div class="form-group">

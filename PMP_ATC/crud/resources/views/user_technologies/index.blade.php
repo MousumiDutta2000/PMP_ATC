@@ -30,9 +30,9 @@
 @section('content')
 <main class="container">
     <section class="body">
-        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -86px; margin-bottom: 50px; padding: 20px 30px; margin-right: -30px;">
+        <!-- <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -86px; margin-bottom: 50px; padding: 20px 30px; margin-right: -30px;">
             <a href="{{ route('user_technologies.create') }}" class="btn btn-primary">Add User Technologies</a>
-        </div> 
+        </div>  -->
         <div class="table">
         <table id="userTechnologyTable" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px;">  
                 <thead>
@@ -48,38 +48,38 @@
                 <tbody>
                     @if ($user_technologies->count() > 0) 
                         @foreach ($user_technologies as $user_technology)
-                        <tr class = "shadow" style="border-radius:15px;">
-                            <td>{{ $user_technology->user->name }}</td>
-                            <td>{{ $user_technology->project_role->member_role_type }}</td>
-                            <td>{{ $user_technology->technology->technology_name }}</td>
-                            <td>{{ $user_technology->years_of_experience}}</td>
-                            @if($user_technology->is_current_company == 0)
-                            
-                                <td>No</td>
-                            
-                            @elseif($user_technology->is_current_company == 1)
-                            
-                                <td>Yes</td>
-                            
-                            @endif
-                            <td>
-                                <div class="btn-group" role="group">
-                                <a href="#" data-toggle="modal" data-target="#showModal_{{ $user_technology->id }}">
-                                                <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
-                                            </a>
-                                            <a href="{{ route('user_technologies.edit', $user_technology->id) }}">
-                                                <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
-                                            </a>
-                                            <form method="post" action="{{ route('user_technologies.destroy', $user_technology->id) }}">
-                                                @method('delete')
-                                                @csrf
-                                                <button type="submit" class="btn btn-link p-0">
-                                                    <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
-                                                </button>
-                                            </form>
-                                </div>
-                            </td>
-                        </tr>
+                            <tr class = "shadow" style="border-radius:15px;">
+                                <td>{{ $user_technology->user->name }}</td>
+                                <td>{{ $user_technology->project_role->member_role_type }}</td>
+                                <td>{{ $user_technology->technology->technology_name }}</td>
+                                <td>{{ $user_technology->years_of_experience}}</td>
+                                @if($user_technology->is_current_company == 0)
+                                
+                                    <td>No</td>
+                                
+                                @elseif($user_technology->is_current_company == 1)
+                                
+                                    <td>Yes</td>
+                                
+                                @endif
+                                <td>
+                                    <div class="btn-group" role="group">
+                                    <a href="#" data-toggle="modal" data-target="#showModal_{{ $user_technology->id }}">
+                                                    <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
+                                                </a>
+                                                <!-- <a href="{{ route('user_technologies.edit', $user_technology->id) }}">
+                                                    <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
+                                                </a>
+                                                <form method="post" action="{{ route('user_technologies.destroy', $user_technology->id) }}">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-link p-0">
+                                                        <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
+                                                    </button>
+                                                </form> -->
+                                    </div>
+                                </td>
+                            </tr>
                         @endforeach
                     @endif
                 </tbody>
