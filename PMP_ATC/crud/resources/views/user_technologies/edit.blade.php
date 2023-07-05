@@ -65,8 +65,7 @@
             <div class="form-group">
                 <label for="years_of_experience">Years Of Experience:</label>
                     <input type="text" name="years_of_experience" id="years_of_experience" class="form-control" required>
-            </div>
-                                        
+            </div>                                        
         </div>
         <div class="col-md-6">
             <div class="form-group">
