@@ -28,7 +28,7 @@ return new class extends Migration
             $table->foreign('designation_id')->references('id')->on('designations');
             $table->unsignedBigInteger('highest_educational_qualification_id');
             $table->foreign('highest_educational_qualification_id')->references('id')->on('highest_education_value');
-            $table->string('image')->nullable();
+            $table->string('image')->nullable()->default('user.png');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
