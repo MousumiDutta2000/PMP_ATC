@@ -57,4 +57,9 @@ class Project extends Model
     {
         return $this->belongsTo(User::class, 'project_role_id');
     }
+
+    public function image()
+    {
+        return $this->hasOne(Profile::class, 'user_id', 'id');
+    }
 }
