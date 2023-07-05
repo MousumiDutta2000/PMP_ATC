@@ -1,3 +1,4 @@
+
 @extends('layouts.side_nav') 
 
 @section('pageTitle', 'Project') 
@@ -341,22 +342,22 @@ $(document).ready(function() {
     $('#myModal').modal('show');
     });
 
-    // Add member button click event handler
-    $("#addMemberBtn").click(function() {
+// Add member button click event handler
+$("#addMemberBtn").click(function() {
     var memberName = $("#project_members_id option:selected").text();
     var role = $("#project_role_id option:selected").text();
+    var memberImage = "{{ asset($projectMember->image) }}"; // Replace with the actual image URL for the member
 
-    if (memberName && role) {
+    if (memberName && role && memberImage) {
         var cardHtml = `
-        
             <div class="card mb-0">
                 <div class="card-body mb-2" style="padding: 0 21px 0 21px;">
-                <div class="avatar avatar-blue" style=" margin-left: 34px;">
-                <img class="rounded_circle mb-1 mt-3" src="{{ asset($projectMember->image) }}" alt="Profile Image" width="50">
-                </div>
-                <p id="card-title" class="card-title user-name">${memberName}</p>
-                <p class="card-text role" style="margin-bottom: 0rem; font-size: 11px; font-weight: 400; margin-top: -10px">${role}</p>
-                <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
+                    <div class="avatar avatar-blue" style="margin-left: 34px;">
+                        <img class="rounded_circle mb-1 mt-3" src="${memberImage}" alt="Profile Image" width="50">
+                    </div>
+                    <p id="card-title" class="card-title user-name">${memberName}</p>
+                    <p class="card-text role" style="margin-bottom: 0rem; font-size: 11px; font-weight: 400; margin-top: -10px">${role}</p>
+                    <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
                 </div>
             </div>`;
 
@@ -364,11 +365,11 @@ $(document).ready(function() {
     }
 
     $("#myModal").modal("hide");
-    });
+});
 
-    function closeModal() {
-        $('#myModal').modal('hide');
-    }
+function closeModal() {
+    $('#myModal').modal('hide');
+}
 
    // Edit Member button click event handler
    $(document).on('click', '.edit-icon', function() {
