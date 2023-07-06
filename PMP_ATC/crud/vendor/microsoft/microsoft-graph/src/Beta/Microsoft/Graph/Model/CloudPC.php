@@ -461,6 +461,7 @@ class CloudPC extends Entity
 
     /**
     * Gets the powerState
+    * The power state of a Cloud PC. The possible values are: running, poweredOff and unknown. This property only supports shift work Cloud PCs.
     *
     * @return CloudPcPowerState|null The powerState
     */
@@ -479,6 +480,7 @@ class CloudPC extends Entity
 
     /**
     * Sets the powerState
+    * The power state of a Cloud PC. The possible values are: running, poweredOff and unknown. This property only supports shift work Cloud PCs.
     *
     * @param CloudPcPowerState $val The powerState
     *
