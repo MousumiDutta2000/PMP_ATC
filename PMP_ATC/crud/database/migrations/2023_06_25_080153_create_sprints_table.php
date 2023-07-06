@@ -11,16 +11,14 @@ class CreateSprintsTable extends Migration
         Schema::create('sprints', function (Blueprint $table) {
             $table->id();
             $table->string('sprint_name');
-            $table->unsignedBigInteger('project_id')->nullable();
             $table->enum('is_global_sprint', ['yes', 'no']);
+            $table->unsignedBigInteger('project_id')->nullable();
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('status', ['Under discussion', 'Under development', 'In queue', 'Not Started', 'Pending', 'Delay']);
             $table->unsignedBigInteger('assigned_to');
             $table->unsignedBigInteger('assigned_by');
 
-            // $table->string('assigned_to');
-            // $table->string('assigned_by');
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('project')->onDelete('set null');

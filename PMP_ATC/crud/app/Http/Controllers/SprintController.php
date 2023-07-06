@@ -6,15 +6,18 @@ use App\Models\Sprint;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\SprintExport;
 
 class SprintController extends Controller
 {
 
-//     public function index()
-// {
-//     $sprints = Sprint::with('project')->get();
-//     return view('sprints.index', compact('sprints'));
-// }
+    public function export()
+{
+    return Excel::download(new SprintExport, 'sprints.xlsx');
+}
+
+
     public function index()
     {
         $sprints = Sprint::all();
