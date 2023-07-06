@@ -148,8 +148,8 @@
 
                 <div class="col-md-4">
                     <div class="form-group form-check form-switch mt-4">
-                        <label class="form-check-label mt-2" for="is_admin" style="margin-left:5px;">Is Admin</label>
-                        <input class="form-check-input" role="switch" type="checkbox" name="is_admin" id="is_admin" style="width: 3em; height: 2em;">
+                        <label class="form-check-label mt-2" for="is_admin" style="margin-left:10px;">Is Admin</label>
+                        <input class="form-check-input" role="switch" type="checkbox" name="is_admin" id="is_admin" style="width: 4em; height: 2em;">
                     </div>
                 </div>
             </div>
