@@ -58,11 +58,6 @@ class SprintController extends Controller
         $sprint->save();
 
         return redirect()->route('sprints.index')->with('success', 'Sprint created successfully.');
-
-        // Sprint::create($request->all());
-
-        // return redirect()->route('sprints.index')
-        //     ->with('success', 'Sprint created successfully.');
     }
 
     public function show(Sprint $sprint)
@@ -106,10 +101,6 @@ class SprintController extends Controller
 
         return redirect()->route('sprints.index')->with('success', 'Sprint settings updated successfully.');
 
-        // $sprint->update($request->all());
-
-        // return redirect()->route('sprints.index')
-        //     ->with('success', 'Sprint updated successfully.');
     }
 
     public function destroy(Sprint $sprint)
