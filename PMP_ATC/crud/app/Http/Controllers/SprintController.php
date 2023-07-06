@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SprintExport;
+use Illuminate\Support\Str;
 
 class SprintController extends Controller
 {
@@ -44,10 +45,24 @@ class SprintController extends Controller
             'assigned_by' => 'required',
         ]);
 
-        Sprint::create($request->all());
+        $sprint = new Sprint;
+        $sprint->uuid = substr(Str::uuid()->toString(), 0, 8);
+        $sprint->sprint_name = $request->sprint_name;
+        $sprint->project_id = $request->project_id;
+        $sprint->start_date = $request->start_date;
+        $sprint->end_date = $request->end_date;
+        $sprint->status = $request->status;
+        $sprint->assigned_to = $request->assigned_to;
+        $sprint->assigned_by = $request->assigned_by;
 
-        return redirect()->route('sprints.index')
-            ->with('success', 'Sprint created successfully.');
+        $sprint->save();
+
+        return redirect()->route('sprints.index')->with('success', 'Sprint created successfully.');
+
+        // Sprint::create($request->all());
+
+        // return redirect()->route('sprints.index')
+        //     ->with('success', 'Sprint created successfully.');
     }
 
     public function show(Sprint $sprint)
@@ -78,10 +93,23 @@ class SprintController extends Controller
             'assigned_by' => 'required',
         ]);
 
-        $sprint->update($request->all());
+        $sprint->uuid = substr(Str::uuid()->toString(), 0, 8);
+        $sprint->sprint_name = $request->sprint_name;
+        $sprint->project_id = $request->project_id;
+        $sprint->start_date = $request->start_date;
+        $sprint->end_date = $request->end_date;
+        $sprint->status = $request->status;
+        $sprint->assigned_to = $request->assigned_to;
+        $sprint->assigned_by = $request->assigned_by;
 
-        return redirect()->route('sprints.index')
-            ->with('success', 'Sprint updated successfully.');
+        $sprint->save();
+
+        return redirect()->route('sprints.index')->with('success', 'Sprint settings updated successfully.');
+
+        // $sprint->update($request->all());
+
+        // return redirect()->route('sprints.index')
+        //     ->with('success', 'Sprint updated successfully.');
     }
 
     public function destroy(Sprint $sprint)

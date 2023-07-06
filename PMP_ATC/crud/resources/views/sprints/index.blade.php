@@ -39,7 +39,7 @@
             <table id="sprintTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
-                        {{-- <th>ID</th> --}}
+                        <th style="padding-left:30px;">ID</th>
                         <th>Sprint Name</th>
                         <th>Is Global Sprint</th>
                         <th>Project Name</th>
@@ -55,6 +55,7 @@
                     @foreach ($sprints as $sprint)
                         <tr class="shadow" style="border-radius:15px;">
                             {{-- <td>{{ $sprint->id }}</td> --}}
+                            <td style="padding-left:30px;">{{ $sprint->uuid }}</td>
                             <td>{{ $sprint->sprint_name }}</td>
                             <td>{{ $sprint->is_global_sprint }}</td>
                             <td>{{ $sprint->project->project_name }}</td>   

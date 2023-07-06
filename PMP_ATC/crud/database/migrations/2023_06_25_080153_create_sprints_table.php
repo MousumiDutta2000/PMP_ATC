@@ -10,6 +10,7 @@ class CreateSprintsTable extends Migration
     {
         Schema::create('sprints', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->string('sprint_name');
             $table->enum('is_global_sprint', ['yes', 'no']);
             $table->unsignedBigInteger('project_id')->nullable();
