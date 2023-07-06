@@ -35,8 +35,8 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="status">Status</label>
-                <select name="status" id="status" class="form-control shadow-sm">
+                <label for="status" style="font-size: 15px;">Status</label>
+                <select name="status" id="status" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                     <option value="Under discussion" {{ $projectItemStatus->status === 'Under discussion' ? 'selected' : '' }}>Under discussion</option>
                     <option value="Under development" {{ $projectItemStatus->status === 'Under development' ? 'selected' : '' }}>Under development</option>
                     <option value="In queue" {{ $projectItemStatus->status === 'In queue' ? 'selected' : '' }}>In queue</option>

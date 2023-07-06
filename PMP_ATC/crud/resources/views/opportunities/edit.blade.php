@@ -33,10 +33,10 @@
     @method('PUT')
 
     <div class="row">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6 mb-4">
             <div class="form-group">
-                <label for="opportunity_status_id">Opportunity Status ID:</label>
-                <select name="opportunity_status_id" id="opportunity_status_id" class="form-control shadow-sm" required>
+                <label for="opportunity_status_id" style="font-size: 15px;">Opportunity Status ID:</label>
+                <select name="opportunity_status_id" id="opportunity_status_id" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
                     @foreach ($opportunityStatuses as $opportunityStatus)
                         <option value="{{ $opportunityStatus->id }}" {{ $opportunity->opportunity_status_id == $opportunityStatus->id ? 'selected' : '' }}>
                             {{ $opportunityStatus->project_goal }}
@@ -47,24 +47,24 @@
           
         </div>
 
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6 mb-4">
             <div class="form-group">
-                <label for="proposal">Proposal</label>
-                <input type="text" name="proposal" id="proposal" value="{{ $opportunity->proposal }}" class="form-control shadow-sm" required>
+                <label for="proposal" style="font-size: 15px;">Proposal</label>
+                <input type="text" name="proposal" id="proposal" value="{{ $opportunity->proposal }}" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
             </div>
         </div>
 
         <div class="col-md-6 mb-3">
             <div class="form-group">
-                <label for="initial_stage">Initial Stage:</label>
-                <input type="text" name="initial_stage" id="initial_stage" value="{{ $opportunity->initial_stage }}" class="form-control shadow-sm" required>
+                <label for="initial_stage" style="font-size: 15px;">Initial Stage:</label>
+                <input type="text" name="initial_stage" id="initial_stage" value="{{ $opportunity->initial_stage }}" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
             </div>
         </div>
 
         <div class="col-md-6 mb-3">
             <div class="form-group">
-                <label for="technical_stage">Technical Stage:</label>
-                <input type="text" name="technical_stage" id="technical_stage" value="{{ $opportunity->technical_stage }}" class="form-control shadow-sm" required>
+                <label for="technical_stage" style="font-size: 15px;">Technical Stage:</label>
+                <input type="text" name="technical_stage" id="technical_stage" value="{{ $opportunity->technical_stage }}" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
             </div>
         </div>
 

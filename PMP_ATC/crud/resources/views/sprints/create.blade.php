@@ -31,15 +31,16 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="sprint_name">Sprint Name</label>
-                    <input type="text" name="sprint_name" id="sprint_name" class="form-control shadow-sm" value="{{ old('sprint_name') }}">
+                    <label for="sprint_name" style="font-size: 15px;">Sprint Name</label>
+                    <input type="text" name="sprint_name" id="sprint_name" class="form-control shadow-sm" value="{{ old('sprint_name') }}"  style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="is_global_sprint">Is Global Sprint</label>
-                    <select name="is_global_sprint" id="is_global_sprint" class="form-control shadow-sm">
+                    <label for="is_global_sprint" style="font-size: 15px;">Is Global Sprint</label>
+                    <select name="is_global_sprint" id="is_global_sprint" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
+                        <option value="" selected="selected" disabled="disabled">Select type</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                     </select>
@@ -49,8 +50,8 @@
         
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="project_id">Project ID:</label>
-                    <select name="project_id" id="project_id" class="form-control shadow-sm" required>
+                    <label for="project_id" style="font-size: 15px;">Project ID:</label>
+                    <select name="project_id" id="project_id" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
                         <option value="">Select Project</option>
                         @foreach ($projects as $project)
                             <option value="{{ $project->id }}">{{ $project->project_name }}</option>
@@ -61,8 +62,9 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="status">Status</label>
-                    <select name="status" id="status" class="form-control shadow-sm">
+                    <label for="status" style="font-size: 15px;">Status</label>
+                    <select name="status" id="status" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
+                        <option value="" selected="selected" disabled="disabled">Select status</option>
                         <option value="Under discussion">Under discussion</option>
                         <option value="Under development">Under development</option>
                         <option value="In queue">In queue</option>
@@ -75,22 +77,22 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="start_date">Start Date</label>
-                    <input type="date" name="start_date" id="start_date" class="form-control shadow-sm" value="{{ old('start_date') }}">
+                    <label for="start_date" style="font-size: 15px;">Start Date</label>
+                    <input type="date" name="start_date" id="start_date" class="form-control shadow-sm" value="{{ old('start_date') }}" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                 </div>        
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="end_date">End Date</label>
-                    <input type="date" name="end_date" id="end_date" class="form-control shadow-sm" value="{{ old('end_date') }}">
+                    <label for="end_date" style="font-size: 15px;">End Date</label>
+                    <input type="date" name="end_date" id="end_date" class="form-controlcl shadow-sm" value="{{ old('end_date') }}" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                 </div>
             </div>
 
             <div class="col-md-6 mb-3">
                 <div class="form-group">
-                    <label for="assigned_to">Assigned To:</label>
-                    <select name="assigned_to" id="assigned_to" class="form-control shadow-sm"" required>
+                    <label for="assigned_to" style="font-size: 15px;">Assigned To:</label>
+                    <select name="assigned_to" id="assigned_to" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
                         <option value="">Select User</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -103,8 +105,8 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="assigned_by">Assigned By:</label>
-                    <select name="assigned_by" id="assigned_by" class="form-control shadow-sm"" required>
+                    <label for="assigned_by" style="font-size: 15px;">Assigned By:</label>
+                    <select name="assigned_by" id="assigned_by" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
                         <option value="">Select User</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
