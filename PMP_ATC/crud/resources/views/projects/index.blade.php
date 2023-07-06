@@ -14,6 +14,7 @@
     <link rel='stylesheet' href='https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css'>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/boxicons@2.0.0/css/boxicons.min.css'>
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/project.css') }}">
 @endsection
 
 @section('custom_js')
@@ -23,6 +24,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="{{ asset('js/table.js') }}"></script>
 @endsection
 
@@ -37,7 +39,7 @@
             <table id="projectTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
-                        <th style="width: 150px; padding-left: 37px;">Project ID</th>
+                        <th style="width: 150px; padding-left: 37px;">UUID</th>
                         <th style="width: 380px;">Project Name</th>
                         <th style="width: 182px;">Status</th>
                         <th style="width: 113px;">Actions</th>
@@ -66,15 +68,38 @@
                         <td>
                             <div class="btn-group" role="group">
                                 <a href="{{ route('sprints.index', ['sprints' => $project->id]) }}"><i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i></a>
-                                <a href=""> <i class="fa-sharp fa-solid fa-flag text-info" style="margin-right: 10px"></i></a>
+                                <a href=""> <i class="bi bi-exclamation-octagon" style="margin-right: 10px; color:red;"></i></a>
+                                    <!-- <i class="fa-sharp fa-solid fa-flag text-info" style="margin-right: 10px"></i></a> -->
                                 <a href="{{ route('projects.edit', ['project' => $project->id]) }}">
                                 <i class="fa-solid fa-gear text-secondary" style="margin-right: 10px"></i></a>
 
-                                <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" class="btn btn-link p-0">
-                                        <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
+                                <form action="{{ route('projects.destroy', $project->id) }}" method="post">
+                                    @method('delete')
+                                    @csrf 
+                                    <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal">
+                                        <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
                                     </button>
+                                        
+                                        <!-- Delete Modal -->
+                                        <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header flex-column">
+                                                        <div class="icon-box">
+                                                            <i class="material-icons">&#xE5CD;</i>
+                                                        </div>
+                                                        <h3 class="modal-title w-100">Are you sure?</h3>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Do you really want to delete these record?</p>
+                                                    </div>
+                                                    <div class="modal-footer justify-content-center">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </form>
                             </div>
                         </td>
