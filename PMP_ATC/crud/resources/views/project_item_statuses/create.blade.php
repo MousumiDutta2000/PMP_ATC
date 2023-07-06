@@ -30,20 +30,23 @@
         @csrf
         <div class="row">
             {{-- <div class="col-md-6"> --}}
+
                 <div class="form-group">
-                    <label for="status">Status</label>
-                    <select name="status" id="status" class="form-control shadow-sm">
-                        <option value="Under discussion">Under discussion</option>
-                        <option value="Under development">Under development</option>
-                        <option value="In queue">In queue</option>
-                        <option value="Not Started">Not Started</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Delay">Delay</option>
+                    <label for="status" style="font-size: 15px;">Status</label>
+                    <select id="status" class="shadow-sm" name="project_status" required="required" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
+                    <option value="" selected="selected" disabled="disabled">Select status</option>
+                    <option value="Under discussion">Under discussion</option>
+                    <option value="Under development">Under development</option>
+                    <option value="In queue">In queue</option>
+                    <option value="Not Started">Not Started</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Delay">Delay</option>
                     </select>
                     @error('status')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+               
             {{-- </div> --}}
 
            

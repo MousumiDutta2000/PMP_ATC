@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\ProjectItemStatus;
 use App\Models\Sprint;
+use App\Models\User;
 
 class ProjectItemController extends Controller
 {
@@ -28,15 +29,12 @@ class ProjectItemController extends Controller
         $projects = Project::all();
         $statuses = ProjectItemStatus::all();
         $sprints = Sprint::all();
+        $users = User::all();
         
     
-        return view('project_items.create', compact('projects', 'statuses', 'sprints'));
+        return view('project_items.create', compact('projects', 'statuses', 'sprints', 'users'));
     }
 
-    // public function create()
-    // {
-    //     return view('project_items.create');
-    // }
 
     public function store(Request $request)
     {
@@ -67,13 +65,14 @@ class ProjectItemController extends Controller
 
     public function edit($id)
     {
+        $users = User::all();
         $projects = Project::all();
         $statuses = ProjectItemStatus::all();
         $sprints = Sprint::all();
         
         $projectItem = ProjectItem::findOrFail($id);
         
-        return view('project_items.edit', compact('projects', 'statuses', 'sprints', 'projectItem'));
+        return view('project_items.edit', compact('projects', 'statuses', 'sprints', 'projectItem', 'users'));
     }
     
 

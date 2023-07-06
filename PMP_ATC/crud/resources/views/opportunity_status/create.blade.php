@@ -32,7 +32,8 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="project_goal">Project Goal</label>
-                <select name="project_goal" id="project_goal" class="form-control shadow-sm">
+                <select name="project_goal" id="project_goal" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
+                  <option value="" selected="selected" disabled="disabled">Select goal</option>
                   <option value="Achieved">Achieved</option>
                   <option value="Lost">Lost</option>
                 </select>

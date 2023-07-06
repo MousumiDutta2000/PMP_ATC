@@ -34,7 +34,7 @@
             <a href="{{ route('opportunity_status.create') }}" class="btn btn-primary">Add New</a>
         </div>
         <div class="table">
-            <table id="opportunityStatusTable" class="table table-hover responsive" style="width:100%">
+            <table id="opportunityStatusTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
                         {{-- <th>ID</th> --}}
@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                         @foreach($opportunityStatuses as $opportunityStatus)
-                            <tr>
+                            <tr class="shadow" style="border-radius:15px;">
                                 {{-- <td>{{$opportunityStatus->id}}</td> --}}
                                 <td style="padding-left:120px;">{{$opportunityStatus->project_goal}}</td>
                                
