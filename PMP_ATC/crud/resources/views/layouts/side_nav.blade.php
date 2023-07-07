@@ -287,53 +287,53 @@
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
-<ul class="sidebar-nav" id="sidebar-nav">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-  <li class="nav-item">
-    <a class="nav-link " href="{{ route('dashboard') }}">
-      <i class="bi bi-grid"></i>
-      <span>Dashboard</span>
-    </a>
-  </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link " href="{{ route('dashboard') }}">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
-      <i class="fa-solid fa-people-roof"></i>
-      <span>User-Management</span>
-    </a>
-  </li><!-- End user-management Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
+          <i class="fa-solid fa-users"></i>
+          <span>User-Management</span>
+        </a>
+      </li><!-- End user-management Nav -->
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="{{ route('clients.index') }}">
-      <i class="fa-solid fa-building-user"></i>
-      <span>Clients</span>
-    </a>
-  </li><!-- End clients Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('clients.index') }}">
+          <i class="fa-solid fa-building-user"></i>
+          <span>Clients</span>
+        </a>
+      </li><!-- End clients Nav -->
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="{{ route('projects.index') }}">
-      <i class="fa-solid fa-folder"></i>
-      <span>Projects</span>
-    </a>
-  </li><!-- End projects Nav -->
-
-
-  <!-- <li class="nav-item">
-    <a class="nav-link collapsed" href="{{ route('opportunity_status.index') }}">
-      <i class="bi bi-person"></i>
-      <span>Opportunity_Status</span>
-    </a>
-  </li>End Opportunity_Status Page Nav
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="{{ route('opportunities.index') }}">
-      <i class="bi bi-person"></i>
-      <span>Opportunities</span>
-    </a>
-  </li>End Opportunities Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('projects.index') }}">
+          <i class="fa-solid fa-folder"></i>
+          <span>Projects</span>
+        </a>
+      </li><!-- End projects Nav -->
 
 
-</ul>
+      <!-- <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('opportunity_status.index') }}">
+          <i class="bi bi-person"></i>
+          <span>Opportunity_Status</span>
+        </a>
+      </li>End Opportunity_Status Page Nav
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('opportunities.index') }}">
+          <i class="bi bi-person"></i>
+          <span>Opportunities</span>
+        </a>
+      </li>End Opportunities Page Nav -->
+
+
+    </ul>
 
 </aside><!-- End Sidebar-->
 
