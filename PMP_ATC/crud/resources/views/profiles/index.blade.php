@@ -12,8 +12,10 @@
     <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css'>
     <link rel='stylesheet' href='https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css'>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/boxicons@2.0.0/css/boxicons.min.css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/profiles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
 @endsection
 
 @section('custom_js')
@@ -80,9 +82,30 @@
                                         <form method="post" action="{{ route('profiles.destroy', ['profile' => $profile->id]) }}">
                                             @method('delete')
                                             @csrf
-                                            <button type="submit" class="btn btn-link p-0">
-                                                <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
-                                            </button>
+                                            <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal">
+                                                <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
+                                            </button>          
+                                            <!-- Delete Modal start -->
+                                            <div class="modal fade" id="deleteModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header flex-column">
+                                                            <div class="icon-box">
+                                                                <i class="material-icons">&#xE5CD;</i>
+                                                            </div>
+                                                            <h3 class="modal-title w-100">Are you sure?</h3>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Do you really want to delete these record?</p>
+                                                        </div>
+                                                        <div class="modal-footer justify-content-center">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Delete Modal end-->
                                         </form>
                                     </div>
                                 </td>
