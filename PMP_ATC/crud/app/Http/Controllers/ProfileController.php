@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use App\Models\Profile;
 use App\Models\User;
@@ -56,13 +57,13 @@ class ProfileController extends Controller
             'work_location' => 'required',
             'work_address' => 'required',
             'email' => 'required',
-            'contact_number' => 'required|digits:10', // Restrict to 10 digits
+            'contact_number' => 'required',
             'line_manager_id' => 'required',
             'designation_id' => 'required',
             'vertical_id' => 'required',
             'highest_educational_qualification_id' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'password' => 'required|min:8',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'password' => 'required|min:8', // Add a validation rule for the password
         ]);
     
         // Create a new User instance
@@ -94,6 +95,38 @@ class ProfileController extends Controller
             $image->move(public_path('images/profiles'), $imageName);
             $profile->image = 'images/profiles/' . $imageName;
         }
+
+        else {
+            // Set profile image based on first and last name initials
+            $firstNameInitial = strtoupper(substr($request->profile_name, 0, 1));
+            $lastNameInitial = strtoupper(substr(strrchr($request->profile_name, ' '), 1, 1)); // Get the first letter after the last space in the profile name
+            $initials = $firstNameInitial . $lastNameInitial;
+            $textColor = '#ffffff'; // Set the text color for the initials
+            
+            // Create an image with the initials
+            $image = \Intervention\Image\Facades\Image::canvas(200, 200);
+
+            // Generate a unique color based on the initials
+            $nameHash = md5($request->profile_name); // Generate a hash of the name
+            $color = '#' . substr($nameHash, 0, 6); // Extract the first 6 characters as a hexadecimal color code
+
+            $image->circle(200, 100, 100, function ($draw) use ($color) {
+                $draw->background($color); // Set the circle color based on the name
+            });
+
+            $image->text($initials, 100, 100, function($font) use ($textColor) {
+                $font->file(public_path('fonts/arial.ttf'));
+                $font->size(100); // Increase the font size to 150
+                $font->color($textColor);
+                $font->align('center');
+                $font->valign('middle');
+            });
+
+            // Save the image
+            $imageName = time() . '.png';
+            $image->save(public_path('images/profiles') . '/' . $imageName);
+            $profile->image = 'images/profiles/' . $imageName;
+        }
     
         // Assign the user_id to the profile
         $profile->user_id = $user->id;
@@ -118,7 +151,7 @@ class ProfileController extends Controller
     public function update(Request $request, Profile $profile)
     {
         $request->validate([
-            'contact_number' => 'required|digits:10', // Restrict to 10 digits
+            'contact_number' => 'required',
             'line_manager_id' => 'required',
             'designation_id' => 'required',
             'vertical_id' => 'required',
@@ -142,20 +175,14 @@ class ProfileController extends Controller
         $profile->save();
         $user_technologies = UserTechnology :: all();
         return redirect()->route('profiles.index')->with('success', 'Profile Updated');
-    }
+    }        
 
     public function destroy(Profile $profile)
     {
-        $user = $profile->user; // Get the associated user
-        $profile->delete(); // Delete the profile
-    
-        if ($user) {
-            $user->delete(); // Delete the user
-        }
-    
-        return redirect('profiles')->with('success', 'Profile and user deleted!');
+        $profile->delete();
+        $user_technologies = UserTechnology :: all();
+        return redirect('profiles')->with('success', 'Profile deleted!');
     }
-    
 
     public function show(Profile $profile)
     {
