@@ -38,8 +38,8 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="phone_no">Phone Number</label>
-                    <input type="text" name="phone_no" id="phone_no" class="form-control shadow-sm" required>
+                    <label for="phone_no">Phone Number:</label>
+                    <input type="text" class="form-control" name="phone_no" id="phone_no" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
                 </div>
             </div>
 

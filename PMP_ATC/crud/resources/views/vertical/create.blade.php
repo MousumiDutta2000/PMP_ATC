@@ -51,12 +51,13 @@
         </div>
 
        
-           <div class="col-md-6">
+        <div class="col-md-6">
             <div class="form-group">
                 <label for="vertical_head_contact">Vertical Head Contact:</label>
-                <input type="text" name="vertical_head_contact" id="vertical_head_contact" class="form-control shadow-sm" required>
+                <input type="text" name="vertical_head_contact" id="vertical_head_contact" class="form-control shadow-sm" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
             </div>
         </div>
+
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Create</button>

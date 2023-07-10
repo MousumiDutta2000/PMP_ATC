@@ -57,9 +57,10 @@
         <div class="mb-3">
             <div class="form-group">
                 <label for="vertical_head_contact">Vertical Head Contact:</label>
-                <input type="text" name="vertical_head_contact" id="vertical_head_contact" class="form-control shadow-sm" value="{{ $vertical->vertical_head_contact }}" required>
+                <input type="text" name="vertical_head_contact" id="vertical_head_contact" class="form-control shadow-sm" value="{{ $vertical->vertical_head_contact }}" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
             </div>
         </div>
+
 
 
 
