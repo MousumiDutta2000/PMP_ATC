@@ -43,7 +43,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="contact_number">Contact Number:</label>
-                    <input type="text" class="form-control" name="contact_number" id="contact_number" value="{{ $profile->contact_number }}" required>
+                    <input type="text" class="form-control" name="contact_number" id="contact_number" value="{{ $profile->contact_number }}" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
                 </div>
             </div>
         </div>

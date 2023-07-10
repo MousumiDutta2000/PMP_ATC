@@ -56,13 +56,13 @@ class ProfileController extends Controller
             'work_location' => 'required',
             'work_address' => 'required',
             'email' => 'required',
-            'contact_number' => 'required',
+            'contact_number' => 'required|digits:10', // Restrict to 10 digits
             'line_manager_id' => 'required',
             'designation_id' => 'required',
             'vertical_id' => 'required',
             'highest_educational_qualification_id' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'password' => 'required|min:8', // Add a validation rule for the password
+            'password' => 'required|min:8',
         ]);
     
         // Create a new User instance
@@ -118,7 +118,7 @@ class ProfileController extends Controller
     public function update(Request $request, Profile $profile)
     {
         $request->validate([
-            'contact_number' => 'required',
+            'contact_number' => 'required|digits:10', // Restrict to 10 digits
             'line_manager_id' => 'required',
             'designation_id' => 'required',
             'vertical_id' => 'required',
@@ -146,10 +146,16 @@ class ProfileController extends Controller
 
     public function destroy(Profile $profile)
     {
-        $profile->delete();
-        $user_technologies = UserTechnology :: all();
-        return redirect('profiles')->with('success', 'Profile deleted!');
+        $user = $profile->user; // Get the associated user
+        $profile->delete(); // Delete the profile
+    
+        if ($user) {
+            $user->delete(); // Delete the user
+        }
+    
+        return redirect('profiles')->with('success', 'Profile and user deleted!');
     }
+    
 
     public function show(Profile $profile)
     {

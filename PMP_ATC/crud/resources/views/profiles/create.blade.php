@@ -53,7 +53,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="contact_number" class="mb-1" style="font-size: 15px;">Contact Number:</label>
-                        <input type="text" class="form-control shadow-sm" name="contact_number" id="contact_number" placeholder="Enter contact number" required style="color: #858585; font-size: 14px;">
+                        <input type="text" class="form-control shadow-sm" name="contact_number" id="contact_number" placeholder="Enter contact number" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" style="color: #858585; font-size: 14px;">
                     </div>
                 </div>
 

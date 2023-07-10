@@ -47,6 +47,15 @@
     })
   }
 
+  if (document.querySelector('.toggle-sidebar-btn')) {
+    document.addEventListener('click', function(e) {
+      if (e.target.matches('.toggle-sidebar-btn')) {
+        document.querySelector('.logo_name').classList.toggle('d-none');
+      }
+    });
+  }
+  
+
   /**
    * Search bar toggle
    */

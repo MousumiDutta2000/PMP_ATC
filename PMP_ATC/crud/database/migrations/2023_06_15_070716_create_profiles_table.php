@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('work_location');
             $table->string('work_address');
             $table->string('email')->unique();
-            $table->string('contact_number')->unique();
+            $table->string('contact_number', 10)->unique();
             $table->unsignedBigInteger('line_manager_id');
             $table->foreign('line_manager_id')->references('id')->on('users')->nullable();
             $table->unsignedBigInteger('vertical_id');
