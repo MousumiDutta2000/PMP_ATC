@@ -115,8 +115,7 @@ class ProfileController extends Controller
             });
 
             $image->text($initials, 100, 100, function($font) use ($textColor) {
-                $font->file(public_path('fonts/arial.ttf'));
-                $font->size(100); // Increase the font size to 150
+                $font->file(public_path('fonts/OpenSans-Semibold.ttf'));                $font->size(100); // Increase the font size to 150
                 $font->color($textColor);
                 $font->align('center');
                 $font->valign('middle');
