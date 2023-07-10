@@ -38,13 +38,13 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
-    <div class="d-flex align-items-center justify-content-between">
+    <!-- <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img class="logo_img" src="{{ asset('img/logo.png') }}" alt="">
         <span class="logo_name">NiceAdmin</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
+    </div>End Logo -->
 
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
@@ -286,6 +286,14 @@
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
+
+  <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img class="logo_img" src="{{ asset('img/logo.png') }}" alt="">
+        <span class="logo_name">NiceAdmin</span>
+      </a>
+      <i class="fa-solid fa-circle-chevron-left fa-lg toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
 
     <ul class="sidebar-nav" id="sidebar-nav">
 

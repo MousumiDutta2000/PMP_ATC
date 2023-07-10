@@ -356,6 +356,7 @@ h6 {
 --------------------------------------------------------------*/
 .logo {
   line-height: 1;
+  margin-bottom: 28px;
 }
 
 @media (min-width: 1200px) {
@@ -378,11 +379,17 @@ h6 {
 
 .header {
   transition: all 0.5s;
-  z-index: 997;
+  z-index: 996;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
-  padding-left: 20px;
+  padding-left: 320px;
+}
+
+@media (max-width: 844px) {
+  .header {
+    padding-left: 20px;
+  }
 }
 
 .header .toggle-sidebar-btn {
@@ -597,13 +604,13 @@ h6 {
 --------------------------------------------------------------*/
 .sidebar {
   position: fixed;
-  top: 60px;
+  top: 0px;
   left: 0;
   bottom: 0;
   width: 220px;
-  z-index: 996;
+  z-index: 997;
   transition: all 0.3s;
-  padding: 20px;
+  padding: 10px 20px 20px 20px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
