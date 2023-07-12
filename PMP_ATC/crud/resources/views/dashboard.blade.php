@@ -2,8 +2,7 @@
 
 
 @section('pageTitle', 'Dashboard')
-@section('content')
 
-   
+@section('content')
 @endsection
 

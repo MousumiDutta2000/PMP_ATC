@@ -51,9 +51,19 @@
     document.addEventListener('click', function(e) {
       if (e.target.matches('.toggle-sidebar-btn')) {
         document.querySelector('.logo_name').classList.toggle('d-none');
+        // Hide the span elements when the sidebar is toggled
+        const sidebarItems = document.querySelectorAll('.sidebar-nav li.nav-item span');
+        sidebarItems.forEach(item => {
+          item.classList.toggle('hidden');
+        });
       }
     });
   }
+  
+  $('.toggle-sidebar-btn').on('click', function() {
+    $(this).toggleClass('rotate');
+  });
+  
   
 
   /**

@@ -105,10 +105,6 @@
                       <a href="{{ route('auth.microsoft') }}" class="socks" style="color:#5E6278">
                         <img src="{{ asset('img/microsoft_logo.png') }}" alt="" class="microIcon">Log in With Microsoft</a>
                     </div>
-
-                    <!-- <div class="col-12">
-                      <p class="d-none small mb-0">Don't have an account? <a href="{{ route('register') }}">Create an account</a></p>
-                    </div> -->
                   </form>
 
                 </div>

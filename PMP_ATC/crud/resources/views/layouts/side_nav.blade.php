@@ -8,7 +8,7 @@
   @yield('project_js')
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title></title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <!-- Favicons -->
@@ -287,12 +287,12 @@
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
-  <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img class="logo_img" src="{{ asset('img/logo.png') }}" alt="">
         <span class="logo_name">NiceAdmin</span>
       </a>
-      <i class="fa-solid fa-circle-chevron-left fa-lg toggle-sidebar-btn"></i>
+      <i class="fa-solid fa-circle-chevron-left fa-lg toggle-sidebar-btn sidebar_collapse_icon" style="color: #012970;"></i>
     </div><!-- End Logo -->
 
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -324,23 +324,6 @@
           <span>Projects</span>
         </a>
       </li><!-- End projects Nav -->
-
-
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('opportunity_status.index') }}">
-          <i class="bi bi-person"></i>
-          <span>Opportunity_Status</span>
-        </a>
-      </li>End Opportunity_Status Page Nav
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('opportunities.index') }}">
-          <i class="bi bi-person"></i>
-          <span>Opportunities</span>
-        </a>
-      </li>End Opportunities Page Nav -->
-
-
     </ul>
 
 </aside><!-- End Sidebar-->

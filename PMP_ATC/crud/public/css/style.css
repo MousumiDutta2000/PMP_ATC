@@ -356,7 +356,6 @@ h6 {
 --------------------------------------------------------------*/
 .logo {
   line-height: 1;
-  margin-bottom: 28px;
 }
 
 @media (min-width: 1200px) {
@@ -611,11 +610,27 @@ h6 {
   z-index: 997;
   transition: all 0.3s;
   padding: 10px 20px 20px 20px;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+.sidebar_collapse_icon
+{
+  padding-top: 50px;
+  padding-left: 10px;
+}
+
+.toggle-sidebar-btn.rotate {
+  transform: rotate(180deg);
 }
 
 @media (max-width: 1199px) {
@@ -652,12 +667,19 @@ h6 {
 
   .toggle-sidebar #main,
   .toggle-sidebar #footer {
-    margin-left: 50px;
+    margin-left: 70px;
   }
 
   .toggle-sidebar .sidebar {
-    left: -150px;
+    /* left: -300px; */
+    width: 85px;
   }
+
+  /* .sidebar_collapse_icon
+  {
+    padding-top: 50px;
+    padding-left: 10px;
+  } */
 }
 
 @media (min-width: 1400px){
@@ -668,7 +690,7 @@ h6 {
 
 .sidebar-nav {
   padding: 0;
-  margin: 0;
+  margin: 20px 0px 0px 0px;
   list-style: none;
 }
 
