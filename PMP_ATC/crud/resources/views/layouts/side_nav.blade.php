@@ -301,29 +301,29 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('dashboard') }}">
-          <i class="bi bi-grid-fill" style="font-size:25px"></i>
-          <span>Dashboard</span>
+          <i class="bi bi-grid-fill" style="font-size:28px"></i>
+          <span class="icon_text">Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
-          <i class="fa-solid fa-users" style="font-size:25px"></i>
-          <span>Users</span>
+          <i class="fa-solid fa-users" style="font-size:28px"></i>
+          <span class="icon_text">Users</span>
         </a>
       </li><!-- End user-management Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('clients.index') }}">
-          <i class="fa-solid fa-building-user" style="font-size:25px"></i>
-          <span>Clients</span>
+          <i class="fa-solid fa-building-user" style="font-size:28px"></i>
+          <span class="icon_text">Clients</span>
         </a>
       </li><!-- End clients Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('projects.index') }}">
-          <i class="fa-solid fa-folder" style="font-size:25px"></i>
-          <span>Projects</span>
+          <i class="fa-solid fa-folder" style="font-size:28px"></i>
+          <span class="icon_text">Projects</span>
         </a>
       </li><!-- End projects Nav -->
     </ul>
