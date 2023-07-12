@@ -65,7 +65,7 @@
         <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
+            <i class="bi bi-bell" style="color:white"></i>
             <span class="badge bg-primary badge-number">4</span>
           </a><!-- End Notification Icon -->
 
@@ -140,7 +140,7 @@
         <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
+            <i class="bi bi-chat-left-text" style="color:white"></i>
             <span class="badge bg-success badge-number">3</span>
           </a><!-- End Messages Icon -->
 
@@ -207,7 +207,7 @@
 
             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
               <img src="{{ asset(auth()->user()->profile->image) }}" alt="Profile" class="rounded-circle">
-              <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
+              <span class="d-none d-md-block dropdown-toggle ps-2" style="color:white">{{ auth()->user()->name }}</span>
             </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -289,8 +289,10 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img class="logo_img" src="{{ asset('img/logo.png') }}" alt="">
-        <span class="logo_name">NiceAdmin</span>
+        <section class="box">
+          <img class="logo_img" src="{{ asset('img/logo.png') }}" alt="">
+          <span class="logo_name">NiceAdmin</span>
+        </section>
       </a>
       <i class="fa-solid fa-circle-chevron-left fa-lg toggle-sidebar-btn sidebar_collapse_icon" style="color: #012970;"></i>
     </div><!-- End Logo -->
@@ -298,29 +300,29 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{{ route('dashboard') }}">
-          <i class="bi bi-grid"></i>
+        <a class="nav-link collapsed" href="{{ route('dashboard') }}">
+          <i class="bi bi-grid-fill" style="font-size:25px"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
-          <i class="fa-solid fa-users"></i>
-          <span>User-Management</span>
+          <i class="fa-solid fa-users" style="font-size:25px"></i>
+          <span>Users</span>
         </a>
       </li><!-- End user-management Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('clients.index') }}">
-          <i class="fa-solid fa-building-user"></i>
+          <i class="fa-solid fa-building-user" style="font-size:25px"></i>
           <span>Clients</span>
         </a>
       </li><!-- End clients Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('projects.index') }}">
-          <i class="fa-solid fa-folder"></i>
+          <i class="fa-solid fa-folder" style="font-size:25px"></i>
           <span>Projects</span>
         </a>
       </li><!-- End projects Nav -->

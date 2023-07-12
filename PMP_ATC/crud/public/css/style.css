@@ -372,7 +372,7 @@ h6 {
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: #012970;
+  color: #ffffff;
   font-family: "Nunito", sans-serif;
 }
 
@@ -383,6 +383,7 @@ h6 {
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
   padding-left: 320px;
+  background: linear-gradient(90deg, #9ea7fc 0%, #65b6f7 100%);
 }
 
 @media (max-width: 844px) {
@@ -617,6 +618,30 @@ h6 {
   background-color: #fff;
 }
 
+.side_{
+  font-size: 30px;
+}
+
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #ffffff;
+  padding: 20px 20px 10px 25px;
+  margin-left: -20px;
+  margin-top: -20px;
+  background: #888fdc;
+}
+
+.logo_section {
+  display: flex;
+  align-items: center;
+}
+
+.logo_img {
+  margin-right: 5px; /* Adjust the spacing between the image and text as needed */
+}
 
 .hidden {
   display: none;
@@ -626,7 +651,7 @@ h6 {
 .sidebar_collapse_icon
 {
   padding-top: 50px;
-  padding-left: 10px;
+  margin-left: -8px;
 }
 
 .toggle-sidebar-btn.rotate {
@@ -672,7 +697,7 @@ h6 {
 
   .toggle-sidebar .sidebar {
     /* left: -300px; */
-    width: 85px;
+    width: 88px;
   }
 
   /* .sidebar_collapse_icon
@@ -701,7 +726,7 @@ h6 {
 }
 
 .sidebar-nav .nav-item {
-  margin-bottom: 5px;
+  margin-bottom: 20px;
 }
 
 .sidebar-nav .nav-heading {
@@ -717,9 +742,10 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: #888fdc;
   transition: 0.3;
-  background: #f6f9ff;
+  /* background: #f6f9ff; */
+  border-left: 3px solid #5969f3;
   padding: 10px 15px;
   border-radius: 4px;
 }
@@ -727,12 +753,13 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #4154f1;
+  color: #888fdc;
 }
 
 .sidebar-nav .nav-link.collapsed {
   color: #012970;
   background: #fff;
+  border-left: 3px solid #ffffff;
 }
 
 .sidebar-nav .nav-link.collapsed i {
@@ -740,12 +767,12 @@ h6 {
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
-  background: #f6f9ff;
+  color: #888fdc;
+  /* background: #f6f9ff; */
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #4154f1;
+  color: #888fdc;
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {

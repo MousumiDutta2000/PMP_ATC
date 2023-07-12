@@ -63,7 +63,19 @@
   $('.toggle-sidebar-btn').on('click', function() {
     $(this).toggleClass('rotate');
   });
-  
+
+  $(document).ready(function() {
+    var currentUrl = window.location.href;
+    var navLinks = $(".nav-link");
+
+    navLinks.each(function() {
+      if (this.href === currentUrl) {
+        $(this).addClass("active");
+        $(this).removeClass("collapsed");
+        // Add additional styling or class for highlighting the selected option
+      }
+    });
+  });
   
 
   /**
