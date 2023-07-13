@@ -72,11 +72,41 @@
       if (this.href === currentUrl) {
         $(this).addClass("active");
         $(this).removeClass("collapsed");
-        // Add additional styling or class for highlighting the selected option
+        
       }
     });
   });
-  
+
+
+// Get the toggle-sidebar-btn element
+var toggleBtn = document.querySelector('.toggle-sidebar-btn');
+
+// Get the section element
+var section = document.querySelector('.box');
+
+// Get the main element
+var main = document.querySelector('main');
+
+// Get all the li elements within the sidebar-nav
+var liElements = document.querySelectorAll('#sidebar-nav li');
+
+// Add a click event listener to the toggleBtn
+toggleBtn.addEventListener('click', function() {
+  // Toggle the "box_toggle" class on the section element
+  section.classList.toggle('box_toggle');
+
+  // Toggle the style attribute on the main element
+  if (main.style.paddingLeft === '45px') {
+    main.style.removeProperty('padding-left');
+  } else {
+    main.style.paddingLeft = '45px';
+  }
+
+   // Toggle the "nav-item-collapsed" class on each li element
+   liElements.forEach(function(li) {
+    li.classList.toggle('nav-item-collapsed');
+  });
+});
 
   /**
    * Search bar toggle

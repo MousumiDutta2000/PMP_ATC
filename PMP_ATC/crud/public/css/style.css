@@ -43,7 +43,7 @@ h6 {
 --------------------------------------------------------------*/
 #main {
   margin-top: 60px;
-  padding: 20px 30px;
+  padding: 20px 22px 20px 0px;
   transition: all 0.3s;
 }
 
@@ -365,12 +365,12 @@ h6 {
 }
 
 .logo img {
-  max-height: 40px;
-  margin-right: 6px;
+  max-height: 31px;
+  /* margin-right: 6px; */
 }
 
 .logo span {
-  font-size: 26px;
+  font-size: 23px;
   font-weight: 700;
   color: #ffffff;
   font-family: "Nunito", sans-serif;
@@ -607,10 +607,10 @@ h6 {
   top: 0px;
   left: 0;
   bottom: 0;
-  width: 220px;
+  width: 171px;
   z-index: 997;
   transition: all 0.3s;
-  padding: 10px 20px 20px 20px;
+  padding: 10px 0px 20px 3px;
   /* overflow-y: auto; */
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
@@ -628,16 +628,35 @@ h6 {
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #ffffff;
-  padding: 20px 20px 10px 25px;
+  padding: 24px 10px 15px 10px;
   margin-left: -20px;
   margin-top: -20px;
   background: #888fdc;
 }
 
+.main_toggle{
+  padding-left: 45px;
+}
+
+.logo_adjust{
+  padding-left: 17px;
+
+}
+
+.box_toggle{
+  padding-right:45px
+}
+
+/* 20px 0px 20px 63px main */
+
 .icon_text{
-  font-size: 16px;
+  font-size: 15px;
   margin-left: -8px;
   margin-top: 5px;
+}
+
+.nav-item-collapsed{
+  margin-bottom: 30px;
 }
 
 .logo_section {
@@ -719,6 +738,12 @@ h6 {
 }
 }
 
+@media (min-width: 1200px){
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1437px;
+}
+}
+
 .sidebar-nav {
   padding: 0;
   margin: 20px 0px 0px 0px;
@@ -732,7 +757,7 @@ h6 {
 }
 
 .sidebar-nav .nav-item {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .sidebar-nav .nav-heading {
