@@ -634,6 +634,12 @@ h6 {
   background: #888fdc;
 }
 
+.icon_text{
+  font-size: 16px;
+  margin-left: -8px;
+  margin-top: 5px;
+}
+
 .logo_section {
   display: flex;
   align-items: center;
@@ -739,6 +745,7 @@ h6 {
 
 .sidebar-nav .nav-link {
   display: flex;
+  flex-direction: column;
   align-items: center;
   font-size: 15px;
   font-weight: 600;
