@@ -287,45 +287,48 @@
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-between logo_adjust">
       <a href="index.html" class="logo d-flex align-items-center">
         <section class="box">
           <img class="logo_img" src="{{ asset('img/logo.png') }}" alt="">
           <span class="logo_name">NiceAdmin</span>
         </section>
       </a>
-      <i class="fa-solid fa-circle-chevron-left fa-lg toggle-sidebar-btn sidebar_collapse_icon" style="color: #012970;"></i>
+      {{-- <i class="fa-solid fa-circle-chevron-left fa-lg toggle-sidebar-btn sidebar_collapse_icon" style="color: #012970;"></i> --}}
     </div><!-- End Logo -->
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('dashboard') }}">
-          <i class="bi bi-grid-fill" style="font-size:28px"></i>
+          <i class="bi bi-grid-fill" style="font-size:25px"></i>
           <span class="icon_text">Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
-          <i class="fa-solid fa-users" style="font-size:28px"></i>
+          <i class="fa-solid fa-users" style="font-size:25px"></i>
           <span class="icon_text">Users</span>
         </a>
       </li><!-- End user-management Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('clients.index') }}">
-          <i class="fa-solid fa-building-user" style="font-size:28px"></i>
+          <i class="fa-solid fa-building-user" style="font-size:25px"></i>
           <span class="icon_text">Clients</span>
         </a>
       </li><!-- End clients Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('projects.index') }}">
-          <i class="fa-solid fa-folder" style="font-size:28px"></i>
+          <i class="fa-solid fa-folder" style="font-size:25px"></i>
           <span class="icon_text">Projects</span>
         </a>
       </li><!-- End projects Nav -->
+      <li>
+      <i class="fa-solid fa-circle-chevron-left fa-lg toggle-sidebar-btn sidebar_collapse_icon" style="color: #012970;  float:right;"></i>
+      </li>
     </ul>
 
 </aside><!-- End Sidebar-->
