@@ -327,7 +327,7 @@
         </a>
       </li><!-- End projects Nav -->
       {{-- <li> --}}
-      <i class="fa-solid fa-circle-chevron-left fa-lg toggle-sidebar-btn sidebar_collapse_icon" style="color: #012970;  float:right; left:95%; top: 600px; position: absolute;"></i>
+      <i class="fa-solid fa-circle-chevron-left fa-lg toggle-sidebar-btn sidebar_collapse_icon"></i>
       {{-- </li> --}}
     </ul>
 
