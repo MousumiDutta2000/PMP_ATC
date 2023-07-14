@@ -607,7 +607,7 @@ h6 {
   top: 0px;
   left: 0;
   bottom: 0;
-  width: 171px;
+  width: 170px;
   z-index: 997;
   transition: all 0.3s;
   padding: 10px 0px 20px 3px;
@@ -644,7 +644,7 @@ h6 {
 }
 
 .box_toggle{
-  padding-right:45px
+  padding-right:44px
 }
 
 /* 20px 0px 20px 63px main */

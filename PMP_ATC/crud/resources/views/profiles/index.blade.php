@@ -36,8 +36,8 @@
             <a href="{{ route('profiles.create') }}" class="btn btn-primary">Add Profile</a>
         </div>
         <div>
-            <table id="profileTable" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px;">
-                <thead>
+            <table id="profileTable" class="table table-hover responsive table-sm" style="width: 100%;border-spacing: 0 10px;">
+                <thead class="" style="border-radius:5px">
                     <tr>
                         <th>Name</th>
                         <th>Phone Number</th>
@@ -52,12 +52,12 @@
                 <tbody >
                     @if(count($profiles)>0)
                         @foreach($profiles as $index => $profile)
-                            <tr class="shadow" style="border-radius:15px;">
+                            <tr class="shadow" style="border-radius:15px; font-size: small;">
                                 <td>
                                     <a href="#">
                                         <div class="d-flex align-items-center">
-                                            <div class="avatar avatar-blue mr-3">
-                                                <img class="rounded-circle" src="{{ asset($profile->image) }}" alt="Profile Image" width="50" style="height: 3.2em;">
+                                            <div class="avatar mr-3">
+                                                <img class="rounded-circle" src="{{ asset($profile->image) }}" alt="Profile Image" width="50" style="height: 2.2em; width: 2.2em">
                                             </div>
                                             <div class="name-container">
                                                 <p class="font-weight-bold mb-0 name">{{ $profile->profile_name }}</p>

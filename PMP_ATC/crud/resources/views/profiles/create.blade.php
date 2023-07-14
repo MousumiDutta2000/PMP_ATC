@@ -30,17 +30,21 @@
         <form method="post" action="{{ route('profiles.store') }}" enctype="multipart/form-data">
             @csrf
             <div id="section-1">
-                <h3>Section 1: Image, Name, Email, Contact Number</h3>
-                <div>
+                <h5>Add Profile Details</h5>
+                <div class="w-50">
                     <div>
                         <div class="form-group">
-                            <label for="image" class="mb-1" style="font-size: 15px;">Add Image:</label>
                             <div class="image-preview">
                                 <div class="circle-preview" id="circle-preview"></div>
                             </div>
-                            <input type="file" name="image" accept="image/*" class="form-control shadow-sm" style="color: #858585; font-size: 14px;" onchange="showFile(event)">
+                            <div class="d-flex">
+                                <input type="file" name="image" accept="image/*" id="image" style="display: none" onchange="showFile(event)">
+                                <label for="image" class="btn btn-secondary">
+                                    <i class="bi bi-camera"></i> Choose Image
+                                </label>
+                            </div>
+                            <div class="text-secondary text-xs mt-1">Click to add profile picture</div>
                         </div>
-
                     </div>
                     <div>
                         <div class="form-group">
