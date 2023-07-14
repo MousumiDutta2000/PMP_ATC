@@ -59,7 +59,14 @@
                             {{-- <td>{{ $sprint->id }}</td> --}}
                             <td style="padding-left:30px;">{{ $sprint->uuid }}</td>
                             <td>{{ $sprint->sprint_name }}</td>
-                            <td>{{ $sprint->is_global_sprint }}</td>
+                            {{-- <td>{{ $sprint->is_global_sprint }}</td> --}}
+                            <td>
+                                @if ($sprint->is_global_sprint == 'yes')
+                                  <span style="color: green;">&#10004;</span> <!-- Tick symbol -->
+                                @else
+                                <i class="fas fa-times" style="color: red;"></i> <!-- Cross symbol -->
+                                @endif
+                              </td>
                             <td>{{ $sprint->project->project_name }}</td>   
                             <td>{{ $sprint->start_date }}</td>
                             <td>{{ $sprint->end_date }}</td>

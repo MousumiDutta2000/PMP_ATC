@@ -64,18 +64,31 @@
     $(this).toggleClass('rotate');
   });
 
-  $(document).ready(function() {
-    var currentUrl = window.location.href;
-    var navLinks = $(".nav-link");
+  // $(document).ready(function() {
+  //   var currentUrl = window.location.href;
+  //   var navLinks = $(".nav-link");
 
+  //   navLinks.each(function() {
+  //     if (this.href === currentUrl) {
+  //       $(this).addClass("active");
+  //       $(this).removeClass("collapsed");
+        
+  //     }
+  //   });
+  // });
+
+  $(document).ready(function() {
+    var currentUrl = window.location.pathname;
+    var navLinks = $(".nav-link");
+  
     navLinks.each(function() {
-      if (this.href === currentUrl) {
+      if (this.pathname === currentUrl) {
         $(this).addClass("active");
         $(this).removeClass("collapsed");
-        
       }
     });
   });
+  
 
 
 // Get the toggle-sidebar-btn element
@@ -89,6 +102,8 @@ var main = document.querySelector('main');
 
 // Get all the li elements within the sidebar-nav
 var liElements = document.querySelectorAll('#sidebar-nav li');
+
+var logoImg = document.querySelector('.logo_img');
 
 // Add a click event listener to the toggleBtn
 toggleBtn.addEventListener('click', function() {
@@ -106,6 +121,8 @@ toggleBtn.addEventListener('click', function() {
    liElements.forEach(function(li) {
     li.classList.toggle('nav-item-collapsed');
   });
+
+  logoImg.classList.toggle('logo_img_collapsed');
 });
 
   /**

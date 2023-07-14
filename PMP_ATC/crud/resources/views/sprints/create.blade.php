@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            {{-- <div class="col-md-6">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="is_global_sprint" style="font-size: 15px;">Is Global Sprint</label>
                     <select name="is_global_sprint" id="is_global_sprint" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
@@ -45,18 +45,9 @@
                         <option value="no">No</option>
                     </select>
                 </div>
-            </div> --}}
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="is_global_sprint" style="font-size: 15px;">Is Global Sprint</label>
-                    <select name="is_global_sprint" id="is_global_sprint" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
-                        <option value="" selected="selected" disabled="disabled">Select type</option>
-                        <option value="yes">&#10003;</option> <!-- Tick symbol -->
-                        <option value="no">&#10007;</option> <!-- Cross symbol -->
-                    </select>
-                </div>
             </div>
+
+          
             
         
             <div class="col-md-6">

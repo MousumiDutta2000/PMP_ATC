@@ -672,6 +672,10 @@ h6 {
   display: none;
 }
 
+.logo_img_collapsed{
+  left: 48%;
+  position: relative;
+}
 
 .sidebar_collapse_icon
 {
