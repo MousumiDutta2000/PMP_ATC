@@ -37,10 +37,10 @@
                             <label for="image" class="mb-1" style="font-size: 15px;">Add Image:</label>
                             <div class="image-preview">
                                 <div class="circle-preview" id="circle-preview"></div>
-                                <img src="" alt="" class="img-product" id="file-preview" style="max-width: 150px;">
                             </div>
                             <input type="file" name="image" accept="image/*" class="form-control shadow-sm" style="color: #858585; font-size: 14px;" onchange="showFile(event)">
                         </div>
+
                     </div>
                     <div>
                         <div class="form-group">
@@ -184,9 +184,6 @@
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                var img = document.getElementById("file-preview");
-                img.src = e.target.result;
-
                 var circlePreview = document.getElementById("circle-preview");
                 circlePreview.style.backgroundImage = `url(${e.target.result})`;
                 circlePreview.style.backgroundSize = "cover";
@@ -195,6 +192,7 @@
 
             reader.readAsDataURL(file);
         }
+
 
     </script>
 @endsection
