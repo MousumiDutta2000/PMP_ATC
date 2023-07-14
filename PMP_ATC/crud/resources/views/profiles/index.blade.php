@@ -37,7 +37,7 @@
         </div>
         <div>
             <table id="profileTable" class="table table-hover responsive table-sm" style="width: 100%;border-spacing: 0 10px;">
-                <thead class="" style="border-radius:5px">
+                <thead class="" style="border-radius:7px">
                     <tr>
                         <th>Name</th>
                         <th>Phone Number</th>
