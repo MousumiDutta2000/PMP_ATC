@@ -675,8 +675,11 @@ h6 {
 
 .sidebar_collapse_icon
 {
-  padding-top: 50px;
-  margin-left: -8px;
+  color: #012970;
+  float:right;
+  left:95%; 
+  top: 600px; 
+  position: absolute;
 }
 
 .toggle-sidebar-btn.rotate {

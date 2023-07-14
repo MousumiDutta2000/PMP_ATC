@@ -326,9 +326,9 @@
           <span class="icon_text">Projects</span>
         </a>
       </li><!-- End projects Nav -->
-      <li>
-      <i class="fa-solid fa-circle-chevron-left fa-lg toggle-sidebar-btn sidebar_collapse_icon" style="color: #012970;  float:right;"></i>
-      </li>
+      {{-- <li> --}}
+      <i class="fa-solid fa-circle-chevron-left fa-lg toggle-sidebar-btn sidebar_collapse_icon"></i>
+      {{-- </li> --}}
     </ul>
 
 </aside><!-- End Sidebar-->
