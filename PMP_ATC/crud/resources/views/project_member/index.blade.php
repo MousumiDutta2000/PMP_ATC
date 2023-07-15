@@ -70,11 +70,11 @@
                                     <form method="post" action="{{ route('project-members.destroy', ['project_member' => $projectMember->id]) }}">
                                         @method('delete')
                                         @csrf
-                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal">
+                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal{{ $projectMember->id }}">
                                             <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
                                         </button>          
                                         <!-- Delete Modal start -->
-                                        <div class="modal fade" id="deleteModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal{{ $projectMember->id }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header flex-column">

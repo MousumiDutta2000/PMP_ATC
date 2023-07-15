@@ -74,11 +74,11 @@
                                     <form method="post" action="{{ route('project_item_statuses.destroy', ['project_item_status' => $status->id]) }}">
                                         @method('delete')
                                         @csrf
-                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal">
+                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal{{ $status->id }}">
                                             <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
                                         </button>          
                                         <!-- Delete Modal start -->
-                                        <div class="modal fade" id="deleteModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal{{ $status->id }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header flex-column">
