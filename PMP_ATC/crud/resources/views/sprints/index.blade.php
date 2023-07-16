@@ -14,6 +14,7 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/boxicons@2.0.0/css/boxicons.min.css'>
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sprint.css') }}">
 @endsection
 
 @section('custom_js')
@@ -60,11 +61,11 @@
                             <td style="padding-left:30px;">{{ $sprint->uuid }}</td>
                             <td>{{ $sprint->sprint_name }}</td>
                             {{-- <td>{{ $sprint->is_global_sprint }}</td> --}}
-                            <td>
+                            <td style="padding-left:27px;">
                                 @if ($sprint->is_global_sprint == 'yes')
-                                  <span style="color: green;">&#10004;</span> <!-- Tick symbol -->
+                                  <span class="tick_symbol">&#10004;</span> <!-- Tick symbol -->
                                 @else
-                                <i class="fas fa-times" style="color: red;"></i> <!-- Cross symbol -->
+                                <i class="fas fa-times cross_sign"></i> <!-- Cross symbol -->
                                 @endif
                               </td>
                             <td>{{ $sprint->project->project_name }}</td>   
@@ -151,7 +152,14 @@
                                     </tr>
                                     <tr>
                                         <th style="font-weight: 600; padding-left:30px;">Is Global Sprint:</th>
-                                        <td style="font-weight: 500">{{ $sprint->is_global_sprint }}</td>
+                                        <td style="padding-left:27px; font-weight: 500;">
+                                            @if ($sprint->is_global_sprint == 'yes')
+                                              <span class="tick_symbol">&#10004;</span> <!-- Tick symbol -->
+                                            @else
+                                            <i class="fas fa-times cross_sign"></i> <!-- Cross symbol -->
+                                            @endif
+                                          </td>
+                                        {{-- <td style="font-weight: 500">{{ $sprint->is_global_sprint }}</td> --}}
                                     </tr>
                                     <tr>
                                         <th style="font-weight: 600; padding-left:30px;">Project ID:</th>

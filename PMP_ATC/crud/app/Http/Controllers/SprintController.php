@@ -37,6 +37,7 @@ class SprintController extends Controller
     {
         $request->validate([
             'sprint_name' => 'required',
+            'is_global_sprint' => 'required|in:yes,no', 
             'project_id' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
@@ -48,6 +49,7 @@ class SprintController extends Controller
         $sprint = new Sprint;
         $sprint->uuid = substr(Str::uuid()->toString(), 0, 8);
         $sprint->sprint_name = $request->sprint_name;
+        $sprint->is_global_sprint = $request->is_global_sprint;
         $sprint->project_id = $request->project_id;
         $sprint->start_date = $request->start_date;
         $sprint->end_date = $request->end_date;
@@ -80,6 +82,7 @@ class SprintController extends Controller
     {
         $request->validate([
             'sprint_name' => 'required',
+            'is_global_sprint' => 'required|in:yes,no',
             'project_id' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
@@ -90,6 +93,7 @@ class SprintController extends Controller
 
         $sprint->uuid = substr(Str::uuid()->toString(), 0, 8);
         $sprint->sprint_name = $request->sprint_name;
+        $sprint->is_global_sprint = $request->is_global_sprint;
         $sprint->project_id = $request->project_id;
         $sprint->start_date = $request->start_date;
         $sprint->end_date = $request->end_date;
