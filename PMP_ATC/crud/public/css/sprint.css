@@ -1,24 +1,14 @@
 .cross_sign{
-    color:white;
-    background-color:red;
-    border:1px solid red; 
-    height: 22px;
-    width:22px;
-    border-radius:50%;
-    padding-top:2px;
+    color:red;
+    padding-top:8px; 
     text-align: center;
+    font-size:22px;
 }
 
 .tick_symbol{
-    color:white;
-    background-color:green;
-    border:1px solid green;
-    height: 21px;
-    width:21px;
-    border-radius:50%;
-    padding-top:2px;
-    padding-left:3px;
-    padding-right:3px;
+    color:green;
+    padding-top:8px;
+    font-size:22px;
 
 }
 
