@@ -26,6 +26,11 @@ class Project extends Model
         'project_role_id',
     ];
 
+    protected $casts = [
+        'project_members_id' => 'array',
+        'project_role_id' => 'array',
+    ];
+
     // Relationships
 
     public function projectManager()
@@ -56,10 +61,5 @@ class Project extends Model
     public function projectRole()
     {
         return $this->belongsTo(User::class, 'project_role_id');
-    }
-
-    public function image()
-    {
-        return $this->hasOne(Profile::class, 'user_id', 'id');
     }
 }
