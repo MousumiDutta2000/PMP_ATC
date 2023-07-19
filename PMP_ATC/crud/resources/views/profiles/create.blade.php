@@ -61,7 +61,7 @@
             @csrf
             <div id="section-1">
                 <h5>Add Profile Details</h5>
-                <div>
+                <div class="row">
                     <div>
                         <div class="d-flex flex-column align-items-center">
                             <div class="image-preview mb-2">
@@ -82,16 +82,28 @@
                             <input type="text" name="profile_name" id="profile_name" class="form-control shadow-sm" placeholder="Enter name" value="{{ old('profile_name') }}" required>
                         </div>
                     </div>
-                    <div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="contact_number" class="mb-1" style="font-size: 15px;">Contact Number:</label>
                             <input type="text" class="form-control shadow-sm" name="contact_number" id="contact_number" placeholder="Enter contact number" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" style="color: #858585; font-size: 14px;">
                         </div>
                     </div>
-                    <div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="email" class="mb-1" style="font-size: 15px;">Email:</label>
                             <input type="text" class="form-control shadow-sm" name="email" id="email" placeholder="Enter email id" required style="color: #858585; font-size: 14px;">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="work_location" class="mb-1" style="font-size: 15px;">Work Location:</label>
+                            <input type="text" name="work_location" id="work_location" class="form-control shadow-sm" placeholder="Enter work location" required style="color: #858585; font-size: 14px;">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="work_address" class="mb-1" style="font-size: 15px;">Work Address:</label>
+                            <input type="text" name="work_address" id="work_address" class="form-control shadow-sm" placeholder="Enter work address" required style="color: #858585; font-size: 14px;">
                         </div>
                     </div>
                 </div>
@@ -147,18 +159,6 @@
                         <div class="form-group">
                             <label for="DOB" class="mb-1" style="font-size: 15px;">Date of Birth:</label>
                             <input type="date" name="DOB" id="DOB" class="form-control shadow-sm" required style="color: #858585; font-size: 14px;">
-                        </div>
-                    </div>
-                    <div class="col-md-6 pt-4" style="padding-right: 50px padding-left: 50px">
-                        <div class="form-group">
-                            <label for="work_location" class="mb-1" style="font-size: 15px;">Work Location:</label>
-                            <input type="text" name="work_location" id="work_location" class="form-control shadow-sm" placeholder="Enter work location" required style="color: #858585; font-size: 14px;">
-                        </div>
-                    </div>
-                    <div class="col-md-6 pt-4" style="padding-right: 50px padding-left: 50px">
-                        <div class="form-group">
-                            <label for="work_address" class="mb-1" style="font-size: 15px;">Work Address:</label>
-                            <input type="text" name="work_address" id="work_address" class="form-control shadow-sm" placeholder="Enter work address" required style="color: #858585; font-size: 14px;">
                         </div>
                     </div>
                     <div class="col-md-6 pt-4" style="padding-right: 50px padding-left: 50px">
