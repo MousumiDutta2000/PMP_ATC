@@ -131,7 +131,7 @@
             
             <!-- Show Modal -->
             @foreach ($sprints as $sprint)
-            <div class="modal fade" id="showModal_{{ $sprint->id }}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $sprint->id }}" aria-hidden="true">
+            <div class="modal fade" id="showModal_{{ $sprint->id }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $sprint->id }}" aria-hidden="true">
                 <div class="modal-dialog modal-md modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header" style=" background-color:#061148; ">

@@ -178,7 +178,9 @@ class ProfileController extends Controller
 
     public function destroy(Profile $profile)
     {
+        $user = $profile->user;
         $profile->delete();
+        $user->delete();
         $user_technologies = UserTechnology :: all();
         return redirect('profiles')->with('success', 'Profile deleted!');
     }
