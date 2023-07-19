@@ -1,7 +1,7 @@
 .form-container {
   margin: 0 auto;
   background-color: white; /*#dee1fa; */
-  padding: 20px;
+  padding: 10px 20px 10px 20px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -14,7 +14,7 @@ h1 {
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .label {
