@@ -216,73 +216,62 @@
                     </div>
                 </div>
             </div>
-                                
+            
             <!-- <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header p-0">
-                        <h5 class="modal-title" id="editModalLabel">Edit Member</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header p-0">
+                            <h5 class="modal-title" id="editModalLabel">Edit Member</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
 
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="editFieldName" class="form-label mb-3">Member Name</label>
-                            </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="editFieldName" class="form-label mb-3">Member Name</label>
+                                </div>
 
-                            <div class="col-md-6" style="font-size:14px;">
-                                <select id="edit_project_members_id" name="project_members_id" class="select" required style="width:100%;">
-                                    <option value="">Select Member</option>
-                                    @foreach($projectMembers as $projectMember)
-                                    <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                                <div class="col-md-6" style="font-size:14px;">
+                                    <select id="edit_project_members_id" name="project_members_id" class="select" required style="width:100%;">
+                                        <option value="">Select Member</option>
+                                        @foreach($projectMembers as $projectMember)
+                                        <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                            <div class="col-md-6">
-                                <label for="editRoleSelect" class="form-label mb-3">Role</label>
-                            </div>
+                                <div class="col-md-6">
+                                    <label for="editRoleSelect" class="form-label mb-3">Role</label>
+                                </div>
 
-                            <div class="col-md-6">
-                                <select id="edit_project_role_id" name="project_role_id" class="form-control" required>
-                                    <option value="">Select Role</option>
-                                    @foreach ($projectRoles as $projectRole)
-                                        <option value="{{ $projectRole->id }}">{{ $projectRole->member_role_type }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                                <div class="col-md-6">
+                                    <select id="edit_project_role_id" name="project_role_id" class="form-control" required>
+                                        <option value="">Select Role</option>
+                                        @foreach ($projectRoles as $projectRole)
+                                            <option value="{{ $projectRole->id }}">{{ $projectRole->member_role_type }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
 
-                            <div class="col-md-12 mt-3 text-end">
-                                <button type="button" class="btn btn-primary" id="updateMemberBtn">Update</button>
-                                <button type="button" class="btn btn-primary" id="removeBtn">Remove</button>
+                                <div class="col-md-12 mt-3 text-end">
+                                    <button type="button" class="btn btn-primary" id="updateMemberBtn">Update</button>
+                                    <button type="button" class="btn btn-primary" id="removeBtn">Remove</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> -->
-            </div> 
+            </div>  -->
+
         </div>
 
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Create</button>
-                <a href="{{ route('projects.index') }}" class="btn btn-danger">Cancel</a>
-            </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a href="{{ route('projects.index') }}" class="btn btn-danger">Cancel</a>
+        </div>
     </form>
 </div>
-
-<script>
-
-    function addMember() {
-        // Add member logic here
-
-        closeModal(); // Close the modal after adding a member
-        
-        // Remove focus from the select element
-        $('#technology_id').blur();
-    }
-</script>
 
 <!-- Select2 JS -->
 <script>
@@ -300,6 +289,12 @@ $(document).ready(function() {
         placeholder: 'Select Member',
         dropdownParent: $('#editModal')
     });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('.member').select2();
 });
 </script>
 
@@ -334,54 +329,56 @@ $(document).ready(function() {
 
 <!-- ADD Member $ EDIT Member JS -->
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
     // Plus sign click event handler
     $('#plusSign').click(function() {
-    // Show the add member modal
-    $('#myModal').modal('show');
+        // Show the add member modal
+        $('#myModal').modal('show');
     });
 
     // Add member button click event handler
     $("#addMemberBtn").click(function() {
-    var memberName = $("#project_members_id option:selected").text();
-    var role = $("#project_role_id option:selected").text();
+        var memberName = $("#project_members_id option:selected").text();
+        var memberId = $("#project_members_id").val();
+        var role = $("#project_role_id option:selected").text();
+        var roleId = $("#project_role_id").val();
 
-    if (memberName && role) {
-        var cardHtml = `
-        
-        <div class="col-md-3">
-            <div class="card mb-0">
-            <div class="card-body mb-2" style="padding: 0 21px 0 21px;">
-            <div class="avatar avatar-blue" style=" margin-left: 34px;">
-            <img class="rounded_circle mb-1 mt-3" src="{{ asset($projectMember->image) }}" alt="Profile Image" width="50">
-            </div>
-                <p id="card-title" class="card-title user-name">${memberName}</p>
-                <p class="card-text role" style="margin-bottom: 0rem; font-size: 11px; font-weight: 400; margin-top: -10px">${role}</p>
-                <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
-                <input type="text" name="memberName[]" id="memberName[]" value="${memberName} - ${role}">
-            </div>
-            </div>
-        </div>`;
+        if (memberName && role) {
+            var cardHtml = `
+            <div class="col-md-3">
+                <div class="card mb-0">
+                    <div class="card-body mb-2" style="padding: 0 21px 0 21px;">
+                        <div class="avatar avatar-blue" style="margin-left: 34px;">
+                            <img class="rounded_circle mb-1 mt-3" src="{{ asset($projectMember->image) }}" alt="Profile Image" width="50">
+                        </div>
+                        <p id="card-title" class="card-title user-name">${memberName}</p>
+                        <p class="card-text role" style="margin-bottom: 0rem; font-size: 11px; font-weight: 400; margin-top: -10px">${role}</p>
+                        <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
+                        <input type="hidden" name="project_members_id[]" value="${memberId}">
+                        <input type="hidden" name="project_role_id[]" value="${roleId}">
+                    </div>
+                </div>
+            </div>`;
 
-        $("#memberCardContainer").append(cardHtml);
-    }
+            $("#memberCardContainer").append(cardHtml);
+        }
 
-    $("#myModal").modal("hide");
+        $("#myModal").modal("hide");
     });
 
     function closeModal() {
         $('#myModal').modal('hide');
     }
 
-   // Edit Member button click event handler
-   $(document).on('click', '.edit-icon', function() {
+    // Edit Member button click event handler
+    $(document).on('click', '.edit-icon', function() {
         // Get the current member name and role from the card
         var card = $(this).closest('.card');
         var memberName = card.find('.user-name').text();
         var memberRole = card.find('.role').text();
 
         // Set the values in the edit modal input fields
-        $('#editFieldName').val(memberName);
+        // $('#editFieldName').val(memberName);
         $('#editRoleSelect').val(memberRole).trigger('change'); // Trigger change event to update select2 dropdown
 
         // Store a reference to the card being edited
@@ -391,8 +388,8 @@ $(document).ready(function() {
         $('#editModal').modal('show');
     });
 
-// Update Member button click event handler
-$('#updateMemberBtn').click(function() {
+    // Update Member button click event handler
+    $('#updateMemberBtn').click(function() {
         // Get the updated member role from the edit modal input field
         var updatedMemberRole = $('#edit_project_role_id option:selected').text();
 
@@ -407,17 +404,15 @@ $('#updateMemberBtn').click(function() {
     });
 
     // Remove Member button click event handler
-     $('#removeBtn').click(function() {
-    // Get the reference to the card being edited
-    var card = $('#editModal').data('card');
+    $(document).on('click', '.remove-btn', function() {
+        // Get the reference to the card being removed
+        var card = $(this).closest('.card');
 
-    // Remove the card from the container
-    card.parent().remove();
-
-    // Hide the edit modal
-    $('#editModal').modal('hide');
+        // Remove the card from the container
+        card.parent().remove();
     });
 });
+
 </script>
 
 @endsection

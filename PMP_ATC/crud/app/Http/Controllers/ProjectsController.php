@@ -35,8 +35,9 @@ class ProjectsController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
-        
+
+        // dd($request);
+
         $request->validate([
             'project_name' => 'required',
             'project_type' => 'required',
@@ -73,6 +74,9 @@ class ProjectsController extends Controller
         $project->client_id = $request->client_id;
         $project->project_members_id = json_encode($request->project_members_id);
         $project->project_role_id = json_encode($request->project_role_id);        
+
+        // $project->project_members_id = json_encode($request->project_members_id);
+        // $project->project_role_id = json_encode($request->project_role_id);
 
         $project->save();
 
