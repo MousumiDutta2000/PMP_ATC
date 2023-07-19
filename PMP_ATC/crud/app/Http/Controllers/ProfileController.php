@@ -18,24 +18,24 @@ class ProfileController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 5;
-
-        $query = Profile::with(['user', 'lineManager']);
-
-        if (!empty($keyword)) {
-            $query->where('name', 'LIKE', "%$keyword%")
-                ->orWhereHas('user', function ($q) use ($keyword) {
-                    $q->where('name', 'LIKE', "%$keyword%");
-                })
-                ->orWhereHas('lineManager', function ($q) use ($keyword) {
-                    $q->where('name', 'LIKE', "%$keyword%");
-                });
-        }
-
-        $profiles = $query->latest()->paginate($perPage);
-        $user_technologies = UserTechnology :: all();
-        return view('profiles.index', compact('profiles'))->with('i', ($profiles->currentPage() - 1) * $perPage);
-    }
+        $profiles = Profile::with(['user', 'lineManager'])
+            ->where(function ($query) use ($keyword) {
+                if (!empty($keyword)) {
+                    $query->where('name', 'LIKE', "%$keyword%")
+                        ->orWhereHas('user', function ($q) use ($keyword) {
+                            $q->where('name', 'LIKE', "%$keyword%");
+                        })
+                        ->orWhereHas('lineManager', function ($q) use ($keyword) {
+                            $q->where('name', 'LIKE', "%$keyword%");
+                        });
+                }
+            })
+            ->latest()
+            ->get();
+    
+        $user_technologies = UserTechnology::all();
+        return view('profiles.index', compact('profiles', 'user_technologies'));
+    }    
 
     public function create()
     {

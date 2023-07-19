@@ -2,6 +2,7 @@ $(document).ready(function() {
   $("#example").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -18,6 +19,7 @@ $(document).ready(function() {
   $("#sprintTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -34,6 +36,7 @@ $(document).ready(function() {
   $("#projectTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -50,6 +53,7 @@ $(document).ready(function() {
   $("#verticalTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -66,6 +70,7 @@ $(document).ready(function() {
   $("#technologiesTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -82,6 +87,7 @@ $(document).ready(function() {
   $("#projectRoleTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -98,6 +104,7 @@ $(document).ready(function() {
   $("#projectMemberTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -114,6 +121,7 @@ $(document).ready(function() {
   $("#projectItemTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -130,6 +138,7 @@ $(document).ready(function() {
   $("#projectItemStatusesTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -146,6 +155,7 @@ $(document).ready(function() {
   $("#profileTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -162,6 +172,7 @@ $(document).ready(function() {
   $("#opportunityStatusTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -178,6 +189,7 @@ $(document).ready(function() {
   $("#opportunitiesTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -194,6 +206,7 @@ $(document).ready(function() {
   $("#highEducationTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -210,6 +223,7 @@ $(document).ready(function() {
   $("#clientTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -226,6 +240,7 @@ $(document).ready(function() {
   $("#designationTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
@@ -242,6 +257,7 @@ $(document).ready(function() {
   $("#userTechnologyTable").DataTable({
     aaSorting: [],
     responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
 
     columnDefs: [
       {
