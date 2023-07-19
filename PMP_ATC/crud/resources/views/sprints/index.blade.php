@@ -57,10 +57,8 @@
                 <tbody>
                     @foreach ($sprints as $sprint)
                         <tr class="shadow" style="border-radius:15px;">
-                            {{-- <td>{{ $sprint->id }}</td> --}}
                             <td style="padding-left:30px;">{{ $sprint->uuid }}</td>
                             <td>{{ $sprint->sprint_name }}</td>
-                            {{-- <td>{{ $sprint->is_global_sprint }}</td> --}}
                             <td style="padding-left:27px;">
                                 @if ($sprint->is_global_sprint == 'yes')
                                   <span class="tick_symbol">&#10004;</span> <!-- Tick symbol -->
@@ -143,10 +141,6 @@
                             <table class="table table-striped" style="margin: 0 auto;">
                                 <tbody>
                                     <tr>
-                                        {{-- <th>ID</th> --}}
-                                        {{-- <td>{{ $sprint->id }}</td> --}}
-                                    </tr>
-                                    <tr>
                                         <th style="font-weight: 600; padding-left:30px;">Sprint Name:</th>
                                         <td style="font-weight: 500">{{ $sprint->sprint_name }}</td>
                                     </tr>
@@ -159,7 +153,6 @@
                                             <i class="fas fa-times cross_sign"></i> <!-- Cross symbol -->
                                             @endif
                                           </td>
-                                        {{-- <td style="font-weight: 500">{{ $sprint->is_global_sprint }}</td> --}}
                                     </tr>
                                     <tr>
                                         <th style="font-weight: 600; padding-left:30px;">Project ID:</th>
@@ -190,7 +183,7 @@
                                                 <div class="badge badge-danger-light text-white font-weight-bold" style="background-color: #f07f8c;">{{ $sprint->status }}</div>
                                             @endif
                                         </td>
-                                        {{-- <td>{{ $sprint->status }}</td> --}}
+                                        
                                     </tr>
                                     <tr>
                                         <th style="font-weight: 600; padding-left:30px;">Assigned To:</th>
