@@ -72,8 +72,8 @@ class ProjectsController extends Controller
         // $project->technology_id = $request->technology_id;
         $project->technology_id = implode(',', $request->technology_id); 
         $project->client_id = $request->client_id;
-        $project->project_members_id = json_encode($request->project_members_id);
-        $project->project_role_id = json_encode($request->project_role_id);        
+        $project->project_members_id = $request->project_members_id;
+        $project->project_role_id = $request->project_role_id;
 
         // $project->project_members_id = json_encode($request->project_members_id);
         // $project->project_role_id = json_encode($request->project_role_id);
@@ -109,9 +109,13 @@ class ProjectsController extends Controller
         $clients = Client::all();
         $projectRoles = ProjectRole::all();
         $projectMembers = Profile::all();
+        
+        // Retrieve the selected technologies for the project
+        $selectedTechnologies = explode(',', $project->technology_id);
 
-        return view('projects.edit', compact('project', 'users', 'technologies', 'verticals', 'clients', 'projectRoles', 'projectMembers', 'projectManagers'));
+        return view('projects.edit', compact('project', 'users', 'technologies', 'verticals', 'clients', 'projectRoles', 'projectMembers', 'projectManagers', 'selectedTechnologies'));
     }
+
 
     public function update(Request $request, Project $project)
     {
@@ -148,8 +152,8 @@ class ProjectsController extends Controller
         // $project->technology_id = $request->technology_id;
         $project->technology_id = implode(',', $request->technology_id); 
         $project->client_id = $request->client_id;
-        $project->project_members_id = json_encode($request->project_members_id);
-        $project->project_role_id = json_encode($request->project_role_id);
+        $project->project_members_id = $request->project_members_id;
+        $project->project_role_id = $request->project_role_id;
         $project->save();
 
         return redirect()->route('projects.index')->with('success', 'Project settings updated successfully.');
