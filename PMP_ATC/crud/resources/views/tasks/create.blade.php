@@ -64,7 +64,7 @@
                     <select name="priority" id="priority" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                         <option value="" selected="selected" disabled="disabled">Select priority</option>
                         <option value="Low priority">Low priority</option>
-                        <option value="Med priority">Med priority</option>
+                        <option value="Med Priority">Med priority</option>
                         <option value="High priority">High priority</option>
                     </select>
                 </div>
@@ -109,14 +109,34 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="estimated_time" style="font-size: 15px;">Estimated Time</label>
-                    <input type="datetime-local" name="estimated_time" id="estimated_time" class="form-control shadow-sm"  style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
+                    <div class="input-group">
+                        <input type="number" name="estimated_time_number" id="estimated_time_number" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
+                        <div class="input-group-append">
+                            <select name="estimated_time_unit" id="estimated_time_unit" class="form-control shadow-sm" style="height:39px; color: #858585; font-size: 14px;">
+                                <option value="hour">Hour</option>
+                                <option value="day">Day</option>
+                                <option value="month">Month</option>
+                                <option value="year">Year</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>        
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="time_taken">Time Taken</label>
-                    <input type="datetime-local" name="time_taken" id="time_taken" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
+                    <div class="input-group">
+                        <input type="number" name="time_taken_number" id="time_taken_number" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
+                        <div class="input-group-append">
+                            <select name="time_taken_unit" id="time_taken_unit" class="form-control shadow-sm" style="height:39px; color: #858585; font-size: 14px;">
+                                <option value="hour">Hour</option>
+                                <option value="day">Day</option>
+                                <option value="month">Month</option>
+                                <option value="year">Year</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             
