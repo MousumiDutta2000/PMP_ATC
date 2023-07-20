@@ -99,4 +99,3 @@ Route::controller(MicrosoftController::class, '')->group(function () {
     Route::get('auth/microsoft/callback', 'handleProviderCallback')->name('auth.microsoft.callback');
 
 });
-

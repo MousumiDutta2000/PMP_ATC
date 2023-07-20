@@ -43,6 +43,7 @@ class UserTechnologyController extends Controller
             'is_current_company' => 'boolean'
         ]);
 
+        // Create a new UserTechnology instance and set its properties
         $user_technology = new UserTechnology;
         $user_technology->user_id = $request->user_id;
         $user_technology->project_role_id = $request->project_role_id;
@@ -50,11 +51,14 @@ class UserTechnologyController extends Controller
         $user_technology->details = $request->details;
         $user_technology->years_of_experience = $request->years_of_experience;
         $user_technology->is_current_company = $request->has('is_current_company');
-        //$user_technology->user_id = $user->id;
 
+        // Save the new user technology record
         $user_technology->save();
-        return redirect()->route('user_technologies.index')->with('success', 'Skill added successfully.');
+
+        // Redirect back to the same page and display a success message.
+        return back()->with('success', 'Skill added successfully.');
     }
+
 
     public function show($id)
     {   
