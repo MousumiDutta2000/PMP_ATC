@@ -39,6 +39,18 @@
     background-color: #5ce75c;
 }
 
+.container {
+  white-space: nowrap; /* Prevents line break between the divs */
+}
+
+.profile-details,
+.page-number {
+  display: inline-block; /* Display divs inline */
+  vertical-align: top;
+
+}
+
+
 </style>
 @endsection 
 
@@ -56,11 +68,16 @@
     @endif
 
     <div class="form-container w-50">
-        <div class="page-number text-secondary" id="page-number-1" style="text-align: right;">Page 1 of 3</div>
+        <div class="container">
+            <div class="profile-details">
+              <h5>Add Profile Details</h5>
+            </div>
+            <div class="page-number text-secondary" id="page-number-1" style="text-align: right; float:right">Page 1 of 3</div>
+          </div>
         <form method="post" action="{{ route('profiles.store') }}" enctype="multipart/form-data">
             @csrf
             <div id="section-1">
-                <h5>Add Profile Details</h5>
+                
                 <div class="row">
                     <div>
                         <div class="d-flex flex-column align-items-center">
