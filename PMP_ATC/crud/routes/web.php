@@ -18,6 +18,8 @@ use App\Http\Controllers\ProjectItemController;
 use App\Http\Controllers\UserTechnologyController;
 use App\Http\Controllers\Auth\MicrosoftController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,6 +87,8 @@ Route::middleware([
     Route::get('/exports', [SprintController::class, 'export'])->name('sprints.export');
     Route::resource('project_item_statuses', ProjectItemStatusController::class);
     Route::resource('project-items', ProjectItemController::class);
+    Route::resource('tasks', TaskController::class);
+    Route::resource('comments', CommentController::class);
     Route::resource('user_technologies', UserTechnologyController::class);
 
     Route::get('/get-profile-email/{id}', 'ProfileController@getProfileEmail');
