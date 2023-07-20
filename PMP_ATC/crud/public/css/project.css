@@ -130,12 +130,13 @@ height: 140px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   border-radius: 50%;
   margin-right: 8px;
   background-color: cornflowerblue;
   color: black;
+  font-size: 10px;
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
@@ -143,6 +144,10 @@ height: 140px;
 .select2-results__option--highlighted .circle {
   background-color: rgb(9, 42, 104);
   color: whitesmoke;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  border: none !important;
 }
 
 #myModal .select2-container {
@@ -213,4 +218,13 @@ font-size: 14px;
 #edit_project_role_id {
 color: #858585;
 font-size: 14px;
+}
+
+/* Edit project membercard gap */
+
+@media (min-width: 768px) {
+  #cardgap {
+    flex: 0 0 12%;
+    width: 13% !important;
+  }
 }

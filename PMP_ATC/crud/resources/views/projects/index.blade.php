@@ -39,7 +39,7 @@
             <table id="projectTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
-                        <th style="width: 150px; padding-left: 37px;">UUID</th>
+                        <th style="width: 150px; padding-left: 37px;">ID</th>
                         <th style="width: 380px;">Project Name</th>
                         <th style="width: 182px;">Status</th>
                         <th style="width: 113px;">Actions</th>

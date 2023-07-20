@@ -217,7 +217,7 @@
                 </div>
             </div>
             
-            <!-- <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header p-0">
@@ -262,7 +262,7 @@
                         </div>
                     </div>
                 </div>
-            </div>  -->
+            </div> 
 
         </div>
 
@@ -272,31 +272,6 @@
         </div>
     </form>
 </div>
-
-<!-- Select2 JS -->
-<script>
-$(document).ready(function() {
-    $('.js-example-basic-single').select2({
-        placeholder: 'Select Member',
-        dropdownParent: $('#myModal')
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('.select').select2({
-        placeholder: 'Select Member',
-        dropdownParent: $('#editModal')
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('.member').select2();
-});
-</script>
 
 <script>
 $(document).ready(function() {
@@ -317,15 +292,6 @@ $(document).ready(function() {
     }
 });
 </script>
-
-
-<!-- CSK Editor JS -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    });
-</script>
-
 
 <!-- ADD Member $ EDIT Member JS -->
 <script>
@@ -364,6 +330,11 @@ $(document).ready(function() {
         }
 
         $("#myModal").modal("hide");
+
+        $('#myModal').on('show.bs.modal', function () {
+            $('#project_members_id').val(null).trigger('change');
+            $('#project_role_id').val(null).trigger('change');
+        });
     });
 
     function closeModal() {
