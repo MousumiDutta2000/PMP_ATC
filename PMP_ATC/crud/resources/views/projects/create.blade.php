@@ -187,7 +187,7 @@
                                 </div>
                 
                                 <div class="col-md-6" style="font-size:14px;">
-                                    <select id="project_members_id" name="project_members_id[]" class="js-example-basic-single" required style="width:100%;">
+                                    <select id="project_members_id" name="project_members_id[]" class="addmember" required style="width:100%;">
                                         <option value="">Select Member</option>
                                         @foreach($projectMembers as $projectMember)
                                         <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
@@ -232,7 +232,7 @@
                                 </div>
 
                                 <div class="col-md-6" style="font-size:14px;">
-                                    <select id="edit_project_members_id" name="project_members_id[]" class="select" required style="width:100%;">
+                                    <select id="edit_project_members_id" name="project_members_id[]" class="editmember" required style="width:100%;">
                                         <option value="">Select Member</option>
                                         @foreach($projectMembers as $projectMember)
                                         <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
@@ -274,29 +274,6 @@
 </div>
 
 <!-- Select2 JS -->
-<script>
-$(document).ready(function() {
-    $('.js-example-basic-single').select2({
-        placeholder: 'Select Member',
-        dropdownParent: $('#myModal')
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('.select').select2({
-        placeholder: 'Select Member',
-        dropdownParent: $('#editModal')
-    });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('.member').select2();
-});
-</script>
 
 <script>
 $(document).ready(function() {
@@ -318,21 +295,11 @@ $(document).ready(function() {
 });
 </script>
 
-
-<!-- CSK Editor JS -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    });
-</script>
-
-
 <!-- ADD Member $ EDIT Member JS -->
 <script>
 $(document).ready(function() {
-    // Plus sign click event handler
+    // Plus sign click event handler: show the add member modal
     $('#plusSign').click(function() {
-        // Show the add member modal
         $('#myModal').modal('show');
     });
 
