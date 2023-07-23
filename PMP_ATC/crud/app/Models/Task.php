@@ -22,5 +22,24 @@ class Task extends Model
         'parent_task',
     ];
 
+    public function createdBy()
+    {
+        return $this->belongsTo(Profile::class, 'created_by');
+    }
+
+    public function lastEditedBy()
+    {
+        return $this->belongsTo(Profile::class, 'last_edited_by');
+    }
+
+    public function assignedTo()
+    {
+        return $this->belongsTo(Profile::class, 'assigned_to');
+    }
+
+    public function parentTask()
+    {
+        return $this->belongsTo(Task::class, 'parent_task');
+    }
    
 }

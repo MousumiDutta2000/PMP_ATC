@@ -64,7 +64,7 @@
                     <select name="priority" id="priority" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                         <option value="" selected="selected" disabled="disabled">Select priority</option>
                         <option value="Low priority">Low priority</option>
-                        <option value="Med Priority">Med priority</option>
+                        <option value="Med priority">Med priority</option>
                         <option value="High priority">High priority</option>
                     </select>
                 </div>
@@ -87,7 +87,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="assigned_to" style="font-size: 15px;">Assigned To</label>
-                    <input type="text" name="assigned_to" id="assigned_to" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                    {{-- <input type="text" name="assigned_to" id="assigned_to" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required> --}}
+                    <select name="assigned_to" id="assigned_to" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                        <option value="">Select User</option>
+                        @foreach ($profiles as $profile)
+                            <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
             </div>
@@ -95,14 +101,26 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="created_by" style="font-size: 15px;">Created By</label>
-                    <input type="text" name="created_by" id="created_by" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                    {{-- <input type="text" name="created_by" id="created_by" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required> --}}
+                    <select name="created_by" id="created_by" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                        <option value="">Select User</option>
+                        @foreach ($profiles as $profile)
+                            <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
             </div>
             <div class="col-md-6">
             <div class="form-group">
                 <label for="last_edited_by" style="font-size: 15px;">Last Edited By</label>
-                <input type="text" name="last_edited_by" id="last_edited_by" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                {{-- <input type="text" name="last_edited_by" id="last_edited_by" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required> --}}
+                <select name="last_edited_by" id="last_edited_by" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                    <option value="">Select User</option>
+                    @foreach ($profiles as $profile)
+                        <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
+                    @endforeach
+                </select>
             </div>
             </div>
 
@@ -158,13 +176,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="parent_task" style="font-size: 15px;">Parent Task</label>
-                    <input type="number" name="parent_task" id="parent_task" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
-                    {{-- <select name="parent_task" id="parent_task" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
-                        <option value="">Select Project</option>
-                        @foreach ($projects as $project)
-                            <option value="{{ $project->id }}">{{ $project->project_name }}</option>
+                    <select name="parent_task" id="parent_task" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                        <option value="">Select Task</option>
+                        @foreach ($tasks as $task)
+                            <option value="{{ $task->id }}">{{ $task->title }}</option>
                         @endforeach
-                    </select> --}}
+                    </select>
+                    {{-- <input type="number" name="parent_task" id="parent_task" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;"> --}}
+                   
                 </div>
             </div>
 
