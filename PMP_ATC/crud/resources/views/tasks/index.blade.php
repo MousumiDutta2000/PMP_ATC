@@ -58,7 +58,7 @@
                 </thead>
                 <tbody>
                     @foreach($tasks as $task)
-                <tr>
+                <tr class="shadow" style="border-radius:15px;">
                     <td style="font-size: 15px;">{{ $task->uuid }}</td>
                     <td style="font-size: 15px;">{{ $task->title }}</td>
                     <td style="font-size: 15px;">{{ $task->type }}</td>
