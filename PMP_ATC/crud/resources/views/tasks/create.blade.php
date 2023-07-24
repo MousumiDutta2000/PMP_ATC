@@ -176,7 +176,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="parent_task" style="font-size: 15px;">Parent Task</label>
-                    <select name="parent_task" id="parent_task" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                    <select name="parent_task" id="parent_task" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                         <option value="">Select Task</option>
                         @foreach ($tasks as $task)
                             <option value="{{ $task->id }}">{{ $task->title }}</option>
