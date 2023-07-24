@@ -74,7 +74,7 @@
                     {{-- <td>{{ $task->details }}</td> --}}
                     <td style="font-size: 15px;">{{ $task->attachments }}</td>
                     <td style="font-size: 15px;">{{ $task->assignedTo->profile_name }}</td>
-                    <td style="font-size: 15px;">{{ $task->createdBy->profile_name }}</td>
+                    {{-- <td style="font-size: 15px;">{{ $task->createdBy->profile_name }}</td> --}}
                     {{-- <td style="font-size: 15px;">{{ $task->lastEditedBy->profile_name }}</td> --}}
                    
                     {{-- <td>{{ $task->estimated_time }}</td> --}}
