@@ -5,7 +5,7 @@
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('comments.index') }}">Home</a></li>
     <li class="breadcrumb-item" aria-current="page"><a href="{{ route('comments.index') }}">Comments</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Add</li>
+    
 @endsection
 
 @section('custom_css')
@@ -54,7 +54,7 @@
                                 <td>
                                     <div class="btn-group" role="group">
                                         <a href="{{ route('comments.show', ['comment' => $comment->id]) }}">
-                                            <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
+                                            <i class="fas fa-eye text-info" style="margin-right: 10px; padding-top:5px;" ></i>
                                         </a>
                                         <a href="{{ route('comments.edit', ['comment' => $comment->id]) }}">
                                             <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
