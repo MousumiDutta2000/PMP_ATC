@@ -47,9 +47,9 @@
                 <tbody>
                         @foreach($comments as $comment)
                             <tr class="shadow" style="border-radius:15px;">
-                                <td style="padding-left: 82px;">{{$comment->commented_by}}</td>
-                                <td>{{$comment->user}}</td>
-                                <td>{{$comment->task_id}}</td>
+                                <td style="padding-left: 82px;">{{ $comment->commentedBy->profile_name }}</td>
+                                <td>{{ $comment->users->profile_name }}</td>
+                                <td>{{ $comment->task->title }}</td>
                                
                                 <td>
                                     <div class="btn-group" role="group">

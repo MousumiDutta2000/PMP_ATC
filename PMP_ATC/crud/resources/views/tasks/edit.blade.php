@@ -183,7 +183,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="parent_task" style="font-size: 15px;">Parent Task</label>
-                    <input type="number" name="parent_task" id="parent_task" class="form-control shadow-sm" value="{{ $task->parent_task }}">
+                    <select name="parent_task" id="parent_task" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                        @foreach ($tasks as $task)
+                            <option value="{{ $task->id }}" {{ $task->title == $task->id ? 'selected' : '' }}>
+                                {{ $task->title }}
+                            </option>
+                        @endforeach
+                    </select>
+                    {{-- <input type="number" name="parent_task" id="parent_task" class="form-control shadow-sm" value="{{ $task->parent_task }}"> --}}
                 </div>
             </div>    
 
