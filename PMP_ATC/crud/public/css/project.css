@@ -102,6 +102,21 @@
   cursor: pointer;
 }
 
+.fa-xs {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 14px;
+  color: #888;
+  visibility: hidden;
+  transition: visibility 0.3s;
+}
+
+.card:hover .fa-xs {
+  visibility: visible;
+  cursor: pointer;
+}
+
 /* Add this CSS to your project.css file or inline style tag */
 #memberCardContainer {
 display: flex;
@@ -156,19 +171,35 @@ z-index: 1061 !important;
 
 .rounded_circle{
 margin-top: 13px; 
-height: 70px; 
-width: 70px; 
+height: 55px; 
+width: 55px; 
 /* margin-left: 6px;  */
 border-radius: 50%;
 margin-right: 34px;
 }
 
-#card-title{
-padding: 0px;
-font-size: 12px;
-font-weight: 500;
-color: #012970;
-font-family: "Poppins", sans-serif;
+.card-title {
+  font-size: 12px !important;
+}
+
+.card-text {
+  margin-bottom: 0rem;
+  font-size: 11px;
+  font-weight: 400;
+  margin-top: -10px;
+}
+
+.fa-edit{
+  color: #7d4287; 
+  cursor: pointer;
+}
+
+.avatar-blue{
+  margin-left: 34px;
+}
+
+.card-body {
+  padding: 0 21px 0 21px;
 }
 
 .select2-container--default .select2-selection--multiple{

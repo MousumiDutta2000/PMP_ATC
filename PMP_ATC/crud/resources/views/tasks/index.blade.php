@@ -39,16 +39,16 @@
             <table id="taskTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
-                        <th>UUID</th>
+                        <th>ID</th>
                         <th>Title</th>
                         <th>Type</th>
                         <th>Priority</th>
-                        <th>Details</th>
+                        {{-- <th>Details</th> --}}
                         <th>Attachments</th>
                         <th>Assigned To</th>
-                        <th>Created By</th>
-                        <th>Last Edited By</th>
-                        <th>Estimated Time</th>
+                        {{-- <th>Created By</th> --}}
+                        {{-- <th>Last Edited By</th> --}}
+                        {{-- <th>Estimated Time</th> --}}
                         <th>Time Taken</th>
                         <th>Status</th>
                         <th>Parent Task</th>
@@ -59,21 +59,37 @@
                 <tbody>
                     @foreach($tasks as $task)
                 <tr>
-                    <td>{{ $task->uuid }}</td>
-                    <td>{{ $task->title }}</td>
-                    <td>{{ $task->type }}</td>
-                    <td>{{ $task->priority }}</td>
-                    <td>{{ $task->details }}</td>
-                    <td>{{ $task->attachments }}</td>
-                    <td>{{ $task->assigned_to }}</td>
-                    <td>{{ $task->created_by }}</td>
-                    <td>{{ $task->last_edited_by }}</td>
-                    <td>{{ $task->estimated_time }}</td>
-                    <td>{{ $task->time_taken }}</td>
-                    <td>{{ $task->status }}</td>
-                    <td>{{ $task->parent_task }}</td>
+                    <td style="font-size: 15px;">{{ $task->uuid }}</td>
+                    <td style="font-size: 15px;">{{ $task->title }}</td>
+                    <td style="font-size: 15px;">{{ $task->type }}</td>
+                    <td style="font-size: 14px;">
+                        @if($task->priority == 'Low priority')
+                            <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
+                        @elseif($task->priority == 'Med priority')
+                            <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #81d5ee 17%, #7ed492 83%);">{{ $task->priority }}</div>
+                        @elseif($task->priority == 'High priority')
+                            <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
+                        @endif
+                    </td>
+                    {{-- <td>{{ $task->details }}</td> --}}
+                    <td style="font-size: 15px;">{{ $task->attachments }}</td>
+                    <td style="font-size: 15px;">{{ $task->assignedTo->profile_name }}</td>
+                    <td style="font-size: 15px;">{{ $task->createdBy->profile_name }}</td>
+                    {{-- <td style="font-size: 15px;">{{ $task->lastEditedBy->profile_name }}</td> --}}
+                   
+                    {{-- <td>{{ $task->estimated_time }}</td> --}}
+                    <td style="font-size: 15px;">{{ $task->time_taken }}</td>
+                    <td style="font-size: 15px;">{{ $task->status }}</td>
+                    <td style="font-size: 15px;">
+                        @if($task->parentTask)
+                            {{ $task->parentTask->title }}
+                        @else
+                            Null
+                        @endif
+                    </td>
+                    {{-- <td style="font-size: 15px;">{{ $task->parentTask->title }}</td> --}}
                     
-                    <td>
+                    <td class="d-flex align-items-center" style="font-size: 15px;">
                         <a href="{{ route('tasks.show', ['task' => $task->id]) }}">
                             <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
                         </a>

@@ -172,7 +172,7 @@
             </div>
 
             <!-- Bootstrap Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="close" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog modal-dialog-centered" role="document" style="z-index: 1060;">
                     <div class="modal-content">
                         <div class="modal-header p-0" style="margin-left:15px;">
@@ -187,7 +187,7 @@
                                 </div>
                 
                                 <div class="col-md-6" style="font-size:14px;">
-                                    <select id="project_members_id" name="project_members_id[]" class="js-example-basic-single" required style="width:100%;">
+                                    <select id="project_members_id" name="project_members_id[]" class="addmember" required style="width:100%;">
                                         <option value="">Select Member</option>
                                         @foreach($projectMembers as $projectMember)
                                         <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
@@ -217,7 +217,7 @@
                 </div>
             </div>
             
-            <!-- <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="close" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header p-0">
@@ -232,7 +232,7 @@
                                 </div>
 
                                 <div class="col-md-6" style="font-size:14px;">
-                                    <select id="edit_project_members_id" name="project_members_id" class="select" required style="width:100%;">
+                                    <select id="edit_project_members_id" name="project_members_id[]" class="editmember" required style="width:100%;">
                                         <option value="">Select Member</option>
                                         @foreach($projectMembers as $projectMember)
                                         <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
@@ -245,7 +245,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <select id="edit_project_role_id" name="project_role_id" class="form-control" required>
+                                    <select id="edit_project_role_id" name="project_role_id[]" class="form-control" required>
                                         <option value="">Select Role</option>
                                         @foreach ($projectRoles as $projectRole)
                                             <option value="{{ $projectRole->id }}">{{ $projectRole->member_role_type }}</option>
@@ -273,6 +273,8 @@
     </form>
 </div>
 
+<!-- Select2 JS -->
+
 <script>
 $(document).ready(function() {
     $('.technology').select2({
@@ -296,13 +298,13 @@ $(document).ready(function() {
 <!-- ADD Member $ EDIT Member JS -->
 <script>
 $(document).ready(function() {
-    // Plus sign click event handler
+    // Plus sign click event handler: show the add member modal
     $('#plusSign').click(function() {
-        // Show the add member modal
         $('#myModal').modal('show');
     });
 
     // Add member button click event handler
+
     $("#addMemberBtn").click(function() {
         var memberName = $("#project_members_id option:selected").text();
         var memberId = $("#project_members_id").val();
@@ -311,15 +313,15 @@ $(document).ready(function() {
 
         if (memberName && role) {
             var cardHtml = `
-            <div class="col-md-3">
+            <div class="col-md-3 member-container">
                 <div class="card mb-0">
-                    <div class="card-body mb-2" style="padding: 0 21px 0 21px;">
-                        <div class="avatar avatar-blue" style="margin-left: 34px;">
-                            <img class="rounded_circle mb-1 mt-3" src="{{ asset($projectMember->image) }}" alt="Profile Image" width="50">
+                    <div class="card-body mb-2">
+                        <div class="avatar avatar-blue">
+                        <img class="rounded_circle mb-1 mt-3" src="${getProfileImage(memberId)}" alt="Profile Image">
                         </div>
-                        <p id="card-title" class="card-title user-name">${memberName}</p>
-                        <p class="card-text role" style="margin-bottom: 0rem; font-size: 11px; font-weight: 400; margin-top: -10px">${role}</p>
-                        <i class="fa fa-edit edit-icon" style="color: #7d4287; cursor: pointer;"></i>
+                        <p class="card-title user-name">${memberName}</p>
+                        <p class="card-text role">${role}</p>
+                        <i class="fa fa-edit edit-icon"></i>
                         <input type="hidden" name="project_members_id[]" value="${memberId}">
                         <input type="hidden" name="project_role_id[]" value="${roleId}">
                     </div>
@@ -336,9 +338,16 @@ $(document).ready(function() {
             $('#project_role_id').val(null).trigger('change');
         });
     });
-
-    function closeModal() {
-        $('#myModal').modal('hide');
+    
+    // Function to get profile image URL by member ID
+    function getProfileImage(memberId) {
+        @foreach ($projectMembers as $projectMember)
+            if ('{{ $projectMember->id }}' === memberId) {
+                return '{{ asset($projectMember->image) }}';
+            }
+        @endforeach
+        // If no matching member ID is found, return a default image URL
+        return '{{ asset('images/default-profile-image.png') }}'; // Replace 'images/default-profile-image.png' with the path to your default profile image
     }
 
     // Edit Member button click event handler
@@ -375,12 +384,15 @@ $(document).ready(function() {
     });
 
     // Remove Member button click event handler
-    $(document).on('click', '.remove-btn', function() {
-        // Get the reference to the card being removed
-        var card = $(this).closest('.card');
+    $('#removeBtn').click(function() {
+    // Get the reference to the card being edited
+    var card = $('#editModal').data('card');
 
-        // Remove the card from the container
-        card.parent().remove();
+    // Remove the card from the container
+    card.parent().remove();
+
+    // Hide the edit modal
+    $('#editModal').modal('hide');
     });
 });
 
