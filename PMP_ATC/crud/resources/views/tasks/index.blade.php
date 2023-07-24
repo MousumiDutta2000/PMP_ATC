@@ -39,7 +39,7 @@
             <table id="taskTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
                     <tr>
-                        <th>UUID</th>
+                        <th>ID</th>
                         <th>Title</th>
                         <th>Type</th>
                         <th>Priority</th>
