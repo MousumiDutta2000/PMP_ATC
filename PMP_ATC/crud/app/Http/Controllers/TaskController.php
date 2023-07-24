@@ -80,7 +80,7 @@ class TaskController extends Controller
         $request->validate([
             'title' => 'required',
             'type' => 'required|in:feature,user story',
-            'priority' => 'required|in:Low priority,Med Priority,High priority',
+            'priority' => 'required|in:Low priority,Med priority,High priority',
             'details' => 'required',
             'attachments' => 'required',
             'assigned_to' => 'required',
