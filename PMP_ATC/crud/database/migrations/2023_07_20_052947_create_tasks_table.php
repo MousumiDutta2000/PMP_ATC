@@ -20,7 +20,7 @@ class CreateTasksTable extends Migration
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('last_edited_by');
             $table->string('estimated_time'); 
-            $table->string('time_taken');
+            $table->string('time_taken');zz
             $table->enum('status', ['not started', 'ongoing', 'hold', 'completed']);
             $table->unsignedBigInteger('parent_task')->nullable();
             $table->foreign('parent_task')->references('id')->on('tasks');
