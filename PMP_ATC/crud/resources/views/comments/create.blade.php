@@ -43,21 +43,39 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="commented_by">Commented By:</label>
-                    <input type="text" name="commented_by" id="commented_by" class="form-control shadow-sm" required>
+                    <select name="commented_by" id="commented_by" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                        <option value="">Select User</option>
+                        @foreach ($profiles as $profile)
+                            <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
+                        @endforeach
+                    </select>
+                    {{-- <input type="text" name="commented_by" id="commented_by" class="form-control shadow-sm" required> --}}
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="user">User:</label>
-                    <input type="text" class="form-control" name="user" id="user" required>
+                    <select name="user" id="user" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                        <option value="">Select User</option>
+                        @foreach ($profiles as $profile)
+                            <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
+                        @endforeach
+                    </select>
+                    {{-- <input type="text" class="form-control" name="user" id="user" required> --}}
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="task_id">Task ID:</label>
-                    <input type="number" class="form-control" name="task_id" id="task_id" required>
+                    <select name="task_id" id="task_id" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
+                        <option value="">Select Task</option>
+                        @foreach ($tasks as $task)
+                            <option value="{{ $task->id }}">{{ $task->title }}</option>
+                        @endforeach
+                    </select>
+                    {{-- <input type="number" class="form-control" name="task_id" id="task_id" required> --}}
                 </div>
             </div>
 

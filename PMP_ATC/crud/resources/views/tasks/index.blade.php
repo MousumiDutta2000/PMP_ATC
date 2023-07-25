@@ -63,11 +63,11 @@
                     <td style="font-size: 15px;">{{ $task->title }}</td>
                     <td style="font-size: 15px;">{{ $task->type }}</td>
                     <td style="font-size: 14px;">
-                        @if($task->priority == 'Low priority')
+                        @if(strtolower($task->priority) == 'low priority')
                             <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
-                        @elseif($task->priority == 'Med priority')
+                        @elseif(strtolower($task->priority) == 'med priority')
                             <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #81d5ee 17%, #7ed492 83%);">{{ $task->priority }}</div>
-                        @elseif($task->priority == 'High priority')
+                        @elseif(strtolower($task->priority) == 'high priority')
                             <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
                         @endif
                     </td>

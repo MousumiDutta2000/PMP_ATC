@@ -71,7 +71,6 @@ class TaskController extends Controller
         $tasks = Task::all();
         $profiles= Profile::all();
         return view('tasks.edit', compact('tasks','profiles'));
-        // return view('tasks.edit', compact('task'));
     }
 
 
@@ -81,7 +80,7 @@ class TaskController extends Controller
         $request->validate([
             'title' => 'required',
             'type' => 'required|in:feature,user story',
-            'priority' => 'required|in:Low priority,Med Priority,High priority',
+            'priority' => 'required|in:Low priority,Med priority,High priority',
             'details' => 'required',
             'attachments' => 'required',
             'assigned_to' => 'required',
