@@ -80,6 +80,7 @@ class ProjectsController extends Controller
 
         $project->save();
 
+        // Attach project members and roles to the project
         $projectMembersIds = $request->input('project_members_id', []);
         $projectRolesIds = $request->input('project_role_id', []);
 
@@ -168,6 +169,7 @@ class ProjectsController extends Controller
         $project->project_role_id = $request->project_role_id;
         $project->save();
 
+        // Attach project members and roles to the project
         $projectMembersIds = $request->input('project_members_id', []);
         $projectRolesIds = $request->input('project_role_id', []);
 
