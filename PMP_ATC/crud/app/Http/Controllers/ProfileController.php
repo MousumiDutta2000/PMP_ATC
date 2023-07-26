@@ -12,6 +12,7 @@ use App\Models\HighestEducationValue;
 use App\Models\UserTechnology;
 use App\Models\ProjectRole;
 use App\Models\Technology;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
@@ -172,9 +173,55 @@ class ProfileController extends Controller
         }
 
         $profile->save();
+        $profiles = Profile::all();
         $user_technologies = UserTechnology :: all();
+        $qualifications = HighestEducationValue::all();
         return redirect()->route('profiles.index')->with('success', 'Profile Updated');
-    }        
+    }
+
+    public function update2(Request $request, Profile $profile)
+    {
+
+        $request->validate([
+            'contact_number' => 'required',
+            'email'=>'required',
+            'highest_educational_qualification_id' => 'required',
+        ]);
+
+        $profile->contact_number = $request->input('contact_number');
+        $profile->highest_educational_qualification_id = $request->input('highest_educational_qualification_id');
+        $profile->email = $request->email;
+        $profile->save();
+
+        
+        $profiles = Profile::all();
+        $qualifications = HighestEducationValue::all();
+
+        
+        //return view('profiles.show', compact('profile','profiles','qualifications'));
+        dd($profile);
+        return back()->with('success', 'Edited successfully.');    
+    }
+
+    
+    public function update1(Request $request, Profile $profile)
+    {
+        $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/profiles'), $imageName);
+            $profile->image = 'images/profiles/' . $imageName;
+        }
+
+        $profile->save();
+        $profiles = Profile::all();
+        $user_technologies = UserTechnology :: all();
+        return back()->with('success', 'Edited successfully.');
+    }
 
     public function destroy(Profile $profile)
     {
@@ -188,9 +235,63 @@ class ProfileController extends Controller
     public function show(Profile $profile)
     {
         $users = User::all();
+        $qualifications = HighestEducationValue::all();
         $user_technologies = UserTechnology :: all();
         $project_roles = ProjectRole :: all();
         $technologies = Technology :: all();
-        return view('profiles.show', compact('profile','users','user_technologies', 'project_roles','technologies'));
+        $profiles = Profile :: all();
+
+        // Function to generate a unique color based on initials
+        function generateUniqueColor($initials) {
+            $nameHash = md5($initials);
+            $color = '#' . substr($nameHash, 0, 6);
+            return $color;
+        }
+        $editable = false; // Set the initial value to false
+        return view('profiles.show', compact('profile','users','user_technologies', 'project_roles','technologies','profiles','qualifications','editable'));
+    }
+
+    // Add this method to handle image deletion
+    public function deleteImage(Profile $profile)
+    {
+
+        if ($profile->image) {
+            if (file_exists(public_path($profile->image))) {
+                unlink(public_path($profile->image));
+            }
+        }
+    
+        // Set profile image based on first and last name initials
+        $firstNameInitial = strtoupper(substr($profile->profile_name, 0, 1));
+        $lastNameInitial = strtoupper(substr(strrchr($profile->profile_name, ' '), 1, 1)); // Get the first letter after the last space in the profile name
+        $initials = $firstNameInitial . $lastNameInitial;
+
+        //Generate a unique color based on initials
+        $nameHash = md5($profile->profile_name);
+        $color = '#' . substr($nameHash, 0, 6);
+
+        $textColor = '#ffffff'; // Set the text color for the initials
+    
+        // Create an image with the initials
+        $image = \Intervention\Image\Facades\Image::canvas(200, 200);
+        $image->circle(200, 100, 100, function ($draw) use ($color) {
+            $draw->background($color); // Set a background color for the initials circle
+        });
+        $image->text($initials, 100, 100, function ($font) use ($textColor) {
+            $font->file(public_path('fonts/OpenSans-Semibold.ttf'));
+            $font->size(100);
+            $font->color($textColor);
+            $font->align('center');
+            $font->valign('middle');
+        });
+    
+        // Save the image with a new filename
+        $imageName = time() . '.png';
+        $image->save(public_path('images/profiles') . '/' . $imageName);
+    
+        // Update the profile image in the database
+        $profile->update(['image' => 'images/profiles/' . $imageName]);
+    
+        return redirect()->route('profiles.show', $profile->id)->with('success', 'Profile picture deleted. Initials image applied.');
     }
 }

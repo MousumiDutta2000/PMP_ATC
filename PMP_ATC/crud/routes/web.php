@@ -35,9 +35,16 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-
+// Add the custom route for the update1 method
+Route::put('/profiles/{profile}/update1', [ProfileController::class, 'update1'])->name('profiles.update1');
 // Route::resource('projects', ProjectsController::class);
 // Route::get('projects/create', [ProjectsController::class, 'create'])->name('projects.create');
+
+// Add the custom route for the update2 method
+Route::put('/profiles/{profile}/update2', [ProfileController::class, 'update2'])->name('profiles.update2');
+
+// Add the custom route for image deletion
+Route::delete('/profiles/{profile}/delete-image', [ProfileController::class, 'deleteImage'])->name('profiles.deleteImage');
 
 Route::middleware([
     'auth:sanctum',

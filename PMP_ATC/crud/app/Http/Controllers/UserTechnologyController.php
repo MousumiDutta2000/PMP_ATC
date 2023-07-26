@@ -100,7 +100,9 @@ class UserTechnologyController extends Controller
         $project_roles = ProjectRole::all();
         $users = User::all();
         $user_technologies = UserTechnology::all();
-        return redirect()->route('user_technologies.index')->with('success', 'Skill updated successfully.');
+        //return redirect()->route('user_technologies.index')->with('success', 'Skill updated successfully.');
+        // Redirect back to the same page and display a success message.
+        return back()->with('success', 'Skill edited successfully.');
     }
 
     public function destroy($id)
@@ -112,7 +114,10 @@ class UserTechnologyController extends Controller
         $users = User::all();
         $user_technologies = UserTechnology::all();
 
-        return redirect()->route('user_technologies.index')->with('success', 'Skill deleted successfully.');
+        //return redirect()->route('user_technologies.index')->with('success', 'Skill deleted successfully.');
+        //return view('user_technologies.destroy', compact('user_technology', 'project_roles','technologies','users'));
+        // Redirect back to the same page and display a success message.
+        return back()->with('success', 'Skill deleted successfully.');
     }
 
 }

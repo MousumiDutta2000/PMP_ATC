@@ -15,44 +15,82 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('js/table.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="{{ asset('js/profiles.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <!-- Your other JavaScript code -->
-    
     <script>
-        $(document).ready(function() {
-            // Add click event listener to the add button
-            $('#addSkillButton').click(function(e) {
-                e.preventDefault();
+        function showFile(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById("file-preview").src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
 
-                // Open the addModal
-                //$('#addModal').modal('show');
+        $(document).ready(function() {
+            let editable = {{ $editable ? 'true' : 'false' }};
+            toggleEditFields(editable);
+
+            $('#editProfileButton').on('click', function() {
+                editable = !editable;
+                toggleEditFields(editable);
             });
+
+            function toggleEditFields(editable) {
+                let formId = 'editProfileForm';
+                let editableFields = [
+                    'highest_educational_qualification_id',
+                    'contact_number',
+                ];
+
+                editableFields.forEach(function(field) {
+                    $('#' + formId + ' #' + field).prop('readonly', !editable);
+                });
+
+                $('#' + formId + ' button[type="submit"]').toggle(editable);
+            }
         });
     </script>
 @endsection
+
+
 
 @section('content')
 
 <section class="section profile">
   <div class="row">
     <div class="col-xl-4">
-
       <div class="card">
         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
-          <img src="{{ asset($profile->image) }}" alt="Profile" class="rounded-circle">
-          <div class="pt-2">
-            <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-            <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+          @if($profile->image)
+            <img src="{{ asset($profile->image) }}" alt="Profile" class="rounded-circle" style="height:100px;">
+          @else
+              <!-- Show initials as the new profile image -->
+              <div class="rounded-circle" style="background-color: {{ generateUniqueColor(strtoupper(substr($profile->profile_name, 0, 2))) }}; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 100px;">
+                  {{ strtoupper(substr($profile->profile_name, 0, 1)) }}
+              </div>
+          @endif 
+          <div class="pt-2 d-flex">
+            <div class="btn-group mr-2" role="group">
+              <a href="#" data-toggle="modal" data-target="#updatePfpModal{{$profile->id}}" class="btn btn-primary btn-sm" title="Upload new profile image" id="updatePfpButton"><i class="bi bi-upload"></i></a>
+            </div>
+            <div class="btn-group" role="group">
+              <!-- Add the delete image button here -->
+              <form action="{{ route('profiles.deleteImage', $profile->id) }}" method="post">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-danger btn-sm" title="Remove my profile image">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </form>
+            </div>          
           </div>
           <h2>{{$profile->profile_name}}</h2>
           <h3>{{ $profile->designation->level }}</h3>
         </div>
       </div>
-
     </div>
 
     <div class="col-xl-8">
@@ -75,57 +113,89 @@
 
 
             <div class="tab-pane fade show active profile-overview" id="profile-overview">
-              <br>
+              <div class="card-header d-flex justify-content-end">
+                <button class="btn btn-primary btn-sm edit-field" id="editProfileButton"><i class="ri-edit-2-fill"></i></button>
+              </div>
               <h5 class="card-title">Personal Details</h5>
               <br>
-              <div class="row">
-                <div class="col-lg-3 col-md-4 label">Full Name</div>
-                <div class="col-lg-9 col-md-8">{{ $profile->profile_name }}</div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-3 col-md-4 label">Father's Name</div>
-                <div class="col-lg-9 col-md-8">{{$profile->father_name}}</div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-3 col-md-4 label">Date Of Birth</div>
-                <div class="col-lg-9 col-md-8">{{$profile->DOB}}</div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-3 col-md-4 label">Work Location</div>
-                <div class="col-lg-9 col-md-8">{{$profile->work_location}}</div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-3 col-md-4 label">Work Address</div>
-                <div class="col-lg-9 col-md-8">{{$profile->work_address}}</div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-3 col-md-4 label">Highest Educational Qualification</div>
-                <div class="col-lg-9 col-md-8">
-                  <span id="highest_education">{{$profile->highestEducationValue->highest_education_value}}</span>
-                  <button class="btn btn-primary btn-sm edit-field" data-field="highest_education" title="Edit Highest Education"><i class="ri-edit-2-fill"></i></button>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Full Name</div>
+                  <div class="col-lg-9 col-md-8">
+                    {{ $profile->profile_name }}
+                  </div>
                 </div>
-              </div>
-              <br>
-              <h5 class="card-title">Contact Details</h5>
-              <br>
-              <div class="row">
-                <div class="col-lg-3 col-md-4 label">Email</div>
-                <div class="col-lg-9 col-md-8">{{$profile->email}}</div>
-              </div>
 
-              <div class="row">
-                <div class="col-lg-3 col-md-4 label">Contact Number</div>
-                <div class="col-lg-9 col-md-8">
-                  <span id="contact_number">{{$profile->contact_number}}</span>
-                  <button class="btn btn-primary btn-sm edit-field" data-field="contact_number" title="Edit Contact Number"><i class="ri-edit-2-fill"></i></button>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Father's Name</div>
+                  <div class="col-lg-9 col-md-8">
+                    {{$profile->father_name}}
+                  </div>
                 </div>
-              </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Date Of Birth</div>
+                  <div class="col-lg-9 col-md-8">
+                    {{$profile->DOB}}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Work Location</div>
+                  <div class="col-lg-9 col-md-8">
+                    {{$profile->work_location}}                
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Work Address</div>
+                  <div class="col-lg-9 col-md-8">
+                    {{$profile->work_address}}
+                  </div>
+                </div>
+              <form method="post" action="{{ route('profiles.update2', ['profile' => $profile->id]) }}" enctype="multipart/form-data" id="editProfileForm">
+                @csrf
+                @method('PUT')
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Highest Educational Qualification</div>
+                  <div class="col-lg-9 col-md-8">
+                    <div class="form-group">
+                    <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required{{ $editable ? '' : ' readonly' }}>
+                      @foreach ($qualifications as $qualification)
+                        <option value="{{ $qualification->id }}" {{ $profile->highest_educational_qualification_id == $qualification->id ? 'selected' : '' }}>
+                          {{ $qualification->highest_education_value }}
+                        </option>
+                      @endforeach
+                    </select>
+                    </div>             
+                  </div>
+                </div>
+                <br>
+                <h5 class="card-title">Contact Details</h5>
+                <br>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Email</div>
+                  <div class="col-lg-9 col-md-8">
+                  {{$profile->email}}
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="email" id="email" value="{{ $profile->email }}" required hidden>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Contact Number</div>
+                  <div class="col-lg-9 col-md-8">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="contact_number" id="contact_number" value="{{ $profile->contact_number }}"{{ $editable ? '' : ' readonly' }} maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">                    
+                    </div>                
+                  </div>
+                </div>
+                <div class="text-end">
+                  <button type="submit" class="btn btn-primary" {{ $editable ? '' : ' style=display:none' }} id="editProfileButton">Update</button>
+                </div>
+              </form>
             </div>
+            
 
             <div class="tab-pane fade show skill-set" id="skill-set">
               <br>
@@ -192,27 +262,6 @@
     </div>
   </div>
 </section>
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel">Edit Field</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" id="editField" value="">
-        <input type="text" class="form-control" id="editValue" value="">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" id="saveChanges">Save Changes</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 
 <!--Add skill modal-->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">                
@@ -415,27 +464,48 @@
   </div>
 @endforeach
 
+<!--Update Profile Picture modal-->
+@foreach($profiles as $profile)
+  <div class="modal fade" id="updatePfpModal{{$profile->id}}" tabindex="-1" role="dialog" aria-labelledby="updatePfpModalLabel" aria-hidden="true">                
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color:#061148; ">
+          <h5 class="modal-title" id="updatePfpModalLabel" style="color: white;font-weight: bolder;">Update Profile Picture</h5>
+        </div>
+        @if($errors->any())
+          <div>
+            <ul>
+              @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+        <div class="modal-body">
+          <form method="post" action="{{ route('profiles.update1', ['profile' => $profile->id]) }}" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
 
+            <div class="row">
 
-<!-- <script>
-  // Handle edit button click
-  $('.edit-field').click(function() {
-    var field = $(this).data('field');
-    var value = $('#' + field).text();
+              <div class="form-group">
+                <label for="image">Current Image:</label>
+                <img src="{{ asset($profile->image) }}" alt="Current Image" class="img-product" id="file-preview" style="width:80px;height:80px">
+                <br>
+                <label for="image">Change Image:</label>
+                <input type="file" name="image" accept="image/*" class="form-control" onchange="showFile(event)">
+              </div>
 
-    $('#editField').val(field);
-    $('#editValue').val(value);
-    $('#editModal').modal('show');
-  });
-
-  // Handle save changes
-  $('#saveChanges').click(function() {
-    var field = $('#editField').val();
-    var value = $('#editValue').val();
-
-    $('#' + field).text(value);
-    $('#editModal').modal('hide');
-  });
-</script> -->
+              <div class="form-actions mt-3 text-end modal-footer">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color:#D22B2B">Close</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+@endforeach
 
 @endsection
