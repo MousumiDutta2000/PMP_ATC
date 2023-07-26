@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,15 +18,16 @@ class TaskController extends Controller
     public function create()
     {
         $tasks = Task::all();
-        return view('tasks.create', compact('tasks'));
+        $profiles= Profile::all();
+        return view('tasks.create', compact('tasks','profiles'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'title' => 'required',
-            'type' => 'required|in:Feature, User story',
-            'priority' => 'required|in:Low priority, Med priority, High priority',
+            'type' => 'required|in:Feature,User story',
+            'priority' => 'required|in:Low priority,Med priority,High priority',
             'details' => 'required',
             'attachments' => 'required',
             'assigned_to' => 'required',
@@ -66,15 +68,19 @@ class TaskController extends Controller
 
     public function edit(Task $task)
     {
-        return view('tasks.edit', compact('task'));
+        $tasks = Task::all();
+        $profiles= Profile::all();
+        return view('tasks.edit', compact('tasks','profiles'));
     }
+
+
 
     public function update(Request $request, Task $task)
     {
         $request->validate([
             'title' => 'required',
-            'type' => 'required|in:Feature, User story',
-            'priority' => 'required|in:Low priority, Med Priority, High priority',
+            'type' => 'required|in:feature,user story',
+            'priority' => 'required|in:Low priority,Med priority,High priority',
             'details' => 'required',
             'attachments' => 'required',
             'assigned_to' => 'required',
@@ -84,7 +90,7 @@ class TaskController extends Controller
             'estimated_time_unit' => 'required|in:hour,day,month,year',
             'time_taken_number' => 'required|numeric',
             'time_taken_unit' => 'required|in:hour,day,month,year',
-            'status' => 'required|in:notstarted,ongoing,hold,completed',
+            'status' => 'required|in:not started,ongoing,hold,completed',
             'parent_task' => '',
         ]);
 

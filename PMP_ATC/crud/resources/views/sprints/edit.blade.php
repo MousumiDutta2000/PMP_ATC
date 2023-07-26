@@ -137,7 +137,7 @@
               <a href="{{ route('sprints.index') }}" class="btn btn-danger">Cancel</a>
           </div>
   
-      
+        </div>  
     </form>
 
 </div>

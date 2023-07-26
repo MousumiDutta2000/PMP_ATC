@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use App\Models\Task;
+use App\Models\Profile;
 
 class CommentController extends Controller
 {
@@ -15,8 +17,11 @@ class CommentController extends Controller
 
     public function create()
     {
-        // Add any necessary data to pass to the create view if needed
-        return view('comments.create');
+        $tasks = Task::all();
+        $profiles = Profile::all();
+        $comments = Comment::all();
+    
+        return view('comments.create', compact('tasks','profiles','comments'));
     }
 
     public function store(Request $request)
@@ -36,10 +41,22 @@ class CommentController extends Controller
         return view('comments.show', compact('comment'));
     }
 
+    // public function edit(Comment $comment)
+    // {
+    //     $tasks = Task::all();
+    //     $profiles = Profile::all();
+    //     $comments = Comment::all();
+    
+    //     return view('comments.edit', compact('tasks','profiles','comments'));
+    // }
     public function edit(Comment $comment)
-    {
-        return view('comments.edit', compact('comment'));
-    }
+{
+    $tasks = Task::all();
+    $profiles = Profile::all();
+
+    return view('comments.edit', compact('comment', 'tasks', 'profiles'));
+}
+
 
     public function update(Request $request, Comment $comment)
     {

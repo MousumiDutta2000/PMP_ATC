@@ -69,14 +69,14 @@
 
     <div class="form-container w-50">
         <div class="container">
-            <div class="profile-details">
-              <h5>Add Profile Details</h5>
-            </div>
             <div class="page-number text-secondary" id="page-number-1" style="text-align: right; float:right">Page 1 of 3</div>
-          </div>
+        </div>
         <form method="post" action="{{ route('profiles.store') }}" enctype="multipart/form-data">
             @csrf
             <div id="section-1">
+                <div class="profile-details">
+                  <h5>Add Profile Details</h5>
+                </div>
                 
                 <div class="row">
                     <div>
@@ -129,9 +129,11 @@
                 </div>
             </div>
 
-            <div class="page-number" id="page-number-2" style="display: none; text-align: right;">Page 2 of 3</div>
+            <div class="page-number" id="page-number-2" style="display: none; text-align: right; float:right">Page 2 of 3</div>
             <div id="section-2" style="display: none;">
+            <div class="profile-details">
                 <h5>Set Password</h5>
+            </div>
                 <div>
                     <div>
                         <div class="form-group">
@@ -144,7 +146,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="form-group" style="padding-top: 15px; text-align: right;">
+                        <div class="form-group" style="padding-top: 15px;">
                             <label for="confirm_password" class="mb-1" style="font-size: 15px;">Confirm Password:</label>
                             <div class="input-group">
                                 <input type="password" class="form-control shadow-sm" name="confirm_password" id="confirm_password" placeholder="Confirm password" required style="color: #858585; font-size: 14px; height: 39px; border-radius: 4px" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off/>
@@ -166,9 +168,11 @@
                 </div>
             </div>
 
-            <div class="page-number" id="page-number-3" style="display: none; text-align: right;">Page 3 of 3</div>
+            <div class="page-number" id="page-number-3" style="display: none; text-align: right; float:right">Page 3 of 3</div>
             <div id="section-3" style="display: none;">
-                <h5>Addition Details</h5>
+                <div class="profile-details"> 
+                    <h5>Addition Details</h5>
+                </div>
                 <div class="row">
                     <div class="col-md-6 pt-4" style="padding-right: 50px padding-left: 50px">
                         <div class="form-group">

@@ -10,12 +10,15 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('commented_by');
-            $table->string('user');
+            $table->unsignedBigInteger('commented_by');
+            $table->unsignedBigInteger('user');
             $table->unsignedBigInteger('task_id');
             $table->timestamps();
 
             // Add a foreign key constraint for the task_id field
+            
+            $table->foreign('commented_by')->references('id')->on('profiles');
+            $table->foreign('user')->references('id')->on('profiles');
             $table->foreign('task_id')->references('id')->on('tasks');
         });
     }
