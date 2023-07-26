@@ -3,7 +3,7 @@
 @section('pageTitle', 'Profile')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('profiles.index') }}">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Profiles</li>
 @endsection
 

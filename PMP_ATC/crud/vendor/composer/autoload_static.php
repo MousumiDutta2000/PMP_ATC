@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2e1e6ceb7a48c79e1ac9d4a07a350927
+class ComposerStaticInit57829858d0a1ab3cd217c3b5e3b795ce
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -639,6 +639,7 @@ class ComposerStaticInit2e1e6ceb7a48c79e1ac9d4a07a350927
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\MicrosoftController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/MicrosoftController.php',
         'App\\Http\\Controllers\\ClientController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClientController.php',
+        'App\\Http\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DesignationController' => __DIR__ . '/../..' . '/app/Http/Controllers/DesignationController.php',
         'App\\Http\\Controllers\\HighestEducationValueController' => __DIR__ . '/../..' . '/app/Http/Controllers/HighestEducationValueController.php',
@@ -651,6 +652,7 @@ class ComposerStaticInit2e1e6ceb7a48c79e1ac9d4a07a350927
         'App\\Http\\Controllers\\ProjectRoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProjectRoleController.php',
         'App\\Http\\Controllers\\ProjectsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProjectsController.php',
         'App\\Http\\Controllers\\SprintController' => __DIR__ . '/../..' . '/app/Http/Controllers/SprintController.php',
+        'App\\Http\\Controllers\\TaskController' => __DIR__ . '/../..' . '/app/Http/Controllers/TaskController.php',
         'App\\Http\\Controllers\\TechnologyController' => __DIR__ . '/../..' . '/app/Http/Controllers/TechnologyController.php',
         'App\\Http\\Controllers\\UserTechnologyController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserTechnologyController.php',
         'App\\Http\\Controllers\\VerticalController' => __DIR__ . '/../..' . '/app/Http/Controllers/VerticalController.php',
@@ -665,6 +667,7 @@ class ComposerStaticInit2e1e6ceb7a48c79e1ac9d4a07a350927
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Client' => __DIR__ . '/../..' . '/app/Models/Client.php',
+        'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
         'App\\Models\\Designation' => __DIR__ . '/../..' . '/app/Models/Designation.php',
         'App\\Models\\HighestEducationValue' => __DIR__ . '/../..' . '/app/Models/HighestEducationValue.php',
         'App\\Models\\Opportunity' => __DIR__ . '/../..' . '/app/Models/Opportunity.php',
@@ -677,6 +680,7 @@ class ComposerStaticInit2e1e6ceb7a48c79e1ac9d4a07a350927
         'App\\Models\\ProjectRole' => __DIR__ . '/../..' . '/app/Models/ProjectRole.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\Sprint' => __DIR__ . '/../..' . '/app/Models/Sprint.php',
+        'App\\Models\\Task' => __DIR__ . '/../..' . '/app/Models/Task.php',
         'App\\Models\\Technology' => __DIR__ . '/../..' . '/app/Models/Technology.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\UserTechnology' => __DIR__ . '/../..' . '/app/Models/UserTechnology.php',
@@ -15024,10 +15028,10 @@ class ComposerStaticInit2e1e6ceb7a48c79e1ac9d4a07a350927
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2e1e6ceb7a48c79e1ac9d4a07a350927::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2e1e6ceb7a48c79e1ac9d4a07a350927::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit2e1e6ceb7a48c79e1ac9d4a07a350927::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit2e1e6ceb7a48c79e1ac9d4a07a350927::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit57829858d0a1ab3cd217c3b5e3b795ce::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit57829858d0a1ab3cd217c3b5e3b795ce::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit57829858d0a1ab3cd217c3b5e3b795ce::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit57829858d0a1ab3cd217c3b5e3b795ce::$classMap;
 
         }, null, ClassLoader::class);
     }

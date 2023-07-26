@@ -3,9 +3,9 @@
 @section('pageTitle', 'Edit Profile')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('profiles.index') }}">Home</a></li>
     <li class="breadcrumb-item" aria-current="page">Profiles</li>
-    <li class="breadcrumb-item active" aria-current="page">edit</li>
+    <li class="breadcrumb-item active" aria-current="page">Edit</li>
 @endsection
 
 @section('project_css')
