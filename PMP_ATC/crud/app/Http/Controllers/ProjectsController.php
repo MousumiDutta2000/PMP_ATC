@@ -80,6 +80,18 @@ class ProjectsController extends Controller
 
         $project->save();
 
+        $projectMembersIds = $request->input('project_members_id', []);
+        $projectRolesIds = $request->input('project_role_id', []);
+
+        foreach ($projectMembersIds as $key => $memberId) {
+            $role = $projectRolesIds[$key] ?? null;
+            
+            // Make sure both member ID and role ID are provided before attaching
+            if ($memberId && $role) {
+                $project->projectMembers()->attach($memberId, ['project_role_id' => $role]);
+            }
+        }
+
         return redirect()->route('projects.index')->with('success', 'Project created successfully.');
     }
 
@@ -155,6 +167,18 @@ class ProjectsController extends Controller
         $project->project_members_id = $request->project_members_id;
         $project->project_role_id = $request->project_role_id;
         $project->save();
+
+        $projectMembersIds = $request->input('project_members_id', []);
+        $projectRolesIds = $request->input('project_role_id', []);
+
+        foreach ($projectMembersIds as $key => $memberId) {
+            $role = $projectRolesIds[$key] ?? null;
+            
+            // Make sure both member ID and role ID are provided before attaching
+            if ($memberId && $role) {
+                $project->projectMembers()->attach($memberId, ['project_role_id' => $role]);
+            }
+        }
 
         return redirect()->route('projects.index')->with('success', 'Project settings updated successfully.');
     }
