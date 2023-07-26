@@ -267,7 +267,7 @@ class ProfileController extends Controller
         $initials = $firstNameInitial . $lastNameInitial;
 
         //Generate a unique color based on initials
-        $nameHash = md5($initials);
+        $nameHash = md5($profile->profile_name);
         $color = '#' . substr($nameHash, 0, 6);
 
         $textColor = '#ffffff'; // Set the text color for the initials
