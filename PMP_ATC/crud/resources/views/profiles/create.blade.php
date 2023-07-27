@@ -243,6 +243,7 @@
 @section('custom_js')
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+    <script src="{{ asset('js/side_highlight.js') }}"></script>
     <script>
         function showSection(sectionNumber) {
             document.getElementById('section-1').style.display = 'none';
