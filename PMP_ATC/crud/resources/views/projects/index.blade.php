@@ -7,7 +7,6 @@
     <li class="breadcrumb-item active" aria-current="page">Project</li>
 @endsection
 
-
 @section('custom_css')
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css'>

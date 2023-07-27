@@ -45,7 +45,7 @@ class Project extends Model
 
     public function technologies()
     {
-        return $this->belongsTo(Technologies::class, 'technologies_id');
+        return $this->belongsTo(Technologies::class, 'technology_id');
     }
 
     public function client()
@@ -53,13 +53,10 @@ class Project extends Model
         return $this->belongsTo(Client::class, 'client_id');
     }
 
-    public function projectMember()
+    public function projectMembers()
     {
-        return $this->belongsTo(Profile::class, 'project_members_id');
-    }
-
-    public function projectRole()
-    {
-        return $this->belongsTo(User::class, 'project_role_id');
+        return $this->belongsToMany(Profile::class, 'project_members', 'project_id', 'project_members_id')
+            ->withPivot('project_role_id')
+            ->withTimestamps();
     }
 }
