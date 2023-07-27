@@ -82,7 +82,9 @@
                     <div>
                         <div class="d-flex flex-column align-items-center">
                             <div class="image-preview mb-2">
-                                <div class="circle-preview" id="circle-preview"></div>
+                                <div class="circle-preview" id="circle-preview">
+                                    <img id="default-user-image" src="{{ asset('img/default-user-image.png') }}" alt="Profile Picture">
+                                </div>
                             </div>
                             <div class="d-flex">
                                 <input type="file" name="image" accept="image/*" id="image" style="display: none" onchange="showFile(event)">
@@ -272,9 +274,11 @@
 
             reader.onload = function (e) {
                 var circlePreview = document.getElementById("circle-preview");
+                var defaultUserImage = document.getElementById("default-user-image");
                 circlePreview.style.backgroundImage = `url(${e.target.result})`;
                 circlePreview.style.backgroundSize = "cover";
                 circlePreview.style.backgroundPosition = "center";
+                defaultUserImage.style.display = "none"; // Hide the default image
             };
 
             reader.readAsDataURL(file);

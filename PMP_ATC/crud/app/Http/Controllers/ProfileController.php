@@ -181,7 +181,8 @@ class ProfileController extends Controller
 
     public function update2(Request $request, Profile $profile)
     {
-
+        //dd($request);
+        
         $request->validate([
             'contact_number' => 'required',
             'email'=>'required',
