@@ -688,6 +688,7 @@ h6 {
 
 .toggle-sidebar-btn.rotate {
   transform: rotate(180deg);
+  margin-left: -6px;
 }
 
 @media (max-width: 1199px) {

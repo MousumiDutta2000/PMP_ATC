@@ -31,6 +31,7 @@
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-dfBg4NhRnVgz6bYpK+Ut3G6+ia+WNC0RlgSksF9koQYnAr7z7RfQox7iC7f/J73XKnO0C7vyG3HqQqXyG/9zFg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://kit.fontawesome.com/416ffb3c0f.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -307,21 +308,21 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('profiles.index') }}">
+        <a class="nav-link collapsed" href="{{ route('profiles.index') }}"  data-section="profiles">
           <i class="fa-solid fa-users" style="font-size:25px"></i>
           <span class="icon_text">Users</span>
         </a>
       </li><!-- End user-management Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('clients.index') }}">
+        <a class="nav-link collapsed" href="{{ route('clients.index') }}" data-section="clients">
           <i class="fa-solid fa-building-user" style="font-size:25px"></i>
           <span class="icon_text">Clients</span>
         </a>
       </li><!-- End clients Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('projects.index') }}">
+        <a class="nav-link collapsed" href="{{ route('projects.index') }}" data-section="projects">
           <i class="fa-solid fa-folder" style="font-size:25px"></i>
           <span class="icon_text">Projects</span>
         </a>
