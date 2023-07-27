@@ -39,6 +39,7 @@
             });
 
             function toggleEditFields(editable) {
+              console.log('toggleEditFields function is called with editable =', editable);
                 let formId = 'editProfileForm';
                 let editableFields = [
                     'highest_educational_qualification_id',
@@ -159,14 +160,14 @@
                   <div class="col-lg-3 col-md-4 label">Highest Educational Qualification</div>
                   <div class="col-lg-9 col-md-8">
                     <div class="form-group">
-                    <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required{{ $editable ? '' : ' readonly' }}>
-                      @foreach ($qualifications as $qualification)
-                        <option value="{{ $qualification->id }}" {{ $profile->highest_educational_qualification_id == $qualification->id ? 'selected' : '' }}>
-                          {{ $qualification->highest_education_value }}
-                        </option>
-                      @endforeach
-                    </select>
-                    </div>             
+                      <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required{{ $editable ? '' : ' readonly' }}>
+                        @foreach ($qualifications as $qualification)
+                          <option value="{{ $qualification->id }}" {{ $profile->highest_educational_qualification_id == $qualification->id ? 'selected' : '' }}>
+                            {{ $qualification->highest_education_value }}
+                          </option>
+                        @endforeach
+                      </select>
+                    </div>    
                   </div>
                 </div>
                 <br>
