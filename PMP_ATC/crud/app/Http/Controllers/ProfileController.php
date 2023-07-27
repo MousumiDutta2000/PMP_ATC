@@ -181,7 +181,8 @@ class ProfileController extends Controller
 
     public function update2(Request $request, Profile $profile)
     {
-
+        //dd($request);
+        
         $request->validate([
             'contact_number' => 'required',
             'email'=>'required',
@@ -199,7 +200,6 @@ class ProfileController extends Controller
 
         
         //return view('profiles.show', compact('profile','profiles','qualifications'));
-        dd($profile);
         return back()->with('success', 'Edited successfully.');    
     }
 
