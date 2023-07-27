@@ -70,7 +70,7 @@ class TaskController extends Controller
     {
         $tasks = Task::all();
         $profiles= Profile::all();
-        return view('tasks.edit', compact('tasks','profiles'));
+        return view('tasks.edit', compact('task','tasks','profiles'));
     }
 
 
