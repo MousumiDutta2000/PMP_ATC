@@ -40,18 +40,26 @@
             });
 
             function toggleEditFields(editable) {
-                let formId = 'editProfileForm';
-                let editableFields = [
-                    'highest_educational_qualification_id',
-                    'contact_number',
-                ];
+              let formId = 'editProfileForm';
+              let editableFields = [
+                  'highest_educational_qualification_id',
+                  'contact_number',
+              ];
 
-                editableFields.forEach(function(field) {
-                    $('#' + formId + ' #' + field).prop('readonly', !editable);
-                });
+              // Toggle the visibility of the span and input elements for Highest Educational Qualification
+              $('#' + formId + ' #' + 'highest_education_span').toggle(!editable);
+              $('#' + formId + ' #' + 'highest_educational_qualification_id').toggle(editable);
 
-                $('#' + formId + ' button[type="submit"]').toggle(editable);
-            }
+              // Toggle the visibility of the span and input elements for Contact Number
+              $('#' + formId + ' #' + 'contact_number_span').toggle(!editable);
+              $('#' + formId + ' #' + 'contact_number').toggle(editable);
+
+              editableFields.forEach(function(field) {
+                  $('#' + formId + ' #' + field).prop('readonly', !editable);
+              });
+
+              $('#' + formId + ' button[type="submit"]').toggle(editable);
+          }
         });
     </script>
 @endsection
@@ -160,6 +168,7 @@
                   <div class="col-lg-3 col-md-4 label">Highest Educational Qualification</div>
                   <div class="col-lg-9 col-md-8">
                     <div class="form-group">
+                    <span id="highest_education_span">{{$profile->highestEducationValue->highest_education_value}}</span>
                     <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required{{ $editable ? '' : ' readonly' }}>
                       @foreach ($qualifications as $qualification)
                         <option value="{{ $qualification->id }}" {{ $profile->highest_educational_qualification_id == $qualification->id ? 'selected' : '' }}>
@@ -187,6 +196,7 @@
                   <div class="col-lg-3 col-md-4 label">Contact Number</div>
                   <div class="col-lg-9 col-md-8">
                     <div class="form-group">
+                      <span id="contact_number_span">{{$profile->contact_number}}</span>
                       <input type="text" class="form-control" name="contact_number" id="contact_number" value="{{ $profile->contact_number }}"{{ $editable ? '' : ' readonly' }} maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">                    
                     </div>                
                   </div>

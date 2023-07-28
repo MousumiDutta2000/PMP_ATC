@@ -632,6 +632,7 @@ h6 {
   margin-left: -20px;
   margin-top: -20px;
   background: #888fdc;
+  /* transition: all 0.3s; */
 }
 
 .main_toggle{
