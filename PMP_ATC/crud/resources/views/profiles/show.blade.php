@@ -172,7 +172,7 @@
                   <div class="col-lg-9 col-md-8">
                     <div class="form-group">
                     <span id="highest_education_span">{{$profile->highestEducationValue->highest_education_value}}</span>
-                    <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required{{ $editable ? '' : ' readonly' }}>
+                    <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" style="background:#FFFFFF; color: #000000; font-size: 14px;" required{{ $editable ? '' : ' readonly' }}>
                       @foreach ($qualifications as $qualification)
                         <option value="{{ $qualification->id }}" {{ $profile->highest_educational_qualification_id == $qualification->id ? 'selected' : '' }}>
                           {{ $qualification->highest_education_value }}
