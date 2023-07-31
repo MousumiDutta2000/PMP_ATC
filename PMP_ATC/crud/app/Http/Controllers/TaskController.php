@@ -103,7 +103,7 @@ class TaskController extends Controller
         if ($request->hasFile('attachments')) {
             $file = $request->file('attachments');
             $fileName = $file->getClientOriginalName();
-            $filePath = $file->storeAs( $fileName );
+            $filePath = $file->storeAs('attachments', $fileName, 'public');
             $task->attachments = $filePath;
         }
         $task->assigned_to = $request->assigned_to;
