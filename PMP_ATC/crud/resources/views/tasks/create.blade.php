@@ -37,7 +37,7 @@
 @endif
 
 <div class="form-container">
-    <form action="{{ route('tasks.store') }}" method="POST">
+    <form action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-6">
