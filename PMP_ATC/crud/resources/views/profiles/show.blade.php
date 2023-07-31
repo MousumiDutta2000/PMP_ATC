@@ -61,6 +61,34 @@
               $('#' + formId + ' button[type="submit"]').toggle(editable);
           }
         });
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+        // Get references to the tabs and the "Edit Profile" button
+        const overviewTab = document.querySelector("#profile-overview");
+        const skillSetTab = document.querySelector("#skill-set");
+        const editProfileButton = document.querySelector("#editProfileButton");
+
+        // Function to toggle the visibility of the "Edit Profile" button
+        function toggleEditButtonVisibility() {
+            if (overviewTab.classList.contains("active")) {
+                // Show the button on the "Overview" tab
+                editProfileButton.style.display = "block";
+            } else {
+                // Hide the button on other tabs
+                editProfileButton.style.display = "none";
+            }
+        }
+
+        // Initial call to set the button visibility based on the active tab
+        toggleEditButtonVisibility();
+
+        // Listen for tab shown events and update the button visibility accordingly
+        document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function (tabButton) {
+            tabButton.addEventListener("shown.bs.tab", toggleEditButtonVisibility);
+        });
+    });
     </script>
 @endsection
 
