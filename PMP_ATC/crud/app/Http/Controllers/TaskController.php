@@ -47,7 +47,13 @@ class TaskController extends Controller
         $task->type = $request->type;
         $task->priority = $request->priority;
         $task->details = $request->details;
-        $task->attachments = $request->attachments;
+        // $task->attachments = $request->attachments;
+        if ($request->hasFile('attachments')) {
+            $file = $request->file('attachments');
+            $fileName = $file->getClientOriginalName();
+            $filePath = $file->storeAs('attachments', $fileName, 'public');
+            $task->attachments = $filePath;
+        }
         $task->assigned_to = $request->assigned_to;
         $task->created_by = $request->created_by;
         $task->last_edited_by = $request->last_edited_by;
