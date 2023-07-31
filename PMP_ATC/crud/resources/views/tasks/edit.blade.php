@@ -64,7 +64,7 @@
                     <label for="priority" style="font-size: 15px;">Priority</label>
                     <select name="priority" id="priority" class="form-control shadow-sm" required>
                         <option value="Low priority" {{ $task->priority == 'Low priority' ? 'selected' : '' }}>Low Priority</option>
-                        <option value="Med Priority" {{ $task->priority == 'Med Priority' ? 'selected' : '' }}>Med Priority</option>
+                        <option value="Med priority" {{ $task->priority == 'Med priority' ? 'selected' : '' }}>Med Priority</option>
                         <option value="High priority" {{ $task->priority == 'High priority' ? 'selected' : '' }}>High Priority</option>
                     </select>
                 </div>
@@ -200,6 +200,7 @@
                                 {{ $task->title }}
                             </option>
                         @endforeach
+                        {{-- <option value="">Select Task</option> --}}
                     </select>
                     {{-- <input type="number" name="parent_task" id="parent_task" class="form-control shadow-sm" value="{{ $task->parent_task }}"> --}}
                 </div>
