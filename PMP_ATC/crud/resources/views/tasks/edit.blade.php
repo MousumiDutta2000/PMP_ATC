@@ -70,8 +70,19 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="attachments" style="font-size: 15px;">Attachments</label>
+                <input type="file" name="attachments" id="attachments" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
+                @if($task->attachments)
+                    <p>Current Attachment: <a href="{{ asset('path/to/attachments/'.$task->attachments) }}">{{ $task->attachments }}</a></p>
+                @else
+                    <p>No Attachment Uploaded.</p>
+                @endif
+            </div>
+            
 
-            <div class="col-md-6">
+
+            {{-- <div class="col-md-6">
                 <div class="form-group">
                     <label for="attachments" style="font-size: 15px;">Attachments</label>
                     <input type="file" name="attachments" id="attachments" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
@@ -81,7 +92,7 @@
                         <p>No Attachment Uploaded.</p>
                     @endif
                 </div>
-            </div>
+            </div> --}}
 
                       
                 <div class="form-group">
