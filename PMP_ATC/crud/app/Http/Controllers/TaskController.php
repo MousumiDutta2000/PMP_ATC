@@ -82,7 +82,7 @@ class TaskController extends Controller
             'type' => 'required|in:feature,user story',
             'priority' => 'required|in:Low priority,Med priority,High priority',
             'details' => 'required',
-            // 'attachments' => '',
+            'attachments' => 'nullable|file',
             'assigned_to' => 'required',
             'created_by' => 'required',
             'last_edited_by' => 'required',
