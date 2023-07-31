@@ -107,24 +107,27 @@
       <div class="card">
         <div class="card-body pt-3">
           <!-- Bordered Tabs -->
-          <ul class="nav nav-tabs nav-tabs-bordered">
+          <div class="d-flex align-items-center">
+            <ul class="nav nav-tabs nav-tabs-bordered">
+                <li class="nav-item">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#skill-set">Skill Set</button>
+                </li>
+            </ul>
 
-            <li class="nav-item">
-              <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
-            </li>
-            
-            <li class="nav-item">
-              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#skill-set">Skill Set</button>
-            </li>
-          </ul>
+            <!-- Add ml-auto class to push the edit button to the right -->
+            <div class="ml-auto">
+                <button class="btn btn-primary btn-sm edit-field" id="editProfileButton"><i class="ri-edit-2-fill"></i></button>
+            </div>
+        </div>
+
 
           <div class="tab-content pt-2">
 
 
             <div class="tab-pane fade show active profile-overview" id="profile-overview">
-              <div class="card-header d-flex justify-content-end">
-                <button class="btn btn-primary btn-sm edit-field" id="editProfileButton"><i class="ri-edit-2-fill"></i></button>
-              </div>
               <h5 class="card-title">Personal Details</h5>
               <br>
                 <div class="row">
@@ -144,7 +147,7 @@
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Date Of Birth</div>
                   <div class="col-lg-9 col-md-8">
-                    {{$profile->DOB}}
+                  <span class="dob-with-suffix">{{ date('d F, Y', strtotime($profile->DOB)) }}</span>
                   </div>
                 </div>
 
@@ -190,9 +193,7 @@
                       <input type="text" class="form-control" name="email" id="email" value="{{ $profile->email }}" required hidden>
                     </div>
                   </div>
-                </div>
 
-                <div class="row">
                   <div class="col-lg-3 col-md-4 label">Contact Number</div>
                   <div class="col-lg-9 col-md-8">
                     <div class="form-group">
