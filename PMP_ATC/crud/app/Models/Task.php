@@ -41,5 +41,4 @@ class Task extends Model
     {
         return $this->belongsTo(Task::class, 'parent_task');
     }
-   
 }
