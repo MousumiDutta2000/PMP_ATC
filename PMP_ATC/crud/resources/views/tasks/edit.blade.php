@@ -63,9 +63,9 @@
                 <div class="form-group">
                     <label for="priority" style="font-size: 15px;">Priority</label>
                     <select name="priority" id="priority" class="form-control shadow-sm" required>
-                        <option value="Low priority" {{ $task->priority == 'Low priority' ? 'selected' : '' }}>Low Priority</option>
+                        <option value="Low Priority" {{ $task->priority == 'Low Priority' ? 'selected' : '' }}>Low Priority</option>
                         <option value="Med Priority" {{ $task->priority == 'Med Priority' ? 'selected' : '' }}>Med Priority</option>
-                        <option value="High priority" {{ $task->priority == 'High priority' ? 'selected' : '' }}>High Priority</option>
+                        <option value="High Priority" {{ $task->priority == 'High Priority' ? 'selected' : '' }}>High Priority</option>
                     </select>
                 </div>
             </div>
