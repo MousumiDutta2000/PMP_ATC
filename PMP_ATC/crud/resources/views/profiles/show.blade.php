@@ -126,50 +126,39 @@
                 <button class="btn btn-primary btn-sm edit-field" id="editProfileButton"><i class="ri-edit-2-fill"></i></button>
               </div>
               <h5 class="card-title">Personal Details</h5>
-              <br>
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Full Name</div>
-                  <div class="col-lg-9 col-md-8">
-                    {{ $profile->profile_name }}
-                  </div>
+                <div class="col-md-6 mb-2">
+                  <div class="label" style="display: inline-block; width: 200px;">Full Name</div>
+                  <div style="display: inline-block;">{{ $profile->profile_name }}</div>
                 </div>
 
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Father's Name</div>
-                  <div class="col-lg-9 col-md-8">
-                    {{$profile->father_name}}
-                  </div>
+                <div class="col-md-6 mb-2">
+                  <div class="label" style="display: inline-block; width: 200px;">Father's Name</div>
+                  <div style="display: inline-block;">{{$profile->father_name}}</div>
                 </div>
 
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Date Of Birth</div>
-                  <div class="col-lg-9 col-md-8">
-                    {{$profile->DOB}}
-                  </div>
+                <div class="col-md-6 mb-2">
+                  <div class="label" style="display: inline-block; width: 200px;">Date Of Birth</div>
+                  <div style="display: inline-block;">{{$profile->DOB}}</div>
                 </div>
 
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Work Location</div>
-                  <div class="col-lg-9 col-md-8">
-                    {{$profile->work_location}}                
-                  </div>
+                <div class="col-md-6 mb-2">
+                  <div class="label" style="display: inline-block; width: 200px;">Work Location</div>
+                  <div style="display: inline-block;">{{$profile->work_location}}</div>
                 </div>
 
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Work Address</div>
-                  <div class="col-lg-9 col-md-8">
-                    {{$profile->work_address}}
-                  </div>
+                <div class="col-md-6 mb-2">
+                  <div class="label" style="display: inline-block; width: 200px;">Work Address</div>
+                  <div style="display: inline-block;">{{$profile->work_address}}</div>
                 </div>
               <form method="post" action="{{ route('profiles.update2', ['profile' => $profile->id]) }}" enctype="multipart/form-data" id="editProfileForm">
                 @csrf
                 @method('PUT')
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Highest Educational Qualification</div>
-                  <div class="col-lg-9 col-md-8">
-                    <div class="form-group">
+                <div class="col-md-6 mb-2" style="display:flex">
+                  <div class="label" style="display: inline-block; width: 200px;">Highest Educational Qualification</div>
+                  <div style="display: inline-block; vertical-align: top;">
+                    <div class="form-group" style="display: inline-block;">
                     <span id="highest_education_span">{{$profile->highestEducationValue->highest_education_value}}</span>
-                    <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required{{ $editable ? '' : ' readonly' }}>
+                    <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required{{ $editable ? '' : ' readonly' }} style="display: inline-block; width: auto;">
                       @foreach ($qualifications as $qualification)
                         <option value="{{ $qualification->id }}" {{ $profile->highest_educational_qualification_id == $qualification->id ? 'selected' : '' }}>
                           {{ $qualification->highest_education_value }}
@@ -181,24 +170,23 @@
                 </div>
                 <br>
                 <h5 class="card-title">Contact Details</h5>
-                <br>
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Email</div>
-                  <div class="col-lg-9 col-md-8">
+                <div class="col-md-6 mb-2">
+                  <div class="label" style="display: inline-block; width: 200px;">Email</div>
+                  <div style="display: inline-block; vertical-align: top;">
                   {{$profile->email}}
-                    <div class="form-group">
+                    <div class="form-group" style="display: inline-block;">
                       <input type="text" class="form-control" name="email" id="email" value="{{ $profile->email }}" required hidden>
                     </div>
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Contact Number</div>
-                  <div class="col-lg-9 col-md-8">
-                    <div class="form-group">
-                      <span id="contact_number_span">{{$profile->contact_number}}</span>
-                      <input type="text" class="form-control" name="contact_number" id="contact_number" value="{{ $profile->contact_number }}"{{ $editable ? '' : ' readonly' }} maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">                    
-                    </div>                
+                <div class="col-md-6 mb-2" style="display:flex">
+                  <div class="label" style="display: inline-block; width: 200px;">Contact Number</div>
+                  <div style="display: inline-block; vertical-align: top;">
+                    <div class="form-group" style="display: inline-block; padding-left: 39px;">
+                      <span id="contact_number_span" style="padding-right:66px;">{{$profile->contact_number}}</span>
+                      <input type="text" class="form-control" name="contact_number" id="contact_number" value="{{ $profile->contact_number }}"{{ $editable ? '' : ' readonly' }} maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" style="display: inline-block;">                    
+                    </div>
                   </div>
                 </div>
                 <div class="text-end">
