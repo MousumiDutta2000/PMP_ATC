@@ -200,6 +200,7 @@
                                 {{ $task->title }}
                             </option>
                         @endforeach
+                        {{-- <option value="">Select Task</option> --}}
                     </select>
                     {{-- <input type="number" name="parent_task" id="parent_task" class="form-control shadow-sm" value="{{ $task->parent_task }}"> --}}
                 </div>
