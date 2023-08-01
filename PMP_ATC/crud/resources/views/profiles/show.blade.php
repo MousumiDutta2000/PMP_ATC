@@ -61,34 +61,6 @@
               $('#' + formId + ' button[type="submit"]').toggle(editable);
           }
         });
-
-
-
-        document.addEventListener("DOMContentLoaded", function () {
-        // Get references to the tabs and the "Edit Profile" button
-        const overviewTab = document.querySelector("#profile-overview");
-        const skillSetTab = document.querySelector("#skill-set");
-        const editProfileButton = document.querySelector("#editProfileButton");
-
-        // Function to toggle the visibility of the "Edit Profile" button
-        function toggleEditButtonVisibility() {
-            if (overviewTab.classList.contains("active")) {
-                // Show the button on the "Overview" tab
-                editProfileButton.style.display = "block";
-            } else {
-                // Hide the button on other tabs
-                editProfileButton.style.display = "none";
-            }
-        }
-
-        // Initial call to set the button visibility based on the active tab
-        toggleEditButtonVisibility();
-
-        // Listen for tab shown events and update the button visibility accordingly
-        document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function (tabButton) {
-            tabButton.addEventListener("shown.bs.tab", toggleEditButtonVisibility);
-        });
-    });
     </script>
 @endsection
 
@@ -135,27 +107,24 @@
       <div class="card">
         <div class="card-body pt-3">
           <!-- Bordered Tabs -->
-          <div class="d-flex align-items-center">
-            <ul class="nav nav-tabs nav-tabs-bordered">
-                <li class="nav-item">
-                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#skill-set">Skill Set</button>
-                </li>
-            </ul>
+          <ul class="nav nav-tabs nav-tabs-bordered">
 
-            <!-- Add ml-auto class to push the edit button to the right -->
-            <div class="ml-auto">
-                <button class="btn btn-primary btn-sm edit-field" id="editProfileButton"><i class="ri-edit-2-fill"></i></button>
-            </div>
-        </div>
-
+            <li class="nav-item">
+              <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+            </li>
+            
+            <li class="nav-item">
+              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#skill-set">Skill Set</button>
+            </li>
+          </ul>
 
           <div class="tab-content pt-2">
 
 
             <div class="tab-pane fade show active profile-overview" id="profile-overview">
+              <div class="card-header d-flex justify-content-end">
+                <button class="btn btn-primary btn-sm edit-field" id="editProfileButton"><i class="ri-edit-2-fill"></i></button>
+              </div>
               <h5 class="card-title">Personal Details</h5>
                 <div class="col-md-6 mb-2">
                   <div class="label" style="display: inline-block; width: 200px;">Full Name</div>
@@ -209,6 +178,7 @@
                       <input type="text" class="form-control" name="email" id="email" value="{{ $profile->email }}" required hidden>
                     </div>
                   </div>
+                </div>
 
                 <div class="col-md-6 mb-2" style="display:flex">
                   <div class="label" style="display: inline-block; width: 200px;">Contact Number</div>
