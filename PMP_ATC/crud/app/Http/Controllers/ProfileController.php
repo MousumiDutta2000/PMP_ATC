@@ -193,13 +193,10 @@ class ProfileController extends Controller
         $profile->highest_educational_qualification_id = $request->input('highest_educational_qualification_id');
         $profile->email = $request->email;
         $profile->save();
-
         
         $profiles = Profile::all();
         $qualifications = HighestEducationValue::all();
 
-        
-        //return view('profiles.show', compact('profile','profiles','qualifications'));
         return back()->with('success', 'Edited successfully.');    
     }
 
