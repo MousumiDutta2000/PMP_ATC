@@ -53,7 +53,7 @@
                 <tbody >
                     @if(count($profiles)>0)
                         @foreach($profiles as $index => $profile)
-                            <tr class="shadow" style="border-radius:15px; font-size: small;">
+                            <tr class="shadow" style="border-radius:15px;">
                                 <td>
                                     <a href="#">
                                         <div class="d-flex align-items-center">
