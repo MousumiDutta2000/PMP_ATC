@@ -6,7 +6,10 @@
     <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css'>
     <link rel='stylesheet' href='https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css'>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/boxicons@2.0.0/css/boxicons.min.css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profiles.css') }}">
 @endsection
 
 @section('custom_js')
@@ -90,9 +93,30 @@
               <form action="{{ route('profiles.deleteImage', $profile->id) }}" method="post">
                 @csrf
                 @method('delete')
-                <button type="submit" class="btn btn-danger btn-sm" title="Remove my profile image">
+                <button type="button" class="btn btn-danger btn-sm" title="Remove my profile image" data-toggle="modal" data-target="#delete">
                   <i class="bi bi-trash"></i>
                 </button>
+                <!-- Delete Modal start -->
+                <div class="modal fade" id="delete" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header flex-column">
+                                                            <div class="icon-box">
+                                                                <i class="material-icons">&#xE5CD;</i>
+                                                            </div>
+                                                            <h3 class="modal-title w-100">Are you sure?</h3>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Do you really want to delete this profile picture?</p>
+                                                        </div>
+                                                        <div class="modal-footer justify-content-center">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Delete Modal end-->
               </form>
             </div>          
           </div>
@@ -126,34 +150,34 @@
                 <button class="btn btn-primary btn-sm edit-field" id="editProfileButton"><i class="ri-edit-2-fill"></i></button>
               </div>
               <h5 class="card-title">Personal Details</h5>
-                <div class="col-md-6 mb-2">
+                <div class="col-md-6 mb-3">
                   <div class="label" style="display: inline-block; width: 200px;">Full Name</div>
                   <div style="display: inline-block;">{{ $profile->profile_name }}</div>
                 </div>
 
-                <div class="col-md-6 mb-2">
+                <div class="col-md-6 mb-3">
                   <div class="label" style="display: inline-block; width: 200px;">Father's Name</div>
                   <div style="display: inline-block;">{{$profile->father_name}}</div>
                 </div>
 
-                <div class="col-md-6 mb-2">
+                <div class="col-md-6 mb-3">
                   <div class="label" style="display: inline-block; width: 200px;">Date Of Birth</div>
                   <div style="display: inline-block;">{{$profile->DOB}}</div>
                 </div>
 
-                <div class="col-md-6 mb-2">
+                <div class="col-md-6 mb-3">
                   <div class="label" style="display: inline-block; width: 200px;">Work Location</div>
                   <div style="display: inline-block;">{{$profile->work_location}}</div>
                 </div>
 
-                <div class="col-md-6 mb-2">
+                <div class="col-md-6 mb-3">
                   <div class="label" style="display: inline-block; width: 200px;">Work Address</div>
                   <div style="display: inline-block;">{{$profile->work_address}}</div>
                 </div>
               <form method="post" action="{{ route('profiles.update2', ['profile' => $profile->id]) }}" enctype="multipart/form-data" id="editProfileForm">
                 @csrf
                 @method('PUT')
-                <div class="col-md-6 mb-2" style="display:flex">
+                <div class="col-md-6 mb-3" style="display:flex">
                   <div class="label" style="display: inline-block; width: 200px;">Highest Educational Qualification</div>
                   <div style="display: inline-block; vertical-align: top;">
                     <div class="form-group" style="display: inline-block;">
@@ -170,7 +194,7 @@
                 </div>
                 <br>
                 <h5 class="card-title">Contact Details</h5>
-                <div class="col-md-6 mb-2">
+                <div class="col-md-6 mb-3">
                   <div class="label" style="display: inline-block; width: 200px;">Email</div>
                   <div style="display: inline-block; vertical-align: top;">
                   {{$profile->email}}
@@ -180,11 +204,11 @@
                   </div>
                 </div>
 
-                <div class="col-md-6 mb-2" style="display:flex">
+                <div class="col-md-6 mb-3" style="display:flex">
                   <div class="label" style="display: inline-block; width: 200px;">Contact Number</div>
                   <div style="display: inline-block; vertical-align: top;">
                     <div class="form-group" style="display: inline-block; padding-left: 39px;">
-                      <span id="contact_number_span" style="padding-right:66px;">{{$profile->contact_number}}</span>
+                      <span id="contact_number_span" style="padding-right:64px;">{{$profile->contact_number}}</span>
                       <input type="text" class="form-control" name="contact_number" id="contact_number" value="{{ $profile->contact_number }}"{{ $editable ? '' : ' readonly' }} maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" style="display: inline-block;">                    
                     </div>
                   </div>
