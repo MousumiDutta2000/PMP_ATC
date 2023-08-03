@@ -24,6 +24,7 @@ class Project extends Model
         'client_id',
         'project_members_id',
         'project_role_id',
+        'task_type_id',
     ];
 
     protected $casts = [
@@ -58,5 +59,10 @@ class Project extends Model
         return $this->belongsToMany(Profile::class, 'project_members', 'project_id', 'project_members_id')
             ->withPivot('project_role_id')
             ->withTimestamps();
+    }
+
+    public function task_type()
+    {
+        return $this->belongsTo(Task_type::class, 'task_type_id');
     }
 }
