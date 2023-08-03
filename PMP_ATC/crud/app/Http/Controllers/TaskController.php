@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\Profile;
+use App\Models\Sprint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -19,17 +20,19 @@ class TaskController extends Controller
     {
         $tasks = Task::all();
         $profiles= Profile::all();
-        return view('tasks.create', compact('tasks','profiles'));
+        $sprints= Sprint::all();
+        return view('tasks.create', compact('tasks','profiles','sprints'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'title' => 'required',
-            'type' => 'required|in:Feature,User story',
+            'sprint_id' => 'required',
+            'type' => 'required',
             'priority' => 'required|in:Low priority,Med priority,High priority',
             'details' => 'required',
-            'attachments' => 'required',
+            // 'attachments' => 'required',
             'assigned_to' => 'required',
             'created_by' => 'required',
             'last_edited_by' => 'required',
@@ -37,23 +40,24 @@ class TaskController extends Controller
             'estimated_time_unit' => 'required|in:hour,day,month,year',
             'time_taken_number' => 'required|numeric',
             'time_taken_unit' => 'required|in:hour,day,month,year',
-            'status' => 'required|in:not started,ongoing,hold,completed',
+            'status' => 'required',
             'parent_task' => '',
         ]);
 
         $task = new Task;
         $task->uuid = substr(Str::uuid()->toString(), 0, 8);
         $task->title = $request->title;
+        $task->sprint_id = $request->sprint_id;
         $task->type = $request->type;
         $task->priority = $request->priority;
         $task->details = $request->details;
         // $task->attachments = $request->attachments;
-        if ($request->hasFile('attachments')) {
-            $file = $request->file('attachments');
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->storeAs('attachments', $fileName, 'public');
-            $task->attachments = $filePath;
-        }
+        // if ($request->hasFile('attachments')) {
+        //     $file = $request->file('attachments');
+        //     $fileName = $file->getClientOriginalName();
+        //     $filePath = $file->storeAs('attachments', $fileName, 'public');
+        //     $task->attachments = $filePath;
+        // }
         $task->assigned_to = $request->assigned_to;
         $task->created_by = $request->created_by;
         $task->last_edited_by = $request->last_edited_by;
@@ -76,7 +80,8 @@ class TaskController extends Controller
     {
         $tasks = Task::all();
         $profiles= Profile::all();
-        return view('tasks.edit', compact('task','tasks','profiles'));
+        $sprints= Sprint::all();
+        return view('tasks.edit', compact('tasks','profiles','sprints'));
     }
 
 
@@ -85,10 +90,11 @@ class TaskController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'type' => 'required|in:feature,user story',
+            'sprint_id' => 'required',
+            'type' => 'required',
             'priority' => 'required|in:Low priority,Med priority,High priority',
             'details' => 'required',
-            'attachments' => 'nullable|file',
+            // 'attachments' => 'required',
             'assigned_to' => 'required',
             'created_by' => 'required',
             'last_edited_by' => 'required',
@@ -96,22 +102,23 @@ class TaskController extends Controller
             'estimated_time_unit' => 'required|in:hour,day,month,year',
             'time_taken_number' => 'required|numeric',
             'time_taken_unit' => 'required|in:hour,day,month,year',
-            'status' => 'required|in:not started,ongoing,hold,completed',
+            'status' => 'required',
             'parent_task' => '',
         ]);
 
         $task->uuid = substr(Str::uuid()->toString(), 0, 8);
         $task->title = $request->title;
+        $task->sprint_id = $request->sprint_id;
         $task->type = $request->type;
         $task->priority = $request->priority;
         $task->details = $request->details;
         // $task->attachments = $request->attachments;
-        if ($request->hasFile('attachments')) {
-            $file = $request->file('attachments');
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->storeAs('attachments', $fileName, 'public');
-            $task->attachments = $filePath;
-        }
+        // if ($request->hasFile('attachments')) {
+        //     $file = $request->file('attachments');
+        //     $fileName = $file->getClientOriginalName();
+        //     $filePath = $file->storeAs('attachments', $fileName, 'public');
+        //     $task->attachments = $filePath;
+        // }
         $task->assigned_to = $request->assigned_to;
         $task->created_by = $request->created_by;
         $task->last_edited_by = $request->last_edited_by;

@@ -41,6 +41,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Title</th>
+                        <th>Sprint Name</th>
                         <th>Type</th>
                         <th>Priority</th>
                         {{-- <th>Details</th> --}}
@@ -61,7 +62,8 @@
                 <tr class="shadow" style="border-radius:15px;">
                     <td style="font-size: 15px;">{{ $task->uuid }}</td>
                     <td style="font-size: 15px;">{{ $task->title }}</td>
-                    <td style="font-size: 15px;">{{ $task->type }}</td>
+                    <td style="font-size: 15px;">{{ $task->sprintId->sprint_name }}</td>
+                    <td style="font-size: 15px;">{{ $task->taskType->type }}</td>
                     <td style="font-size: 14px;">
                         @if(strtolower($task->priority) == 'low priority')
                             <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
@@ -72,7 +74,7 @@
                         @endif
                     </td>
                     {{-- <td>{{ $task->details }}</td> --}}
-                    <td style="font-size: 15px;">{{ basename($task->attachments) }}</td>
+                    {{-- <td style="font-size: 15px;">{{ basename($task->attachments) }}</td> --}}
                     <td style="font-size: 15px;">{{ $task->assignedTo->profile_name }}</td>
                     {{-- <td style="font-size: 15px;">{{ $task->createdBy->profile_name }}</td> --}}
                     {{-- <td style="font-size: 15px;">{{ $task->lastEditedBy->profile_name }}</td> --}}

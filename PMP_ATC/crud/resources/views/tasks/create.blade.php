@@ -49,11 +49,26 @@
 
             <div class="col-md-6">
                 <div class="form-group">
+                    <label for="sprint_id" style="font-size: 15px;">Sprint ID:</label>
+                    <select name="sprint_id" id="sprint_id" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                        <option value="">Select Sprint</option>
+                        @foreach ($sprints as $sprint)
+                            <option value="{{ $sprint->id }}">{{ $sprint->sprint_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
                     <label for="type" style="font-size: 15px;">Type</label>
                     <select name="type" id="type" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                         <option value="" selected="selected" disabled="disabled">Select type</option>
-                        <option value="Feature">Feature</option>
-                        <option value="User story">User story</option>
+                        @foreach ($projects as $project)
+                        <option value="{{ $project->id }}">{{ $project->task_type }}</option>
+                    @endforeach
+                        {{-- <option value="Feature">Feature</option>
+                        <option value="User story">User story</option> --}}
                     </select>
                 </div>
             </div>
@@ -77,12 +92,12 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <div class="form-group">
                     <label for="attachments"  style="font-size: 15px;">Attachments</label>
                     <input type="file" name="attachments" id="attachments" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;"">
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col-md-6">
                 <div class="form-group">
@@ -164,10 +179,9 @@
         <label for="status" style="font-size: 15px;">Status</label>
         <select name="status" id="status" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
             <option value="" selected disabled>Select status</option>
-            <option value="notstarted">Not started</option>
-            <option value="ongoing">Ongoing</option>
-            <option value="hold">Hold</option>
-            <option value="completed">Completed</option>
+            <option value="ToDo">ToDo</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
         </select>
     </div>
 </div>
@@ -182,8 +196,7 @@
                             <option value="{{ $task->id }}">{{ $task->title }}</option>
                         @endforeach
                     </select>
-                    {{-- <input type="number" name="parent_task" id="parent_task" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;"> --}}
-                   
+                    
                 </div>
             </div>
 

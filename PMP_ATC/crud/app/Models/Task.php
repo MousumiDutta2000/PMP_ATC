@@ -9,6 +9,7 @@ class Task extends Model
     
     protected $fillable = [
         'title',
+        'sprint_id',
         'type',
         'priority',
         'details',
@@ -22,6 +23,15 @@ class Task extends Model
         'parent_task',
     ];
 
+    public function sprintId()
+    {
+        return $this->belongsTo(Sprint::class, 'sprint_id');
+    }
+
+    public function taskType()
+    {
+        return $this->belongsTo(Project::class, 'type');
+    }
     public function createdBy()
     {
         return $this->belongsTo(Profile::class, 'created_by');
