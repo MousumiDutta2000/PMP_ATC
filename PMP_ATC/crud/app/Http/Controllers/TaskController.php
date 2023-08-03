@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\Profile;
 use App\Models\Sprint;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -21,7 +22,8 @@ class TaskController extends Controller
         $tasks = Task::all();
         $profiles= Profile::all();
         $sprints= Sprint::all();
-        return view('tasks.create', compact('tasks','profiles','sprints'));
+        $projets= Project::all();
+        return view('tasks.create', compact('tasks','profiles','sprints','projects'));
     }
 
     public function store(Request $request)
@@ -81,7 +83,8 @@ class TaskController extends Controller
         $tasks = Task::all();
         $profiles= Profile::all();
         $sprints= Sprint::all();
-        return view('tasks.edit', compact('tasks','profiles','sprints'));
+        $projets= Project::all();
+        return view('tasks.edit', compact('tasks','profiles','sprints','projects'));
     }
 
 

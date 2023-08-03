@@ -54,8 +54,8 @@
                     <label for="type" style="font-size: 15px;">Type</label>
                     <select name="type" id="type" class="form-control shadow-sm" required>
                         @foreach ($projects as $project)
-                        <option value="{{ $project->id }}" {{ $project->task_type == $project->id ? 'selected' : '' }}>
-                            {{ $project->task_type }}
+                        <option value="{{ $project->id }}" {{ $project->task_type_id == $project->id ? 'selected' : '' }}>
+                            {{ $project->task_type_id }}
                         </option>
                     @endforeach
                         {{-- <option value="feature" {{ $task->type == 'feature' ? 'selected' : '' }}>Feature</option>

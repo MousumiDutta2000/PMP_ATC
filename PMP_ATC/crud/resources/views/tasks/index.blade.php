@@ -63,7 +63,7 @@
                     <td style="font-size: 15px;">{{ $task->uuid }}</td>
                     <td style="font-size: 15px;">{{ $task->title }}</td>
                     <td style="font-size: 15px;">{{ $task->sprintId->sprint_name }}</td>
-                    <td style="font-size: 15px;">{{ $task->taskType->type }}</td>
+                    <td style="font-size: 15px;">{{ $task->taskTypeId->type }}</td>
                     <td style="font-size: 14px;">
                         @if(strtolower($task->priority) == 'low priority')
                             <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>

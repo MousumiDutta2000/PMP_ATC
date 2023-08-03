@@ -65,7 +65,7 @@
                     <select name="type" id="type" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                         <option value="" selected="selected" disabled="disabled">Select type</option>
                         @foreach ($projects as $project)
-                        <option value="{{ $project->id }}">{{ $project->task_type }}</option>
+                        <option value="{{ $project->id }}">{{ $project->task_type_id }}</option>
                     @endforeach
                         {{-- <option value="Feature">Feature</option>
                         <option value="User story">User story</option> --}}

@@ -28,7 +28,7 @@ class Task extends Model
         return $this->belongsTo(Sprint::class, 'sprint_id');
     }
 
-    public function taskType()
+    public function taskTypeId()
     {
         return $this->belongsTo(Project::class, 'type');
     }
