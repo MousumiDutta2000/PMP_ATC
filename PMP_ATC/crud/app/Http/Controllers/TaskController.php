@@ -37,7 +37,7 @@ class TaskController extends Controller
             'estimated_time_unit' => 'required|in:hour,day,month,year',
             'time_taken_number' => 'required|numeric',
             'time_taken_unit' => 'required|in:hour,day,month,year',
-            'status' => 'required|in:notstarted,ongoing,hold,completed',
+            'status' => 'required|in:not started,ongoing,hold,completed',
             'parent_task' => '',
         ]);
 

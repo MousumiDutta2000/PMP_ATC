@@ -20,6 +20,7 @@ use App\Http\Controllers\Auth\MicrosoftController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TaskTypeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -99,6 +100,8 @@ Route::middleware([
     Route::resource('user_technologies', UserTechnologyController::class);
 
     Route::get('/get-profile-email/{id}', 'ProfileController@getProfileEmail');
+
+    Route::resource('task_types', TaskTypeController::class);
 });
 
 //Microsoft Authentication Route
