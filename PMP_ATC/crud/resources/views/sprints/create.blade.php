@@ -102,10 +102,17 @@
                 </div>
             </div>
 
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="createdAt" style="font-size: 15px;">Created At</label>
+                    <input type="date" name="createdAt" id="created_at" class="form-controlcl shadow-sm" value="{{ old('createdAt') }}" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
+                </div>
+            </div>
+
             <div class="col-md-6 mb-3">
                 <div class="form-group">
-                    <label for="assigned_to" style="font-size: 15px;">Assigned To:</label>
-                    <select name="assigned_to" id="assigned_to" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                    <label for="created_by" style="font-size: 15px;">Created By</label>
+                    <select name="created_by" id="created_by" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
                         <option value="">Select User</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -116,7 +123,7 @@
             </div>
 
 
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <div class="form-group">
                     <label for="assigned_by" style="font-size: 15px;">Assigned By:</label>
                     <select name="assigned_by" id="assigned_by" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
@@ -126,7 +133,7 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Create</button>

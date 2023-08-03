@@ -49,8 +49,8 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th style="padding-left:35px">Status</th>
-                        <th>Assigned To</th>
-                        <th>Assigned By</th>
+                        <th>CreatedAt</th>
+                        <th>Created By</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -84,8 +84,9 @@
                                     <div class="badge badge-danger-light text-white font-weight-bold" style="background-color: #f07f8c; margin-left:12px;">{{ $sprint->status }}</div>
                                 @endif
                             </td>
-                            <td>{{ $sprint->assignedTo->name }}</td>
-                            <td>{{ $sprint->assignedBy->name }}</td>
+                            <td>{{ $sprint->createdAt }}</td>
+                            <td>{{ $sprint->createdBy->name }}</td>
+                            {{-- <td>{{ $sprint->assignedBy->name }}</td> --}}
                             <td>
                                 <div class="btn-group" role="group">
                                     <a href="#" data-toggle="modal" data-target="#showModal_{{ $sprint->id }}">
@@ -185,14 +186,20 @@
                                         </td>
                                         
                                     </tr>
+
                                     <tr>
-                                        <th style="font-weight: 600; padding-left:30px;">Assigned To:</th>
-                                        <td>{{ $sprint->assignedTo->name }}</td>
+                                        <th style="font-weight: 600; padding-left:30px;">Created At:</th>
+                                        <td style="font-weight: 500">{{ $sprint->createdAt }}</td>
                                     </tr>
+
                                     <tr>
+                                        <th style="font-weight: 600; padding-left:30px;">Created By:</th>
+                                        <td>{{ $sprint->createdBy->name }}</td>
+                                    </tr>
+                                    {{-- <tr>
                                         <th style="font-weight: 600; padding-left:30px;">Assigned By:</th>
                                         <td style="font-weight: 500">{{ $sprint->assignedBy->name }}</td>
-                                    </tr>
+                                    </tr> --}}
                                 </tbody>
                             </table>
                         </div>

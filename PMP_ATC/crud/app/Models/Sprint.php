@@ -13,13 +13,14 @@ class Sprint extends Model
         'start_date',
         'end_date',
         'status',
-        'assigned_to',
-        'assigned_by',
+        'createdAt',
+        'created_by',
     ];
 
     protected $dates = [
         'start_date',
         'end_date',
+        'createdAt',
     ];
 
     public function project()
@@ -27,14 +28,19 @@ class Sprint extends Model
         return $this->belongsTo(Project::class, 'project_id');
     }
 
-    public function assignedTo()
+    public function createdBy()
     {
-        return $this->belongsTo(User::class, 'assigned_to');
+        return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function assignedBy()
-    {
-        return $this->belongsTo(User::class, 'assigned_by');
-    }
+    // public function assignedTo()
+    // {
+    //     return $this->belongsTo(User::class, 'assigned_to');
+    // }
+
+    // public function assignedBy()
+    // {
+    //     return $this->belongsTo(User::class, 'assigned_by');
+    // }
 
 }
