@@ -6,6 +6,10 @@
   background-color: #e1daf4 !important;
 }  */
 
+.w-60 {
+  width: 60% !important;
+}
+
 .plus-icon:hover {
   cursor: pointer;
 }
@@ -122,7 +126,7 @@
 display: flex;
 /* justify-content: center; */
 flex-wrap: wrap;
-gap: 20px;
+/* gap: 20px; */
 }
 
 #memberCardContainer .card {
