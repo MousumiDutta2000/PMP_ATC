@@ -25,7 +25,7 @@ class CreateTasksTable extends Migration
             $table->string('status');
             $table->unsignedBigInteger('parent_task')->nullable();
             $table->foreign('sprint_id')->references('id')->on('sprints');
-            $table->foreign('type')->references('id')->on('projects');
+            $table->foreign('type')->references('id')->on('project');
             $table->foreign('parent_task')->references('id')->on('tasks');
             $table->foreign('assigned_to')->references('id')->on('profiles');
             $table->foreign('created_by')->references('id')->on('profiles');

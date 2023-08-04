@@ -45,7 +45,7 @@
                         <th>Type</th>
                         <th>Priority</th>
                         {{-- <th>Details</th> --}}
-                        <th>Attachments</th>
+                        {{-- <th>Attachments</th> --}}
                         <th>Assigned To</th>
                         {{-- <th>Created By</th> --}}
                         {{-- <th>Last Edited By</th> --}}

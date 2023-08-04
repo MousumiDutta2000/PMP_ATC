@@ -22,7 +22,7 @@ class TaskController extends Controller
         $tasks = Task::all();
         $profiles= Profile::all();
         $sprints= Sprint::all();
-        $projets= Project::all();
+        $projects= Project::all();
         return view('tasks.create', compact('tasks','profiles','sprints','projects'));
     }
 
@@ -83,7 +83,7 @@ class TaskController extends Controller
         $tasks = Task::all();
         $profiles= Profile::all();
         $sprints= Sprint::all();
-        $projets= Project::all();
+        $projects= Project::all();
         return view('tasks.edit', compact('tasks','profiles','sprints','projects'));
     }
 
