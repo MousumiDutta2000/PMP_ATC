@@ -70,6 +70,8 @@ class TaskController extends Controller
 
         $task->save();
 
+        $taskIds = $request->input('task_id', []);
+
         return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 
