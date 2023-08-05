@@ -42,8 +42,10 @@ class SprintController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date',
             'status' => 'required',
-            'assigned_to' => 'required',
-            'assigned_by' => 'required',
+            'createdAt' => 'required',
+            'created_by' => 'required',
+            // 'assigned_to' => 'required',
+            // 'assigned_by' => 'required',
         ]);
 
         $sprint = new Sprint;
@@ -54,8 +56,8 @@ class SprintController extends Controller
         $sprint->start_date = $request->start_date;
         $sprint->end_date = $request->end_date;
         $sprint->status = $request->status;
-        $sprint->assigned_to = $request->assigned_to;
-        $sprint->assigned_by = $request->assigned_by;
+        $sprint->createdAt = $request->createdAt;
+        $sprint->created_by = $request->created_by;
 
         $sprint->save();
 
@@ -87,8 +89,8 @@ class SprintController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date',
             'status' => 'required',
-            'assigned_to' => 'required',
-            'assigned_by' => 'required',
+            'createdAt' => 'required',
+            'created_by' => 'required',
         ]);
 
         $sprint->uuid = substr(Str::uuid()->toString(), 0, 8);
@@ -98,8 +100,8 @@ class SprintController extends Controller
         $sprint->start_date = $request->start_date;
         $sprint->end_date = $request->end_date;
         $sprint->status = $request->status;
-        $sprint->assigned_to = $request->assigned_to;
-        $sprint->assigned_by = $request->assigned_by;
+        $sprint->createdAt = $request->createdAt;
+        $sprint->created_by = $request->created_by;
 
         $sprint->save();
 

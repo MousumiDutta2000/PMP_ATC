@@ -53,8 +53,13 @@
                 <div class="form-group">
                     <label for="type" style="font-size: 15px;">Type</label>
                     <select name="type" id="type" class="form-control shadow-sm" required>
-                        <option value="feature" {{ $task->type == 'feature' ? 'selected' : '' }}>Feature</option>
-                        <option value="user story" {{ $task->type == 'user story' ? 'selected' : '' }}>User Story</option>
+                        @foreach ($projects as $project)
+                        <option value="{{ $project->id }}" {{ $project->task_type_id == $project->id ? 'selected' : '' }}>
+                            {{ $project->task_type_id }}
+                        </option>
+                    @endforeach
+                        {{-- <option value="feature" {{ $task->type == 'feature' ? 'selected' : '' }}>Feature</option>
+                        <option value="user story" {{ $task->type == 'user story' ? 'selected' : '' }}>User Story</option> --}}
                     </select>
                 </div>
             </div>
@@ -70,7 +75,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="attachments" style="font-size: 15px;">Attachments</label>
                 <input type="file" name="attachments" id="attachments" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                 @if($task->attachments)
@@ -78,21 +83,9 @@
                 @else
                     <p>No Attachment Uploaded.</p>
                 @endif
-            </div>
+            </div> --}}
             
 
-
-            {{-- <div class="col-md-6">
-                <div class="form-group">
-                    <label for="attachments" style="font-size: 15px;">Attachments</label>
-                    <input type="file" name="attachments" id="attachments" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
-                    @if($task->attachments)
-                        <p>Current Attachment: <a href="{{ asset('path/to/attachments/'.$task->attachments) }}">{{ $task->attachments }}</a></p>
-                    @else
-                        <p>No Attachment Uploaded.</p>
-                    @endif
-                </div>
-            </div> --}}
 
                       
                 <div class="form-group">
@@ -183,10 +176,9 @@
                 <div class="form-group">
                     <label for="status" style="font-size: 15px; ">Status</label>
                     <select name="status" id="status" class="form-controlcl shadow-sm" required>
-                        <option value="not started" {{ $task->status == 'not started' ? 'selected' : '' }}>Not Started</option>
-                        <option value="ongoing" {{ $task->status == 'ongoing' ? 'selected' : '' }}>Ongoing</option>
-                        <option value="hold" {{ $task->status == 'hold' ? 'selected' : '' }}>Hold</option>
-                        <option value="completed" {{ $task->status == 'completed' ? 'selected' : '' }}>Completed</option>
+                        <option value="ToDo" {{ $task->status == 'ToDo' ? 'selected' : '' }}>ToDo</option>
+                        <option value="In Progress" {{ $task->status == 'In Progress' ? 'selected' : '' }}>In Progress</option>
+                        <option value="Done" {{ $task->status == 'Done' ? 'selected' : '' }}>Done</option>
                     </select>
                 </div>
             </div>    
