@@ -18,8 +18,8 @@ class CreateTasksTable extends Migration
             $table->text('details');
             // $table->string('attachments')->nullable();
             // $table->unsignedBigInteger('assigned_to');
-            // $table->unsignedBigInteger('created_by');
-            // $table->unsignedBigInteger('last_edited_by');
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('last_edited_by');
             $table->string('estimated_time'); 
             $table->string('time_taken');
             $table->string('status');
