@@ -25,6 +25,7 @@ class Project extends Model
         'project_members_id',
         'project_role_id',
         'task_type_id',
+        'task_status_id'
     ];
 
     protected $casts = [
@@ -64,5 +65,20 @@ class Project extends Model
     public function task_type()
     {
         return $this->belongsTo(Task_type::class, 'task_type_id');
+    }
+
+    public function task_status()  
+    {
+        return $this->belongsTo(Task_status::class, 'task_status_id');
+    }
+
+    public function projectTaskTypes()
+    {
+        return $this->hasMany(ProjectTaskType::class, 'project_id', 'id');
+    }
+
+    public function taskStatuses()
+    {
+        return $this->belongsToMany(TaskStatus::class, 'project_task_status', 'project_id', 'task_status_id')->withTimestamps();
     }
 }

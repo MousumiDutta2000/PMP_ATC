@@ -10,6 +10,7 @@ use App\Models\Technology;
 use App\Models\ProjectRole;
 use App\Models\Profile;
 use App\Models\taskType;
+use App\Models\TaskStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -31,8 +32,9 @@ class ProjectsController extends Controller
         $projectMembers = Profile::all();
         $projectRoles = ProjectRole::all();
         $task_types = taskType::all();
+        $task_statuses = TaskStatus::all();
 
-        return view('projects.create', compact('users', 'verticals', 'clients', 'projectManagers', 'technologies', 'projectMembers', 'projectRoles','task_types'));
+        return view('projects.create', compact('users', 'verticals', 'clients', 'projectManagers', 'technologies', 'projectMembers', 'projectRoles','task_types','task_statuses'));
     }
 
     public function store(Request $request)
@@ -96,6 +98,18 @@ class ProjectsController extends Controller
                 $project->projectMembers()->attach($memberId, ['project_role_id' => $role]);
             }
         }
+
+        // store tasktypes in project_task_types 
+        $taskTypeIds = $request->task_type_id;
+        foreach ($taskTypeIds as $taskTypeId) {
+            $project->projectTaskTypes()->create([
+                'task_type_id' => $taskTypeId,
+            ]);
+        }
+
+        // store taskstatus in project_task_status 
+        $taskStatusIds = $request->task_status_id;
+        $project->taskStatuses()->sync($taskStatusIds);
 
         return redirect()->route('projects.index')->with('success', 'Project created successfully.');
     }

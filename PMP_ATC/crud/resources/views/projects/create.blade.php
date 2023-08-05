@@ -194,7 +194,17 @@
                                     @foreach($task_types as $task_type)
                                         <option value="{{ $task_type->id }}">{{ $task_type->type_name }}</option>
                                     @endforeach
+                                </select>
+                        </div>
+                    </div>
 
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="task_status_id" class="mb-1" style="font-size: 15px;">Task Status</label>
+                                <select id="task_status_id" name="task_status_id[]" class="task_status" required style="width: 100%;" multiple>
+                                    @foreach($task_statuses as $task_status)
+                                        <option value="{{ $task_status->id }}">{{ $task_status->status }}</option>
+                                    @endforeach
                                 </select>
                         </div>
                     </div>
@@ -341,6 +351,14 @@ $(document).ready(function() {
   $(document).ready(function() {
     $('.task_type').select2({
       placeholder: 'Select Task Type',
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('.task_status').select2({
+      placeholder: 'Select Task Status',
     });
   });
 </script>
