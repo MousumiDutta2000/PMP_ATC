@@ -46,7 +46,7 @@
         @csrf
         <div id="section-1">
             <div class="project-details">
-                <h4>Add Project Details</h4>
+                <h5>Add Project Details</h5>
             </div>
 
             <div class="row">
@@ -131,7 +131,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="project_manager_id" class="mb-1" style="font-size: 15px;">Project Manager</label>
-                                <select name="project_manager_id" class="shadow-sm" id="project_manager_id" class="form-control" required style="padding-bottom: 6px; height: 39.1px; color:#999; font-size: 14px;">
+                                <select name="project_manager_id" id="project_manager_id" class="form-control shadow-sm" required style="padding-bottom: 6px; color:#999; font-size: 14px;">
                                     <option value="">Select Project Manager</option>
                                     @foreach ($projectManagers as $projectManager)
                                         <option value="{{ $projectManager->id }}">{{ $projectManager->name }}</option>
@@ -152,7 +152,7 @@
                         </div>
                     </div>
 
-                    <!-- <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;"> -->
+                    <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
 
                     <div class="col-md-6">
                         <div class="form-group">
@@ -187,10 +187,12 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
+
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="task_type_id" class="mb-1" style="font-size: 15px;">Task Type</label>
-                                <select id="task_type_id" name="task_type_id[]" class="task_type" required style="width: 100%;" multiple>
+                            <label for="task_type_id" class="mb-1" style="font-size: 15px;">Choose Project Task Type</label>
+                                <select id="task_type_id" name="task_type_id[]" class="task_type shadow-sm" required style="width: 100%;" multiple>
                                     @foreach($task_types as $task_type)
                                         <option value="{{ $task_type->id }}">{{ $task_type->type_name }}</option>
                                     @endforeach
@@ -198,10 +200,10 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="task_status_id" class="mb-1" style="font-size: 15px;">Task Status</label>
-                                <select id="task_status_id" name="task_status_id[]" class="task_status" required style="width: 100%;" multiple>
+                            <label for="task_status_id" class="mb-1" style="font-size: 15px;">Choose Project Task Status</label>
+                                <select id="task_status_id" name="task_status_id[]" class="task_status shadow-sm" required style="width: 100%;" multiple>
                                     @foreach($task_statuses as $task_status)
                                         <option value="{{ $task_status->id }}">{{ $task_status->status }}</option>
                                     @endforeach
@@ -209,7 +211,7 @@
                         </div>
                     </div>
 
-                    <!-- <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;"> -->
+                    <hr style="border-top: 1px solid #0129704a; width:97%; margin-left: 12px; margin-right: 20px;">
 
                     <div class="col-md-12 mb-3">
                         <label for="memberInput" class="form-label" style="height:20px; font-size: 15px;">Member</label>
