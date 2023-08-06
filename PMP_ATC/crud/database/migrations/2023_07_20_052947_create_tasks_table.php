@@ -27,7 +27,7 @@ class CreateTasksTable extends Migration
             // $table->foreign('sprint_id')->references('id')->on('sprints');
             $table->foreign('type')->references('id')->on('project');
             $table->foreign('parent_task')->references('id')->on('tasks');
-            $table->json('assigned_to');
+            $table->string('assigned_to');
             // $table->foreign('assigned_to')->references('id')->on('profiles');
             $table->foreign('created_by')->references('id')->on('profiles');
             $table->foreign('last_edited_by')->references('id')->on('profiles');

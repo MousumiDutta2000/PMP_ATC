@@ -22,13 +22,7 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('js/table.js') }}"></script>
     <script src="{{ asset('js/profiles.js') }}"></script>
-   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#assigned_to').select2();
-        });
-    </script>
 @endsection
 
 @section('content') 
@@ -121,7 +115,7 @@
                 <div class="col-md-6">
                 <div class="form-group">
                     <label for="assigned_to" style="font-size: 15px;">Assigned To</label>
-                    <select name="assigned_to[]" id="assigned_to" class="form-control" multiple required>
+                    <select name="assigned_to[]" id="assigned_to" class="assigned_to form-control" multiple required>
                         @foreach ($profiles as $profile)
                             <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
                         @endforeach
@@ -229,6 +223,14 @@
     </form>
 
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('.assigned_to').select2({
+      placeholder: 'Select user',
+    });
+  });
+</script>
 
 @endsection
 
