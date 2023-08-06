@@ -10,49 +10,172 @@
 
 </head>
 
+<style>
+        /* Your CSS styles for the kanban board and other elements */
+        .project-type-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .dropdown-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            z-index: 1;
+        }
+        .dropdown-content .project-type {
+            padding: 8px 0;
+            cursor: pointer;
+        }
+        .dropdown-content .project-type:hover {
+            background-color: #f1f1f1;
+        }
+        /* Additional styles for the down arrow icon */
+        .down-arrow-icon {
+            cursor: pointer;
+            color: #4CAF50;
+            transform: rotate(0deg);
+            transition: transform 0.2s;
+        }
+        .down-arrow-icon.rotate {
+            transform: rotate(180deg);
+        }
+        /* Position the dropdown below the down arrow icon */
+        .dropdown-below {
+            top: 100%;
+            left: 0;
+        }
+        /* Styles for the "Create" button */
+        .add-task {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        .add-task:hover {
+            background-color: #45A049;
+        }
+        /* Styles for the add_circle_outline icon */
+        .add-task-ico {
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 20px;
+            vertical-align: middle;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+
 <body>
-    <!-- partial:index.partial.html -->
     <div class="container">
         <div class="kanban-heading">
             <strong class="kanban-heading-text">Kanban Board</strong>
+        </div>
+        <div class="project-type-dropdown">
+            <div class="dropdown-content dropdown-below" id="project-type-container" style="display: none;">
+                <!-- List of project types -->
+                @foreach($projectTypes as $type)
+                    <div class="project-type" onclick="openModal('{{ $type }}')">{{ $type }}</div>
+                @endforeach
+            </div>
         </div>
         <div class="kanban-board">
             @foreach($taskStatuses as $status)
                 <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="backlog-name">{{ $status }}</div>
-                    <div class="backlog-dots"><i class="material-icons">expand_more</i></div>
+                    <div class="backlog-dots"><i class="material-icons down-arrow-icon" onclick="toggleProjectTypeDropdown()">keyboard_arrow_down</i></div>
                     <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                     
                     <div class="card-wrapper__footer">
-                        <div class="add-task">Add task</div>
-                        <div class="add-task-ico"><i class="material-icons">add_circle_outline</i></div>
+                        <button class="add-task" id="create-task-btn">Create
+                            <div class="add-task-ico" onclick="toggleProjectTypeDropdown()"><i class="material-icons">keyboard_arrow_down</i></div>
+                        </button>
                     </div>
-                    <form class="add-card-form add-card-form-true" style="display: none;">
-                        <div class="add-card-form__header">
-                            <div class="form__low-pr"><input class="form__checkbox" type="radio" name="priority"
-                                    alt="Low Priority" value="card-color-low"><label class="form__label"
-                                    for="Low Priority">Low Priority</label></div>
-                            <div class="form__med-pr"><input class="form__checkbox" type="radio" name="priority"
-                                    alt="Med Priority" value="card-color-med"><label class="form__label"
-                                    for="Med Priority">Med Priority</label></div>
-                            <div class="form__high-pr"><input class="form__checkbox" type="radio" name="priority"
-                                    alt="High Priority" value="card-color-high"><label class="form__label"
-                                    for="High Priority">High Priority</label></div>
-                        </div><textarea class="add-card-form__main-error add-card-form__main" type="text"
-                            placeholder="Write your task"></textarea>
-                        <div class="add-card-form__footer">
-                            <div class="form__footer">
-                                <div class="form__footer-av"><img src="41aad055f35eb28f42b84ca1b4cf5d53.jpg"></div>
-                                <div class="attach-ico"><i class="material-icons">attach_file</i></div>
-                            </div><input class="form-add-btn" type="submit" disabled="" value="Add">
-                        </div>
-                    </form>
-
                 </div>
             @endforeach
             
         </div>
     </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class = "row">
+                <form class="add-card-form add-card-form-true" style="display: block;">
+                <label for="priority" style="font-size: 15px;">Priority</label>
+                    <div class="add-card-form__header">
+                        <div class="form__low-pr"><input class="form__checkbox" type="radio" name="priority" alt="Low Priority" value="card-color-low"><label class="form__label" for="Low Priority">Low Priority</label></div>
+                        <div class="form__med-pr"><input class="form__checkbox" type="radio" name="priority" alt="Med Priority" value="card-color-med"><label class="form__label" for="Med Priority">Med Priority</label></div>
+                        <div class="form__high-pr"><input class="form__checkbox" type="radio" name="priority" alt="High Priority" value="card-color-high"><label class="form__label" for="High Priority">High Priority</label></div>
+                    </div>
+                    <label for="title">Title</label>
+                    <input class="add-card-form__main-error add-card-form__main" type="text" name="title" placeholder="Title" required>
+                    <label for="title">Description</label>
+                    <textarea class="add-card-form__main-error add-card-form__main" name="description" placeholder="Description" required></textarea>
+                    <label for="assigned_to">Assigned To</label>
+                    <select name="assigned_to" id="assigned_to" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                        <option value="">Select User</option>
+                        @foreach ($profiles as $profile)
+                            <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
+                        @endforeach
+                    </select>
+                    
+                    <input class="add-card-form__main-error add-card-form__main" type="date" name="due_date" required>
+                    <div>
+                        <button type="submit" class="form-add-btn">Create</button>
+                        <button type="button" class="form-add-btn" onclick="closeModal()">Close</button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 <!-- partial -->
     
@@ -63,28 +186,42 @@
 <script src="{{ asset('js/bundle.8c4c1640f9a406d21583.js') }}"></script>
 <script src="{{ asset('js/bundle.4e09edb465a6cb160c4a.js') }}"></script>
 
+
 <script>
-    const divElement = document.querySelector('.kanban-block');
-    const iconElement = document.querySelector('.backlog-dots i');
+    function toggleDropdown() {
+        var dropdownContent = document.getElementById("project-type-container");
+        dropdownContent.style.display = dropdownContent.style.display === 'none' ? 'block' : 'none';
+    }
 
-    let isExpanded = true; // Set initial state to expanded
+    function toggleProjectTypeDropdown() {
+        var dropdownContent = document.getElementById("project-type-container");
+        dropdownContent.style.display = dropdownContent.style.display === 'none' ? 'block' : 'none';
+        
+        // Toggle the down arrow icon rotation
+        var downArrowIcon = document.querySelector('.down-arrow-icon');
+        downArrowIcon.classList.toggle('rotate');
+    }
 
-    iconElement.addEventListener('click', function () {
-        if (isExpanded) {
-            // If it's expanded, shrink the div
-            divElement.style.height = '0';
-            divElement.style.overflow = 'hidden';
-            iconElement.style.transform = 'rotate(-90deg)';
-        } else {
-            // If it's not expanded, expand the div
-            divElement.style.height = 'auto';
-            divElement.style.overflow = 'visible';
-            iconElement.style.transform = 'rotate(0deg)';
-        }
+    function openModal(projectType) {
+        // Show the modal
+        var modal = document.getElementById('modal');
+        modal.style.display = 'block';
 
-        // Toggle the state
-        isExpanded = !isExpanded;
-    });
+        // Update the modal content (You can customize this part as needed)
+        var modalContent = document.querySelector('.modal-content');
+        // modalContent.innerHTML = `
+        //     <span class="close" onclick="closeModal()">&times;</span>
+        //     <h3>Modal Content for "${projectType}"</h3>
+        //     <p>You selected "${projectType}". This is the modal content for the selected project type.</p>
+        //     <!-- Add more content or form fields here as needed -->
+        // `;
+    }
+
+    function closeModal() {
+        // Hide the modal
+        var modal = document.getElementById('modal');
+        modal.style.display = 'none';
+    }
 </script>
 
 </html>

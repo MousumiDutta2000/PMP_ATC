@@ -143,12 +143,12 @@
                     <div class="col-md-6 mb-0">
                         <div class="form-group">
                             <label for="vertical_id" class="mb-1" style="font-size: 15px;">Vertical</label>
-                            <select name="vertical_id" class="shadow-sm" id="vertical_id" class="form-control" required style="padding-bottom: 6px; color:#999; font-size: 14px;">
-                                <option value="">Select Vertical</option>
-                                    @foreach ($verticals as $vertical)
-                                        <option value="{{ $vertical->id }}">{{ $vertical->vertical_name }}</option>
-                                    @endforeach
-                            </select>
+                                <select name="vertical_id" id="vertical_id" class="form-control shadow-sm" required style="padding-bottom: 6px; color:#999; font-size: 14px;">
+                                    <option value="">Select Vertical</option>
+                                        @foreach ($verticals as $vertical)
+                                            <option value="{{ $vertical->id }}">{{ $vertical->vertical_name }}</option>
+                                        @endforeach
+                                </select>
                         </div>
                     </div>
 
