@@ -101,10 +101,10 @@ class TaskController extends Controller
         //working 1st
         // $task->users()->sync($request->input('assigned_to'));
 
-        $task->profiles()->attach($request->assigned_to, [
-            'assigned_by' => $request->assigned_by,
-            'assigned_date' => now()->toDateString(),
-        ]);
+        // $task->profiles()->attach($request->assigned_to, [
+        //     'assigned_by' => $request->assigned_by,
+        //     // 'assigned_date' => now()->toDateString(),
+        // ]);
       
   
         return redirect()->route('tasks.index')->with('success', 'Task created successfully.');

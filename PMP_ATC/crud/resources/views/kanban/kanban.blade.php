@@ -157,8 +157,7 @@
                     <label for="title">Description</label>
                     <textarea class="add-card-form__main-error add-card-form__main" name="description" placeholder="Description" required></textarea>
                     <label for="assigned_to">Assigned To</label>
-                    <select name="assigned_to" id="assigned_to" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
-                        <option value="">Select User</option>
+                    <select name="assigned_to[]" id="assigned_to" class="form-control" multiple required>
                         @foreach ($profiles as $profile)
                             <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
                         @endforeach
