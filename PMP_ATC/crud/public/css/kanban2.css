@@ -58,6 +58,12 @@ body {
   /* display: none; */
 }
 
+#underdevelopement {
+  background-image: linear-gradient(#f6f8fc, #f6f8fc),
+    radial-gradient(circle at top left, #ff9985, lightblue);
+  border-top: 5px solid lightblue;
+}
+
 #done {
   background-image: linear-gradient(#f6f8fc, #f6f8fc),
     radial-gradient(circle at top left, #9ea7fc, #6eb4f7);

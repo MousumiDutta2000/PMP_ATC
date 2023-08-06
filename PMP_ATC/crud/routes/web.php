@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TaskTypeController;
+use App\Http\Controllers\KanbanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -102,6 +103,14 @@ Route::middleware([
     Route::get('/get-profile-email/{id}', 'ProfileController@getProfileEmail');
 
     Route::resource('task_types', TaskTypeController::class);
+   
+
+    // Route::get('/kanban', [KanbanController::class, 'showKanban'])->name('kanban');
+    // Route::post('/add-task', [KanbanController::class, 'addTask'])->name('addTask');
+
+    // Route::get('/kanban/{projectId}', 'KanbanController@showKanban')->name('kanban');
+    Route::get('/kanban/{projectId}', [KanbanController::class, 'showKanban'])->name('kanban');
+    
 });
 
 //Microsoft Authentication Route
@@ -114,6 +123,6 @@ Route::controller(MicrosoftController::class, '')->group(function () {
 
 });
 
-Route::get('/kanban', function () {
-    return view('kanban.kanban');
-});
+// Route::get('/kanban', function () {
+//     return view('kanban.kanban');
+// });
