@@ -12,7 +12,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('title');
-            $table->unsignedBigInteger('sprint_id');
+            // $table->unsignedBigInteger('sprint_id');
             $table->unsignedBigInteger('type');
             $table->enum('priority', ['Low priority', 'Med Priority', 'High priority']);
             $table->text('details');
@@ -24,7 +24,7 @@ class CreateTasksTable extends Migration
             $table->string('time_taken');
             $table->string('status');
             $table->unsignedBigInteger('parent_task')->nullable();
-            $table->foreign('sprint_id')->references('id')->on('sprints');
+            // $table->foreign('sprint_id')->references('id')->on('sprints');
             $table->foreign('type')->references('id')->on('project');
             $table->foreign('parent_task')->references('id')->on('tasks');
             $table->json('assigned_to');

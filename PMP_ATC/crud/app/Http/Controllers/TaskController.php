@@ -20,6 +20,17 @@ class TaskController extends Controller
     // return view('tasks.index', compact('tasks'));
     }
 
+
+// -----fom kanban
+//     public function index()
+// {
+//     // Retrieve all tasks from the database
+//     $tasks = Task::all();
+
+//     // Return the tasks data as a JSON response
+//     return response()->json($tasks);
+// }
+
     public function create()
     {
         $tasks = Task::all();
@@ -33,7 +44,7 @@ class TaskController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'sprint_id' => 'required',
+            // 'sprint_id' => 'required',
             'type' => 'required',
             'priority' => 'required|in:Low priority,Med priority,High priority',
             'details' => 'required',
@@ -52,7 +63,7 @@ class TaskController extends Controller
         $task = new Task;
         $task->uuid = substr(Str::uuid()->toString(), 0, 8);
         $task->title = $request->title;
-        $task->sprint_id = $request->sprint_id;
+        // $task->sprint_id = $request->sprint_id;
         $task->type = $request->type;
         $task->priority = $request->priority;
         $task->details = $request->details;
@@ -109,6 +120,32 @@ class TaskController extends Controller
   
         return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
+
+
+    // ---------------kanban-------
+    // public function store(Request $request)
+    // {
+    //     // Validate the request data
+    //     $validatedData = $request->validate([
+    //         'title' => 'required',
+    //         'description' => 'required',
+    //         'assigned_to' => 'required',
+    //         'due_date' => 'required',
+    //     ]);
+
+    //     // Create a new task
+    //     $task = new Task;
+    //     $task->title = $validatedData['title'];
+    //     $task->description = $validatedData['description'];
+    //     $task->assigned_to = $validatedData['assigned_to'];
+    //     $task->due_date = $validatedData['due_date'];
+    //     $task->save();
+
+    //     // Return the newly created task as a JSON response
+    //     return response()->json(['task' => $task]);
+    // }
+
+    
 
     public function show(Task $task)
     {

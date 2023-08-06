@@ -145,3 +145,84 @@
                     
                                   
 
+
+
+
+
+
+
+{{-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tasks</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Assigned To</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($tasks as $task)
+                <tr>
+                    <td>{{ $task->title }}</td>
+                    <td>{{ $task->description }}</td>
+                    <td>{{ $task->assigned_to }}</td>
+                    <td>{{ $task->due_date }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Send an AJAX request to retrieve the tasks data
+        axios.get('/tasks')
+            .then(function (response) {
+                // Handle the successful response
+                var tasks = response.data;
+                var tbody = document.querySelector('tbody');
+    
+                tasks.forEach(function (task) {
+                    var row = document.createElement('tr');
+                    var titleCell = document.createElement('td');
+                    var descriptionCell = document.createElement('td');
+                    var assignedToCell = document.createElement('td');
+                    var dueDateCell = document.createElement('td');
+    
+                    titleCell.textContent = task.title;
+                    descriptionCell.textContent = task.description;
+                    assignedToCell.textContent = task.assigned_to;
+                    dueDateCell.textContent = task.due_date;
+    
+                    row.appendChild(titleCell);
+                    row.appendChild(descriptionCell);
+                    row.appendChild(assignedToCell);
+                    row.appendChild(dueDateCell);
+    
+                    tbody.appendChild(row);
+                });
+            })
+            .catch(function (error) {
+                // Handle the error
+                console.error('Error:', error);
+            });
+    </script>
+    
+
+    
+</body>
+
+</html> --}}

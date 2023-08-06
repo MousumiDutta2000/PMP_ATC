@@ -145,6 +145,8 @@
     <div class="modal" id="modal">
         <div class="modal-content">
             <div class = "row">
+                {{-- <form class="add-card-form add-card-form-true" style="display: block;" action="{{ route('tasks.create') }}" method="POST">
+                    @csrf --}}
                 <form class="add-card-form add-card-form-true" style="display: block;">
                 <label for="priority" style="font-size: 15px;">Priority</label>
                     <div class="add-card-form__header">
@@ -187,6 +189,7 @@
 <script src="{{ asset('js/bundle.4e09edb465a6cb160c4a.js') }}"></script>
 
 
+
 <script>
     function toggleDropdown() {
         var dropdownContent = document.getElementById("project-type-container");
@@ -201,6 +204,9 @@
         var downArrowIcon = document.querySelector('.down-arrow-icon');
         downArrowIcon.classList.toggle('rotate');
     }
+
+
+
 
     function openModal(projectType) {
         // Show the modal
@@ -719,3 +725,34 @@
     --}}
    
    
+    {{-- //     function openModal(projectType) {
+        //     // Show the modal
+        //     var modal = document.getElementById('modal');
+        //     modal.style.display = 'block';
+        
+        //     // Update the modal content (You can customize this part as needed)
+        //     var modalContent = document.querySelector('.modal-content');
+            
+        //     // Get the form data
+        //     var form = document.querySelector('.add-card-form');
+        //     var formData = new FormData(form);
+        
+        //     // Send an AJAX request to the server
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.open('POST', '/tasks');
+        //     xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+        //     xhr.onreadystatechange = function() {
+        //         if (xhr.readyState === XMLHttpRequest.DONE) {
+        //             if (xhr.status === 200) {
+        //                 // Request successful, update the Kanban board or perform other actions
+        //                 closeModal();
+        //                 // Refresh the Kanban board or update it with the new task
+        //                 // You can use JavaScript to update the Kanban board without refreshing the page
+        //             } else {
+        //                 // Request failed, handle the error
+        //                 console.error('Error:', xhr.responseText);
+        //             }
+        //         }
+        //     };
+        //     xhr.send(formData);
+        // } --}}
