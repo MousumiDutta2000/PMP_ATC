@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
             TechnologiesSeeder::class,
             ClientsSeeder::class,
             ProjectItemStatusesSeeder::class,
+            TaskStatusSeeder::class,
+            TaskTypeSeeder::class,
         ]);
     }
 }

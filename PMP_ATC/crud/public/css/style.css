@@ -78,8 +78,8 @@ h6 {
   bottom: 15px;
   z-index: 99999;
   background: #4154f1;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   border-radius: 4px;
   transition: all 0.4s;
 }

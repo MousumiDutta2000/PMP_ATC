@@ -48,7 +48,7 @@ class TaskController extends Controller
             'status' => 'required',
             'parent_task' => '',
         ]);
-
+    
         $task = new Task;
         $task->uuid = substr(Str::uuid()->toString(), 0, 8);
         $task->title = $request->title;
@@ -71,7 +71,7 @@ class TaskController extends Controller
         $task->time_taken = $request->time_taken_number . ' ' . $request->time_taken_unit;
         $task->status = $request->status;
         $task->parent_task = $request->parent_task;
-
+    
         $task->save();
 
         // $assignedTo = $request->input('assigned_to', []);
