@@ -9,18 +9,18 @@ class Task extends Model
     
     protected $fillable = [
         'title',
-        'sprint_id',
+        // 'sprint_id',
         'type',
         'priority',
         'details',
-        'attachments',
+        // 'attachments',
         'assigned_to',
-        'created_by',
-        'last_edited_by',
-        'estimated_time',
-        'time_taken',
+        // 'created_by',
+        // 'last_edited_by',
+        // 'estimated_time',
+        // 'time_taken',
         'status',
-        'parent_task',
+        // 'parent_task',
     ];
 
     public function sprintId()
@@ -48,6 +48,11 @@ class Task extends Model
             ->withPivot('assigned_by', 'assigned_date')
             ->withTimestamps();
     }
+
+    public function assignedTo()
+{
+    return $this->belongsToMany(Profile::class, 'task_users', 'task_id', 'user_id');
+}
 
 
     public function parentTask()

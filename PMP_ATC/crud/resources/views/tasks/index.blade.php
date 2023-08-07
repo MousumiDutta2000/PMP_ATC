@@ -41,18 +41,18 @@
                     <tr>
                         <th>ID</th>
                         <th>Title</th>
-                        <th>Sprint Name</th>
-                        <th>Type</th>
+                        {{-- <th>Sprint Name</th> --}}
+                        {{-- <th>Type</th> --}}
                         <th>Priority</th>
-                        {{-- <th>Details</th> --}}
+                        <th>Details</th>
                         {{-- <th>Attachments</th> --}}
                         <th>Assigned To</th>
                         {{-- <th>Created By</th> --}}
                         {{-- <th>Last Edited By</th> --}}
                         {{-- <th>Estimated Time</th> --}}
-                        <th>Time Taken</th>
+                        {{-- <th>Time Taken</th> --}}
                         <th>Status</th>
-                        <th>Parent Task</th>
+                        {{-- <th>Parent Task</th> --}}
                         
                         <th>Actions</th>
                     </tr>
@@ -62,8 +62,8 @@
                 <tr class="shadow" style="border-radius:15px;">
                     <td style="font-size: 15px;">{{ $task->uuid }}</td>
                     <td style="font-size: 15px;">{{ $task->title }}</td>
-                    <td style="font-size: 15px;">{{ $task->sprintId->sprint_name }}</td>
-                    <td style="font-size: 15px;">{{ $task->taskTypeId->type }}</td>
+                    {{-- <td style="font-size: 15px;">{{ $task->sprintId->sprint_name }}</td> --}}
+                    {{-- <td style="font-size: 15px;">{{ $task->taskTypeId->type }}</td> --}}
                     <td style="font-size: 14px;">
                         @if(strtolower($task->priority) == 'low priority')
                             <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
@@ -90,13 +90,13 @@
                     {{-- <td>{{ $task->estimated_time }}</td> --}}
                     <td style="font-size: 15px;">{{ $task->time_taken }}</td>
                     <td style="font-size: 15px;">{{ $task->status }}</td>
-                    <td style="font-size: 15px;">
+                    {{-- <td style="font-size: 15px;">
                         @if($task->parentTask)
                             {{ $task->parentTask->title }}
                         @else
                             Null
                         @endif
-                    </td>
+                    </td> --}}
                     {{-- <td style="font-size: 15px;">{{ $task->parentTask->title }}</td> --}}
                     
                     <td class="d-flex align-items-center" style="font-size: 15px;">
