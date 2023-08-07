@@ -66,4 +66,12 @@ class Profile extends Model
     {
         return $this->hasOne(Profile::class, 'user_id', 'id');
     }
+
+    public function tasks()
+{
+    return $this->belongsToMany(Task::class, 'task_users', 'profile_id', 'task_id')
+        ->withPivot('assigned_by', 'assigned_date')
+        ->withTimestamps();
+}
+
 }
