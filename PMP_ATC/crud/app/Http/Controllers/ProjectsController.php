@@ -59,6 +59,7 @@ class ProjectsController extends Controller
             'project_members_id' => 'required',
             'project_role_id' => 'required',
             'task_type_id' => 'required',
+            'task_status_id' => 'required',
         ]);
 
         $project = new Project;
@@ -80,7 +81,7 @@ class ProjectsController extends Controller
         $project->project_members_id = $request->project_members_id;
         $project->project_role_id = $request->project_role_id;
         $project->task_type_id = implode(',', $request->task_type_id);
-
+        $project->task_status_id = implode(',', $request->task_status_id);
         // $project->project_members_id = json_encode($request->project_members_id);
         // $project->project_role_id = json_encode($request->project_role_id);
 

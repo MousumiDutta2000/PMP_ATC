@@ -122,7 +122,8 @@
 <body>
     <div class="container">
         <div class="kanban-heading">
-            <strong class="kanban-heading-text">Kanban Board</strong>
+            <!-- <strong class="kanban-heading-text">Kanban Board</strong> -->
+            <strong class="kanban-heading-text"></strong>
         </div>
         <div class="project-type-dropdown">
             <div class="dropdown-content dropdown-below" id="project-type-container" style="display: none;">
@@ -154,17 +155,11 @@
     <div class="modal" id="modal">
         <div class="modal-content">
             {{-- <form class="add-card-form add-card-form-true" style="display: flex;"> --}}
-                <form class="add-card-form add-card-form-true" style="display: flex;" action="{{ route('tasks.store') }}" method="POST">
+                <form class="add-card-form add-card-form-true" style="display: flex;" action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                <label for="priority" class = "mb-3" style="font-size: 12px;">Priority</label>
-                <div class="add-card-form__header mb-3">
-                    <div class="form__low-pr"><input class="form__checkbox" type="radio" name="priority" alt="Low Priority" value="card-color-low"><label class="form__label" for="Low Priority">Low Priority</label></div>
-                    <div class="form__med-pr"><input class="form__checkbox" type="radio" name="priority" alt="Med Priority" value="card-color-med"><label class="form__label" for="Med Priority">Med Priority</label></div>
-                    <div class="form__high-pr"><input class="form__checkbox" type="radio" name="priority" alt="High Priority" value="card-color-high"><label class="form__label" for="High Priority">High Priority</label></div>
-                </div>
                 <label for="title" style="font-size: 12px;">Title</label>
                 <input class="add-card-form__main-error add-card-form__main" type="text" name="title" placeholder="Title" required>
-                <label for="title" class="mb-3" style="font-size: 12px;">Description</label>
+                <label for="description" class="mb-3" style="font-size: 12px;">Description</label>
                 <textarea class="ckeditor add-card-form__main-error add-card-form__main" name="description" placeholder="Description" required></textarea>
                 <label for="assigned_to" class="mb-2 mt-3" style="font-size: 12px;">Assigned To</label>
                 <select name="assigned_to[]" id="assigned_to" class="form-control assigned_to add-card-form__main" multiple required>
@@ -172,6 +167,12 @@
                         <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
                     @endforeach
                 </select>
+                {{-- <label for="priority" class = "mt-3" style="font-size: 12px;">Priority</label>
+                <div class="add-card-form__header mt-3">
+                    <div class="form__low-pr"><input class="form__checkbox" type="radio" name="priority" alt="Low Priority" value="card-color-low"><label class="form__label" for="Low Priority">Low Priority</label></div>
+                    <div class="form__med-pr"><input class="form__checkbox" type="radio" name="priority" alt="Med Priority" value="card-color-med"><label class="form__label" for="Med Priority">Med Priority</label></div>
+                    <div class="form__high-pr"><input class="form__checkbox" type="radio" name="priority" alt="High Priority" value="card-color-high"><label class="form__label" for="High Priority">High Priority</label></div>
+                </div> --}}
                 
                 <div class="mt-3">
                     <button type="submit" class="form-add-btn">Create</button>

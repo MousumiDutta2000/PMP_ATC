@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('task_users', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('task_id');
-            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
-            $table->unsignedBigInteger('assigned_to');    
-            $table->foreign('assigned_to')->references('id')->on('profiles');           
+            $table->uuid('uuid')->unique();
+            $table->string('title');
+            // $table->enum('priority', ['Low priority', 'Med Priority', 'High priority']);
+            $table->text('description');
+            $table->string('assigned_to');
+            // $table->date('due_date');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('task_users');
+        Schema::dropIfExists('tasks');
     }
 };

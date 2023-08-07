@@ -31,10 +31,10 @@
 @section('content')
 <main class="container">
     <section class="body">
-        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -67px; margin-bottom: 50px; padding: 2px 30px; margin-right: -30px;">
+        {{-- <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -67px; margin-bottom: 50px; padding: 2px 30px; margin-right: -30px;">
             <a href="{{ route('tasks.create') }}" class="btn btn-primary" style="margin-right: 10px;">Add New</a>
             
-        </div>
+        </div> --}}
         
             <table id="taskTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
                 <thead>
@@ -43,15 +43,15 @@
                         <th>Title</th>
                         {{-- <th>Sprint Name</th> --}}
                         {{-- <th>Type</th> --}}
-                        <th>Priority</th>
-                        <th>Details</th>
+                        {{-- <th>Priority</th> --}}
+                        <th>Description</th>
                         {{-- <th>Attachments</th> --}}
-                        <th>Assigned To</th>
+                        {{-- <th>Assigned To</th> --}}
                         {{-- <th>Created By</th> --}}
                         {{-- <th>Last Edited By</th> --}}
                         {{-- <th>Estimated Time</th> --}}
                         {{-- <th>Time Taken</th> --}}
-                        <th>Status</th>
+                        {{-- <th>Status</th> --}}
                         {{-- <th>Parent Task</th> --}}
                         
                         <th>Actions</th>
@@ -64,7 +64,7 @@
                     <td style="font-size: 15px;">{{ $task->title }}</td>
                     {{-- <td style="font-size: 15px;">{{ $task->sprintId->sprint_name }}</td> --}}
                     {{-- <td style="font-size: 15px;">{{ $task->taskTypeId->type }}</td> --}}
-                    <td style="font-size: 14px;">
+                    {{-- <td style="font-size: 14px;">
                         @if(strtolower($task->priority) == 'low priority')
                             <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
                         @elseif(strtolower($task->priority) == 'med priority')
@@ -72,24 +72,24 @@
                         @elseif(strtolower($task->priority) == 'high priority')
                             <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
                         @endif
-                    </td>
-                    {{-- <td>{{ $task->details }}</td> --}}
+                    </td> --}}
+                    <td>{{ $task->description }}</td>
                     {{-- <td style="font-size: 15px;">{{ basename($task->attachments) }}</td> --}}
-                    <!-- <td>
-                        @if ($task->profiles)
-                            @foreach ($task->profiles as $profile)
-                                {{ $profile->name }},
-                            @endforeach
-                        @endif
-                    </td>
-                     -->
+                    
                     {{-- <td style="font-size: 15px;">{{ $task->assignedTo->profile_name }}</td> --}}
+                    {{-- <td>
+                        @foreach ($task->taskUser as $taskUser)
+                            {{ $taskUser->assignedTo->profile_name }}
+                            <br>
+                        @endforeach
+                    </td> --}}
+
                     {{-- <td style="font-size: 15px;">{{ $task->createdBy->profile_name }}</td> --}}
                     {{-- <td style="font-size: 15px;">{{ $task->lastEditedBy->profile_name }}</td> --}}
                    
                     {{-- <td>{{ $task->estimated_time }}</td> --}}
-                    <td style="font-size: 15px;">{{ $task->time_taken }}</td>
-                    <td style="font-size: 15px;">{{ $task->status }}</td>
+                    {{-- <td style="font-size: 15px;">{{ $task->time_taken }}</td>
+                    <td style="font-size: 15px;">{{ $task->status }}</td> --}}
                     {{-- <td style="font-size: 15px;">
                         @if($task->parentTask)
                             {{ $task->parentTask->title }}

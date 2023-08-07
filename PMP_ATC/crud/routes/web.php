@@ -106,15 +106,18 @@ Route::middleware([
    
 
     
-    // Route::get('/kanban/{projectId}', [KanbanController::class, 'showKanban'])->name('kanban');
-    
     Route::get('/kanban/{projectId}', [KanbanController::class, 'showKanban'])->name('kanban');
-    Route::post('/tasks/store', [KanbanController::class, 'store'])->name('tasks.store');
+    // Route::post('/kanban/store', [KanbanController::class, 'store'])->name('kanban.store');
 
-
+    Route::post('/tasks/store', [TaskController::class, 'store'])->name('tasks.store');
 
     
-});
+    Route::resource('tasks', TaskController::class)->except([
+    'store' // Exclude the store route from the resource routes
+    ]);
+
+    // Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+    });
 
 //Microsoft Authentication Route
 

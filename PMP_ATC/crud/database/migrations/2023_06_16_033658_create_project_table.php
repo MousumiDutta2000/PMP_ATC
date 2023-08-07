@@ -33,6 +33,7 @@ return new class extends Migration
             $table->json('project_members_id');
             $table->json('project_role_id');
             $table->string('task_type_id');
+            $table->string('task_status_id');
             $table->timestamps();
         });
     }

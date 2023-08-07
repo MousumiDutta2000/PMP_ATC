@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('task_users', function (Blueprint $table) {
+        Schema::create('kanban_users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('task_id');
-            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
-            $table->unsignedBigInteger('assigned_to');    
-            $table->foreign('assigned_to')->references('id')->on('profiles');           
+            // $table->unsignedBigInteger('kanban_id');
+            // $table->foreign('kanban_id')->references('id')->on('kanbans')->onDelete('cascade');
+            // $table->unsignedBigInteger('assigned_to');    
+            // $table->foreign('assigned_to')->references('id')->on('profiles');  
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('task_users');
+        Schema::dropIfExists('kanban_users');
     }
 };
