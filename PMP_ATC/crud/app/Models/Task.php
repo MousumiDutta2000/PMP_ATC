@@ -42,34 +42,14 @@ class Task extends Model
         return $this->belongsTo(Profile::class, 'last_edited_by');
     }
 
-    public function profiles()
-    {
-        return $this->belongsToMany(Profile::class, 'task_users', 'task_id', 'profile_id')
-            ->withPivot('assigned_by', 'assigned_date')
-            ->withTimestamps();
-    }
-
-
     public function parentTask()
     {
         return $this->belongsTo(Task::class, 'parent_task');
     }
 
-
-    
-
-    // public function profiles()
-    // {
-    //     return $this->belongsToMany(Profile::class, 'task_users', 'task_id', 'profile_id')
-    //         ->withPivot('assigned_by')
-    //         ->withTimestamps();
-    // }
-
-    // working 1st
-//     public function users()
-// {
-//     return $this->belongsToMany(Profile::class, 'task_users', 'task_id', 'profile_id');
-// }
-
+    public function taskUser()
+    {
+        return $this->hasOne(TaskUser::class, 'task_id', 'id');
+    }
 
 }

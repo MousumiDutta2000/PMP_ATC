@@ -106,7 +106,6 @@
                         <label for="technology_id" class="mb-1" style="font-size: 15px;">Technologies</label>
                         <div id="technology-wrapper" class="shadow-sm" style="font-size: 14px;">
                             <select id="technology_id" name="technology_id[]" class="technology" required style="width: 100%;" multiple>
-                                <option value="">Select technologies</option>
                                 @foreach($technologies as $technology)
                                     <option value="{{ $technology->id }}">{{ substr($technology->technology_name, 0, 1) . $technology->technology_name }}</option>
                                 @endforeach

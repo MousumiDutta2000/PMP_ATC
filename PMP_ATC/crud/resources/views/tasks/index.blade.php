@@ -75,14 +75,7 @@
                     </td>
                     {{-- <td>{{ $task->details }}</td> --}}
                     {{-- <td style="font-size: 15px;">{{ basename($task->attachments) }}</td> --}}
-                    <!-- <td>
-                        @if ($task->profiles)
-                            @foreach ($task->profiles as $profile)
-                                {{ $profile->name }},
-                            @endforeach
-                        @endif
-                    </td>
-                     -->
+                    
                     {{-- <td style="font-size: 15px;">{{ $task->assignedTo->profile_name }}</td> --}}
                     {{-- <td style="font-size: 15px;">{{ $task->createdBy->profile_name }}</td> --}}
                     {{-- <td style="font-size: 15px;">{{ $task->lastEditedBy->profile_name }}</td> --}}
