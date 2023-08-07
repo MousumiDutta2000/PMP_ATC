@@ -26,7 +26,7 @@ class KanbanController extends Controller
             ->join('project', 'project_task_types.project_id', '=', 'project.id')
             ->select('task_types.type_name')
             ->where('project.id', $projectId)
-            ->pluck('type_name') // Changed pluck() to select the correct column
+            ->pluck('type_name')
             ->toArray();
         
 

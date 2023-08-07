@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/kanban2.css') }}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 </head>
 
 <style>
@@ -91,9 +91,9 @@
         .modal-content {
             background-color: #fefefe;
             margin: 10% auto;
-            padding: 20px;
+            padding: 35px;
             border: 1px solid #888;
-            width: 40%;
+            width: 70%;
         }
         .close {
             color: #aaa;
@@ -106,6 +106,15 @@
             color: black;
             text-decoration: none;
             cursor: pointer;
+        }
+        .add-card-form {
+            display: none;
+            flex-direction: column;
+            padding: 0 0 10px 0;
+            width: 100% !important; 
+        }
+        .add-card-form__main{
+            border: 1px solid #ddd;
         }
     </style>
 
@@ -144,33 +153,30 @@
     <!-- The Modal -->
     <div class="modal" id="modal">
         <div class="modal-content">
-            <div class = "row">
-                <form class="add-card-form add-card-form-true" style="display: block;">
-                <label for="priority" style="font-size: 15px;">Priority</label>
-                    <div class="add-card-form__header">
-                        <div class="form__low-pr"><input class="form__checkbox" type="radio" name="priority" alt="Low Priority" value="card-color-low"><label class="form__label" for="Low Priority">Low Priority</label></div>
-                        <div class="form__med-pr"><input class="form__checkbox" type="radio" name="priority" alt="Med Priority" value="card-color-med"><label class="form__label" for="Med Priority">Med Priority</label></div>
-                        <div class="form__high-pr"><input class="form__checkbox" type="radio" name="priority" alt="High Priority" value="card-color-high"><label class="form__label" for="High Priority">High Priority</label></div>
-                    </div>
-                    <label for="title">Title</label>
-                    <input class="add-card-form__main-error add-card-form__main" type="text" name="title" placeholder="Title" required>
-                    <label for="title">Description</label>
-                    <textarea class="add-card-form__main-error add-card-form__main" name="description" placeholder="Description" required></textarea>
-                    <label for="assigned_to">Assigned To</label>
-                    <select name="assigned_to[]" id="assigned_to" class="form-control" multiple required>
-                        @foreach ($profiles as $profile)
-                            <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
-                        @endforeach
-                    </select>
-                    
-                    <input class="add-card-form__main-error add-card-form__main" type="date" name="due_date" required>
-                    <div>
-                        <button type="submit" class="form-add-btn">Create</button>
-                        <button type="button" class="form-add-btn" onclick="closeModal()">Close</button>
-                    </div>
-                    </div>
-                </form>
-            </div>
+            <form class="add-card-form add-card-form-true" style="display: flex;">
+                <label for="priority" class = "mb-3" style="font-size: 12px;">Priority</label>
+                <div class="add-card-form__header mb-3">
+                    <div class="form__low-pr"><input class="form__checkbox" type="radio" name="priority" alt="Low Priority" value="card-color-low"><label class="form__label" for="Low Priority">Low Priority</label></div>
+                    <div class="form__med-pr"><input class="form__checkbox" type="radio" name="priority" alt="Med Priority" value="card-color-med"><label class="form__label" for="Med Priority">Med Priority</label></div>
+                    <div class="form__high-pr"><input class="form__checkbox" type="radio" name="priority" alt="High Priority" value="card-color-high"><label class="form__label" for="High Priority">High Priority</label></div>
+                </div>
+                <label for="title" style="font-size: 12px;">Title</label>
+                <input class="add-card-form__main-error add-card-form__main" type="text" name="title" placeholder="Title" required>
+                <label for="title" class="mb-3" style="font-size: 12px;">Description</label>
+                <textarea class="ckeditor add-card-form__main-error add-card-form__main" name="description" placeholder="Description" required></textarea>
+                <label for="assigned_to" class="mb-2 mt-3" style="font-size: 12px;">Assigned To</label>
+                <select name="assigned_to[]" id="assigned_to" class="form-control assigned_to add-card-form__main" multiple required>
+                    @foreach ($profiles as $profile)
+                        <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
+                    @endforeach
+                </select>
+                
+                <div class="mt-3">
+                    <button type="submit" class="form-add-btn">Create</button>
+                    <button type="button" class="form-add-btn" onclick="closeModal()">Close</button>
+                </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -184,7 +190,9 @@
 <script src="{{ asset('js/bundle.24f6873edaef6bd85f9e.js') }}"></script>
 <script src="{{ asset('js/bundle.8c4c1640f9a406d21583.js') }}"></script>
 <script src="{{ asset('js/bundle.4e09edb465a6cb160c4a.js') }}"></script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <script>
     function toggleDropdown() {
@@ -216,13 +224,28 @@
         // `;
     }
 
+// CSK Editor
+$(document).ready(function() {
+    $('.ckeditor').ckeditor();
+});
+
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.assigned_to').select2({
+        placeholder: 'Select user',
+        });
+    });
+
+
     function closeModal() {
         // Hide the modal
         var modal = document.getElementById('modal');
         modal.style.display = 'none';
     }
-</script>
-
+ 
+    </script>
 </html>
 
 
