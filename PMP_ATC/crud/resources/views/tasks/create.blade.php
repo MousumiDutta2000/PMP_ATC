@@ -10,6 +10,11 @@
 
 @section('project_css')
 <link rel="stylesheet" href="{{ asset('css/form.css') }}"> 
+
+
+        <!-- Include Select2 CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+
 @endsection 
 
 @section('custom_js')
@@ -21,6 +26,16 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('js/table.js') }}"></script>
     <script src="{{ asset('js/profiles.js') }}"></script>
+
+<!-- Include Select2 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Initialize Select2
+        $('#assigned_to').select2();
+    });
+</script>
 @endsection
 
 @section('content') 
@@ -87,15 +102,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="assigned_to" style="font-size: 15px;">Assigned To</label>
-                    {{-- <input type="text" name="assigned_to" id="assigned_to" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required> --}}
-                    <select name="assigned_to" id="assigned_to" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                    <select name="assigned_to[]" id="assigned_to" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required multiple>
                         <option value="">Select User</option>
                         @foreach ($profiles as $profile)
                             <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
                         @endforeach
                     </select>
                 </div>
-
             </div>
 
             <div class="col-md-6">

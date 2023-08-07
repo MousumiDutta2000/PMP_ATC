@@ -16,7 +16,7 @@ class CreateTasksTable extends Migration
             $table->enum('priority', ['Low priority', 'Med Priority', 'High priority']);
             $table->text('details');
             $table->string('attachments')->nullable();
-            $table->unsignedBigInteger('assigned_to');
+            $table->unsignedBigInteger('assigned_to')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('last_edited_by');
             $table->string('estimated_time'); 
@@ -24,7 +24,7 @@ class CreateTasksTable extends Migration
             $table->enum('status', ['not started', 'ongoing', 'hold', 'completed']);
             $table->unsignedBigInteger('parent_task')->nullable();
             $table->foreign('parent_task')->references('id')->on('tasks');
-            $table->foreign('assigned_to')->references('id')->on('profiles');
+            $table->foreign('assigned_to')->references('id')->on('profiles')->onDelete('set null');
             $table->foreign('created_by')->references('id')->on('profiles');
             $table->foreign('last_edited_by')->references('id')->on('profiles');
             $table->timestamps();

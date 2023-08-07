@@ -12,6 +12,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
+        $tasks = Task::with('profiles')->get();
         return view('tasks.index', compact('tasks'));
     }
 
@@ -30,7 +31,8 @@ class TaskController extends Controller
             'priority' => 'required|in:Low priority,Med priority,High priority',
             'details' => 'required',
             'attachments' => 'required',
-            'assigned_to' => 'required',
+            'assigned_to' => 'required|array',
+            'assigned_to.*' => 'exists:profiles,id',
             'created_by' => 'required',
             'last_edited_by' => 'required',
             'estimated_time_number' => 'required|numeric',
@@ -40,30 +42,32 @@ class TaskController extends Controller
             'status' => 'required|in:notstarted,ongoing,hold,completed',
             'parent_task' => '',
         ]);
-
+    
         $task = new Task;
         $task->uuid = substr(Str::uuid()->toString(), 0, 8);
         $task->title = $request->title;
         $task->type = $request->type;
         $task->priority = $request->priority;
         $task->details = $request->details;
-        // $task->attachments = $request->attachments;
+    
         if ($request->hasFile('attachments')) {
             $file = $request->file('attachments');
             $fileName = $file->getClientOriginalName();
             $filePath = $file->storeAs('attachments', $fileName, 'public');
             $task->attachments = $filePath;
         }
-        $task->assigned_to = $request->assigned_to;
+    
         $task->created_by = $request->created_by;
         $task->last_edited_by = $request->last_edited_by;
         $task->estimated_time = $request->estimated_time_number . ' ' . $request->estimated_time_unit;
         $task->time_taken = $request->time_taken_number . ' ' . $request->time_taken_unit;
         $task->status = $request->status;
         $task->parent_task = $request->parent_task;
-
+    
         $task->save();
-
+    
+        $task->profiles()->attach($request->assigned_to,[]);
+    
         return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 

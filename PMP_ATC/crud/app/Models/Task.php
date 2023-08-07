@@ -41,4 +41,9 @@ class Task extends Model
     {
         return $this->belongsTo(Task::class, 'parent_task');
     }
+
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
 }
