@@ -1005,9 +1005,9 @@ a {
   font-size: 13px;
 }
 
-.add-card-form__main-error {
+/* .add-card-form__main-error {
   outline-color: pink;
-}
+} */
 
 .add-card-form__main::placeholder {
   color: var(--colorBarW);
