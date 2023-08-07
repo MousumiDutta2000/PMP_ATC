@@ -10,6 +10,7 @@
 
 @section('project_css')
 <link rel="stylesheet" href="{{ asset('css/form.css') }}"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 @endsection 
 
 @section('custom_js')
@@ -21,6 +22,7 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('js/table.js') }}"></script>
     <script src="{{ asset('js/profiles.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 @endsection
 
 @section('content') 
@@ -49,11 +51,26 @@
 
             <div class="col-md-6">
                 <div class="form-group">
+                    <label for="sprint_id" style="font-size: 15px;">Sprint ID:</label>
+                    <select name="sprint_id" id="sprint_id" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
+                        <option value="">Select Sprint</option>
+                        @foreach ($sprints as $sprint)
+                            <option value="{{ $sprint->id }}">{{ $sprint->sprint_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
                     <label for="type" style="font-size: 15px;">Type</label>
                     <select name="type" id="type" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                         <option value="" selected="selected" disabled="disabled">Select type</option>
-                        <option value="Feature">Feature</option>
-                        <option value="User story">User story</option>
+                        @foreach ($projects as $project)
+                        <option value="{{ $project->id }}">{{ $project->task_type_id }}</option>
+                    @endforeach
+                        {{-- <option value="Feature">Feature</option>
+                        <option value="User story">User story</option> --}}
                     </select>
                 </div>
             </div>
@@ -77,31 +94,42 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <div class="form-group">
                     <label for="attachments"  style="font-size: 15px;">Attachments</label>
                     <input type="file" name="attachments" id="attachments" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;"">
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <div class="form-group">
                     <label for="assigned_to" style="font-size: 15px;">Assigned To</label>
-                    {{-- <input type="text" name="assigned_to" id="assigned_to" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required> --}}
+                   
                     <select name="assigned_to" id="assigned_to" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
                         <option value="">Select User</option>
                         @foreach ($profiles as $profile)
                             <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
                         @endforeach
                     </select>
+                </div> --}}
+                <div class="col-md-6">
+                <div class="form-group">
+                    <label for="assigned_to" style="font-size: 15px;">Assigned To</label>
+                    <select name="assigned_to[]" id="assigned_to" class="assigned_to form-control" multiple required>
+                        @foreach ($profiles as $profile)
+                            <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
-
             </div>
+                
+
+            {{-- </div> --}}
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="created_by" style="font-size: 15px;">Created By</label>
-                    {{-- <input type="text" name="created_by" id="created_by" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required> --}}
+
                     <select name="created_by" id="created_by" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required>
                         <option value="">Select User</option>
                         @foreach ($profiles as $profile)
@@ -164,10 +192,9 @@
         <label for="status" style="font-size: 15px;">Status</label>
         <select name="status" id="status" class="form-controlcl shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
             <option value="" selected disabled>Select status</option>
-            <option value="notstarted">Not started</option>
-            <option value="ongoing">Ongoing</option>
-            <option value="hold">Hold</option>
-            <option value="completed">Completed</option>
+            <option value="ToDo">ToDo</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
         </select>
     </div>
 </div>
@@ -182,8 +209,7 @@
                             <option value="{{ $task->id }}">{{ $task->title }}</option>
                         @endforeach
                     </select>
-                    {{-- <input type="number" name="parent_task" id="parent_task" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;"> --}}
-                   
+                    
                 </div>
             </div>
 
@@ -197,6 +223,14 @@
     </form>
 
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('.assigned_to').select2({
+      placeholder: 'Select user',
+    });
+  });
+</script>
 
 @endsection
 

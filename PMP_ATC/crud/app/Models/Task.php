@@ -9,6 +9,7 @@ class Task extends Model
     
     protected $fillable = [
         'title',
+        'sprint_id',
         'type',
         'priority',
         'details',
@@ -22,6 +23,15 @@ class Task extends Model
         'parent_task',
     ];
 
+    public function sprintId()
+    {
+        return $this->belongsTo(Sprint::class, 'sprint_id');
+    }
+
+    public function taskTypeId()
+    {
+        return $this->belongsTo(Project::class, 'type');
+    }
     public function createdBy()
     {
         return $this->belongsTo(Profile::class, 'created_by');
@@ -32,13 +42,14 @@ class Task extends Model
         return $this->belongsTo(Profile::class, 'last_edited_by');
     }
 
-    public function assignedTo()
-    {
-        return $this->belongsTo(Profile::class, 'assigned_to');
-    }
-
     public function parentTask()
     {
         return $this->belongsTo(Task::class, 'parent_task');
     }
+
+    public function taskUser()
+    {
+        return $this->hasOne(TaskUser::class, 'task_id', 'id');
+    }
+
 }

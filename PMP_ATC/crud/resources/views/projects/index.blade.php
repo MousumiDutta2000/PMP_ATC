@@ -67,6 +67,8 @@
                         <td>
                             <div class="btn-group" role="group">
                                 <a href="{{ route('sprints.index', ['sprints' => $project->id]) }}"><i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i></a>
+                                <a href="{{ route('kanban', ['projectId' => $project->id]) }}"><i class="fa-solid fa-columns text-primary" style="margin-right: 10px"></i></a>
+
                                 <a href=""> <i class="bi bi-exclamation-octagon" style="margin-right: 10px; color:red;"></i></a>
                                     <!-- <i class="fa-sharp fa-solid fa-flag text-info" style="margin-right: 10px"></i></a> -->
                                 <a href="{{ route('projects.edit', ['project' => $project->id]) }}">
