@@ -208,7 +208,7 @@
                     </div>
                 </div>
                     
-                <div class="form-group mb-3">
+                <div class="form-group mb-3 mt-3">
                     <label for="details" style="font-size: 15px;" class="mb-3">Details</label>
                     <textarea name="details" id="details" class="ckeditor form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required></textarea>
                 </div>
