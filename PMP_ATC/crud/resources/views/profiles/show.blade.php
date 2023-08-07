@@ -1,4 +1,3 @@
-use Carbon\Carbon;
 @extends('layouts.side_nav')
 @section('pageTitle', 'Profile')
 
@@ -164,7 +163,7 @@ use Carbon\Carbon;
 
                 <div class="col-md-6 mb-3">
                   <div class="label" style="display: inline-block; width: 200px;">Date Of Birth</div>
-                  <div style="display: inline-block;">{{ \Carbon\Carbon::createFromFormat('Y-m-d', $profile->DOB)->format('F j, Y') }}</div>
+                  <div style="display: inline-block;">{{ date('d F Y', strtotime($profile->DOB)) }}</div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="label" style="display: inline-block; width: 200px;">Work Location</div>
