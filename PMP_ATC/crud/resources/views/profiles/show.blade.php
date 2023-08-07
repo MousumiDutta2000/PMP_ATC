@@ -98,25 +98,25 @@
                 </button>
                 <!-- Delete Modal start -->
                 <div class="modal fade" id="delete" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header flex-column">
-                                                            <div class="icon-box">
-                                                                <i class="material-icons">&#xE5CD;</i>
-                                                            </div>
-                                                            <h3 class="modal-title w-100">Are you sure?</h3>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Do you really want to delete this profile picture?</p>
-                                                        </div>
-                                                        <div class="modal-footer justify-content-center">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Delete Modal end-->
+                    <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header flex-column">
+                                <div class="icon-box">
+                                    <i class="material-icons">&#xE5CD;</i>
+                                </div>
+                                <h3 class="modal-title w-100">Are you sure?</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>Do you really want to delete this profile picture?</p>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                 <!-- Delete Modal end-->
               </form>
             </div>          
           </div>
@@ -146,10 +146,11 @@
 
 
             <div class="tab-pane fade show active profile-overview" id="profile-overview">
-              <div class="card-header d-flex justify-content-end">
-                <button class="btn btn-primary btn-sm edit-field" id="editProfileButton"><i class="ri-edit-2-fill"></i></button>
-              </div>
-              <h5 class="card-title">Personal Details</h5>
+              <br>
+              <h5 style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="card-title">Personal Details</span>
+                <button class="btn btn-primary btn-sm edit-field justify-content-end" id="editProfileButton"><i class="ri-edit-2-fill"></i></button>
+              </h5>
                 <div class="col-md-6 mb-3">
                   <div class="label" style="display: inline-block; width: 200px;">Full Name</div>
                   <div style="display: inline-block;">{{ $profile->profile_name }}</div>
@@ -164,7 +165,6 @@
                   <div class="label" style="display: inline-block; width: 200px;">Date Of Birth</div>
                   <div style="display: inline-block;">{{$profile->DOB}}</div>
                 </div>
-
                 <div class="col-md-6 mb-3">
                   <div class="label" style="display: inline-block; width: 200px;">Work Location</div>
                   <div style="display: inline-block;">{{$profile->work_location}}</div>
@@ -182,7 +182,7 @@
                   <div style="display: inline-block; vertical-align: top;">
                     <div class="form-group" style="display: inline-block;">
                     <span id="highest_education_span">{{$profile->highestEducationValue->highest_education_value}}</span>
-                    <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-control" required{{ $editable ? '' : ' readonly' }} style="display: inline-block; width: auto;">
+                    <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-controlcl" required{{ $editable ? '' : ' readonly' }} style="display: inline-block; width: auto; background-color:white margin-top:-20px">
                       @foreach ($qualifications as $qualification)
                         <option value="{{ $qualification->id }}" {{ $profile->highest_educational_qualification_id == $qualification->id ? 'selected' : '' }}>
                           {{ $qualification->highest_education_value }}
@@ -228,54 +228,79 @@
               </div>
               <br>
               <main class="container">
-                <section>
-                  <table  class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px; border-collapse: separate;">
-                    <thead>
-                        <tr>
-                            <th>Technology</th>
-                            <th>Years Of Experience</th>
-                            <th>Role</th>
-                            <th>Is Under Current Company</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($user_technologies as $user_technology)
-                        @if($user_technology->user_id == $profile->user_id)
-                          
-                          <tr class = "shadow" style="border-radius:15px;">
-                              <td>{{ $user_technology->technology->technology_name }}</td>
-                              <td style="padding-left:80px">{{ $user_technology->years_of_experience}}</td>
-                              <td>{{ $user_technology->project_role->member_role_type }}</td>
-                              @if($user_technology->is_current_company == 0)
-                                  <td style="padding-left:80px">No</td>
-                              @elseif($user_technology->is_current_company == 1)
-                                  <td style="padding-left:80px">Yes</td>
-                              @endif
-                              <td>
+              <section>
+    <div class="table-responsive">
+        <table class="table table-hover" style="border-spacing: 0 10px; border-collapse: separate;">
+            <thead>
+                <tr>
+                    <th>Technology</th>
+                    <th>Experience (yrs)</th>
+                    <th>Role</th>
+                    <th>Under Current Company</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($user_technologies as $user_technology)
+                    @if($user_technology->user_id == $profile->user_id)
+                        <tr class="shadow" style="border-radius:15px;">
+                            <td>{{ $user_technology->technology->technology_name }}</td>
+                            <td>{{ $user_technology->years_of_experience }}</td>
+                            <td>{{ $user_technology->project_role->member_role_type }}</td>
+                            <td>
+                                @if($user_technology->is_current_company == 0)
+                                    No
+                                @elseif($user_technology->is_current_company == 1)
+                                    Yes
+                                @endif
+                            </td>
+                            <td>
                                 <div class="btn-group" role="group">
-                                  <a href="#" data-toggle="modal" data-target="#showModal_{{ $user_technology->id }}">
-                                    <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
-                                  </a>
-                                  <a href="#" data-toggle="modal" data-target="#editModal_{{ $user_technology->id }}">
-                                    <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
-                                  </a>
-                                  <form method="post" action="{{ route('user_technologies.destroy', $user_technology->id) }}">
-                                    @method('delete')
-                                    @csrf
-                                    <button type="submit" class="btn btn-link p-0">
-                                      <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
-                                    </button>
-                                  </form>
+                                    <a href="#" data-toggle="modal" data-target="#showModal_{{ $user_technology->id }}">
+                                        <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
+                                    </a>
+                                    <a href="#" data-toggle="modal" data-target="#editModal_{{ $user_technology->id }}">
+                                        <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
+                                    </a>
+                                    <form method="post" action="{{ route('user_technologies.destroy', $user_technology->id) }}">
+                                        @method('delete')
+                                        @csrf
+                                        <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#deleteskill">
+                                            <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
+                                        </button>
+                                        <!-- Delete Skill Modal start -->
+                                        <div class="modal fade" id="deleteskill" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteskillLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header flex-column">
+                                                        <div class="icon-box">
+                                                            <i class="material-icons">&#xE5CD;</i>
+                                                        </div>
+                                                        <h3 class="modal-title w-100">Are you sure?</h3>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Do you really want to delete this skill?</p>
+                                                    </div>
+                                                    <div class="modal-footer justify-content-center">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                        <!-- Delete Modal end-->
+                                    </form>
                                 </div>
-                              </td>
-                          </tr>
-                        @endif
-                      @endforeach           
-                    </tbody>
-                  </table>
-                </section>
-              </main>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</section>
+
+</main>
             </div>
 
 
@@ -309,9 +334,9 @@
             <input value="{{$profile->user_id}}" name="user_id" id="user_id" class="form-control " hidden required>
             <div class ="col-md-12">
               <div class="form-group">
-                <label for="technology_id">Technology:</label>
-                <select name="technology_id" id="technology_id" class="form-control" required>
-                  <option value="">Select Technology</option>
+                <label for="technology_id" class="mb-1">Technology:</label>
+                <select name="technology_id" id="technology_id" class="shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; font-size: 14px;" required>
+                  <option value="" selected="selected" disabled="disabled">Select Technology</option>
                   @foreach ($technologies as $technology)
                     <option value="{{ $technology->id }}">{{ $technology->technology_name }}</option>
                   @endforeach
@@ -322,15 +347,15 @@
             <div class ="col-md-12">
               <div class="form-group">
                 <label for="years_of_experience">Years Of Experience:</label>
-                <input type="text" name="years_of_experience" id="years_of_experience" class="form-control" required>
+                <input type="text" name="years_of_experience" id="years_of_experience" class="form-control shadow-sm" style="width: 50px;" required>
               </div>
             </div>
 
             <div class ="col-md-12">
               <div class="form-group">
-                <label for="project_role_id">Role:</label>
-                <select name="project_role_id" id="project_role_id" class="form-control" required>
-                  <option value="">Select Role</option>
+                <label for="project_role_id" class="mb-1">Role:</label>
+                <select name="project_role_id" id="project_role_id" class="shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; font-size: 14px;" required>
+                  <option value="" selected="selected" disabled="disabled">Select Role</option>
                   @foreach ($project_roles as $project_role)
                     <option value="{{ $project_role->id }}">{{ $project_role->member_role_type }}</option>
                   @endforeach
@@ -343,10 +368,12 @@
               <textarea class="form-control" class="shadow-sm" name="details" id="details" required="required"></textarea>
             </div>                                   
                                       
-            <div class="col-md-6">            
-              <div class="form-group">
-                <label for="typeSelect">Is Under Current Company:</label>
-                <input type="checkbox" name="is_current_company" id="is_current_company" value="1" {{ old('is_current_company') ? 'checked' : '' }}>
+            <div class="col-md-12">            
+              <div class="form-group form-check form-switch d-flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center">
+                <label class="form-check-label mt-2" style="margin-left:-37px" for="is_current_company">Under Current Company:</label>
+                <input class="form-check-input shadow-sm" role="switch" type="checkbox" name="is_current_company" id="is_current_company" style="width: 4em; height: 2em; margin-left: 156px; margin-top: 11px;" value="1" {{ old('is_current_company') ? 'checked' : '' }}>
+              </div>
               </div>
             </div>  
 
@@ -386,8 +413,8 @@
             <div class="row">
               <div class ="col-md-12">
                 <div class="form-group">
-                  <label for="technology_id">Technology:</label>
-                  <select name="technology_id" id="technology_id" class="form-control" required>
+                  <label for="technology_id" class="mb-1">Technology:</label>
+                  <select name="technology_id" id="technology_id" class="form-controlcl shadow-sm" required style="padding-top:5px; padding-bottom:5px; height:39px; font-size: 14px;">
                     @foreach ($technologies as $technology)
                       <option value="{{ $technology->id }}" {{ $user_technology->technology_id == $technology->id ? 'selected' : '' }}>
                         {{ $technology->technology_name }}
@@ -400,14 +427,14 @@
               <div class ="col-md-12">
                 <div class="form-group">
                     <label for="years_of_experience">Years Of Experience:</label>
-                    <input type="text" name="years_of_experience" id="years_of_experience" class="form-control" value="{{ old('years_of_experience', $user_technology->years_of_experience) }}" required>
+                    <input type="text" name="years_of_experience" id="years_of_experience" class="form-control shadow-sm" value="{{ old('years_of_experience', $user_technology->years_of_experience) }}" required style="width: 50px;">
                 </div>                                        
               </div>
 
               <div class ="col-md-12">
                 <div class="form-group">
                   <label for="project_role_id">Role:</label>
-                  <select name="project_role_id" id="project_role_id" class="form-control" required>
+                  <select name="project_role_id" id="project_role_id" class="form-controlcl shadow-sm" required>
                     @foreach ($project_roles as $project_role)
                       <option value="{{ $project_role->id }}" {{ $user_technology->project_role_id == $project_role->id ? 'selected' : '' }}>
                         {{ $project_role->member_role_type }}
@@ -419,15 +446,17 @@
                                         
               <div class="form-group">
                 <label for="details">Details:</label>
-                <textarea class="form-control" class="shadow-sm" name="details" id="details" required="required">{{ $user_technology->details }}</textarea>
+                <textarea class="form-control shadow-sm" name="details" id="details" required="required">{{ $user_technology->details }}</textarea>
               </div>                                 
                                           
-              <div class="col-md-12">
+              <div class="form-group form-check form-switch d-flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center">
                 <div class="form-group">
-                  <label for="typeSelect">Is Under Current Company:</label>
-                  <input type="checkbox" name="is_current_company" id="is_current_company" value="1" {{ $user_technology->is_current_company ? 'checked' : '' }}>
+                  <label class="form-check-label mt-2" style="margin-left:-30px" for="is_current_company">Under Current Company:</label>
+                  <input class="form-check-input shadow-sm" role="switch" type="checkbox" name="is_current_company" id="is_current_company" style="width: 4em; height: 2em; margin-left: 10px; " class="shadow-sm" value="1" {{ $user_technology->is_current_company ? 'checked' : '' }}>
                 </div>
               </div>
+            </div>
 
               <div class="form-actions mt-3 text-end modal-footer">
                 <button type="submit" class="btn btn-primary">Save</button>
@@ -442,50 +471,62 @@
 @endforeach
 
 <!--Show skill modal-->  
-@foreach ($user_technologies as $user_technology)                  
-  <div class="modal fade" id="showModal_{{ $user_technology->id }}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $user_technology->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header" style=" background-color:#061148; ">
-          <h5 class="modal-title" id="showModalLabel_{{  $user_technology->id }}" style="color: white;font-weight: bolder;">Skill Details</h5>
+@foreach ($user_technologies as $user_technology)
+<div class="modal fade" id="showModal_{{ $user_technology->id }}" tabindex="-1" role="dialog" aria-labelledby="showModalLabel_{{ $user_technology->id }}" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #061148;">
+        <h5 class="modal-title" id="showModalLabel_{{ $user_technology->id }}" style="color: white; font-weight: bolder;">Skill Details</h5>
+      </div>
+      <div class="modal-body">
+        <div class="card border-0">
+          <div class="card-body p-4">
+            <div class="mb-4" style="display: flex; align-items: center;">
+              <h6 class="card-subtitle mb-2" style="flex: 1;">Technology:</h6>
+              <p class="card-text text-muted" style="flex: 2; margin-top: -10px;">
+                <strong>{{ $user_technology->technology->technology_name }}</strong>
+              </p>
+            </div>
+            <div class="mb-4" style="display: flex; align-items: center;">
+              <h6 class="card-subtitle mb-2" style="flex: 1;">Years Of Experience:</h6>
+              <p class="card-text text-muted" style="flex: 2; margin-top: -10px;">
+                <strong>{{ $user_technology->years_of_experience }}</strong>
+              </p>
+            </div>
+            <div class="mb-4" style="display: flex; align-items: center;">
+              <h6 class="card-subtitle mb-2" style="flex: 1;">Role:</h6>
+              <p class="card-text text-muted" style="flex: 2; margin-top: -10px;">
+                <strong>{{ $user_technology->project_role->member_role_type }}</strong>
+              </p>
+            </div>
+            <div class="mb-4" style="display: flex; align-items: center;">
+              <h6 class="card-subtitle mb-2" style="flex: 1;">Details:</h6>
+              <p class="card-text text-muted" style="flex: 2; margin-top: -10px;">
+                <strong>{{ $user_technology->details }}</strong>
+              </p>
+            </div>
+            <div class="mb-4" style="display: flex; align-items: center;">
+              <h6 class="card-subtitle mb-2" style="flex: 1;">Is Under Current Company:</h6>
+              <p class="card-text text-muted" style="flex: 2; margin-top: -10px;">
+                @if($user_technology->is_current_company == 0)
+                  <span class="badge badge-danger"><strong>No</strong></span>
+                @elseif($user_technology->is_current_company == 1)
+                  <span class="badge badge-success"><strong>Yes</strong></span>
+                @endif
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-          <table class="table table-striped" style="margin: 0 auto;">
-            <tbody>
-              <tr>
-                  <th style="font-weight: 600; padding-left:30px;">Technology:</th>
-                  <td style="font-weight: 500">{{ $user_technology->technology->technology_name }}</td>
-              </tr>
-              <tr>
-                  <th style="font-weight: 600; padding-left:30px;">Years Of Experience:</th>
-                  <td style="font-weight: 500; padding-left:30px;">{{ $user_technology->years_of_experience }}</td>
-              </tr>
-              <tr>
-                  <th style="font-weight: 600; padding-left:30px;">Role:</th>
-                  <td style="font-weight: 500">{{ $user_technology->project_role->member_role_type }}</td>
-              </tr>
-              <tr>
-                  <th style="font-weight: 600; padding-left:30px;">Details:</th>
-                  <td style="font-weight: 500">{{ $user_technology->details }}</td>
-              </tr>
-              <tr>
-                  <th style="font-weight: 600; padding-left:30px;">Is Under Current Company:</th>
-                  @if($user_technology->is_current_company == 0)
-                      <td style="font-weight: 500; padding-left:30px;">No</td>
-                  @elseif($user_technology->is_current_company == 1)            
-                      <td style="font-weight: 500; padding-left:30px;">Yes</td>                  
-                  @endif
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color:#D22B2B">Close</button>
-        </div>
+      </div>
+      <div class="modal-footer" style="margin-top: -25px;">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #D22B2B;">Close</button>
       </div>
     </div>
   </div>
+</div>
 @endforeach
+
+
 
 <!--Update Profile Picture modal-->
 @foreach($profiles as $profile)
