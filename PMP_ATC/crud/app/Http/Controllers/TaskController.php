@@ -77,7 +77,7 @@ class TaskController extends Controller
         foreach ($assignedTo as $userId) {
             $taskUser = new TaskUser([
                 'task_id' => $task->id,
-                'assigned_by' => auth()->user()->id,
+                'assigned_to' => auth()->user()->id,
             ]);
 
         $taskUser->assigned_to = $userId;

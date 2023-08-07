@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Profile;
+use App\Models\Project;
 
 class KanbanController extends Controller
 {
     public function showKanban($projectId)
     {
         $profiles= Profile::all();
+        $project = Project::findOrFail($projectId);
 
         $taskStatuses = DB::table('project_task_status')
             ->join('task_status', 'project_task_status.task_status_id', '=', 'task_status.id')
@@ -29,19 +31,6 @@ class KanbanController extends Controller
             ->pluck('type_name')
             ->toArray();
         
-
-        return view('kanban.kanban', compact('taskStatuses', 'projectId', 'projectTypes','profiles'));
+        return view('kanban.kanban', compact('taskStatuses', 'projectId', 'projectTypes','profiles','project'));
     }
-//     public function showKanban()
-// {
-//     $taskStatuses = DB::table('project_task_status')
-//                     ->join('task_status', 'project_task_status.task_status_id', '=', 'task_status.id')
-//                     ->select('task_status.status')
-//                     ->distinct()
-//                     ->pluck('status')
-//                     ->toArray();
-
-//     return view('kanban.kanban', compact('taskStatuses'));
-// }
-
 }
