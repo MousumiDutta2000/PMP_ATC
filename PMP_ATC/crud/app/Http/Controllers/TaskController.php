@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Models\Profile;
 use App\Models\Sprint;
 use App\Models\Project;
+use App\Models\TaskUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -16,8 +17,6 @@ class TaskController extends Controller
         $tasks = Task::all();
         
         return view('tasks.index', compact('tasks'));
-    //     $tasks = Task::with('assignedTo')->get();
-    // return view('tasks.index', compact('tasks'));
     }
 
     public function create()
@@ -74,38 +73,16 @@ class TaskController extends Controller
     
         $task->save();
 
-        // $assignedTo = $request->input('assigned_to', []);
-        // $assignedBy = $request->input('assigned_by', []);
-        
-        // if (is_array($assignedTo) && is_array($assignedBy)) {
-        //     foreach ($assignedTo as $key => $profileId) {
-        //         $assignedByUser = $assignedBy[$key] ?? null;
-        
-        //         if ($profileId && $assignedByUser) {
-        //             $tasks->profiles()->attach($profileId, ['assigned_by' => $assignedByUser]);
-        //         }
-        //     }
-        // } 
-        // $assignedTo = $request->input('assigned_to', []);
-        // $assignedBy = $request->input('assigned_by', []);
+        $assignedTo = $request->assigned_to;
+        foreach ($assignedTo as $userId) {
+            $taskUser = new TaskUser([
+                'task_id' => $task->id,
+                'assigned_by' => auth()->user()->id,
+            ]);
 
-        // foreach ($assignedTo as $key => $profileId) {
-        //     $assignedByUser = $assignedBy[$key] ?? null;
-
-        //     if ($profileId && $assignedByUser) {
-        //         $tasks->profiles()->attach($profileId, ['assigned_by' => $assignedByUser]);
-        //     }
-
-        // }
-
-        //working 1st
-        // $task->users()->sync($request->input('assigned_to'));
-
-        // $task->profiles()->attach($request->assigned_to, [
-        //     'assigned_by' => $request->assigned_by,
-        //     // 'assigned_date' => now()->toDateString(),
-        // ]);
-      
+        $taskUser->assigned_to = $userId;
+        $taskUser->save();
+    }
   
         return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
@@ -123,8 +100,6 @@ class TaskController extends Controller
         $projects= Project::all();
         return view('tasks.edit', compact('tasks','profiles','sprints','projects'));
     }
-
-
 
     public function update(Request $request, Task $task)
     {
@@ -169,20 +144,6 @@ class TaskController extends Controller
         $task->parent_task = $request->parent_task;
 
         $task->save();
-
-        
-        // $assignedTo = $request->input('assigned_to', []);
-        // $assignedBy = $request->input('assigned_by', []);
-
-        // foreach ($assignedTo as $key => $profileId) {
-        //     $assignedByUser = $assignedBy[$key] ?? null;
-
-        //     if ($profileId && $assignedByUser) {
-        //         $tasks->profiles()->attach($profileId, ['assigned_by' => $assignedByUser]);
-        //     }
-
-        // }
-        // $task->users()->sync($request->input('assigned_to'));
 
         $task->profiles()->sync($request->assigned_to, [
             'assigned_by' => $request->assigned_by,
