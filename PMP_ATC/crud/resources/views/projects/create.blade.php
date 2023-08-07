@@ -348,22 +348,6 @@ $(document).ready(function() {
 });
 </script>
 
-<script>
-  $(document).ready(function() {
-    $('.task_type').select2({
-      placeholder: 'Select Task Type',
-    });
-  });
-</script>
-
-<script>
-  $(document).ready(function() {
-    $('.task_status').select2({
-      placeholder: 'Select Task Status',
-    });
-  });
-</script>
-
 <!-- ADD Member $ EDIT Member JS -->
 <script>
 

@@ -16,4 +16,14 @@ $(document).ready(function() {
         placeholder: 'Select Member',
         dropdownParent: $('#editModal')
     });
+
+    // taskstatus
+    $('.task_status').select2({
+        placeholder: 'Select Task Status',
+    });
+
+    //tasktypes
+    $('.task_type').select2({
+        placeholder: 'Select Task Type',
+    });
 });

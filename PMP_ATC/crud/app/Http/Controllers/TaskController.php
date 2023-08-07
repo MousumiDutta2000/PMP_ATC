@@ -32,17 +32,20 @@ class TaskController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required',
-            // 'priority' => 'required',
-            'description' => 'required',
+            'priority' => 'required|in:Low priority,Med priority,High priority',
+            'estimated_time_number' => 'required|numeric',
+            'estimated_time_unit' => 'required|in:hour,day,month,year',
+            'details' => 'required',
             'assigned_to' => 'required',
-           // 'due_date' => 'required',
+           
         ]);
 
         $task = new Task();
         $task->uuid = substr(Str::uuid()->toString(), 0, 8);
         $task->title = $request->title;
-        // $kanban->priority = $request->priority;
-        $task->description = $request->description;
+        $task->priority = $request->priority;
+        $task->estimated_time = $request->estimated_time_number . ' ' . $request->estimated_time_unit;
+        $task->details = $request->details;
         $task->assigned_to = implode(',', $request->assigned_to);
         // $kanban->due_date = $request->due_date;
         $task->save();

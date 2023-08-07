@@ -9,12 +9,13 @@ class Task extends Model
 {
     protected $fillable = [
         'title',
-        // 'priority',
-        'description',
+        'priority',
+        'estimated_time',
+        'details',
         'assigned_to',
-        // 'due_date',
+        
     ];
-
+    
     public function taskUser()
     {
         return $this->belongsToMany(TaskUser::class, 'task_users', 'task_id', 'id');

@@ -113,15 +113,15 @@
                     </select>
                 </div> --}}
                 <div class="col-md-6">
-                <div class="form-group">
-                    <label for="assigned_to" style="font-size: 15px;">Assigned To</label>
-                    <select name="assigned_to[]" id="assigned_to" class="assigned_to form-control" multiple required>
-                        @foreach ($profiles as $profile)
-                            <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
-                        @endforeach
-                    </select>
+                    <div class="form-group">
+                        <label for="assigned_to" style="font-size: 15px;">Assigned To</label>
+                        <select name="assigned_to[]" id="assigned_to" class="assigned_to form-control" multiple required>
+                            @foreach ($profiles as $profile)
+                                <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-            </div>
                 
 
             {{-- </div> --}}
