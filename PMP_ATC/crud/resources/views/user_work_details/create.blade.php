@@ -74,14 +74,18 @@
 @section('custom_js')
 <script>
     const projectDropdown = document.getElementById('project_id');
-    const projectManagerSelect = document.getElementById('project_manager');
-    
+    const projectManagerInput = document.getElementById('project_manager');
+    const projectManagersByProject = {!! json_encode($projects->pluck('project_manager_id', 'id')) !!};
+    const projectManagerNames = {!! json_encode($projects->pluck('project_manager_name', 'id')) !!};
+
+    projectDropdown.addEventListener('change', updateProjectManager);
+
     function updateProjectManager() {
         const projectId = projectDropdown.value;
-        const selectedProject = projects.find(project => project.id === projectId);
-        const projectManagerId = selectedProject ? selectedProject.project_manager_id : '';
+        const projectManagerId = projectManagersByProject[projectId] || '';
+        const projectManagerName = projectManagerNames[projectManagerId] || 'No Manager';
         
-        projectManagerSelect.value = projectManagerId;
+        projectManagerInput.value = projectManagerName;
     }
 
     updateProjectManager();
