@@ -19,10 +19,10 @@ class UserWorkDetailController extends Controller
 
     public function create()
     {
-        $projects = Project::all();
-        $projectManagers = Project::distinct()->pluck('project_manager_id');
-        return view('user_work_details.create', compact('projects', 'projectManagers'));
-    }   
+        $projects = Project::with('projectManager')->get();
+        return view('user_work_details.create', compact('projects'));
+    }
+      
 
     public function store(Request $request)
     {

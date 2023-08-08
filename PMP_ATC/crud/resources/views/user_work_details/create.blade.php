@@ -60,37 +60,30 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="project_manager">Project Manager:</label>
-                    <select name="project_manager" id="project_manager" class="form-control">
-                        {{-- Project manager options will be populated dynamically based on the selected project using JavaScript --}}
-                    </select>
+                    <input type="text" name="project_manager" id="project_manager" class="form-control" readonly>
                 </div>
             </div>
-        </div>
+
+
 
         <button type="submit" class="btn btn-primary mt-2">Save</button>
     </form>
 </div>
 @endsection
 
-@section('scripts')
-    <script>
-        const projectDropdown = document.getElementById('project_id');
-        const projectManagerDropdown = document.getElementById('project_manager');
-        const tasksByProject = @json($projects->pluck('tasks', 'id'));
-        const projectManagersByProject = @json($projects->pluck('project_manager', 'id'));
+@section('custom_js')
+<script>
+    const projectDropdown = document.getElementById('project_id');
+    const projectManagerSelect = document.getElementById('project_manager');
+    
+    function updateProjectManager() {
+        const projectId = projectDropdown.value;
+        const selectedProject = projects.find(project => project.id === projectId);
+        const projectManagerId = selectedProject ? selectedProject.project_manager_id : '';
+        
+        projectManagerSelect.value = projectManagerId;
+    }
 
-        projectDropdown.addEventListener('change', updateTaskAndProjectManagerOptions);
-
-        function updateTaskAndProjectManagerOptions() {
-            const projectId = projectDropdown.value;
-            const tasks = tasksByProject[projectId] || [];
-            const optionsHtml = tasks.map(task => `<option value="${task.id}">${task.name}</option>`).join('');
-            taskDropdown.innerHTML = optionsHtml;
-
-            const projectManager = projectManagersByProject[projectId] || '';
-            projectManagerDropdown.value = projectManager;
-        }
-
-        updateTaskAndProjectManagerOptions();
-    </script>
+    updateProjectManager();
+</script>
 @endsection
