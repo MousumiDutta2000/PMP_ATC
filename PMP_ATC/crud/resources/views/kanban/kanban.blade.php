@@ -9,131 +9,6 @@
     <link rel="stylesheet" href="{{ asset('css/kanban2.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-<style>
-        /* Your CSS styles for the kanban board and other elements */
-        .project-type-dropdown {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-        .dropdown-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            padding: 12px 16px;
-            z-index: 1;
-        }
-        .dropdown-content .project-type {
-            padding: 8px 0;
-            cursor: pointer;
-        }
-        .dropdown-content .project-type:hover {
-            background-color: #f1f1f1;
-        }
-        /* Additional styles for the down arrow icon */
-        .down-arrow-icon {
-            cursor: pointer;
-            color: #4CAF50;
-            transform: rotate(0deg);
-            transition: transform 0.2s;
-        }
-        .down-arrow-icon.rotate {
-            transform: rotate(180deg);
-        }
-        /* Position the dropdown below the down arrow icon */
-        .dropdown-below {
-            top: 100%;
-            left: 0;
-        }
-        /* Styles for the "Create" button */
-        .add-task {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.2s;
-        }
-        .add-task:hover {
-            background-color: #45A049;
-        }
-        /* Styles for the add_circle_outline icon */
-        .add-task-ico {
-            display: inline-block;
-            margin-left: 5px;
-            font-size: 20px;
-            vertical-align: middle;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 1% auto;
-            padding: 35px;
-            border: 1px solid #888;
-            width: 70%;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .add-card-form {
-            display: none;
-            flex-direction: column;
-            padding: 0 0 10px 0;
-            width: 100% !important; 
-        }
-        .add-card-form__main{
-            border: 1px solid #ddd;
-        }
-
-        .select2-container .select2-search--inline .select2-search__field {
-        box-sizing: border-box;
-        border: none;
-        font-size: 100%;
-        margin-top: 5px;
-        margin-left: 5px;
-        padding: 0;
-        max-width: 100%;
-        resize: none;
-        height: 18px;
-        vertical-align: bottom;
-        font-family: sans-serif;
-        overflow: hidden;
-        word-break: keep-all;
-       }
-    </style>
-
-
 <body>
     <div class="container">
         <div class="kanban-heading">
@@ -144,7 +19,7 @@
             <div class="dropdown-content dropdown-below" id="project-type-container" style="display: none;">
                 <!-- List of project types -->
                 @foreach($projectTypes as $type)
-                    <div class="project-type" onclick="openModal('{{ $type }}')">{{ $type }}</div>
+                    <div class="project-type" onclick="openModal('{{ $type }}')">{{ $type }}<i class="material-icons">add</i></div>
                 @endforeach
             </div>
         </div>
@@ -152,13 +27,13 @@
             @foreach($taskStatuses as $status)
                 <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="backlog-name">{{ $status }}</div>
-                    <div class="backlog-dots"><i class="material-icons down-arrow-icon" onclick="toggleProjectTypeDropdown()">keyboard_arrow_down</i></div>
+                    <div class="backlog-dots"><i class="material-icons" onclick="toggleProjectTypeDropdown()">keyboard_arrow_down</i></div>
                     <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                     
                     <div class="card-wrapper__footer">
-                        <button class="add-task" id="create-task-btn">Create
-                            <div class="add-task-ico" onclick="toggleProjectTypeDropdown()"><i class="material-icons">keyboard_arrow_down</i></div>
-                        </button>
+                        <div class="add-task" id="create-task-btn">Create
+                            <div class="add-task-ico" onclick="toggleProjectTypeDropdown()"><i class="material-icons down-arrow-icon">keyboard_arrow_down</i></div>
+                        </div>
                     </div>
                 </div>
             @endforeach    
@@ -167,22 +42,23 @@
 
     <!-- The Modal -->
     <div class="modal" id="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="padding-bottom: 3px;">
         <h4 id="modalProjectTypeHeading"> Create <span id="modalProjectType"></span></h4>
+        <!-- <hr style="border-top: 2px solid #0129704a; width:100%; margin-left: 0px;"> -->
             {{-- <form class="add-card-form add-card-form-true" style="display: flex;" > --}}
                 <form class="add-card-form add-card-form-true" style="display: flex;" action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group mt-3">
-                            <label for="title" style="font-size: 15px;">Title</label>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="title" style="font-size: 15px;" class="mb-1">Title</label>
                             <input type="text" name="title" id="title" class="form-control shadow-sm" placeholder="Enter title" required style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group mt-3">
-                            <label for="priority" style="font-size: 15px;">Priority</label>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="priority" style="font-size: 15px;" class="mb-1">Priority</label>
                             <select name="priority" id="priority" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                                 <option value="" selected="selected" disabled="disabled">Select priority</option>
                                 <option value="Low priority">Low priority</option>
@@ -192,9 +68,21 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group mt-3">
-                            <label for="estimated_time" style="font-size: 15px;">Estimated Time</label>
+                    <div class="form-group mb-3 mt-3">
+                        <label for="details" style="font-size: 15px;">Details</label>
+                        <textarea name="details" id="details" class="ckeditor form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required></textarea>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="attachments" class="mb-1" style="font-size: 15px;">Attachments</label><br>
+                            <input type="file" name="attachments[]" id="attachments" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; width: 100%; color: #858585; font-size: 14px;" multiple>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="estimated_time" class="mb-1" style="font-size: 15px;">Estimated Time</label>
                             <div class="input-group">
                                 <input type="number" name="estimated_time_number" id="estimated_time_number" class="form-control shadow-sm" placeholder="Enter estimated time" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
                                 <div class="input-group-append">
@@ -210,15 +98,10 @@
                     </div>
                 </div>
                     
-                <div class="form-group mb-3 mt-3">
-                    <label for="details" style="font-size: 15px;" class="mb-3">Details</label>
-                    <textarea name="details" id="details" class="ckeditor form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required></textarea>
-                </div>
-                    
-                <label for="assigned_to" style="font-size: 15px;" class="mb-3">Assigned To</label>
+                <label for="assigned_to" style="font-size: 15px;" class="mt-3 mb-1">Assigned To</label>
                 <select name="assigned_to[]" id="assigned_to" class="add-card-form__main assigned_to" required multiple>
                     @foreach ($profiles as $profile)
-                        <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
+                    <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
                     @endforeach
                 </select>
 
@@ -246,69 +129,40 @@
 
 
 <script>
-  // Function to toggle the project type dropdown and rotate the arrow icon
-function toggleProjectTypeDropdown() {
-  var dropdownContent = document.getElementById("project-type-container");
-  dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
-
-  // Toggle the down arrow icon rotation
-  var downArrowIcon = document.querySelector(".down-arrow-icon");
-  downArrowIcon.classList.toggle("rotate");
-}
-
-// Function to open the modal and update the modal heading with the selected project type
-function openModal(type) {
-  // Update the modal heading with the selected project type
-  var modalProjectType = document.getElementById("modalProjectType");
-  modalProjectType.innerText = type;
-
-  // Show the modal
-  document.getElementById("modal").style.display = "block";
-}
-
-// Function to close the modal and show the project type dropdown
-function closeModal() {
-  // Hide the modal
-  document.getElementById("modal").style.display = "none";
-}
-
-// Function to handle the project type selection
-function selectProjectType(type) {
-  // Close the project type dropdown
-  var dropdownContent = document.getElementById("project-type-container");
-  dropdownContent.style.display = "none";
-
-  // Toggle the down arrow icon rotation
-  var downArrowIcon = document.querySelector(".down-arrow-icon");
-  downArrowIcon.classList.toggle("rotate");
-
-  // Open the modal with the selected project type
-  openModal(type);
-}
-
-// CSK Editor (Assuming you've loaded the necessary libraries for CKEditor)
+// assigned_to user select2 function
 $(document).ready(function() {
-  $('.ckeditor').ckeditor();
-});
-
-</script>
-
-<script>
-  $(document).ready(function() {
-    $('.assigned_to').select2({
+  $('.assigned_to').select2({
       placeholder: 'Select user',
-    });
+      templateSelection: formatUserSelection,
+      templateResult: formatUserOption
   });
+
+  function formatUserOption(option) {
+      if (!option.id) return option.text;
+
+      var avatar = $(option.element).data('avatar');
+      var optionText = option.text;
+
+      var $option = $(
+          `<span><img class="user-avatar" src="${avatar}">${optionText}</span>`
+      );
+
+      return $option;
+  }
+
+  function formatUserSelection(selection) {
+      var avatar = $(selection.element).data('avatar');
+      var selectionText = selection.text;
+
+      var $selection = $(
+          `<span><img class="user-avatar" src="${avatar}" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px;">${selectionText}</span>`
+      );
+
+      return $selection;
+  }
+});
 </script>
 
-<script>
-    function closeModal() {
-        // Hide the modal
-        var modal = document.getElementById('modal');
-        modal.style.display = 'none';
-    }
- 
-    </script>
 </html>
 
 
