@@ -912,12 +912,12 @@ a {
 
 .add-card-form__header {
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
 }
 
 .form__low-pr {
   font-size: 12px;
+  margin-right: 8px;
   color: var(--colorWhite);
   border-radius: 3px;
   height: 20px;
@@ -956,6 +956,7 @@ a {
 
 .form__med-pr {
   font-size: 12px;
+  margin-right: 8px;
   color: var(--colorWhite);
   border-radius: 3px;
   height: 20px;
