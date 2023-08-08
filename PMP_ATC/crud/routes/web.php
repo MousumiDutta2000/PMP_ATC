@@ -22,6 +22,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TaskTypeController;
 use App\Http\Controllers\KanbanController;
+use App\Http\Controllers\UserWorkDetailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -90,6 +91,7 @@ Route::middleware([
     Route::resource('clients', ClientController::class);
     Route::resource('profiles', ProfileController::class);
     Route::resource('designations', DesignationController::class);
+    Route::resource('user_work_details', UserWorkDetailController::class);
 
     Route::resource('technologies', TechnologyController::class);
     Route::resource('sprints', SprintController::class);
