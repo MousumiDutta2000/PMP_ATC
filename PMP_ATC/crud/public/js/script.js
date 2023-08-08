@@ -228,5 +228,51 @@ function drag(ev) {
   });
   
 
+// Function to toggle the project type dropdown and rotate the arrow icon
+function toggleProjectTypeDropdown() {
+  var dropdownContent = document.getElementById("project-type-container");
+  dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
 
-          
+  // Toggle the down arrow icon rotation
+  var downArrowIcon = document.querySelector(".down-arrow-icon");
+  downArrowIcon.classList.toggle("rotate");
+}
+
+// Function to open the modal and update the modal heading with the selected project type
+function openModal(type) {
+  // Update the modal heading with the selected project type
+  var modalProjectType = document.getElementById("modalProjectType");
+  modalProjectType.innerText = type;
+
+  // Show the modal
+  document.getElementById("modal").style.display = "block";
+}
+
+// Function to close the modal and show the project type dropdown
+function closeModal() {
+  // Hide the modal
+  document.getElementById("modal").style.display = "none";
+}
+
+// Function to handle the project type selection
+function selectProjectType(type) {
+  // Close the project type dropdown
+  var dropdownContent = document.getElementById("project-type-container");
+  dropdownContent.style.display = "none";
+
+  // Toggle the down arrow icon rotation
+  var downArrowIcon = document.querySelector(".down-arrow-icon");
+  downArrowIcon.classList.toggle("rotate");
+
+  // Open the modal with the selected project type
+  openModal(type);
+}
+
+// CSK Editor (Assuming you've loaded the necessary libraries for CKEditor)
+$('.ckeditor').ckeditor();
+        
+// Hide the modal
+function closeModal() {
+  var modal = document.getElementById('modal');
+  modal.style.display = 'none';
+}
