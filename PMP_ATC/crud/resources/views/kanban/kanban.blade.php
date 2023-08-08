@@ -15,39 +15,41 @@
             <!-- <strong class="kanban-heading-text">Kanban Board</strong> -->
             <strong class="kanban-heading-text">{{ $project->project_name }}</strong>
         </div>
-        <div class="project-type-dropdown">
-            <div class="dropdown-content dropdown-below" id="project-type-container" style="display: none;">
-                <!-- List of project types -->
-                @foreach($projectTypes as $type)
-                    <div class="project-type" onclick="openModal('{{ $type }}')">{{ $type }}<i class="material-icons">add</i></div>
-                @endforeach
-            </div>
-        </div>
+
         <div class="kanban-board">
-            @foreach($taskStatuses as $status)
-                <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <div class="backlog-name">{{ $status }}</div>
-                    <div class="backlog-dots"><i class="material-icons" onclick="toggleProjectTypeDropdown()">keyboard_arrow_down</i></div>
-                    <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    <div class="card-wrapper__footer">
-                        <div class="add-task" id="create-task-btn">Create
-                            <div class="add-task-ico" onclick="toggleProjectTypeDropdown()"><i class="material-icons down-arrow-icon">keyboard_arrow_down</i></div>
-                        </div>
+    @foreach($taskStatuses as $status)
+        <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="backlog-name">{{ $status }}</div>
+            <div class="backlog-dots">
+                <i class="material-icons" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown')">keyboard_arrow_down</i>
+            </div>
+            <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="card-wrapper__footer">
+                <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
+                    <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown')">
+                        <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
                     </div>
                 </div>
-            @endforeach    
+                <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
+                    <!-- Dropdown content here -->
+                    @foreach($projectTypes as $type)
+                    <div class="project-type" onclick="openModal('{{ $type }}')">{{ $type }}<i class="material-icons">add</i></div>
+                @endforeach
+                </div>
+            </div>
         </div>
-        
+    @endforeach    
+</div>
+
+
     </div>
 
     <!-- The Modal -->
     <div class="modal" id="modal">
         <div class="modal-content" style="padding-bottom: 3px;">
         <h4 id="modalProjectTypeHeading"> Create <span id="modalProjectType"></span></h4>
-        <!-- <hr style="border-top: 2px solid #0129704a; width:100%; margin-left: 0px;"> -->
-            {{-- <form class="add-card-form add-card-form-true" style="display: flex;" > --}}
-                <form class="add-card-form add-card-form-true" style="display: flex;" action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+            <form class="add-card-form add-card-form-true" style="display: flex;" action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -68,6 +70,7 @@
                         </div>
                     </div>
 
+                    
                     <div class="form-group mb-3 mt-3">
                         <label for="details" style="font-size: 15px;">Details</label>
                         <textarea name="details" id="details" class="ckeditor form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required></textarea>
@@ -112,8 +115,6 @@
             </form>
         </div>
     </div>
-</div>
-
 </body>
 <!-- partial -->
     
