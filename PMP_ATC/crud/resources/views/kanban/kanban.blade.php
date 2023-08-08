@@ -154,7 +154,6 @@
                     <div class="backlog-name">{{ $status }}</div>
                     <div class="backlog-dots"><i class="material-icons down-arrow-icon" onclick="toggleProjectTypeDropdown()">keyboard_arrow_down</i></div>
                     <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    
                     <div class="card-wrapper__footer">
                         <button class="add-task" id="create-task-btn">Create
                             <div class="add-task-ico" onclick="toggleProjectTypeDropdown()"><i class="material-icons">keyboard_arrow_down</i></div>
@@ -169,7 +168,6 @@
     <div class="modal" id="modal">
         <div class="modal-content">
         <h4 id="modalProjectTypeHeading"> Create <span id="modalProjectType"></span></h4>
-            {{-- <form class="add-card-form add-card-form-true" style="display: flex;" > --}}
                 <form class="add-card-form add-card-form-true" style="display: flex;" action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                 <div class="row">
@@ -234,7 +232,7 @@
 </body>
 <!-- partial -->
     
-<script src="{{ asset('js/script.js') }}"></script>
+{{-- <script src="{{ asset('js/script.js') }}"></script> --}}
 <script src="{{ asset('js/bundle.fa06bd827b69c86d1e5c.js') }}"></script>
 <script src="{{ asset('js/bundle.779c8b3edfadced3283a.js') }}"></script>
 <script src="{{ asset('js/bundle.24f6873edaef6bd85f9e.js') }}"></script>
@@ -309,6 +307,7 @@ $(document).ready(function() {
     }
  
     </script>
+    
 </html>
 
 
@@ -376,8 +375,6 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div>
-
-                        <!-- <span>Task 1</span> -->
                     </div>
                     <div class="card shadow" id="task2" draggable="true" ondragstart="drag(event)">
 
@@ -461,6 +458,8 @@ $(document).ready(function() {
                         </div>
                     </form>
                 </div>
+
+
                 <div class="kanban-block shadow" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="backlog-name">In Progress</div>
                     <div class="backlog-dots"><i class="material-icons">expand_more</i></div>
@@ -835,3 +834,69 @@ $(document).ready(function() {
         //     };
         //     xhr.send(formData);
         // } --}}
+
+
+
+
+
+
+        {{-- <div class="card shadow" id="task1" draggable="true" ondragstart="drag(event)">
+
+            <div class="card__header">
+                <div class="card-container-color card-color-low"> --}}
+                    {{-- <div class="card__header-priority"> --}}
+                        {{-- @if(strtolower($task->priority) == 'low priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
+                    @elseif(strtolower($task->priority) == 'med priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #81d5ee 17%, #7ed492 83%);">{{ $task->priority }}</div>
+                    @elseif(strtolower($task->priority) == 'high priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
+                    @endif --}}
+                        {{-- Low Priority</div> --}}
+                {{-- </div>
+                <div class="card__header-clear"><i class="material-icons">clear</i></div>
+            </div>
+            <div class="card__text">{{ $task->title }}</div>
+            <div class="card__menu"> --}}
+                {{-- ---comment and attach part------ --}}
+
+                {{-- <div class="card__menu-left">
+                    <div class="comments-wrapper">
+                        <div class="comments-ico"><i class="material-icons">comment</i></div>
+                        <div class="comments-num">1</div>
+                    </div>
+                    <div class="attach-wrapper">
+                        <div class="attach-ico"><i class="material-icons">attach_file</i></div>
+                        <div class="attach-num">2</div>
+                    </div>
+                </div> --}}
+
+                {{-- <div class="card__menu-right">
+                    <div class="add-peoples"><i class="material-icons">add</i></div>
+                    <div class="img-avatar"><img src="{{ asset('img/3bc84a401a51991f895ac6f6f40b7010.jpg') }}">
+                    </div>
+                </div> --}}
+            {{-- </div>
+        </div> --}}
+
+
+        {{-- @foreach($tasks as $task)
+        <div class="card shadow" id="task1" draggable="true" ondragstart="drag(event)">
+
+            <div class="card__header">
+                <div class="card-container-color card-color-low">
+                    {{-- <div class="card__header-priority"> --}}
+                        {{-- @if(strtolower($task->priority) == 'low priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
+                    @elseif(strtolower($task->priority) == 'med priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #81d5ee 17%, #7ed492 83%);">{{ $task->priority }}</div>
+                    @elseif(strtolower($task->priority) == 'high priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
+                    @endif --}}
+                        {{-- Low Priority</div> --}}
+                {{-- </div>
+                <div class="card__header-clear"><i class="material-icons">clear</i></div>
+            </div>
+            <div class="card__text">{{ $task->title }}</div>
+        </div>
+        @endforeach  --}}
