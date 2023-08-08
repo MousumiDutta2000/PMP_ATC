@@ -142,11 +142,18 @@ class ProjectsController extends Controller
         $projectRoles = ProjectRole::all();
         $projectMembers = Profile::all();
         $task_types = taskType::all();
+        $task_statuses = TaskStatus::all();
         
         // Retrieve the selected technologies for the project
         $selectedTechnologies = explode(',', $project->technology_id);
 
-        return view('projects.edit', compact('project', 'users', 'technologies', 'verticals', 'clients', 'projectRoles', 'projectMembers', 'projectManagers', 'selectedTechnologies','task_types'));
+        // Retrieve the selected task_types for the project
+        $selectedTaskTypes = explode(',', $project->task_type_id);
+
+        // Retrieve the selected task_types for the project
+        $selectedTaskStatus = explode(',', $project->task_status_id);
+
+        return view('projects.edit', compact('project', 'users', 'technologies', 'verticals', 'clients', 'projectRoles', 'projectMembers', 'projectManagers', 'selectedTechnologies','task_types','selectedTaskTypes','task_statuses','selectedTaskStatus'));
     }
 
 
@@ -169,6 +176,7 @@ class ProjectsController extends Controller
             'project_members_id' => 'required',
             'project_role_id' => 'required',
             'task_type_id' => 'required',
+            'task_status_id' => 'required',
         ]);
 
         $project->uuid = substr(Str::uuid()->toString(), 0, 8);
@@ -188,20 +196,36 @@ class ProjectsController extends Controller
         $project->client_id = $request->client_id;
         $project->project_members_id = $request->project_members_id;
         $project->project_role_id = $request->project_role_id;
+        $project->task_type_id = implode(',', $request->task_type_id);
+        $project->task_status_id = implode(',', $request->task_status_id);
         $project->save();
 
-        // Attach project members and roles to the project
-        $projectMembersIds = $request->input('project_members_id', []);
-        $projectRolesIds = $request->input('project_role_id', []);
+        // $projectMembersIds = $request->input('project_members_id', []);
+        // $projectRolesIds = $request->input('project_role_id', []);
+        
+        // foreach ($projectMembersIds as $key => $memberId) {
+        //     // Make sure the $key index exists in the $projectRolesIds array
+        //     if (isset($projectRolesIds[$key])) {
+        //         $role = $projectRolesIds[$key];
+                
+        //         // Make sure both member ID and role ID are provided before attaching
+        //         if ($memberId && $role) {
+        //             $project->projectMembers()->attach($memberId, ['project_role_id' => $role]);
+        //         }
+        //     }
+        // }        
 
-        foreach ($projectMembersIds as $key => $memberId) {
-            $role = $projectRolesIds[$key] ?? null;
-            
-            // Make sure both member ID and role ID are provided before attaching
-            if ($memberId && $role) {
-                $project->projectMembers()->attach($memberId, ['project_role_id' => $role]);
-            }
+        // store tasktypes in project_task_types 
+        $taskTypeIds = $request->task_type_id;
+        foreach ($taskTypeIds as $taskTypeId) {
+            $project->projectTaskTypes()->create([
+                'task_type_id' => $taskTypeId,
+            ]);
         }
+
+        // store taskstatus in project_task_status 
+        $taskStatusIds = $request->task_status_id;
+        $project->taskStatuses()->sync($taskStatusIds);
 
         return redirect()->route('projects.index')->with('success', 'Project settings updated successfully.');
     }

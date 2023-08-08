@@ -229,14 +229,25 @@ function drag(ev) {
   
 
 // Function to toggle the project type dropdown and rotate the arrow icon
-function toggleProjectTypeDropdown() {
-  var dropdownContent = document.getElementById("project-type-container");
+// function toggleProjectTypeDropdown() {
+//   var dropdownContent = document.getElementById("project-type-container");
+//   dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
+
+//   // Toggle the down arrow icon rotation
+//   var downArrowIcon = document.querySelector(".down-arrow-icon");
+//   downArrowIcon.classList.toggle("rotate");
+// }
+
+function toggleProjectTypeDropdown(dropdownId) {
+  var dropdownContent = document.getElementById(dropdownId);
   dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
 
   // Toggle the down arrow icon rotation
-  var downArrowIcon = document.querySelector(".down-arrow-icon");
+  var downArrowIcon = dropdownContent.previousElementSibling.querySelector(".down-arrow-icon");
   downArrowIcon.classList.toggle("rotate");
 }
+
+
 
 // Function to open the modal and update the modal heading with the selected project type
 function openModal(type) {
