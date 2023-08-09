@@ -17,31 +17,33 @@
         </div>
 
         <div class="kanban-board">
-    @foreach($taskStatuses as $status)
-        <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <div class="backlog-name">{{ $status }}</div>
-            <div class="backlog-dots">
-                <i class="material-icons" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown')">keyboard_arrow_down</i>
-            </div>
-            <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-            <div class="card-wrapper__footer">
-                <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
-                    <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown')">
-                        <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
+            @foreach($taskStatuses as $status)
+                <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <div class="backlog-name">{{ $status }}</div>
+
+                    <!-- <div class="backlog-dots">
+                        <i class="material-icons" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown')">keyboard_arrow_down</i>
+                    </div> -->
+
+                    <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    
+                    <div class="card-wrapper__footer">
+                        <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
+                            <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown')">
+                                <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
+                            </div>
+                        </div>
+
+                        <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
+                            <!-- Dropdown content here -->
+                                @foreach($projectTypes as $type)
+                                    <div class="project-type" onclick="openModal('{{ $type }}')">{{ $type }}<i class="material-icons">add</i></div>
+                                @endforeach
+                        </div>
                     </div>
                 </div>
-                <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
-                    <!-- Dropdown content here -->
-                    @foreach($projectTypes as $type)
-                    <div class="project-type" onclick="openModal('{{ $type }}')">{{ $type }}<i class="material-icons">add</i></div>
-                @endforeach
-                </div>
-            </div>
+            @endforeach    
         </div>
-    @endforeach    
-</div>
-
-
     </div>
 
     <!-- The Modal -->
@@ -103,7 +105,7 @@
                 <label for="assigned_to" style="font-size: 15px;" class="mt-3 mb-1">Assigned To</label>
                 <select name="assigned_to[]" id="assigned_to" class="add-card-form__main assigned_to" required multiple>
                     @foreach ($profiles as $profile)
-                    <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
+                        <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
                     @endforeach
                 </select>
 

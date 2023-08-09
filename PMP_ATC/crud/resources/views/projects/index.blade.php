@@ -66,20 +66,25 @@
                         
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="{{ route('sprints.index', ['sprints' => $project->id]) }}"><i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i></a>
-                                <a href="{{ route('kanban', ['projectId' => $project->id]) }}"><i class="fa-solid fa-columns text-primary" style="margin-right: 10px"></i></a>
-
-                                <a href=""> <i class="bi bi-exclamation-octagon" style="margin-right: 10px; color:red;"></i></a>
-                                    <!-- <i class="fa-sharp fa-solid fa-flag text-info" style="margin-right: 10px"></i></a> -->
-                                <a href="{{ route('projects.edit', ['project' => $project->id]) }}">
-                                <i class="fa-solid fa-gear text-secondary" style="margin-right: 10px"></i></a>
+                            <a href="{{ route('sprints.index', ['sprints' => $project->id]) }}" data-toggle="tooltip" data-placement="top" title="View Sprints">
+                                <i class="fa-solid fa-people-roof text-warning" style="margin-right: 10px"></i>
+                            </a>
+                            <a href="{{ route('kanban', ['projectId' => $project->id]) }}" data-toggle="tooltip" data-placement="top" title="View Tasks">
+                                <i class="bi bi-kanban" style="margin-right: 10px; color: blueviolet;"></i>
+                            </a>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="">
+                                <i class="bi bi-exclamation-octagon" style="margin-right: 10px; color:red;"></i>
+                            </a>
+                            <a href="{{ route('projects.edit', ['project' => $project->id]) }}" data-toggle="tooltip" data-placement="top" title="Settings">
+                                <i class="fa-solid fa-gear text-secondary" style="margin-right: 10px"></i>
+                            </a>
 
                                 <form action="{{ route('projects.destroy', $project->id) }}" method="post">
                                     @method('delete')
                                     @csrf 
-                                    <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal{{ $project->id }}">
+                                    <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-placement="top" title="Delete" data-target="#deleteModal{{ $project->id }}">
                                         <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
-                                    </button>          
+                                    </button>         
                                     <!-- Delete Modal start -->
                                     <div class="modal fade" id="deleteModal{{ $project->id }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">

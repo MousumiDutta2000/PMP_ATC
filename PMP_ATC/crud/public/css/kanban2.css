@@ -51,17 +51,38 @@ body {
   border-top: 5px solid rgb(218, 89, 218);
 }
 
+#underdiscussion{
+  background-image: linear-gradient(#f6f8fc, #f6f8fc),
+    radial-gradient(circle at top left, #c781ff, #e57373);
+  /* background-color: #fec6d1;*/
+  border-top: 5px solid rgb(89, 201, 218);
+}
+
+#underdesign{
+  background-image: linear-gradient(#f6f8fc, #f6f8fc),
+    radial-gradient(circle at top left, #c781ff, #e57373);
+  /* background-color: #fec6d1;*/
+  border-top: 5px solid rgb(89, 218, 162);
+}
+
+#inqueue{
+  background-image: linear-gradient(#f6f8fc, #f6f8fc),
+    radial-gradient(circle at top left, #c781ff, #e57373);
+  /* background-color: #fec6d1;*/
+  border-top: 5px solid rgb(235, 208, 101);
+}
+
+#underdevelopment {
+  background-image: linear-gradient(#f6f8fc, #f6f8fc),
+    radial-gradient(circle at top left, #ff9985, lightblue);
+  border-top: 5px solid rgb(125, 206, 233);
+}
+
 #inprogress {
   background-image: linear-gradient(#f6f8fc, #f6f8fc),
     radial-gradient(circle at top left, #ff9985, #ffb74e);
-  border-top: 5px solid #ffb74e;
+  border-top: 5px solid #ff984e;
   /* display: none; */
-}
-
-#underdevelopement {
-  background-image: linear-gradient(#f6f8fc, #f6f8fc),
-    radial-gradient(circle at top left, #ff9985, lightblue);
-  border-top: 5px solid lightblue;
 }
 
 #done {
