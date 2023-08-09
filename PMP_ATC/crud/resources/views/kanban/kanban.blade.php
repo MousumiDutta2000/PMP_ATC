@@ -23,6 +23,26 @@
             <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <div class="backlog-name">{{ $status }}</div>
                     <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    @foreach($tasks as $task)
+                    @if ($task->status === $status) <!-- Check if task status matches the current status block -->
+                     <div class="card shadow" id="task{{ $task->id }}" draggable="true" ondragstart="drag(event)">
+                        <div class="card__header">
+                             <div class="card-container-color {{ $task->priority }}">
+                                 @if(strtolower($task->priority) == 'low priority')
+                                    <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
+                                @elseif(strtolower($task->priority) == 'med priority')
+                                    <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #81d5ee 17%, #7ed492 83%);">{{ $task->priority }}</div>
+                                @elseif(strtolower($task->priority) == 'high priority')
+                                    <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
+                                @endif
+                            </div>
+                        <div class="card__header-clear"><i class="material-icons">clear</i></div>
+                    </div>
+                 <div class="card__text">{{ $task->title }}</div>
+                 </div>
+             @endif
+            @endforeach
+
                         <div class="card-wrapper__footer">
                             <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
                                 <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown', '{{ $status }}')">
