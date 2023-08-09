@@ -26,15 +26,15 @@
             <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             <div class="card-wrapper__footer">
                 <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
-                    <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown')">
+                    <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown', '{{ $status }}')">
                         <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
                     </div>
                 </div>
                 <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
                     <!-- Dropdown content here -->
                     @foreach($projectTypes as $type)
-                    <div class="project-type" onclick="openModal('{{ $type }}')">{{ $type }}<i class="material-icons">add</i></div>
-                @endforeach
+                    <div class="project-type" onclick="openModal('{{ $type }}', '{{ $status }}')">{{ $type }}<i class="material-icons">add</i></div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -107,6 +107,9 @@
                     <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
                     @endforeach
                 </select>
+
+                <input type="hidden" name="status" id="status" value="">
+                <input type="hidden" name="selectedStatus" id="selectedStatus" value="">
 
                 <div class="mt-3 text-end">
                     <button type="submit" class="form-add-btn" style="margin-right: 10px;">Create</button>

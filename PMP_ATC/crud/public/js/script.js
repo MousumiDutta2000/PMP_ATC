@@ -238,22 +238,29 @@ function drag(ev) {
 //   downArrowIcon.classList.toggle("rotate");
 // }
 
-function toggleProjectTypeDropdown(dropdownId) {
+function toggleProjectTypeDropdown(dropdownId, status) {
   var dropdownContent = document.getElementById(dropdownId);
   dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
 
   // Toggle the down arrow icon rotation
   var downArrowIcon = dropdownContent.previousElementSibling.querySelector(".down-arrow-icon");
   downArrowIcon.classList.toggle("rotate");
+
+  // Store the clicked status in a hidden input field
+  document.getElementById("selectedStatus").value = status;
 }
 
-
-
 // Function to open the modal and update the modal heading with the selected project type
-function openModal(type) {
+
+
+
+function openModal(type, status) {
   // Update the modal heading with the selected project type
   var modalProjectType = document.getElementById("modalProjectType");
   modalProjectType.innerText = type;
+
+  // Set the selected status as a value in the form
+  document.getElementById("status").value = status;
 
   // Show the modal
   document.getElementById("modal").style.display = "block";
