@@ -10,6 +10,48 @@
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
     <link rel="stylesheet" href="{{ asset('css/profiles.css') }}">
+
+    <style>
+    /* Mobile-first responsive styles */
+    .profile-overview {
+      padding: 10px;
+    }
+
+    .label {
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .col-md-6 {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    /* Tablet and desktop styles */
+    @media (min-width: 768px) {
+      .col-md-6 {
+        flex-wrap: nowrap;
+      }
+      
+      .label {
+        max-width: none;
+      }
+
+      .form-group {
+        max-width: none;
+      }
+      
+      .text-end {
+        text-align: end;
+      }
+    }
+  </style>
+
 @endsection
 
 @section('custom_js')
@@ -64,6 +106,7 @@
               $('#' + formId + ' button[type="submit"]').toggle(editable);
           }
         });
+       
     </script>
 @endsection
 
@@ -138,7 +181,7 @@
             </li>
             
             <li class="nav-item">
-              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#skill-set">Skill Set</button>
+              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#skill-set" id="skillSetTabButton">Skill Set</button>
             </li>
           </ul>
 
@@ -152,35 +195,35 @@
                 <button class="btn btn-primary btn-sm edit-field justify-content-end" id="editProfileButton"><i class="ri-edit-2-fill"></i></button>
               </h5>
                 <div class="col-md-6 mb-3">
-                  <div class="label" style="display: inline-block; width: 200px;">Full Name</div>
-                  <div style="display: inline-block;">{{ $profile->profile_name }}</div>
+                  <div class="label" style="width: 200px;">Full Name</div>
+                  <div>{{ $profile->profile_name }}</div>
                 </div>
 
                 <div class="col-md-6 mb-3">
-                  <div class="label" style="display: inline-block; width: 200px;">Father's Name</div>
-                  <div style="display: inline-block;">{{$profile->father_name}}</div>
+                  <div class="label" style=" width: 200px;">Father's Name</div>
+                  <div>{{$profile->father_name}}</div>
                 </div>
 
                 <div class="col-md-6 mb-3">
-                  <div class="label" style="display: inline-block; width: 200px;">Date Of Birth</div>
-                  <div style="display: inline-block;">{{ date('d F Y', strtotime($profile->DOB)) }}</div>
+                  <div class="label" style="width: 200px;">Date Of Birth</div>
+                  <div>{{ date('d F Y', strtotime($profile->DOB)) }}</div>
                 </div>
                 <div class="col-md-6 mb-3">
-                  <div class="label" style="display: inline-block; width: 200px;">Work Location</div>
-                  <div style="display: inline-block;">{{$profile->work_location}}</div>
+                  <div class="label" style=" width: 200px;">Work Location</div>
+                  <div>{{$profile->work_location}}</div>
                 </div>
 
                 <div class="col-md-6 mb-3">
-                  <div class="label" style="display: inline-block; width: 200px;">Work Address</div>
-                  <div style="display: inline-block;">{{$profile->work_address}}</div>
+                  <div class="label" style=" width: 200px;">Work Address</div>
+                  <div>{{$profile->work_address}}</div>
                 </div>
               <form method="post" action="{{ route('profiles.update2', ['profile' => $profile->id]) }}" enctype="multipart/form-data" id="editProfileForm">
                 @csrf
                 @method('PUT')
-                <div class="col-md-6 mb-3" style="display:flex">
-                  <div class="label" style="display: inline-block; width: 200px;">Highest Educational Qualification</div>
-                  <div style="display: inline-block; vertical-align: top;">
-                    <div class="form-group" style="display: inline-block;">
+                <div class="col-md-6 mb-3">
+                  <div class="label" style=" width: 200px;">Highest Educational Qualification</div>
+                  <div >
+                    <div class="form-group">
                     <span id="highest_education_span">{{$profile->highestEducationValue->highest_education_value}}</span>
                     <select name="highest_educational_qualification_id" id="highest_educational_qualification_id" class="form-controlcl" required{{ $editable ? '' : ' readonly' }} style="display: inline-block; width: auto; background-color:white margin-top:-20px">
                       @foreach ($qualifications as $qualification)
@@ -195,20 +238,20 @@
                 <br>
                 <h5 class="card-title">Contact Details</h5>
                 <div class="col-md-6 mb-3">
-                  <div class="label" style="display: inline-block; width: 200px;">Email</div>
-                  <div style="display: inline-block; vertical-align: top;">
+                  <div class="label">Email</div>
+                  <div>
                   {{$profile->email}}
-                    <div class="form-group" style="display: inline-block;">
+                    <div>
                       <input type="text" class="form-control" name="email" id="email" value="{{ $profile->email }}" required hidden>
                     </div>
                   </div>
                 </div>
 
-                <div class="col-md-6 mb-3" style="display:flex">
-                  <div class="label" style="display: inline-block; width: 200px;">Contact Number</div>
-                  <div style="display: inline-block; vertical-align: top;">
-                    <div class="form-group" style="display: inline-block; padding-left: 39px;">
-                      <span id="contact_number_span" style="padding-right:64px;">{{$profile->contact_number}}</span>
+                <div class="col-md-6 mb-3">
+                  <div class="label">Contact Number</div>
+                  <div >
+                    <div class="form-group">
+                      <span id="contact_number_span" style="padding-right:55px;">{{$profile->contact_number}}</span>
                       <input type="text" class="form-control" name="contact_number" id="contact_number" value="{{ $profile->contact_number }}"{{ $editable ? '' : ' readonly' }} maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" style="display: inline-block;">                    
                     </div>
                   </div>
@@ -265,11 +308,11 @@
                                     <form method="post" action="{{ route('user_technologies.destroy', $user_technology->id) }}">
                                         @method('delete')
                                         @csrf
-                                        <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#deleteskill">
+                                        <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#deleteskill{{$user_technology->id}}">
                                             <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
                                         </button>
                                         <!-- Delete Skill Modal start -->
-                                        <div class="modal fade" id="deleteskill" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteskillLabel" aria-hidden="true">
+                                        <div class="modal fade" id="deleteskill{{$user_technology->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteskillLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header flex-column">
@@ -328,7 +371,7 @@
         </div>
       @endif
       <div class="modal-body">
-        <form method="post" action="{{ route('user_technologies.store') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('user_technologies.store') }}" enctype="multipart/form-data" >
           @csrf
           <div class="row mt-3">  
             <input value="{{$profile->user_id}}" name="user_id" id="user_id" class="form-control " hidden required>
@@ -484,25 +527,25 @@
             <div class="mb-4" style="display: flex; align-items: center;">
               <h6 class="card-subtitle mb-2" style="flex: 1;">Technology:</h6>
               <p class="card-text text-muted" style="flex: 2; margin-top: -10px;">
-                <strong>{{ $user_technology->technology->technology_name }}</strong>
+                {{ $user_technology->technology->technology_name }}
               </p>
             </div>
             <div class="mb-4" style="display: flex; align-items: center;">
               <h6 class="card-subtitle mb-2" style="flex: 1;">Years Of Experience:</h6>
               <p class="card-text text-muted" style="flex: 2; margin-top: -10px;">
-                <strong>{{ $user_technology->years_of_experience }}</strong>
+                {{ $user_technology->years_of_experience }}
               </p>
             </div>
             <div class="mb-4" style="display: flex; align-items: center;">
               <h6 class="card-subtitle mb-2" style="flex: 1;">Role:</h6>
               <p class="card-text text-muted" style="flex: 2; margin-top: -10px;">
-                <strong>{{ $user_technology->project_role->member_role_type }}</strong>
+                {{ $user_technology->project_role->member_role_type }}
               </p>
             </div>
             <div class="mb-4" style="display: flex; align-items: center;">
               <h6 class="card-subtitle mb-2" style="flex: 1;">Details:</h6>
               <p class="card-text text-muted" style="flex: 2; margin-top: -10px;">
-                <strong>{{ $user_technology->details }}</strong>
+                {{ $user_technology->details }}
               </p>
             </div>
             <div class="mb-4" style="display: flex; align-items: center;">
