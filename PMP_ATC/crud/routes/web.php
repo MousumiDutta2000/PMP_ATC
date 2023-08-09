@@ -22,6 +22,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TaskTypeController;
 use App\Http\Controllers\KanbanController;
+use App\Http\Controllers\UserWorkDetailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -90,13 +91,14 @@ Route::middleware([
     Route::resource('clients', ClientController::class);
     Route::resource('profiles', ProfileController::class);
     Route::resource('designations', DesignationController::class);
+    Route::resource('user_work_details', UserWorkDetailController::class);
 
     Route::resource('technologies', TechnologyController::class);
     Route::resource('sprints', SprintController::class);
     Route::get('/exports', [SprintController::class, 'export'])->name('sprints.export');
     Route::resource('project_item_statuses', ProjectItemStatusController::class);
     Route::resource('project-items', ProjectItemController::class);
-    Route::resource('tasks', TaskController::class);
+    // Route::resource('tasks', TaskController::class);
     Route::resource('comments', CommentController::class);
     Route::resource('user_technologies', UserTechnologyController::class);
 
@@ -105,13 +107,19 @@ Route::middleware([
     Route::resource('task_types', TaskTypeController::class);
    
 
-    // Route::get('/kanban', [KanbanController::class, 'showKanban'])->name('kanban');
-    // Route::post('/add-task', [KanbanController::class, 'addTask'])->name('addTask');
-
-    // Route::get('/kanban/{projectId}', 'KanbanController@showKanban')->name('kanban');
-    Route::get('/kanban/{projectId}', [KanbanController::class, 'showKanban'])->name('kanban');
     
-});
+    Route::get('/kanban/{projectId}', [KanbanController::class, 'showKanban'])->name('kanban');
+    // Route::post('/kanban/store', [KanbanController::class, 'store'])->name('kanban.store');
+
+    Route::post('/tasks/store', [TaskController::class, 'store'])->name('tasks.store');
+
+    
+    Route::resource('tasks', TaskController::class)->except([
+    'store' // Exclude the store route from the resource routes
+    ]);
+
+    // Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+    });
 
 //Microsoft Authentication Route
 
