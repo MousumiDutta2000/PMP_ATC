@@ -38,11 +38,9 @@
                 </div>
             </div>
         </div>
-    @endforeach    
-</div>
-
-
+    @endforeach
     </div>
+</div>
 
     <!-- The Modal -->
     <div class="modal" id="modal">
@@ -104,7 +102,7 @@
                 <label for="assigned_to" style="font-size: 15px;" class="mt-3 mb-1">Assigned To</label>
                 <select name="assigned_to[]" id="assigned_to" class="add-card-form__main assigned_to" required multiple>
                     @foreach ($profiles as $profile)
-                    <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
+                        <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
                     @endforeach
                 </select>
 
@@ -743,7 +741,7 @@ $(document).ready(function() {
         <div class="card shadow" id="task1" draggable="true" ondragstart="drag(event)">
 
             <div class="card__header">
-                <div class="card-container-color card-color-low">
+                <div class="card-container-color card-color-low"> --}}
                     {{-- <div class="card__header-priority"> --}}
                         {{-- @if(strtolower($task->priority) == 'low priority')
                         <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>

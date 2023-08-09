@@ -20,32 +20,32 @@ class TaskStatusSeeder extends Seeder
         ]);
 
         TaskStatus::create([
-            'status' => 'In Progress',
+            'status' => 'Under Discussion',
             'level' => 1,
         ]);
 
         TaskStatus::create([
-            'status' => 'Done',
+            'status' => 'Under Design',
             'level' => 2,
         ]);
 
         TaskStatus::create([
-            'status' => 'Under development',
+            'status' => 'In Queue',
             'level' => 3,
         ]);
 
         TaskStatus::create([
-            'status' => 'Development',
+            'status' => 'Under Development',
             'level' => 4,
         ]);
 
         TaskStatus::create([
-            'status' => 'In Queue',
+            'status' => 'In Progress',
             'level' => 5,
         ]);
 
         TaskStatus::create([
-            'status' => 'Under design',
+            'status' => 'Done',
             'level' => 6,
         ]);
     }

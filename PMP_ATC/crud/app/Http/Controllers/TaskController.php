@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 
 class TaskController extends Controller
 {
-
     public function index()
     {
         $tasks = Task::all();
