@@ -75,19 +75,18 @@
 <script>
     const projectDropdown = document.getElementById('project_id');
     const projectManagerInput = document.getElementById('project_manager');
-    const projectManagersByProject = {!! json_encode($projects->pluck('project_manager_id', 'id')) !!};
-    const projectManagerNames = {!! json_encode($projects->pluck('project_manager_name', 'id')) !!};
+    const projectManagersByProject = {!! json_encode($projectManagersByProject) !!};
 
     projectDropdown.addEventListener('change', updateProjectManager);
 
     function updateProjectManager() {
         const projectId = projectDropdown.value;
-        const projectManagerId = projectManagersByProject[projectId] || '';
-        const projectManagerName = projectManagerNames[projectManagerId] || 'No Manager';
+        const projectManagerName = projectManagersByProject[projectId] || 'No Manager';
         
         projectManagerInput.value = projectManagerName;
     }
 
+    // Update the project manager when the page loads
     updateProjectManager();
 </script>
 @endsection

@@ -21,8 +21,12 @@ return new class extends Migration
             // $table->enum('priority', ['Low priority', 'Med Priority', 'High priority']);
             $table->text('details');
             $table->string('assigned_to');
+<<<<<<< HEAD:PMP_ATC/crud/database/migrations/2023_08_05_105617_create_tasks_table.php
             $table->unsignedBigInteger('status');
             $table->foreign('status')->references('id')->on('project_task_status')->onDelete('cascade');
+=======
+            $table->string('status');
+>>>>>>> b0da45e364babb0014116dabb0ea17d25afaec99:PMP_ATC/crud/database/migrations/2023_07_19_105617_create_tasks_table.php
             
             // $table->date('due_date');
             $table->timestamps();

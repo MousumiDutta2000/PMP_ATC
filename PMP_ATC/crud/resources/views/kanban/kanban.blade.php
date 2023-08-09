@@ -26,15 +26,15 @@
             <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             <div class="card-wrapper__footer">
                 <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
-                    <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown')">
+                    <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown', '{{ $status }}')">
                         <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
                     </div>
                 </div>
                 <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
                     <!-- Dropdown content here -->
                     @foreach($projectTypes as $type)
-                    <div class="project-type" onclick="openModal('{{ $type }}')">{{ $type }}<i class="material-icons">add</i></div>
-                @endforeach
+                    <div class="project-type" onclick="openModal('{{ $type }}', '{{ $status }}')">{{ $type }}<i class="material-icons">add</i></div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -70,6 +70,7 @@
                         </div>
                     </div>
 
+                    
                     <div class="form-group mb-3 mt-3">
                         <label for="details" style="font-size: 15px;">Details</label>
                         <textarea name="details" id="details" class="ckeditor form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required></textarea>
@@ -106,6 +107,9 @@
                     <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
                     @endforeach
                 </select>
+
+                <input type="hidden" name="status" id="status" value="">
+                <input type="hidden" name="selectedStatus" id="selectedStatus" value="">
 
                 <div class="mt-3 text-end">
                     <button type="submit" class="form-add-btn" style="margin-right: 10px;">Create</button>
@@ -230,8 +234,6 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div>
-
-                        <!-- <span>Task 1</span> -->
                     </div>
                     <div class="card shadow" id="task2" draggable="true" ondragstart="drag(event)">
 
@@ -315,6 +317,8 @@ $(document).ready(function() {
                         </div>
                     </form>
                 </div>
+
+
                 <div class="kanban-block shadow" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="backlog-name">In Progress</div>
                     <div class="backlog-dots"><i class="material-icons">expand_more</i></div>
@@ -689,3 +693,69 @@ $(document).ready(function() {
         //     };
         //     xhr.send(formData);
         // } --}}
+
+
+
+
+
+
+        {{-- <div class="card shadow" id="task1" draggable="true" ondragstart="drag(event)">
+
+            <div class="card__header">
+                <div class="card-container-color card-color-low"> --}}
+                    {{-- <div class="card__header-priority"> --}}
+                        {{-- @if(strtolower($task->priority) == 'low priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
+                    @elseif(strtolower($task->priority) == 'med priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #81d5ee 17%, #7ed492 83%);">{{ $task->priority }}</div>
+                    @elseif(strtolower($task->priority) == 'high priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
+                    @endif --}}
+                        {{-- Low Priority</div> --}}
+                {{-- </div>
+                <div class="card__header-clear"><i class="material-icons">clear</i></div>
+            </div>
+            <div class="card__text">{{ $task->title }}</div>
+            <div class="card__menu"> --}}
+                {{-- ---comment and attach part------ --}}
+
+                {{-- <div class="card__menu-left">
+                    <div class="comments-wrapper">
+                        <div class="comments-ico"><i class="material-icons">comment</i></div>
+                        <div class="comments-num">1</div>
+                    </div>
+                    <div class="attach-wrapper">
+                        <div class="attach-ico"><i class="material-icons">attach_file</i></div>
+                        <div class="attach-num">2</div>
+                    </div>
+                </div> --}}
+
+                {{-- <div class="card__menu-right">
+                    <div class="add-peoples"><i class="material-icons">add</i></div>
+                    <div class="img-avatar"><img src="{{ asset('img/3bc84a401a51991f895ac6f6f40b7010.jpg') }}">
+                    </div>
+                </div> --}}
+            {{-- </div>
+        </div> --}}
+
+
+        {{-- @foreach($tasks as $task)
+        <div class="card shadow" id="task1" draggable="true" ondragstart="drag(event)">
+
+            <div class="card__header">
+                <div class="card-container-color card-color-low">
+                    {{-- <div class="card__header-priority"> --}}
+                        {{-- @if(strtolower($task->priority) == 'low priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
+                    @elseif(strtolower($task->priority) == 'med priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #81d5ee 17%, #7ed492 83%);">{{ $task->priority }}</div>
+                    @elseif(strtolower($task->priority) == 'high priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
+                    @endif --}}
+                        {{-- Low Priority</div> --}}
+                {{-- </div>
+                <div class="card__header-clear"><i class="material-icons">clear</i></div>
+            </div>
+            <div class="card__text">{{ $task->title }}</div>
+        </div>
+        @endforeach  --}}
