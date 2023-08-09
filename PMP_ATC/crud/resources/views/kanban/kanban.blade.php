@@ -1,50 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.side_nav') 
 
-<head>
-    <meta charset="UTF-8">
-    <title>Kanban</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/kanban2.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@section('pageTitle', 'Project') 
 
-<body>
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Home</a></li>
+<li class="breadcrumb-item" aria-current="page"><a href="{{ route('projects.index') }}">{{ $project->project_name }}</a></li>
+<li class="breadcrumb-item active" aria-current="page">Tasks</li>
+@endsection 
+
+@section('kanban_css')
+<link href="https://cdn.jsdelivr.3net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ asset('css/kanban2.css') }}">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection 
+
+@section('content') 
     <div class="container">
-        <div class="kanban-heading">
-            <!-- <strong class="kanban-heading-text">Kanban Board</strong> -->
-            <strong class="kanban-heading-text">{{ $project->project_name }}</strong>
-        </div>
-
         <div class="kanban-board">
-    @foreach($taskStatuses as $status)
-        <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <div class="backlog-name">{{ $status }}</div>
-            <div class="backlog-dots">
-                <i class="material-icons" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown')">keyboard_arrow_down</i>
-            </div>
-            <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-            <div class="card-wrapper__footer">
-                <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
-                    <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown', '{{ $status }}')">
-                        <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
+            @foreach($taskStatuses as $status)
+                <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <div class="backlog-name">{{ $status }}</div>
+
+                    <div class="backlog-dots">
+                        <i class="material-icons" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown')">keyboard_arrow_down</i>
+                    </div>
+
+                    <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div class="card-wrapper__footer">
+                        <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
+                            <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown', '{{ $status }}')">
+                                <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
+                            </div>
+                            <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
+                                <!-- Dropdown content here -->
+                                @foreach($projectTypes as $type)
+                                    <div class="project-type" onclick="openModal('{{ $type }}', '{{ $status }}')">{{ $type }}<i class="material-icons">add</i></div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
-                    <!-- Dropdown content here -->
-                    @foreach($projectTypes as $type)
-                    <div class="project-type" onclick="openModal('{{ $type }}', '{{ $status }}')">{{ $type }}<i class="material-icons">add</i></div>
-                    @endforeach
-                </div>
-            </div>
+            @endforeach
         </div>
-    @endforeach
     </div>
-</div>
 
     <!-- The Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-content" style="padding-bottom: 3px;">
+    <div class="modal" id="modal" style="z-index:1000;">
+        <div class="modal-content" style="padding: 15px; max-width: 900px; margin-top: 15px;">
         <h4 id="modalProjectTypeHeading"> Create <span id="modalProjectType"></span></h4>
             <form class="add-card-form add-card-form-true" style="display: flex;" action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -165,7 +168,7 @@ $(document).ready(function() {
 });
 </script>
 
-</html>
+@endsection
 
 
 
