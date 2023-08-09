@@ -6,6 +6,8 @@
   @yield('custom_js')
   @yield('project_css')
   @yield('project_js')
+  @yield('kanban_css')
+  @yield('kanban_js')
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title></title>

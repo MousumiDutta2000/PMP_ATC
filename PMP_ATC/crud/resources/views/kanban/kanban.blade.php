@@ -1,48 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.side_nav') 
 
-<head>
-    <meta charset="UTF-8">
-    <title>Kanban</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/kanban2.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@section('pageTitle', 'Project') 
 
-<body>
-    <div class="container">
-        <div class="kanban-heading">
-            <!-- <strong class="kanban-heading-text">Kanban Board</strong> -->
-            <strong class="kanban-heading-text">{{ $project->project_name }}</strong>
-        </div>
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{ route('projects.index') }}">Home</a></li>
+<li class="breadcrumb-item" aria-current="page"><a href="{{ route('projects.index') }}">{{ $project->project_name }}</a></li>
+<li class="breadcrumb-item active" aria-current="page">Tasks</li>
+@endsection 
 
-        <div class="kanban-board">
-    @foreach($taskStatuses as $status)
-        <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <div class="backlog-name">{{ $status }}</div>
-            <div class="backlog-dots">
-                <i class="material-icons" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown')">keyboard_arrow_down</i>
+@section('kanban_css')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ asset('css/kanban2.css') }}">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection 
+
+@section('content') 
+
+<div class="form-container">
+    <div class="kanban-board">
+        @foreach($taskStatuses as $status)
+            <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="backlog-name">{{ $status }}</div>
+                    <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div class="card-wrapper__footer">
+                            <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
+                                <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown', '{{ $status }}')">
+                                    <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
+                                </div>
+                                <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
+                                    <!-- Dropdown content here -->
+                                    @foreach($projectTypes as $type)
+                                        <div class="project-type" onclick="openModal('{{ $type }}', '{{ $status }}')">{{ $type }}<i class="material-icons">add</i></div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
             </div>
-            <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-            <div class="card-wrapper__footer">
-                <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
-                    <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown')">
-                        <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
-                    </div>
-                </div>
-                <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
-                    <!-- Dropdown content here -->
-                    @foreach($projectTypes as $type)
-                    <div class="project-type" onclick="openModal('{{ $type }}')">{{ $type }}<i class="material-icons">add</i></div>
-                @endforeach
-                </div>
-            </div>
-        </div>
-    @endforeach    
-</div>
-
-
+        @endforeach
     </div>
+</div>
 
     <!-- The Modal -->
     <div class="modal" id="modal">
@@ -70,6 +67,7 @@
                         </div>
                     </div>
 
+                    
                     <div class="form-group mb-3 mt-3">
                         <label for="details" style="font-size: 15px;">Details</label>
                         <textarea name="details" id="details" class="ckeditor form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" required></textarea>
@@ -103,9 +101,12 @@
                 <label for="assigned_to" style="font-size: 15px;" class="mt-3 mb-1">Assigned To</label>
                 <select name="assigned_to[]" id="assigned_to" class="add-card-form__main assigned_to" required multiple>
                     @foreach ($profiles as $profile)
-                    <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
+                        <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
                     @endforeach
                 </select>
+
+                <input type="hidden" name="status" id="status" value="">
+                <input type="hidden" name="selectedStatus" id="selectedStatus" value="">
 
                 <div class="mt-3 text-end">
                     <button type="submit" class="form-add-btn" style="margin-right: 10px;">Create</button>
@@ -114,9 +115,11 @@
             </form>
         </div>
     </div>
-</body>
-<!-- partial -->
+</div>
+
+@endsection
     
+@section('kanban_js')
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/bundle.fa06bd827b69c86d1e5c.js') }}"></script>
 <script src="{{ asset('js/bundle.779c8b3edfadced3283a.js') }}"></script>
@@ -162,6 +165,7 @@ $(document).ready(function() {
   }
 });
 </script>
+@endsection
 
 </html>
 
@@ -230,8 +234,6 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div>
-
-                        <!-- <span>Task 1</span> -->
                     </div>
                     <div class="card shadow" id="task2" draggable="true" ondragstart="drag(event)">
 
@@ -315,6 +317,8 @@ $(document).ready(function() {
                         </div>
                     </form>
                 </div>
+
+
                 <div class="kanban-block shadow" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="backlog-name">In Progress</div>
                     <div class="backlog-dots"><i class="material-icons">expand_more</i></div>
@@ -689,3 +693,69 @@ $(document).ready(function() {
         //     };
         //     xhr.send(formData);
         // } --}}
+
+
+
+
+
+
+        {{-- <div class="card shadow" id="task1" draggable="true" ondragstart="drag(event)">
+
+            <div class="card__header">
+                <div class="card-container-color card-color-low"> --}}
+                    {{-- <div class="card__header-priority"> --}}
+                        {{-- @if(strtolower($task->priority) == 'low priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
+                    @elseif(strtolower($task->priority) == 'med priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #81d5ee 17%, #7ed492 83%);">{{ $task->priority }}</div>
+                    @elseif(strtolower($task->priority) == 'high priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
+                    @endif --}}
+                        {{-- Low Priority</div> --}}
+                {{-- </div>
+                <div class="card__header-clear"><i class="material-icons">clear</i></div>
+            </div>
+            <div class="card__text">{{ $task->title }}</div>
+            <div class="card__menu"> --}}
+                {{-- ---comment and attach part------ --}}
+
+                {{-- <div class="card__menu-left">
+                    <div class="comments-wrapper">
+                        <div class="comments-ico"><i class="material-icons">comment</i></div>
+                        <div class="comments-num">1</div>
+                    </div>
+                    <div class="attach-wrapper">
+                        <div class="attach-ico"><i class="material-icons">attach_file</i></div>
+                        <div class="attach-num">2</div>
+                    </div>
+                </div> --}}
+
+                {{-- <div class="card__menu-right">
+                    <div class="add-peoples"><i class="material-icons">add</i></div>
+                    <div class="img-avatar"><img src="{{ asset('img/3bc84a401a51991f895ac6f6f40b7010.jpg') }}">
+                    </div>
+                </div> --}}
+            {{-- </div>
+        </div> --}}
+
+
+        {{-- @foreach($tasks as $task)
+        <div class="card shadow" id="task1" draggable="true" ondragstart="drag(event)">
+
+            <div class="card__header">
+                <div class="card-container-color card-color-low"> --}}
+                    {{-- <div class="card__header-priority"> --}}
+                        {{-- @if(strtolower($task->priority) == 'low priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
+                    @elseif(strtolower($task->priority) == 'med priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #81d5ee 17%, #7ed492 83%);">{{ $task->priority }}</div>
+                    @elseif(strtolower($task->priority) == 'high priority')
+                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
+                    @endif --}}
+                        {{-- Low Priority</div> --}}
+                {{-- </div>
+                <div class="card__header-clear"><i class="material-icons">clear</i></div>
+            </div>
+            <div class="card__text">{{ $task->title }}</div>
+        </div>
+        @endforeach  --}}
