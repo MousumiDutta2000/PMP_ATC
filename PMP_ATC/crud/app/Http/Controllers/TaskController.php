@@ -36,6 +36,7 @@ class TaskController extends Controller
             'estimated_time_unit' => 'required|in:hour,day,month,year',
             'details' => 'required',
             'assigned_to' => 'required',
+            'status' => 'required',
            
         ]);
 
@@ -46,7 +47,7 @@ class TaskController extends Controller
         $task->estimated_time = $request->estimated_time_number . ' ' . $request->estimated_time_unit;
         $task->details = $request->details;
         $task->assigned_to = implode(',', $request->assigned_to);
-        // $kanban->due_date = $request->due_date;
+        $task->status = $request->status;
         $task->save();
 
         // dd($request);

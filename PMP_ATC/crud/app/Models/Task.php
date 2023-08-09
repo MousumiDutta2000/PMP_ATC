@@ -13,6 +13,7 @@ class Task extends Model
         'estimated_time',
         'details',
         'assigned_to',
+        'status',
         
     ];
     

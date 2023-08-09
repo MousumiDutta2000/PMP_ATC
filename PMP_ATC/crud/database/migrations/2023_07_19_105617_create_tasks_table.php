@@ -21,6 +21,7 @@ return new class extends Migration
             // $table->enum('priority', ['Low priority', 'Med Priority', 'High priority']);
             $table->text('details');
             $table->string('assigned_to');
+            $table->string('status');
             
             // $table->date('due_date');
             $table->timestamps();
