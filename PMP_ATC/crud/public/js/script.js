@@ -85,125 +85,56 @@ function drag(ev) {
     }
   }
   
-  function addTask(form, sectionId) {
-    var taskText = form.querySelector('.add-card-form__main').value.trim();
-    var priority = form.querySelector('.form__checkbox:checked').value;
-    var cardId = 'task' + (Math.random().toString(36).substr(2, 9)); // Generate a random ID for the task card
-  
+  function addTask(form, sectionId, status) {
+    // Get the submitted task data from the form
+    var title = form.querySelector('#title').value;
+    var priority = form.querySelector('#priority').value;
+
+    // Create a unique card ID
+    var cardId = 'task' + (Math.random().toString(36).substr(2, 9));
+
+    // Create the card element
     var card = document.createElement('div');
     card.className = 'card';
     card.id = cardId;
-    card.draggable = true;
-    card.setAttribute('ondragstart', 'drag(event)');
-  
+
+    // Create card header
     var cardHeader = document.createElement('div');
     cardHeader.className = 'card__header';
-  
+
+    // Create priority badge
     var cardContainerColor = document.createElement('div');
     cardContainerColor.className = 'card-container-color ' + priority;
-  
-    var priorityText;
-    if (priority === 'card-color-low') {
-      priorityText = 'Low Priority';
-    } else if (priority === 'card-color-med') {
-      priorityText = 'Med Priority';
-    } else if (priority === 'card-color-high') {
-      priorityText = 'High Priority';
-    }
-  
-    var cardHeaderPriority = document.createElement('div');
-    cardHeaderPriority.className = 'card__header-priority';
-    cardHeaderPriority.textContent = priorityText;
-  
+    cardContainerColor.innerHTML = priority;
+
+    // Create clear icon
     var cardHeaderClear = document.createElement('div');
     cardHeaderClear.className = 'card__header-clear';
     var clearIcon = document.createElement('i');
     clearIcon.className = 'material-icons';
     clearIcon.textContent = 'clear';
     cardHeaderClear.appendChild(clearIcon);
-  
+
     cardHeader.appendChild(cardContainerColor);
-    cardHeader.appendChild(cardHeaderPriority);
     cardHeader.appendChild(cardHeaderClear);
-  
+
+    // Create card text
     var cardText = document.createElement('div');
     cardText.className = 'card__text';
-    cardText.textContent = taskText;
-  
-    var cardMenu = document.createElement('div');
-    cardMenu.className = 'card__menu';
-  
-    var cardMenuLeft = document.createElement('div');
-    cardMenuLeft.className = 'card__menu-left';
-  
-    var commentsWrapper = document.createElement('div');
-    commentsWrapper.className = 'comments-wrapper';
-    var commentsIcon = document.createElement('div');
-    commentsIcon.className = 'comments-ico';
-    var commentsMaterialIcon = document.createElement('i');
-    commentsMaterialIcon.className = 'material-icons';
-    commentsMaterialIcon.textContent = 'comment';
-    commentsIcon.appendChild(commentsMaterialIcon);
-    var commentsNum = document.createElement('div');
-    commentsNum.className = 'comments-num';
-    commentsNum.textContent = '0';
-    commentsWrapper.appendChild(commentsIcon);
-    commentsWrapper.appendChild(commentsNum);
-  
-    var attachWrapper = document.createElement('div');
-    attachWrapper.className = 'attach-wrapper';
-    var attachIcon = document.createElement('div');
-    attachIcon.className = 'attach-ico';
-    var attachMaterialIcon = document.createElement('i');
-    attachMaterialIcon.className = 'material-icons';
-    attachMaterialIcon.textContent = 'attach_file';
-    attachIcon.appendChild(attachMaterialIcon);
-    var attachNum = document.createElement('div');
-    attachNum.className = 'attach-num';
-    attachNum.textContent = '0';
-    attachWrapper.appendChild(attachIcon);
-    attachWrapper.appendChild(attachNum);
-  
-    cardMenuLeft.appendChild(commentsWrapper);
-    cardMenuLeft.appendChild(attachWrapper);
-  
-    var cardMenuRight = document.createElement('div');
-    cardMenuRight.className = 'card__menu-right';
-  
-    var addPeoples = document.createElement('div');
-    addPeoples.className = 'add-peoples';
-    var addMaterialIcon = document.createElement('i');
-    addMaterialIcon.className = 'material-icons';
-    addMaterialIcon.textContent = 'add';
-    addPeoples.appendChild(addMaterialIcon);
-  
-    var imgAvatar = document.createElement('div');
-    imgAvatar.className = 'img-avatar';
-    var avatarImg = document.createElement('img');
-    avatarImg.src = '41aad055f35eb28f42b84ca1b4cf5d53.jpg';
-    imgAvatar.appendChild(avatarImg);
-  
-    cardMenuRight.appendChild(addPeoples);
-    cardMenuRight.appendChild(imgAvatar);
-  
-    cardMenu.appendChild(cardMenuLeft);
-    cardMenu.appendChild(cardMenuRight);
-  
+    cardText.textContent = title;
+
+    // Append card elements
     card.appendChild(cardHeader);
     card.appendChild(cardText);
-    card.appendChild(cardMenu);
-  
-    var targetSection = document.getElementById(sectionId);
+
+    // Find the target section and insert the card
+    var targetSection = document.getElementById(status + '-tasks');
     targetSection.insertBefore(card, targetSection.querySelector('.card-wrapper__footer'));
-  
+
+    // Hide the form and reset it
     form.style.display = 'none';
-    var addButton = form.querySelector('.form-add-btn');
-    addButton.disabled = true;
     form.reset();
-  
-    var addTaskButton = targetSection.querySelector('.add-task-ico i');
-    addTaskButton.textContent = 'add_circle_outline';
-  }
+}
   
   var sections = document.querySelectorAll('.kanban-block');
   sections.forEach(function (section) {
@@ -264,6 +195,12 @@ function openModal(type, status) {
 
   // Show the modal
   document.getElementById("modal").style.display = "block";
+
+  // Pass the status to the addTask function
+  var form = document.querySelector(".add-card-form");
+  var sectionId = status.toLowerCase().replace(/\s+/g, "");
+  addTask(form, sectionId, status);
+  
 }
 
 // Function to close the modal and show the project type dropdown
