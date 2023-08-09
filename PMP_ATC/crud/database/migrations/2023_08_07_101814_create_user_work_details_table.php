@@ -28,7 +28,9 @@ class CreateUserWorkDetailsTable extends Migration
             $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
 
             $table->text('notes')->nullable();
-            $table->string('project_manager');
+            $table->unsignedBigInteger('project_manager_id');
+            $table->foreign('project_manager_id')->references('id')->on('users'); // Assuming 'users' is the table containing project managers
+
             $table->timestamps();
         });
     }

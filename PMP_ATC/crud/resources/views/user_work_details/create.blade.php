@@ -33,7 +33,10 @@
                 <div class="form-group">
                     <label for="task_id">Task:</label>
                     <select name="task_id" id="task_id" class="form-control">
-                        {{-- Task options will be populated dynamically based on the selected project using JavaScript --}}
+                        <option value="">Select Task</option>
+                        @foreach ($tasks as $task)
+                            <option value="{{ $task->id }}">{{ $task->title }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -57,36 +60,8 @@
                 <textarea name="notes" id="notes" rows="3" class="form-control"></textarea>
             </div>
 
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="project_manager">Project Manager:</label>
-                    <input type="text" name="project_manager" id="project_manager" class="form-control" readonly>
-                </div>
-            </div>
-
-
 
         <button type="submit" class="btn btn-primary mt-2">Save</button>
     </form>
 </div>
-@endsection
-
-@section('custom_js')
-<script>
-    const projectDropdown = document.getElementById('project_id');
-    const projectManagerInput = document.getElementById('project_manager');
-    const projectManagersByProject = {!! json_encode($projectManagersByProject) !!};
-
-    projectDropdown.addEventListener('change', updateProjectManager);
-
-    function updateProjectManager() {
-        const projectId = projectDropdown.value;
-        const projectManagerName = projectManagersByProject[projectId] || 'No Manager';
-        
-        projectManagerInput.value = projectManagerName;
-    }
-
-    // Update the project manager when the page loads
-    updateProjectManager();
-</script>
 @endsection

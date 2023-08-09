@@ -64,8 +64,8 @@
                                 <button class="show-details-btn" data-work-detail="{{ json_encode($userWorkDetail) }}">Details</button>
                             </td>
                             <td>
-                                <a href="{{ route('work-details.edit', $userWorkDetail->id) }}">Edit</a>
-                                <form method="post" action="{{ route('work-details.destroy', $userWorkDetail->id) }}" style="display: inline;">
+                                <a href="{{ route('user_work_details.edit', $userWorkDetail->id) }}">Edit</a>
+                                <form method="post" action="{{ route('user_work_details.destroy', $userWorkDetail->id) }}" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit">Delete</button>
