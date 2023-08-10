@@ -27,12 +27,14 @@ class KanbanController extends Controller
             ->toArray();
 
             $projectTypes = DB::table('project_task_types')
-            ->join('task_types', 'project_task_types.task_type_id', '=', 'task_types.id') // Corrected column name here
+            ->join('task_types', 'project_task_types.task_type_id', '=', 'task_types.id')
             ->join('project', 'project_task_types.project_id', '=', 'project.id')
             ->select('task_types.type_name')
             ->where('project.id', $projectId)
+            ->distinct()
             ->pluck('type_name')
             ->toArray();
+
         
         return view('kanban.kanban', compact('taskStatuses', 'projectId', 'projectTypes','profiles','tasks','project'));
     }
