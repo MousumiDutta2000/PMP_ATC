@@ -43,9 +43,34 @@
                                 <div class="card__header-clear"><i class="material-icons">clear</i></div>
                             </div>
                             <div class="card__text">{{ $task->title }}</div>
-                        </div>
-                    @endif
-                    @endforeach
+                            <div class="card__details">{{ \Illuminate\Support\Str::limit(strip_tags($task->details), 20, $end='...') }}</div>
+
+             <div class="card__menu">
+                {{-- ---comment and attach part------ --}}
+
+                <div class="card__menu-left">
+                    <div class="comments-wrapper">
+                        <div class="comments-ico"><i class="material-icons">comment</i></div>
+                        <div class="comments-num">1</div>
+                    </div>
+                    <div class="attach-wrapper">
+                        <div class="attach-ico"><i class="material-icons">attach_file</i></div>
+                        <div class="attach-num">2</div>
+                    </div>
+                </div>
+
+                <div class="card__menu-right">
+                    <div class="add-peoples"><i class="material-icons">add</i></div>
+                    <div class="img-avatar">
+                        <img src="{{ asset('img/placeholder.jpg') }}" id="selectedAvatar">
+                    </div>
+                </div>
+                
+                
+            </div>
+            </div>
+            @endif
+            @endforeach
                     <div class="card-wrapper__footer">
                         <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
                             <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown', '{{ $status }}')">
