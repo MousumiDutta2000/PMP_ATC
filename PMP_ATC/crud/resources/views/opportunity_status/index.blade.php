@@ -51,16 +51,16 @@
                             
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('opportunity_status.show', ['opportunity_status' => $opportunityStatus->id]) }}">
+                                    <a href="{{ route('opportunity_status.show', ['opportunity_status' => $opportunityStatus->id]) }}" data-toggle="tooltip" data-placement="top" title="Show">
                                         <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
                                     </a>
-                                    <a href="{{ route('opportunity_status.edit', ['opportunity_status' => $opportunityStatus->id]) }}">
+                                    <a href="{{ route('opportunity_status.edit', ['opportunity_status' => $opportunityStatus->id]) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
                                     </a>
                                     <form method="post" action="{{ route('opportunity_status.destroy', ['opportunity_status' => $opportunityStatus->id]) }}">
                                         @method('delete')
                                         @csrf
-                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal{{ $opportunityStatus->id }}">
+                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-placement="top" title="Delete" data-target="#deleteModal{{ $opportunityStatus->id }}">
                                             <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
                                         </button>          
                                         <!-- Delete Modal start -->

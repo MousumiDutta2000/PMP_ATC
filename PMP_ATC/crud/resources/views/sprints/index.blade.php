@@ -89,16 +89,16 @@
                             {{-- <td>{{ $sprint->assignedBy->name }}</td> --}}
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="#" data-toggle="modal" data-target="#showModal_{{ $sprint->id }}">
+                                    <a href="#" data-toggle="modal" data-placement="top" title="Show" data-target="#showModal_{{ $sprint->id }}">
                                         <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
                                     </a>
-                                    <a href="{{ route('sprints.edit', ['sprint' => $sprint->id]) }}">
+                                    <a href="{{ route('sprints.edit', ['sprint' => $sprint->id]) }}" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
                                     </a>
                                     <form method="post" action="{{ route('sprints.destroy', ['sprint' => $sprint->id]) }}">
                                         @method('delete')
                                         @csrf
-                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal{{ $sprint->id }}">
+                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-placement="top" title="Delete" data-target="#deleteModal{{ $sprint->id }}">
                                             <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
                                         </button>          
                                         <!-- Delete Modal start -->
