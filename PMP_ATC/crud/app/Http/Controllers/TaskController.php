@@ -51,17 +51,14 @@ class TaskController extends Controller
         $task->save();
 
         $assignedToIds = explode(',', $task->assigned_to);
-        $totalAssignedTasks = Task::whereIn('assigned_to', $assignedToIds)->count();
-
-        // dd($request);
+        $totalAssignedTasks = TaskUser::whereIn('assigned_to', $assignedToIds)->count();
 
         $assignedTo = $request->assigned_to;
         foreach ($assignedTo as $userId) {
             $taskUser = new TaskUser([
                 'task_id' => $task->id,
-                'assigned_to' => auth()->user()->id,
+                'assigned_to' => $userId,
             ]);
-            $taskUser->assigned_to = $userId;
             $taskUser->save();
         }
 
