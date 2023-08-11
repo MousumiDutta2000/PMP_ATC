@@ -85,7 +85,7 @@ function drag(ev) {
     }
   }
   
-  function addTask(form, sectionId, status) {
+  function addTask(form, sectionId, projectTaskStatusId) {
     // Get the submitted task data from the form
     var title = form.querySelector('#title').value;
     var priority = form.querySelector('#priority').value;
@@ -159,16 +159,6 @@ function drag(ev) {
   });
   
 
-// Function to toggle the project type dropdown and rotate the arrow icon
-// function toggleProjectTypeDropdown() {
-//   var dropdownContent = document.getElementById("project-type-container");
-//   dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
-
-//   // Toggle the down arrow icon rotation
-//   var downArrowIcon = document.querySelector(".down-arrow-icon");
-//   downArrowIcon.classList.toggle("rotate");
-// }
-
 function toggleProjectTypeDropdown(dropdownId, projectTaskStatusId) {
   var dropdownContent = document.getElementById(dropdownId);
   dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
@@ -199,6 +189,7 @@ function openModal(type, projectTaskStatusId) {
   var sectionId = projectTaskStatusId.toLowerCase().replace(/\s+/g, "");
   addTask(form, sectionId, projectTaskStatusId);
 }
+
 // Function to close the modal and show the project type dropdown
 function closeModal() {
   // Hide the modal
