@@ -607,7 +607,7 @@ h6 {
   top: 0px;
   left: 0;
   bottom: 0;
-  width: 170px;
+  width: 100px;
   z-index: 997;
   transition: all 0.3s;
   padding: 10px 0px 20px 3px;
@@ -645,7 +645,7 @@ h6 {
 }
 
 .box_toggle{
-  padding-right:44px
+  padding-right:34px;
 }
 
 /* 20px 0px 20px 63px main */
@@ -682,7 +682,7 @@ h6 {
 {
   color: #012970;
   float:right;
-  left:95%; 
+  left:90%; 
   top: 600px; 
   position: absolute;
 }
@@ -712,7 +712,7 @@ h6 {
 
   #main,
   #footer {
-    margin-left: 210px;
+    margin-left: 140px;
   }
 }
 
@@ -731,7 +731,7 @@ h6 {
 
   .toggle-sidebar .sidebar {
     /* left: -300px; */
-    width: 88px;
+    width: 79px;
   }
 
   /* .sidebar_collapse_icon

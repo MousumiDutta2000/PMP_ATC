@@ -44,7 +44,7 @@
     <!-- <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img class="logo_img" src="{{ asset('img/logo.png') }}" alt="">
-        <span class="logo_name">NiceAdmin</span>
+        <span class="logo_name"></span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>End Logo -->
@@ -293,8 +293,8 @@
     <div class="d-flex align-items-center justify-content-between logo_adjust">
       <a href="index.html" class="logo d-flex align-items-center">
         <section class="box">
-          <img class="logo_img" src="{{ asset('img/logo.png') }}" alt="">
-          <span class="logo_name">NiceAdmin</span>
+          <img class="logo_img" src="{{ asset('img/adamastech_logo.png') }}" alt="">
+          <span class="logo_name">ATC</span>
         </section>
       </a>
     
