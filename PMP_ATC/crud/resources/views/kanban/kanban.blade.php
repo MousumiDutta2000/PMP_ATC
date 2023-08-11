@@ -61,12 +61,6 @@
                         <div class="attach-ico"><i class="material-icons">attach_file</i></div>
                         <div class="attach-num">2</div>
                     </div>
-                    <!-- <div class="user-wrapper">
-                        <div class="user-ico"><i class="material-icons">person</i></div>
-                            <div class="user-num" data-tooltip="{{ implode(', ', $task->taskUsers->pluck('assigned_to')->toArray()) }}">
-                                {{ $task->taskUsers->count() }}
-                            </div>
-                    </div> -->
                     <div class="user-wrapper">
                         <div class="user-ico"><i class="material-icons">person</i></div>
                         <div class="user-num" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ implode(', ', $task->taskUsers->pluck('user.name')->toArray()) }}">

@@ -101,8 +101,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  cursor: url(https://ssl.gstatic.com/ui/v1/icons/mail/images/2/openhand.cur),
-    default !important;
+  /* cursor: url(https://ssl.gstatic.com/ui/v1/icons/mail/images/2/openhand.cur), */
+    /* default !important; */
 }
 
 .task {
