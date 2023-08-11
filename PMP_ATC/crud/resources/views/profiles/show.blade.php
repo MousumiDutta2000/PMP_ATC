@@ -127,17 +127,17 @@
                   {{ strtoupper(substr($profile->profile_name, 0, 1)) }}
               </div>
           @endif 
-          <div class="pt-2 d-flex">
-            <div class="btn-group mr-2" role="group">
-              <a href="#" data-toggle="modal" data-target="#updatePfpModal{{$profile->id}}" class="btn btn-primary btn-sm" title="Upload new profile image" id="updatePfpButton"><i class="bi bi-upload" style="font-size: 1rem !important; width: 1.25em !important; height: 1.25em !important;"></i></a>
+          <div class="pt-2">
+            <div class="btn-group" role="group">
+              <button type="button" data-toggle="modal" data-target="#updatePfpModal{{$profile->id}}" class="btn btn-primary btn-lg" title="Upload new profile image" id="updatePfpButton"><i class="bi bi-upload" ></i></button>
             </div>
             <div class="btn-group" role="group">
               <!-- Add the delete image button here -->
               <form action="{{ route('profiles.deleteImage', $profile->id) }}" method="post">
                 @csrf
                 @method('delete')
-                <button type="button" class="btn btn-danger btn-sm" title="Remove my profile image" data-toggle="modal" data-target="#delete">
-                  <i class="bi bi-trash" style="font-size: 1rem !important; width: 1.25em !important; height: 1.25em !important;"></i>
+                <button type="button" class="btn btn-danger btn-lg" title="Remove my profile image" data-toggle="modal" data-target="#delete" style="margin-top:15px">
+                  <i class="bi bi-trash"></i>
                 </button>
                 <!-- Delete Modal start -->
                 <div class="modal fade" id="delete" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
@@ -625,9 +625,7 @@
                    if (tabLink) {
                        tabLink.click();
                    }
-               }
-           
- 
+               } 
            }
          });
   
