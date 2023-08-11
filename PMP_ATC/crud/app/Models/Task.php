@@ -13,7 +13,7 @@ class Task extends Model
         'estimated_time',
         'details',
         'assigned_to',
-        'status',
+        'project_task_status_id',
         
     ];
     
