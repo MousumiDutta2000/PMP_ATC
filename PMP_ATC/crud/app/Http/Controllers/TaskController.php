@@ -50,6 +50,9 @@ class TaskController extends Controller
         $task->status = $request->status;
         $task->save();
 
+        $assignedToIds = explode(',', $task->assigned_to);
+        $totalAssignedTasks = Task::whereIn('assigned_to', $assignedToIds)->count();
+
         // dd($request);
 
         $assignedTo = $request->assigned_to;
@@ -65,7 +68,6 @@ class TaskController extends Controller
         return redirect()->back()->with('success', 'Task created successfully.');
     }
 
-    
     public function show(Task $task)
     {
         return view('tasks.show', compact('task'));

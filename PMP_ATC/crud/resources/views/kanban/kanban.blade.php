@@ -45,28 +45,33 @@
                             <div class="card__text">{{ $task->title }}</div>
                             <div class="card__details">{{ \Illuminate\Support\Str::limit(strip_tags($task->details), 20, $end='...') }}</div>
 
-             <div class="card__menu">
-                {{-- ---comment and attach part------ --}}
+            <div class="card__menu">
+                <!-----comment and attach part------ -->
 
                 <div class="card__menu-left">
                     <div class="comments-wrapper">
                         <div class="comments-ico"><i class="material-icons">comment</i></div>
                         <div class="comments-num">1</div>
                     </div>
-                    <div class="attach-wrapper">
+                    <div class="attach-wrapper" style="margin-right:6px;">
                         <div class="attach-ico"><i class="material-icons">attach_file</i></div>
                         <div class="attach-num">2</div>
                     </div>
+                    <div class="user-wrapper">
+                        <div class="user-ico"><i class="material-icons">person</i></div>
+                            <div class="user-num">
+                                @if(is_array($task->assigned_to))
+                                    {{ count($task->assigned_to) }}
+                                @else
+                                    0
+                                @endif
+                            </div>
+                    </div>
+
+
+
                 </div>
 
-                <div class="card__menu-right">
-                    <div class="add-peoples"><i class="material-icons">add</i></div>
-                    <div class="img-avatar">
-                        <img src="{{ asset('img/placeholder.jpg') }}" id="selectedAvatar">
-                    </div>
-                </div>
-                
-                
             </div>
             </div>
             @endif
