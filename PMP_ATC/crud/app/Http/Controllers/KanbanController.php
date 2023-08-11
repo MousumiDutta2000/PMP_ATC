@@ -17,14 +17,15 @@ class KanbanController extends Controller
         $project = Project::findOrFail($projectId);
         $tasks = Task::all();
 
-        $taskStatuses = DB::table('project_task_status')
+        $taskStatusesWithIds = DB::table('project_task_status')
             ->join('task_status', 'project_task_status.task_status_id', '=', 'task_status.id')
             ->join('project', 'project_task_status.project_id', '=', 'project.id')
-            ->select('task_status.status')
+            ->select('project_task_status.id as project_task_status_id', 'task_status.status')
             ->where('project.id', $projectId)
             ->distinct()
-            ->pluck('status')
-            ->toArray();
+            ->get();
+
+            
 
             $projectTypes = DB::table('project_task_types')
             ->join('task_types', 'project_task_types.task_type_id', '=', 'task_types.id')
@@ -36,6 +37,6 @@ class KanbanController extends Controller
             ->toArray();
 
         
-        return view('kanban.kanban', compact('taskStatuses', 'projectId', 'projectTypes','profiles','tasks','project'));
+        return view('kanban.kanban', compact('taskStatusesWithIds', 'projectId', 'projectTypes','profiles','tasks','project'));
     }
 }

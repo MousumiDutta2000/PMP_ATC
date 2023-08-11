@@ -18,7 +18,10 @@
 @section('content') 
     <div class="container">
         <div class="kanban-board">
-            @foreach($taskStatuses as $status)
+            @foreach($taskStatusesWithIds as $statusObject)
+            @php
+                $status = $statusObject->status; // Access the 'status' property of the object
+            @endphp
                 <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="backlog-name">{{ $status }}</div>
 
@@ -61,8 +64,7 @@
 
                 <div class="card__menu-right">
                     <div class="add-peoples"><i class="material-icons">add</i></div>
-                    <div class="img-avatar">
-                        <img src="{{ asset('img/placeholder.jpg') }}" id="selectedAvatar">
+                    <div class="img-avatar"><img src="{{ asset('img/0cafaf103d2eef926eebb15b20651c88.jpg') }}">
                     </div>
                 </div>
                 
@@ -71,19 +73,19 @@
             </div>
             @endif
             @endforeach
-                    <div class="card-wrapper__footer">
-                        <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
-                            <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown', '{{ $status }}')">
-                                <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
-                            </div>
-                            <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
-                                <!-- Dropdown content here -->
-                                @foreach($projectTypes as $type)
-                                    <div class="project-type" onclick="openModal('{{ $type }}', '{{ $status }}')">{{ $type }}<i class="material-icons">add</i></div>
-                                @endforeach
-                            </div>
-                        </div>
+            <div class="card-wrapper__footer">
+                <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
+                    <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown','{{ $statusObject->project_task_status_id }}')">
+                        <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
                     </div>
+                    <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
+                        <!-- Dropdown content here -->
+                        @foreach($projectTypes as $type)
+                            <div class="project-type" onclick="openModal('{{ $type }}', '{{ $statusObject->project_task_status_id }}')">{{ $type }}<i class="material-icons">add</i></div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
                 </div>
             @endforeach
         </div>
@@ -153,8 +155,8 @@
                     @endforeach
                 </select>
 
-                <input type="hidden" name="status" id="status" value="">
-                <input type="hidden" name="selectedStatus" id="selectedStatus" value="">
+                <input type="hidden" name="project_task_status_id" id="projectTaskStatusId" value="">
+                <input type="hidden" name="selectedStatus" id="selectedStatus" value=""> 
 
                 <div class="mt-3 text-end">
                     <button type="submit" class="form-add-btn" style="margin-right: 10px;">Create</button>

@@ -36,7 +36,7 @@ class TaskController extends Controller
             'estimated_time_unit' => 'required|in:hour,day,month,year',
             'details' => 'required',
             'assigned_to' => 'required',
-            'status' => 'required',
+            'project_task_status_id' => 'required',
            
         ]);
 
@@ -47,7 +47,7 @@ class TaskController extends Controller
         $task->estimated_time = $request->estimated_time_number . ' ' . $request->estimated_time_unit;
         $task->details = $request->details;
         $task->assigned_to = implode(',', $request->assigned_to);
-        $task->status = $request->status;
+        $task->project_task_status_id = $request->project_task_status_id;
         $task->save();
 
         // dd($request);

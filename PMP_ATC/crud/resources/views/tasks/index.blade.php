@@ -73,7 +73,7 @@
                             <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
                         @endif
                     </td> --}}
-                    <td>{{ $task->details }}</td>
+                    <td>{{ strip_tags($task->details) }}</td>
                     {{-- <td style="font-size: 15px;">{{ basename($task->attachments) }}</td> --}}
                     
                     {{-- <td style="font-size: 15px;">{{ $task->assignedTo->profile_name }}</td> --}}
