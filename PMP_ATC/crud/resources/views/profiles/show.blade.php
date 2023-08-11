@@ -108,32 +108,8 @@
 
               $('#' + formId + ' button[type="submit"]').toggle(editable);
           }
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-        // After form submission, switch back to the active tab
-        
-       
-    });
-
-
-
-    
-
-//     document.addEventListener('DOMContentLoaded', function () {
-//     const createButton = document.getElementById('createSkillButton');
-//     if (createButton) {
-//         createButton.addEventListener('click', function () {
-//             const activeTab = 'skillSetTabButton';
-//             document.querySelector(`.nav-link[data-bs-target="#${activeTab}"]`).click();
-//             ///document.querySelector(`.nav-link[aria-selected="true"]`);
-            
-           
-//         });
-//     }
-// });
-       
-    </script>
+        });     
+  </script>
 @endsection
 
 
@@ -155,7 +131,7 @@
           @endif 
           <div class="pt-2 d-flex">
             <div class="btn-group mr-2" role="group">
-              <a href="#" data-toggle="modal" data-target="#updatePfpModal{{$profile->id}}" class="btn btn-primary btn-sm" title="Upload new profile image" id="updatePfpButton"><i class="bi bi-upload"></i></a>
+              <a href="#" data-toggle="modal" data-target="#updatePfpModal{{$profile->id}}" class="btn btn-primary btn-sm" title="Upload new profile image" id="updatePfpButton"><i class="bi bi-upload" style="font-size: 1rem; width: 1.25em; height: 1em;"></i></a>
             </div>
             <div class="btn-group" role="group">
               <!-- Add the delete image button here -->
@@ -163,7 +139,7 @@
                 @csrf
                 @method('delete')
                 <button type="button" class="btn btn-danger btn-sm" title="Remove my profile image" data-toggle="modal" data-target="#delete">
-                  <i class="bi bi-trash"></i>
+                  <i class="bi bi-trash" style="font-size: 1rem; width: 1.25em; height: 1.25em;"></i>
                 </button>
                 <!-- Delete Modal start -->
                 <div class="modal fade" id="delete" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
@@ -645,7 +621,6 @@
           
           if(document.getElementById("flag").value==1)
           {
-             
                const activeTab = "skill-set";
                if (activeTab) {
                    const tabLink = document.querySelector(`.nav-link[data-bs-target="#${activeTab}"]`);
@@ -657,4 +632,5 @@
  
            }
          });
-  </script>
+  
+</script>
