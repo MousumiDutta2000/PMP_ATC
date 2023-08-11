@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\UserWorkDetail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,7 @@ class UserWorkDetailController extends Controller
 {
     public function index()
     {
-        $userWorkDetails = UserWorkDetail::with('project')->currentUser()->get();
+        $userWorkDetails = UserWorkDetail::with('project', 'projectManager')->currentUser()->get();
         return view('user_work_details.index', compact('userWorkDetails'));
     }
 

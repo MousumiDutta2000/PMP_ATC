@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class UserWorkDetail extends Model
 {
@@ -25,5 +26,10 @@ class UserWorkDetail extends Model
         public function task()
     {
         return $this->belongsTo(Task::class, 'task_id');
+    }
+
+    public function projectManager()
+    {
+        return $this->belongsTo(User::class, 'project_manager_id');
     }
 }

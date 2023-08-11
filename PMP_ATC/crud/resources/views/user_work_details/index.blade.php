@@ -32,7 +32,7 @@
 <main class="container">
     <section>
         <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -67px; margin-bottom: 50px; padding: 2px 30px; margin-right: -30px;">
-            <a href="{{ route('user_work_details.create') }}" class="btn btn-primary">Add Profile</a>
+            <a href="{{ route('user_work_details.create') }}" class="btn btn-primary">Add Work</a>
         </div>
         <div>
             <table id="profileTable" class="table table-hover responsive table-sm" style="width: 100%;border-spacing: 0 10px;">
@@ -45,7 +45,6 @@
                     <th>End Time</th>
                     <th>Notes</th>
                     <th>Project Manager</th>
-                    <th>Details</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -53,16 +52,13 @@
                 <tbody>
                     @foreach ($userWorkDetails as $userWorkDetail)
                         <tr>
-                            <td>{{ $userWorkDetail->project->name }}</td>
-                            <td>{{ $userWorkDetail->task->name }}</td>
+                            <td>{{ $userWorkDetail->project->project_name }}</td>
+                            <td>{{ $userWorkDetail->task->title }}</td>
                             <td>{{ $userWorkDetail->date }}</td>
                             <td>{{ $userWorkDetail->start_time }}</td>
                             <td>{{ $userWorkDetail->end_time }}</td>
                             <td>{{ $userWorkDetail->notes }}</td>
-                            <td>{{ $userWorkDetail->project_manager }}</td>
-                            <td>
-                                <button class="show-details-btn" data-work-detail="{{ json_encode($userWorkDetail) }}">Details</button>
-                            </td>
+                            <td>{{ $userWorkDetail->projectManager->name }}</td>
                             <td>
                                 <a href="{{ route('user_work_details.edit', $userWorkDetail->id) }}">Edit</a>
                                 <form method="post" action="{{ route('user_work_details.destroy', $userWorkDetail->id) }}" style="display: inline;">
