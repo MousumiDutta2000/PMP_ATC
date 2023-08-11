@@ -61,6 +61,7 @@ function drag(ev) {
       addButton.textContent = 'add_circle_outline';
     }
   }
+
   
   function enableAddButton(form) {
     var priorityCheckboxes = form.querySelectorAll('.form__checkbox');
@@ -71,6 +72,7 @@ function drag(ev) {
     });
     taskInput.addEventListener('input', checkFormValidity);
   }
+
   
   function checkFormValidity() {
     var form = this.closest('form');
@@ -84,6 +86,7 @@ function drag(ev) {
       addButton.disabled = true;
     }
   }
+
   
   function addTask(form, sectionId, projectTaskStatusId) {
     // Get the submitted task data from the form
@@ -136,6 +139,7 @@ function drag(ev) {
     form.reset();
 }
   
+
   var sections = document.querySelectorAll('.kanban-block');
   sections.forEach(function (section) {
     var addTaskButton = section.querySelector('.add-task-ico');
@@ -153,11 +157,13 @@ function drag(ev) {
   });
   
 
+
   document.getElementById("expand-btn").addEventListener("click", function() {
     var dotsIcon = this.querySelector("i");
     dotsIcon.classList.toggle("expanded");
   });
   
+
 
 function toggleProjectTypeDropdown(dropdownId, projectTaskStatusId) {
   var dropdownContent = document.getElementById(dropdownId);
@@ -171,6 +177,8 @@ function toggleProjectTypeDropdown(dropdownId, projectTaskStatusId) {
   // document.getElementById("selectedStatus").value = status;
   document.getElementById("selectedStatus").value = projectTaskStatusId;
 }
+
+
 
 function openModal(type, projectTaskStatusId) {
   // Update the modal heading with the selected project type
@@ -190,11 +198,15 @@ function openModal(type, projectTaskStatusId) {
   addTask(form, sectionId, projectTaskStatusId);
 }
 
+
+
 // Function to close the modal and show the project type dropdown
 function closeModal() {
   // Hide the modal
   document.getElementById("modal").style.display = "none";
 }
+
+
 
 // Function to handle the project type selection
 function selectProjectType(type) {
@@ -210,6 +222,8 @@ function selectProjectType(type) {
   openModal(type);
 }
 
+
+
 // CSK Editor (Assuming you've loaded the necessary libraries for CKEditor)
 $('.ckeditor').ckeditor();
         
@@ -217,4 +231,27 @@ $('.ckeditor').ckeditor();
 function closeModal() {
   var modal = document.getElementById('modal');
   modal.style.display = 'none';
+}
+
+
+
+
+// Function to open the edit modal
+function openEditModal(taskId, title) {
+  var editForm = document.querySelector('.edit-card-form');
+  var editFormAction = editForm.getAttribute('action').replace('__task_id__', taskId);
+  editForm.setAttribute('action', editFormAction);
+
+  // Populate the edit form fields with existing task data
+  document.getElementById('edit_title').value = title;
+  // ... populate other form fields ...
+
+  var editModal = document.getElementById('editModal');
+  editModal.style.display = 'block';
+}
+
+// Function to close the edit modal
+function closeEditModal() {
+  var editModal = document.getElementById('editModal');
+  editModal.style.display = 'none';
 }

@@ -54,6 +54,13 @@
 
                 <div class="card__menu-left">
                     <div class="comments-wrapper">
+
+                        <div class="edit-wrapper" style="margin-right: 6px;">
+                            <div class="edit-ico">
+                                <i class="material-icons" onclick="openEditModal('{{ $task->id }}')">edit</i>
+                            </div>
+                        </div>
+
                         <div class="comments-ico"><i class="material-icons">comment</i></div>
                         <div class="comments-num">1</div>
                     </div>
@@ -71,11 +78,7 @@
                                 @endif
                             </div>
                     </div>
-
-
-
                 </div>
-
             </div>
             </div>
             @endif
@@ -172,6 +175,33 @@
             </form>
         </div>
     </div>
+
+    <!-- The Edit Task Modal -->
+<div class="modal" id="editModal" style="z-index: 1000;">
+    <div class="modal-content" style="padding: 15px; max-width: 900px; margin-top: 15px;">
+        <h4>Edit Task</h4>
+        <form class="edit-card-form" style="display: flex;" action="{{ route('tasks.update', ['task' => '__task_id__']) }}" method="POST" enctype="multipart/form-data">
+            @method('PUT')
+            @csrf
+            <div class="row">
+                <!-- Similar form fields for editing -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="edit_title" style="font-size: 15px;" class="mb-1">Title</label>
+                        <input type="text" name="edit_title" id="edit_title" class="form-control shadow-sm" placeholder="Enter title" required style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;">
+                    </div>
+                </div>
+                <!-- ... other form fields ... -->
+            </div>
+            <!-- ... rest of the form ... -->
+            <div class="mt-3 text-end">
+                <button type="submit" class="form-add-btn" style="margin-right: 10px;">Save Changes</button>
+                <button type="button" class="form-add-btn" onclick="closeEditModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 </body>
 <!-- partial -->
     
