@@ -1560,3 +1560,29 @@ font-family: Roboto, sans-serif !important;
   border-radius: 50%;
   margin-left: 5px;
 }
+
+/* Add this to your CSS stylesheet */
+.user-num {
+  position: relative;
+  cursor: pointer;
+}
+
+.user-num::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+.user-num:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
