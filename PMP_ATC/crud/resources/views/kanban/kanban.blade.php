@@ -18,7 +18,10 @@
 @section('content') 
     <div class="container">
         <div class="kanban-board">
-            @foreach($taskStatuses as $status)
+            @foreach($taskStatusesWithIds as $statusObject)
+            @php
+                $status = $statusObject->status; // Access the 'status' property of the object
+            @endphp
                 <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="backlog-name">{{ $status }}</div>
 
@@ -27,19 +30,62 @@
                     </div>
 
                     <div class="backlog-tasks" id="{{ strtolower(str_replace(' ', '', $status)) }}-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    <div class="card-wrapper__footer">
-                        <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
-                            <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown', '{{ $status }}')">
-                                <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
+                    @foreach($tasks as $task)
+                    @if ($task->status === $status) <!-- Check if task status matches the current status block -->
+                        <div class="card shadow" id="task{{ $task->id }}" draggable="true" ondragstart="drag(event)">
+                            <div class="card__header">
+                                <div class="card-container-color {{ $task->priority }}">
+                                    @if(strtolower($task->priority) == 'low priority')
+                                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(90deg, #9ea7fc 17%, #6eb4f7 83%);">{{ $task->priority }}</div>
+                                    @elseif(strtolower($task->priority) == 'med priority')
+                                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #81d5ee 17%, #7ed492 83%);">{{ $task->priority }}</div>
+                                    @elseif(strtolower($task->priority) == 'high priority')
+                                        <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
+                                    @endif
+                                </div>
+                                <div class="card__header-clear"><i class="material-icons">clear</i></div>
                             </div>
-                            <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
-                                <!-- Dropdown content here -->
-                                @foreach($projectTypes as $type)
-                                    <div class="project-type" onclick="openModal('{{ $type }}', '{{ $status }}')">{{ $type }}<i class="material-icons">add</i></div>
-                                @endforeach
-                            </div>
-                        </div>
+                            <div class="card__text">{{ $task->title }}</div>
+                            <div class="card__details">{{ \Illuminate\Support\Str::limit(strip_tags($task->details), 20, $end='...') }}</div>
+
+             <div class="card__menu">
+                {{-- ---comment and attach part------ --}}
+
+                <div class="card__menu-left">
+                    <div class="comments-wrapper">
+                        <div class="comments-ico"><i class="material-icons">comment</i></div>
+                        <div class="comments-num">1</div>
                     </div>
+                    <div class="attach-wrapper">
+                        <div class="attach-ico"><i class="material-icons">attach_file</i></div>
+                        <div class="attach-num">2</div>
+                    </div>
+                </div>
+
+                <div class="card__menu-right">
+                    <div class="add-peoples"><i class="material-icons">add</i></div>
+                    <div class="img-avatar"><img src="{{ asset('img/0cafaf103d2eef926eebb15b20651c88.jpg') }}">
+                    </div>
+                </div>
+                
+                
+            </div>
+            </div>
+            @endif
+            @endforeach
+            <div class="card-wrapper__footer">
+                <div class="add-task" id="{{ strtolower(str_replace(' ', '', $status)) }}-create-task-btn">Create
+                    <div class="add-task-ico" onclick="toggleProjectTypeDropdown('{{ strtolower(str_replace(' ', '', $status)) }}-dropdown','{{ $statusObject->project_task_status_id }}')">
+                        <i class="material-icons down-arrow-icon">keyboard_arrow_down</i>
+                    </div>
+                    <div class="project-type-dropdown" id="{{ strtolower(str_replace(' ', '', $status)) }}-dropdown" style="display: none;">
+                        <!-- Dropdown content here -->
+                        @foreach($projectTypes as $type)
+                            <div class="project-type" onclick="openModal('{{ $type }}', '{{ $statusObject->project_task_status_id }}')">{{ $type }}<i class="material-icons">add</i></div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
                 </div>
             @endforeach
         </div>
@@ -109,8 +155,8 @@
                     @endforeach
                 </select>
 
-                <input type="hidden" name="status" id="status" value="">
-                <input type="hidden" name="selectedStatus" id="selectedStatus" value="">
+                <input type="hidden" name="project_task_status_id" id="projectTaskStatusId" value="">
+                <input type="hidden" name="selectedStatus" id="selectedStatus" value=""> 
 
                 <div class="mt-3 text-end">
                     <button type="submit" class="form-add-btn" style="margin-right: 10px;">Create</button>

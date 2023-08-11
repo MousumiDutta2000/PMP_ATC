@@ -52,16 +52,16 @@
                 <td>
                             
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('technologies.show', ['technology' => $technology->id]) }}">
+                                    <a href="{{ route('technologies.show', ['technology' => $technology->id]) }}" data-toggle="tooltip" data-placement="top" title="Show">
                                         <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
                                     </a>
-                                    <a href="{{ route('technologies.edit', ['technology' => $technology->id]) }}">
+                                    <a href="{{ route('technologies.edit', ['technology' => $technology->id]) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
                                     </a>
                                     <form method="post" action="{{ route('technologies.destroy', ['technology' => $technology->id]) }}">
                                         @method('delete')
                                         @csrf
-                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal{{ $technology->id }}">
+                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-placement="top" title="Delete" data-target="#deleteModal{{ $technology->id }}">
                                             <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
                                         </button>          
                                         <!-- Delete Modal start -->

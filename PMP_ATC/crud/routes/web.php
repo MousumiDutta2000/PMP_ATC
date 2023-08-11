@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TaskTypeController;
+use App\Http\Controllers\TaskStatusController;
 use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\UserWorkDetailController;
 /*
@@ -105,8 +106,8 @@ Route::middleware([
     Route::get('/get-profile-email/{id}', 'ProfileController@getProfileEmail');
 
     Route::resource('task_types', TaskTypeController::class);
-   
 
+    Route::resource('task_status', TaskStatusController::class);
     
     Route::get('/kanban/{projectId}', [KanbanController::class, 'showKanban'])->name('kanban');
     // Route::post('/kanban/store', [KanbanController::class, 'store'])->name('kanban.store');
@@ -130,7 +131,3 @@ Route::controller(MicrosoftController::class, '')->group(function () {
     Route::get('auth/microsoft/callback', 'handleProviderCallback')->name('auth.microsoft.callback');
 
 });
-
-// Route::get('/kanban', function () {
-//     return view('kanban.kanban');
-// });

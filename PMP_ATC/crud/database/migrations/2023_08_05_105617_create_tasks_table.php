@@ -21,7 +21,8 @@ return new class extends Migration
             // $table->enum('priority', ['Low priority', 'Med Priority', 'High priority']);
             $table->text('details');
             $table->string('assigned_to');
-            $table->string('status');
+            $table->unsignedBigInteger('project_task_status_id');
+            $table->foreign('project_task_status_id')->references('id')->on('project_task_status');
             
             // $table->date('due_date');
             $table->timestamps();

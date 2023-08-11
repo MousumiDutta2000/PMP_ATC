@@ -52,18 +52,18 @@
                     <td>{{ $vertical->vertical_head_contact }}</td>
                     <td>                        
                         <div class="btn-group" role="group">
-                            <a href="{{ route('verticals.show', ['vertical' => $vertical->id]) }}">
+                            <a href="{{ route('verticals.show', ['vertical' => $vertical->id]) }}" data-toggle="tooltip" data-placement="top" title="Show">
                                 <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
                             </a>
 
-                            <a href="{{ route('verticals.edit', ['vertical' => $vertical->id]) }}">
+                            <a href="{{ route('verticals.edit', ['vertical' => $vertical->id]) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                 <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
                             </a>
 
                             <form method="post" action="{{ route('verticals.destroy', ['vertical' => $vertical->id]) }}">
                                 @method('delete')
                                 @csrf
-                                <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal{{ $vertical->id }}">
+                                <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-placement="top" title="Delete" data-target="#deleteModal{{ $vertical->id }}">
                                     <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
                                 </button>          
                                 <!-- Delete Modal start -->

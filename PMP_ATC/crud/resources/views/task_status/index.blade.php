@@ -1,10 +1,10 @@
 @extends('layouts.side_nav')
 
-@section('pageTitle', 'Opportunity_Status')
+@section('pageTitle', 'Task Status')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ route('opportunity_status.index') }}">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Opportunity_Status</li>
+    <li class="breadcrumb-item"><a href="{{ route('task_status.index') }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Task Status</li>
 @endsection
 
 @section('custom_css')
@@ -27,44 +27,49 @@
     <script src="{{ asset('js/table.js') }}"></script>
 @endsection
 
-
 @section('content')
+
 <main class="container">
     <section>
-        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -67px; margin-bottom: 50px; padding: 2px 30px; margin-right: -30px;">
-            <a href="{{ route('opportunity_status.create') }}" class="btn btn-primary">Add New</a>
+        <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -86px; margin-bottom: 50px; padding: 20px 30px; margin-right: -30px;">
+            <a href="{{ route('task_status.create') }}" class="btn btn-primary">Add New</a>
         </div>
+
         <div class="table">
-            <table id="opportunityStatusTable" class="table table-hover responsive" style="width:100%; border-spacing: 0 10px;">
+            <table id="taskStatusTable" class="table table-hover responsive" style="width: 100%;border-spacing: 0 10px;">
                 <thead>
                     <tr>
-                        {{-- <th>ID</th> --}}
-                        <th style="padding-left:110px;">Project Goal</th>
+                        <th>Sl. No</th>
+                        <th style="padding-left: 120px;">Status</th>
+                        <th>Level</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    @foreach($opportunityStatuses as $opportunityStatus)
+                    @foreach($taskStatuses as $index => $TaskStatus)
                         <tr class="shadow" style="border-radius:15px;">
-                            {{-- <td>{{$opportunityStatus->id}}</td> --}}
-                            <td style="padding-left:120px;">{{$opportunityStatus->project_goal}}</td>
+                            <td>{{ $index + 1 }}</td>
+                            <td style="padding-left: 120px;">{{ $TaskStatus->status }}</td>
+                            <td style="padding-left: 60px;">{{ $TaskStatus->level }}</td>
                             
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('opportunity_status.show', ['opportunity_status' => $opportunityStatus->id]) }}" data-toggle="tooltip" data-placement="top" title="Show">
+                                    <a href="{{ route('task_status.show', ['task_status' => $TaskStatus->id]) }}" data-toggle="tooltip" data-placement="top" title="Show">
                                         <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
                                     </a>
-                                    <a href="{{ route('opportunity_status.edit', ['opportunity_status' => $opportunityStatus->id]) }}" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <a href="{{ route('task_status.edit', ['task_status' => $TaskStatus->id]) }}" data-toggle="tooltip" data-placement="top" title="Edit">
+
                                         <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
                                     </a>
-                                    <form method="post" action="{{ route('opportunity_status.destroy', ['opportunity_status' => $opportunityStatus->id]) }}">
+                                    <form method="post" action="{{ route('task_status.destroy', ['task_status' => $TaskStatus->id]) }}">  
                                         @method('delete')
                                         @csrf
-                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-placement="top" title="Delete" data-target="#deleteModal{{ $opportunityStatus->id }}">
+                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-placement="top" title="Delete" data-target="#deleteModal{{ $TaskStatus->id }}">
                                             <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
                                         </button>          
                                         <!-- Delete Modal start -->
-                                        <div class="modal fade" id="deleteModal{{ $opportunityStatus->id }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal{{ $TaskStatus->id }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header flex-column">
@@ -88,11 +93,11 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
-                    
+                    @endforeach   
                 </tbody>
             </table>
         </div>
     </section>
 </main>
+
 @endsection
