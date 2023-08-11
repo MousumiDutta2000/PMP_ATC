@@ -70,13 +70,7 @@
                     </div>
                     <div class="user-wrapper">
                         <div class="user-ico"><i class="material-icons">person</i></div>
-                            <div class="user-num">
-                                @if(is_array($task->assigned_to))
-                                    {{ count($task->assigned_to) }}
-                                @else
-                                    0
-                                @endif
-                            </div>
+                        <div class="user-num">{{ $task->taskUsers->count() }}</div>
                     </div>
                 </div>
             </div>

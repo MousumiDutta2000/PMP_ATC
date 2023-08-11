@@ -15,16 +15,12 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('title');
-            $table->enum('priority', ['Low priority', 'Med Priority', 'High priority']);
-            // $table->string('priority');
+            $table->string('priority');
             $table->string('estimated_time'); 
-            // $table->enum('priority', ['Low priority', 'Med Priority', 'High priority']);
             $table->text('details');
             $table->string('assigned_to');
             $table->unsignedBigInteger('project_task_status_id');
             $table->foreign('project_task_status_id')->references('id')->on('project_task_status');
-            
-            // $table->date('due_date');
             $table->timestamps();
         });
     }
