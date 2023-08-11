@@ -54,8 +54,9 @@ class UserTechnologyController extends Controller
         $user_technology->save();
 
         // Redirect back to the same page and display a success message.
-       // return back()->with('success', 'Skill added successfully.');
-       return redirect('profiles.show#skill-set');
+       return back()->with('success', 'Skill added successfully.');
+       //return back()->withInput(['tab'=>'skill-set']);
+       //return redirect(('profiles').'#skill-set')->with('message','sucessfull');
     }
 
 

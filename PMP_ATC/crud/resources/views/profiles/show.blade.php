@@ -33,13 +33,16 @@
     }
 
     /* Tablet and desktop styles */
-    @media (min-width: 768px) {
+    @media (min-width: 1400px) {
       .col-md-6 {
         flex-wrap: nowrap;
+        /*flex-direction: column;*/
       }
       
       .label {
         max-width: none;
+        flex-wrap: nowrap;
+        flex-direction: column;
       }
 
       .form-group {
@@ -47,7 +50,7 @@
       }
       
       .text-end {
-        text-align: end;
+        /*text-align: end;*/
       }
     }
   </style>
@@ -106,6 +109,29 @@
               $('#' + formId + ' button[type="submit"]').toggle(editable);
           }
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+        // After form submission, switch back to the active tab
+        
+       
+    });
+
+
+
+    
+
+//     document.addEventListener('DOMContentLoaded', function () {
+//     const createButton = document.getElementById('createSkillButton');
+//     if (createButton) {
+//         createButton.addEventListener('click', function () {
+//             const activeTab = 'skillSetTabButton';
+//             document.querySelector(`.nav-link[data-bs-target="#${activeTab}"]`).click();
+//             ///document.querySelector(`.nav-link[aria-selected="true"]`);
+            
+           
+//         });
+//     }
+// });
        
     </script>
 @endsection
@@ -174,8 +200,13 @@
       <div class="card">
         <div class="card-body pt-3">
           <!-- Bordered Tabs -->
+          @if(Session::get('success'))
+          
+          <input type="hidden" id="flag" value="1">
+          @else
+          <input type="hidden" id="flag" value="0">
+          @endif
           <ul class="nav nav-tabs nav-tabs-bordered">
-
             <li class="nav-item">
               <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
             </li>
@@ -184,12 +215,11 @@
               <button class="nav-link" data-bs-toggle="tab" data-bs-target="#skill-set" id="skillSetTabButton">Skill Set</button>
             </li>
           </ul>
-
+         
           <div class="tab-content pt-2">
 
 
             <div class="tab-pane fade show active profile-overview" id="profile-overview">
-              <br>
               <h5 style="display: flex; justify-content: space-between; align-items: center;">
                 <span class="card-title">Personal Details</span>
                 <button class="btn btn-primary btn-sm edit-field justify-content-end" id="editProfileButton"><i class="ri-edit-2-fill"></i></button>
@@ -261,97 +291,91 @@
                 </div>
               </form>
             </div>
-            
 
             <div class="tab-pane fade show skill-set" id="skill-set">
-              <br>
-              <h5 class="card-title">Skill Set</h5>
-              <div style="display: flex; justify-content: flex-end; margin-top: -40px;">
+              <h5 style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="card-title">Skill Set</span>
                 <a href="#" data-toggle="modal" data-target="#addModal" class="btn btn-primary" id="addSkillButton">Add Skill</a>
-              </div>
-              <br>
+              </h5>
               <main class="container">
               <section>
-    <div class="table-responsive">
-        <table class="table table-hover" style="border-spacing: 0 10px; border-collapse: separate;">
-            <thead>
-                <tr>
-                    <th>Technology</th>
-                    <th>Experience (yrs)</th>
-                    <th>Role</th>
-                    <th>Under Current Company</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($user_technologies as $user_technology)
-                    @if($user_technology->user_id == $profile->user_id)
-                        <tr class="shadow" style="border-radius:15px;">
-                            <td>{{ $user_technology->technology->technology_name }}</td>
-                            <td>{{ $user_technology->years_of_experience }}</td>
-                            <td>{{ $user_technology->project_role->member_role_type }}</td>
-                            <td>
-                                @if($user_technology->is_current_company == 0)
-                                    No
-                                @elseif($user_technology->is_current_company == 1)
-                                    Yes
-                                @endif
-                            </td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <a href="#" data-toggle="modal" data-target="#showModal_{{ $user_technology->id }}">
-                                        <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#editModal_{{ $user_technology->id }}">
-                                        <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
-                                    </a>
-                                    <form method="post" action="{{ route('user_technologies.destroy', $user_technology->id) }}">
-                                        @method('delete')
-                                        @csrf
-                                        <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#deleteskill{{$user_technology->id}}">
-                                            <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
-                                        </button>
-                                        <!-- Delete Skill Modal start -->
-                                        <div class="modal fade" id="deleteskill{{$user_technology->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteskillLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header flex-column">
-                                                        <div class="icon-box">
-                                                            <i class="material-icons">&#xE5CD;</i>
+                <div class="table-responsive">
+                  <table class="table table-hover" style="border-spacing: 0 10px; border-collapse: separate;">
+                    <thead>
+                      <tr>
+                          <th>Technology</th>
+                          <th>Experience (yrs)</th>
+                          <th>Role</th>
+                          <th>Under Current Company</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($user_technologies as $user_technology)
+                        @if($user_technology->user_id == $profile->user_id)
+                            <tr class="shadow" style="border-radius:15px;">
+                                <td>{{ $user_technology->technology->technology_name }}</td>
+                                <td>{{ $user_technology->years_of_experience }}</td>
+                                <td>{{ $user_technology->project_role->member_role_type }}</td>
+                                <td>
+                                    @if($user_technology->is_current_company == 0)
+                                        No
+                                    @elseif($user_technology->is_current_company == 1)
+                                        Yes
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a href="#" data-toggle="modal" data-target="#showModal_{{ $user_technology->id }}">
+                                            <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
+                                        </a>
+                                        <a href="#" data-toggle="modal" data-target="#editModal_{{ $user_technology->id }}">
+                                            <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
+                                        </a>
+                                        <form method="post" action="{{ route('user_technologies.destroy', $user_technology->id) }}">
+                                            @method('delete')
+                                            @csrf
+                                            <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#deleteskill{{$user_technology->id}}">
+                                                <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
+                                            </button>
+                                            <!-- Delete Skill Modal start -->
+                                            <div class="modal fade" id="deleteskill{{$user_technology->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteskillLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header flex-column">
+                                                            <div class="icon-box">
+                                                                <i class="material-icons">&#xE5CD;</i>
+                                                            </div>
+                                                            <h3 class="modal-title w-100">Are you sure?</h3>
                                                         </div>
-                                                        <h3 class="modal-title w-100">Are you sure?</h3>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Do you really want to delete this skill?</p>
-                                                    </div>
-                                                    <div class="modal-footer justify-content-center">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                        <div class="modal-body">
+                                                            <p>Do you really want to delete this skill?</p>
+                                                        </div>
+                                                        <div class="modal-footer justify-content-center">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </div>
+                                                      </div>
                                                     </div>
                                                   </div>
-                                                </div>
-                                              </div>
-                                        <!-- Delete Modal end-->
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endif
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</section>
-
-</main>
-            </div>
-
-
-          </div>
+                                            <!-- Delete Modal end-->
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </main>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
 </section>
 
 <!--Add skill modal-->
@@ -373,6 +397,7 @@
       <div class="modal-body">
         <form method="post" action="{{ route('user_technologies.store') }}" enctype="multipart/form-data" >
           @csrf
+          <input type="hidden" name="active_tab" value="skill-set"> <!-- Hidden input for storing active tab -->
           <div class="row mt-3">  
             <input value="{{$profile->user_id}}" name="user_id" id="user_id" class="form-control " hidden required>
             <div class ="col-md-12">
@@ -421,8 +446,8 @@
             </div>  
 
             <div class="form-actions mt-3 text-end modal-footer">
-              <button type="submit" class="btn btn-primary">Create</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color:#D22B2B">Close</button>
+              <button type="submit" class="btn btn-primary" id="createSkillButton">Create</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color:#D22B2B" id="">Close</button>
             </div>
           </div>
         </form>
@@ -452,6 +477,7 @@
           <form method="post" action="{{ route('user_technologies.update', $user_technology->id) }}">
             @csrf
             @method('PUT')
+            <input type="hidden" name="active_tab" value="skill-set"> <!-- Hidden input for storing active tab -->
 
             <div class="row">
               <div class ="col-md-12">
@@ -569,8 +595,6 @@
 </div>
 @endforeach
 
-
-
 <!--Update Profile Picture modal-->
 @foreach($profiles as $profile)
   <div class="modal fade" id="updatePfpModal{{$profile->id}}" tabindex="-1" role="dialog" aria-labelledby="updatePfpModalLabel" aria-hidden="true">                
@@ -616,3 +640,21 @@
 @endforeach
 
 @endsection
+<script>
+   window.addEventListener('load', function () {
+          
+          if(document.getElementById("flag").value==1)
+          {
+             
+               const activeTab = "skill-set";
+               if (activeTab) {
+                   const tabLink = document.querySelector(`.nav-link[data-bs-target="#${activeTab}"]`);
+                   if (tabLink) {
+                       tabLink.click();
+                   }
+               }
+           
+ 
+           }
+         });
+  </script>
