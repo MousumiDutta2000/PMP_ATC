@@ -112,8 +112,6 @@
   </script>
 @endsection
 
-
-
 @section('content')
 
 <section class="section profile">
@@ -131,7 +129,7 @@
           @endif 
           <div class="pt-2 d-flex">
             <div class="btn-group mr-2" role="group">
-              <a href="#" data-toggle="modal" data-target="#updatePfpModal{{$profile->id}}" class="btn btn-primary btn-sm" title="Upload new profile image" id="updatePfpButton"><i class="bi bi-upload" style="font-size: 1rem; width: 1.25em; height: 1em;"></i></a>
+              <a href="#" data-toggle="modal" data-target="#updatePfpModal{{$profile->id}}" class="btn btn-primary btn-sm" title="Upload new profile image" id="updatePfpButton"><i class="bi bi-upload" style="font-size: 1rem !important; width: 1.25em !important; height: 1.25em !important;"></i></a>
             </div>
             <div class="btn-group" role="group">
               <!-- Add the delete image button here -->
@@ -139,7 +137,7 @@
                 @csrf
                 @method('delete')
                 <button type="button" class="btn btn-danger btn-sm" title="Remove my profile image" data-toggle="modal" data-target="#delete">
-                  <i class="bi bi-trash" style="font-size: 1rem; width: 1.25em; height: 1.25em;"></i>
+                  <i class="bi bi-trash" style="font-size: 1rem !important; width: 1.25em !important; height: 1.25em !important;"></i>
                 </button>
                 <!-- Delete Modal start -->
                 <div class="modal fade" id="delete" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
@@ -175,13 +173,13 @@
 
       <div class="card">
         <div class="card-body pt-3">
-          <!-- Bordered Tabs -->
           @if(Session::get('success'))
           
           <input type="hidden" id="flag" value="1">
           @else
           <input type="hidden" id="flag" value="0">
           @endif
+          <!-- Bordered Tabs -->
           <ul class="nav nav-tabs nav-tabs-bordered">
             <li class="nav-item">
               <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>

@@ -195,7 +195,7 @@ class ProfileController extends Controller
         $profiles = Profile::all();
         $qualifications = HighestEducationValue::all();
 
-        return back()->with('success', 'Edited successfully.');    
+        return back()->with('success1', 'Edited successfully.');    
     }
 
     
