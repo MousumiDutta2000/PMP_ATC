@@ -307,6 +307,40 @@ $(document).ready(function() {
     ]
   });
 
+  $("#taskTypeTable").DataTable({
+    aaSorting: [],
+    responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
+
+    columnDefs: [
+      {
+        responsivePriority: 1,
+        targets: 0
+      },
+      {
+        responsivePriority: 2,
+        targets: -1
+      }
+    ]
+  });
+
+  $("#taskStatusTable").DataTable({
+    aaSorting: [],
+    responsive: true,
+    lengthMenu: [5, 10, 25, 50, 100],
+
+    columnDefs: [
+      {
+        responsivePriority: 1,
+        targets: 0
+      },
+      {
+        responsivePriority: 2,
+        targets: -1
+      }
+    ]
+  });
+
   $(".dataTables_filter input")
     .attr("placeholder", "Search here...")
     .css({

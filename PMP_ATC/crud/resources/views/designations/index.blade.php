@@ -51,16 +51,16 @@
                                         <td> {{$designation ->level}} </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                    <a href="#" data-toggle="modal" data-target="#showModal_{{ $designation->id }}">
+                                                    <a href="#" data-toggle="modal" data-target="#showModal_{{ $designation->id }}" data-toggle="tooltip" data-placement="top" title="Show">
                                                         <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
                                                     </a>
-                                                    <a href="{{ route('designations.edit', ['designation' => $designation->id]) }}">
+                                                    <a href="{{ route('designations.edit', ['designation' => $designation->id]) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                                         <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
                                                     </a>
                                                     <form method="post" action="{{ route('designations.destroy', ['designation' => $designation->id]) }}">
                                                         @method('delete')
                                                         @csrf
-                                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal{{ $designation->id }}">
+                                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-placement="top" title="Delete" data-target="#deleteModal{{ $designation->id }}">
                                                             <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
                                                         </button>          
                                                         <!-- Delete Modal start -->

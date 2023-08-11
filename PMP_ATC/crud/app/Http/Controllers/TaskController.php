@@ -36,7 +36,7 @@ class TaskController extends Controller
             'estimated_time_unit' => 'required|in:hour,day,month,year',
             'details' => 'required',
             'assigned_to' => 'required',
-            'status' => 'required',
+            'project_task_status_id' => 'required',
            
         ]);
 
@@ -47,25 +47,24 @@ class TaskController extends Controller
         $task->estimated_time = $request->estimated_time_number . ' ' . $request->estimated_time_unit;
         $task->details = $request->details;
         $task->assigned_to = implode(',', $request->assigned_to);
-        $task->status = $request->status;
+        $task->project_task_status_id = $request->project_task_status_id;
         $task->save();
 
-        // dd($request);
+        $assignedToIds = explode(',', $task->assigned_to);
+        $totalAssignedTasks = TaskUser::whereIn('assigned_to', $assignedToIds)->count();
 
         $assignedTo = $request->assigned_to;
         foreach ($assignedTo as $userId) {
             $taskUser = new TaskUser([
                 'task_id' => $task->id,
-                'assigned_to' => auth()->user()->id,
+                'assigned_to' => $userId,
             ]);
-            $taskUser->assigned_to = $userId;
             $taskUser->save();
         }
 
         return redirect()->back()->with('success', 'Task created successfully.');
     }
 
-    
     public function show(Task $task)
     {
         return view('tasks.show', compact('task'));

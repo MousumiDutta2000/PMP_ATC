@@ -213,14 +213,18 @@ class ProjectsController extends Controller
         //             $project->projectMembers()->attach($memberId, ['project_role_id' => $role]);
         //         }
         //     }
-        // }        
+        // }       
 
-        // store tasktypes in project_task_types 
-        $taskTypeIds = $request->task_type_id;
+        $taskTypeIds = array_unique($request->task_type_id);
+        $project->projectTaskTypes()->whereNotIn('task_type_id', $taskTypeIds)->delete();
+    
+        // Add new task types
         foreach ($taskTypeIds as $taskTypeId) {
-            $project->projectTaskTypes()->create([
-                'task_type_id' => $taskTypeId,
-            ]);
+            if (!$project->projectTaskTypes()->where('task_type_id', $taskTypeId)->exists()) {
+                $project->projectTaskTypes()->create([
+                    'task_type_id' => $taskTypeId,
+                ]);
+            }
         }
 
         // store taskstatus in project_task_status 

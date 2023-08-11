@@ -48,16 +48,16 @@
                     <td style="padding-left:120px;">{{ $highestEducationValue->highest_education_value }}</td>
                     <td>           
                         <div class="btn-group" role="group">
-                            <a href="{{ route('highest-education-values.show', ['highest_education_value' => $highestEducationValue->id]) }}">
+                            <a href="{{ route('highest-education-values.show', ['highest_education_value' => $highestEducationValue->id]) }}" data-toggle="tooltip" data-placement="top" title="Show">
                                 <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
                             </a>
-                            <a href="{{ route('highest-education-values.edit', ['highest_education_value' => $highestEducationValue->id]) }}">
+                            <a href="{{ route('highest-education-values.edit', ['highest_education_value' => $highestEducationValue->id]) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                 <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
                             </a>
                             <form method="post" action="{{ route('highest-education-values.destroy', ['highest_education_value' => $highestEducationValue->id]) }}">
                                 @method('delete')
                                 @csrf
-                                <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal">
+                                <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-placement="top" title="Delete" data-target="#deleteModal">
                                     <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
                                 </button>          
                                 <!-- Delete Modal start -->

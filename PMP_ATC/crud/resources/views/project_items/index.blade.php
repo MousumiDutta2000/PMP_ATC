@@ -87,16 +87,16 @@
                         <td>
                             
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('project-items.show', ['project_item' => $projectItem->id]) }}">
+                                    <a href="{{ route('project-items.show', ['project_item' => $projectItem->id]) }}" data-toggle="tooltip" data-placement="top" title="Show">
                                         <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
                                     </a>
-                                    <a href="{{ route('project-items.edit', ['project_item' => $projectItem->id]) }}">
+                                    <a href="{{ route('project-items.edit', ['project_item' => $projectItem->id]) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
                                     </a>
                                     <form method="post" action="{{ route('project-items.destroy', ['project_item' => $projectItem->id]) }}">
                                         @method('delete')
                                         @csrf
-                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal{{ $projectItem->id }}">
+                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-placement="top" title="Delete" data-target="#deleteModal{{ $projectItem->id }}">
                                             <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
                                         </button>          
                                         <!-- Delete Modal start -->

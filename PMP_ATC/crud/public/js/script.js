@@ -85,7 +85,7 @@ function drag(ev) {
     }
   }
   
-  function addTask(form, sectionId, status) {
+  function addTask(form, sectionId, projectTaskStatusId) {
     // Get the submitted task data from the form
     var title = form.querySelector('#title').value;
     var priority = form.querySelector('#priority').value;
@@ -159,17 +159,7 @@ function drag(ev) {
   });
   
 
-// Function to toggle the project type dropdown and rotate the arrow icon
-// function toggleProjectTypeDropdown() {
-//   var dropdownContent = document.getElementById("project-type-container");
-//   dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
-
-//   // Toggle the down arrow icon rotation
-//   var downArrowIcon = document.querySelector(".down-arrow-icon");
-//   downArrowIcon.classList.toggle("rotate");
-// }
-
-function toggleProjectTypeDropdown(dropdownId, status) {
+function toggleProjectTypeDropdown(dropdownId, projectTaskStatusId) {
   var dropdownContent = document.getElementById(dropdownId);
   dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
 
@@ -177,30 +167,27 @@ function toggleProjectTypeDropdown(dropdownId, status) {
   var downArrowIcon = dropdownContent.previousElementSibling.querySelector(".down-arrow-icon");
   downArrowIcon.classList.toggle("rotate");
 
-  // Store the clicked status in a hidden input field
-  document.getElementById("selectedStatus").value = status;
+  // Store the clicked status and project_task_status_id in hidden input fields
+  // document.getElementById("selectedStatus").value = status;
+  document.getElementById("selectedStatus").value = projectTaskStatusId;
 }
 
-// Function to open the modal and update the modal heading with the selected project type
-
-
-
-function openModal(type, status) {
+function openModal(type, projectTaskStatusId) {
   // Update the modal heading with the selected project type
   var modalProjectType = document.getElementById("modalProjectType");
   modalProjectType.innerText = type;
 
-  // Set the selected status as a value in the form
-  document.getElementById("status").value = status;
+  // Set the selected status and project_task_status_id as values in the form
+  // document.getElementById("status").value = status;
+  document.getElementById("projectTaskStatusId").value = projectTaskStatusId;
 
   // Show the modal
   document.getElementById("modal").style.display = "block";
 
-  // Pass the status to the addTask function
+   // Pass the status to the addTask function
   var form = document.querySelector(".add-card-form");
-  var sectionId = status.toLowerCase().replace(/\s+/g, "");
-  addTask(form, sectionId, status);
-  
+  var sectionId = projectTaskStatusId.toLowerCase().replace(/\s+/g, "");
+  addTask(form, sectionId, projectTaskStatusId);
 }
 
 // Function to close the modal and show the project type dropdown

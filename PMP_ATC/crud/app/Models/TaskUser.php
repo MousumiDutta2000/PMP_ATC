@@ -13,4 +13,11 @@ class TaskUser extends Model
     {
         return $this->belongsTo(Task::class, 'task_id', 'id');
     }
+
+    // Define the relationship between TaskUser and User
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'assigned_to');
+    }
 }
+

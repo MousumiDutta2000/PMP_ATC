@@ -73,7 +73,7 @@
                             <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
                         @endif
                     </td> --}}
-                    <td>{{ $task->details }}</td>
+                    <td>{{ strip_tags($task->details) }}</td>
                     {{-- <td style="font-size: 15px;">{{ basename($task->attachments) }}</td> --}}
                     
                     {{-- <td style="font-size: 15px;">{{ $task->assignedTo->profile_name }}</td> --}}
@@ -100,16 +100,16 @@
                     {{-- <td style="font-size: 15px;">{{ $task->parentTask->title }}</td> --}}
                     
                     <td class="d-flex align-items-center" style="font-size: 15px;">
-                        <a href="{{ route('tasks.show', ['task' => $task->id]) }}">
+                        <a href="{{ route('tasks.show', ['task' => $task->id]) }}" data-toggle="tooltip" data-placement="top" title="Show">
                             <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
                         </a>
-                        <a href="{{ route('tasks.edit', ['task' => $task->id]) }}"> 
+                        <a href="{{ route('tasks.edit', ['task' => $task->id]) }}" data-toggle="tooltip" data-placement="top" title="Edit"> 
                             <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
                             </a>
                             <form method="post" action="{{ route('tasks.destroy', ['task' => $task->id]) }}">
                                 @method('delete')
                                 @csrf
-                                <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-target="#deleteModal{{ $task->id }}">
+                                <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-placement="top" title="Delete" data-target="#deleteModal{{ $task->id }}">
                                     <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
                                 </button>          
                                 <!-- Delete Modal start -->
