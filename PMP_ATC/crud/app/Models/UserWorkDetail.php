@@ -32,4 +32,9 @@ class UserWorkDetail extends Model
     {
         return $this->belongsTo(User::class, 'project_manager_id');
     }
+
+    public function workType()
+    {
+        return $this->belongsTo(WorkType::class);
+    }
 }

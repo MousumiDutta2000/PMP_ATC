@@ -81,4 +81,9 @@ class Project extends Model
     {
         return $this->belongsToMany(TaskStatus::class, 'project_task_status', 'project_id', 'task_status_id')->withTimestamps();
     }
+
+    public function projectTaskStatuses()
+    {
+        return $this->hasMany(ProjectTaskStatus::class, 'project_id');
+    }
 }

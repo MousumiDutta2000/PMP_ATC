@@ -21,4 +21,9 @@ class Task extends Model
     {
         return $this->belongsToMany(TaskUser::class, 'task_users', 'task_id', 'id');
     }
+
+    public function projectTaskStatus()
+    {
+        return $this->belongsTo(ProjectTaskStatus::class, 'project_task_status_id');
+    }
 }

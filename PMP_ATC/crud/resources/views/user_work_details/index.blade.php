@@ -43,6 +43,7 @@
                     <th>Date</th>
                     <th>Start Time</th>
                     <th>End Time</th>
+                    <th>Work Type</th>
                     <th>Notes</th>
                     <th>Project Manager</th>
                     <th>Action</th>
@@ -57,6 +58,7 @@
                             <td>{{ $userWorkDetail->date }}</td>
                             <td>{{ $userWorkDetail->start_time }}</td>
                             <td>{{ $userWorkDetail->end_time }}</td>
+                            <td>{{ $userWorkDetail->workType->name }}</td>
                             <td>{{ $userWorkDetail->notes }}</td>
                             <td>{{ $userWorkDetail->projectManager->name }}</td>
                             <td>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\UserWorkDetail;
+use App\Models\WorkType;
+use App\Models\ProjectTaskStatus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,10 +22,17 @@ class UserWorkDetailController extends Controller
 
     public function create()
     {
+        // Fetch distinct project IDs from the ProjectTaskStatus model's relationship with the Project model
+        $distinctProjectIds = ProjectTaskStatus::with('project')->distinct('project_id')->pluck('project_id');
+
+        // Fetch projects based on the distinct project IDs
+        $projects = Project::whereIn('id', $distinctProjectIds)->get();
+
         $tasks = Task::all();
         $projects = Project::all();
+        $workTypes = WorkType::all();
         $projectManagersByProject = $projects->pluck('project_manager_id', 'id')->toArray();
-        return view('user_work_details.create', compact('projects', 'projectManagersByProject', 'tasks'));
+        return view('user_work_details.create', compact('projects', 'projectManagersByProject', 'tasks', 'workTypes', 'projects',));
     }
       
 
@@ -33,6 +42,7 @@ class UserWorkDetailController extends Controller
         $data = $request->validate([
             'project_id' => 'required|exists:project,id',
             'task_id' => 'required|exists:tasks,id',
+            'work_type_id' => 'required|exists:work_types,id',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
             'notes' => 'nullable|string',
@@ -55,7 +65,8 @@ class UserWorkDetailController extends Controller
         $projects = Project::all();
         $projectManagers = Project::pluck('project_manager')->unique();
         $tasks = Task::where('project_id', $userWorkDetail->project_id)->get();
-        return view('user_work_details.edit', compact('userWorkDetail', 'projects', 'projectManagers', 'tasks'));
+        $workTypes = WorkType::all();
+        return view('user_work_details.edit', compact('userWorkDetail', 'projects', 'projectManagers', 'tasks', 'workTypes',));
     }
 
     public function update(Request $request, UserWorkDetail $userWorkDetail)
@@ -63,6 +74,7 @@ class UserWorkDetailController extends Controller
         $data = $request->validate([
             'project_id' => 'required|exists:projects,id',
             'task_id' => 'required|exists:tasks,id',
+            'work_type_id' => 'required|exists:work_types,id',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
             'notes' => 'nullable|string',
@@ -77,4 +89,5 @@ class UserWorkDetailController extends Controller
         $userWorkDetail->delete();
         return redirect()->route('user_work_details.index');
     }
+    
 }

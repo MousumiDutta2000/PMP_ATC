@@ -12,8 +12,8 @@
     </div>
 @endif
 
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 75vh;">
-    <div class="form-container w-100">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="form-container">
         <h5>Create User Work Detail</h5>
         <form action="{{ route('user_work_details.store') }}" method="POST">
             @csrf
@@ -29,7 +29,7 @@
                         </select>
                     </div>
                 </div>
-
+                
                 <div class="col-md-6">
                     <div class="form-group mt-2">
                         <label for="task_id">Task:</label>
@@ -41,6 +41,7 @@
                         </select>
                     </div>
                 </div>
+
 
                 <div class="col-md-6">
                     <div class="form-group mt-2">
@@ -56,15 +57,27 @@
                     </div>
                 </div>
 
+                <div>
+                    <div class="form-group mt-2">
+                        <label for="work_type_id">Work Type:</label>
+                        <select name="work_type_id" id="work_type_id" class="form-control" required>
+                            <option value="">Select Work Type</option>
+                            @foreach ($workTypes as $workType)
+                                <option value="{{ $workType->id }}">{{ $workType->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group mt-2">
                     <label for="notes">Notes:</label>
                     <textarea name="notes" id="notes" rows="3" class="form-control"></textarea>
                 </div>
 
-
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary mt-4 mb-2 ml-auto">Save</button>
                 </div>
+            </div>
         </form>
     </div>
 </div>
@@ -72,10 +85,53 @@
 
 @section('custom_css')
 <style>
-/* Add a media query for screens with a maximum width of 576px (adjust as needed) */
+/* Media query for screens with a maximum width of 576px */
 @media (max-width: 576px) {
     .form-container {
         width: 90%; /* Reduce the width for smaller screens */
+    }
+}
+
+/* Media query for screens with a maximum width of 720px (Samsung Galaxy A51/A71) */
+@media (max-width: 720px) {
+    .form-container {
+        width: 90%; /* Further reduce the width for medium-sized screens */
+    }
+}
+
+/* Media query for screens with a maximum width of 768px */
+@media (max-width: 768px) {
+    .form-container {
+        width: 80%; /* Further reduce the width for small tablets */
+    }
+}
+
+/* Media query for screens with a maximum width of 992px */
+@media (max-width: 992px) {
+    .container {
+        padding: 15px; /* Add padding to the container for medium-sized screens */
+    }
+
+    .form-container {
+        width: 70%; /* Reduce the width for medium-sized screens */
+    }
+}
+
+/* Media query for screens with a maximum width of 1200px */
+@media (max-width: 1200px) {
+    .form-container {
+        width: 60%; /* Reduce the width for large screens */
+    }
+}
+
+/* Media query for screens with a minimum width of 1201px (large screens) */
+@media (min-width: 1201px) {
+    .container {
+        padding: 30px; /* Increase padding for large screens */
+    }
+
+    .form-container {
+        width: 50%; /* Adjust the width for large screens */
     }
 }
 </style>
