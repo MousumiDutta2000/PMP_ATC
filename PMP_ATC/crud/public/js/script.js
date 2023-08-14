@@ -61,6 +61,7 @@ function drag(ev) {
       addButton.textContent = 'add_circle_outline';
     }
   }
+
   
   function enableAddButton(form) {
     var priorityCheckboxes = form.querySelectorAll('.form__checkbox');
@@ -71,6 +72,7 @@ function drag(ev) {
     });
     taskInput.addEventListener('input', checkFormValidity);
   }
+
   
   function checkFormValidity() {
     var form = this.closest('form');
@@ -84,8 +86,9 @@ function drag(ev) {
       addButton.disabled = true;
     }
   }
+
   
-  function addTask(form, sectionId, status) {
+  function addTask(form, sectionId, projectTaskStatusId) {
     // Get the submitted task data from the form
     var title = form.querySelector('#title').value;
     var priority = form.querySelector('#priority').value;
@@ -136,6 +139,7 @@ function drag(ev) {
     form.reset();
 }
   
+
   var sections = document.querySelectorAll('.kanban-block');
   sections.forEach(function (section) {
     var addTaskButton = section.querySelector('.add-task-ico');
@@ -153,21 +157,13 @@ function drag(ev) {
   });
   
 
+
   document.getElementById("expand-btn").addEventListener("click", function() {
     var dotsIcon = this.querySelector("i");
     dotsIcon.classList.toggle("expanded");
   });
   
 
-// Function to toggle the project type dropdown and rotate the arrow icon
-// function toggleProjectTypeDropdown() {
-//   var dropdownContent = document.getElementById("project-type-container");
-//   dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
-
-//   // Toggle the down arrow icon rotation
-//   var downArrowIcon = document.querySelector(".down-arrow-icon");
-//   downArrowIcon.classList.toggle("rotate");
-// }
 
 function toggleProjectTypeDropdown(dropdownId, projectTaskStatusId) {
   var dropdownContent = document.getElementById(dropdownId);
@@ -181,6 +177,8 @@ function toggleProjectTypeDropdown(dropdownId, projectTaskStatusId) {
   // document.getElementById("selectedStatus").value = status;
   document.getElementById("selectedStatus").value = projectTaskStatusId;
 }
+
+
 
 function openModal(type, projectTaskStatusId) {
   // Update the modal heading with the selected project type
@@ -199,11 +197,16 @@ function openModal(type, projectTaskStatusId) {
   var sectionId = projectTaskStatusId.toLowerCase().replace(/\s+/g, "");
   addTask(form, sectionId, projectTaskStatusId);
 }
+
+
+
 // Function to close the modal and show the project type dropdown
 function closeModal() {
   // Hide the modal
   document.getElementById("modal").style.display = "none";
 }
+
+
 
 // Function to handle the project type selection
 function selectProjectType(type) {
@@ -219,6 +222,8 @@ function selectProjectType(type) {
   openModal(type);
 }
 
+
+
 // CSK Editor (Assuming you've loaded the necessary libraries for CKEditor)
 $('.ckeditor').ckeditor();
         
@@ -226,4 +231,47 @@ $('.ckeditor').ckeditor();
 function closeModal() {
   var modal = document.getElementById('modal');
   modal.style.display = 'none';
+}
+
+// -------------------------edit modal-------------------
+
+function openEditModal(taskId, taskJson) {
+  var taskDetails = JSON.parse(taskJson);
+
+  // Populate the edit form fields with task details
+  var editForm = document.querySelector('.edit-card-form');
+  editForm.querySelector('#title').value = taskDetails.title;
+  editForm.querySelector('#priority').value = taskDetails.priority;
+  editForm.querySelector('#details').value = taskDetails.details;
+  editForm.querySelector('#estimated_time_unit').value = taskDetails.estimated_time_unit;
+  // editForm.querySelector('#assigned_to').value = taskDetails.assigned_to;
+  
+    // Populate the assigned_to select element with the selected profile IDs
+    var assignedToSelect = editForm.querySelector('#assigned_to_edit');
+    var selectedProfiles = taskDetails.assigned_to.split(',');
+    selectedProfiles.forEach(function(profileId) {
+      var option = assignedToSelect.querySelector(`option[value="${profileId}"]`);
+      if (option) {
+        option.selected = true;
+      }
+    });
+
+    
+  
+  // ... populate other form fields ...
+
+  // Customize the modal form action URL with the task ID
+  var editFormAction = "{{ route('tasks.update', '__task_id__') }}";
+  editFormAction = editFormAction.replace('__task_id__', taskId);
+  editForm.setAttribute('action', editFormAction);
+
+  // Show the edit modal
+  var editModal = document.getElementById('editModal');
+  editModal.style.display = 'block';
+}
+
+
+function closeEditModal() {
+  var editModal = document.getElementById('editModal');
+  editModal.style.display = 'none';
 }

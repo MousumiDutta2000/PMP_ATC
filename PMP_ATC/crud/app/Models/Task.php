@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
@@ -12,14 +11,12 @@ class Task extends Model
         'priority',
         'estimated_time',
         'details',
-        'assigned_to',
         'project_task_status_id',
-        
     ];
-    
-    public function taskUser()
+
+    public function taskUsers()
     {
-        return $this->belongsToMany(TaskUser::class, 'task_users', 'task_id', 'id');
+        return $this->hasMany(TaskUser::class, 'task_id');
     }
 
     public function projectTaskStatus()

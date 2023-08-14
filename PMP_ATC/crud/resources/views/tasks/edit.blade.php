@@ -37,9 +37,9 @@
 @endif
 
 <div class="form-container">
-    <form action="{{ route('tasks.update', $task->id) }}" method="POST" enctype="multipart/form-data">
+    {{-- <form action="{{ route('tasks.update', $task->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
+        @method('PUT') --}}
 
         <div class="row">
             <div class="col-md-6">
