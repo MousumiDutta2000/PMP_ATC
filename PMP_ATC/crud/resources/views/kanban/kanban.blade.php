@@ -69,7 +69,9 @@
                     </div>
                     <div class="user-wrapper">
                         <div class="user-ico"><i class="material-icons">person</i></div>
-                        <div class="user-num">{{ $task->taskUsers->count() }}</div>
+                        <div class="user-num" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ implode(', ', $task->taskUsers->pluck('user.name')->toArray()) }}">
+                            {{ $task->taskUsers->count() }}
+                        </div>
                     </div>
                 </div>
             </div>

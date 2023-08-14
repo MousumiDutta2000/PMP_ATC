@@ -11,6 +11,7 @@
 @section('project_css')
 <link rel="stylesheet" href="{{ asset('css/project.css') }}">
 <link rel="stylesheet" href="{{ asset('css/form.css') }}"> 
+<link rel="stylesheet" href="path-to/font-awesome/css/font-awesome.min.css">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection 
 
@@ -21,6 +22,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="{{ asset('js/project.js') }}"></script>
+<script src="{{ asset('js/side_highlight.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection
 
@@ -130,7 +132,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="project_manager_id" class="mb-1" style="font-size: 15px;">Project Manager</label>
-                                <select name="project_manager_id" id="project_manager_id" class="form-control shadow-sm" required style="padding-bottom: 6px; color:#999; font-size: 14px;">
+                                <select id="project_manager_id" name="project_manager_id" class="shadow-sm" required style="padding-bottom: 6px; color:#999; font-size: 14px;">
                                     <option value="">Select Project Manager</option>
                                     @foreach ($projectManagers as $projectManager)
                                         <option value="{{ $projectManager->id }}">{{ $projectManager->name }}</option>
@@ -142,7 +144,7 @@
                     <div class="col-md-6 mb-0">
                         <div class="form-group">
                             <label for="vertical_id" class="mb-1" style="font-size: 15px;">Vertical</label>
-                                <select name="vertical_id" id="vertical_id" class="form-control shadow-sm" required style="padding-bottom: 6px; color:#999; font-size: 14px;">
+                                <select id="vertical_id" name="vertical_id" class="shadow-sm" required style="padding-bottom: 6px; color:#999; font-size: 14px;">
                                     <option value="">Select Vertical</option>
                                         @foreach ($verticals as $vertical)
                                             <option value="{{ $vertical->id }}">{{ $vertical->vertical_name }}</option>
@@ -191,7 +193,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="task_type_id" class="mb-1" style="font-size: 15px;">Choose Project Task Type</label>
-                                <select id="task_type_id" name="task_type_id[]" class="task_type shadow-sm" required style="width: 100%;" multiple>
+                                <select id="task_type_id" name="task_type_id[]" class="task_type custom-select shadow-sm" required style="width: 100%;" multiple>
                                     @foreach($task_types as $task_type)
                                         <option value="{{ $task_type->id }}">{{ $task_type->type_name }}</option>
                                     @endforeach
