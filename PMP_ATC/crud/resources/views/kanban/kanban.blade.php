@@ -175,78 +175,69 @@
 <!-- The Edit Task Modal -->
 <div class="modal" id="editModal" style="z-index: 1000;">
     <div class="modal-content" style="padding: 15px; max-width: 900px; margin-top: 15px;">
-        <h4>Edit Task</h4>
-        <form class="edit-card-form" style="display: flex;" action="{{ route('tasks.update', $task->id) }}" method="POST" enctype="multipart/form-data">
+        <h4 id="editModalProjectTypeHeading">Edit Task</h4>
+        <form class="edit-card-form" action="{{ route('tasks.update', '__task_id__') }}" method="POST">
             @csrf
             @method('PUT')
-           
-            <!-- ... edit form fields ... -->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="title" style="font-size: 15px;">Title</label>
-                        <input type="text" name="title" id="title" class="form-control shadow-sm" value="{{ $task->title }}" required>
-                    </div>
-                </div>
-                
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="priority" style="font-size: 15px;">Priority</label>
-                        <select name="priority" id="priority" class="form-control shadow-sm" required>
-                            <option value="Low priority" {{ $task->priority == 'Low priority' ? 'selected' : '' }}>Low Priority</option>
-                            <option value="Med priority" {{ $task->priority == 'Med priority' ? 'selected' : '' }}>Med Priority</option>
-                            <option value="High priority" {{ $task->priority == 'High priority' ? 'selected' : '' }}>High Priority</option>
+
+            <!-- Title -->
+            <div class="form-group">
+                <label for="title" style="font-size: 15px;">Title</label>
+                <input type="text" name="title" id="title" class="form-control shadow-sm" required>
+            </div>
+
+            <!-- Priority -->
+            <div class="form-group">
+                <label for="priority" style="font-size: 15px;">Priority</label>
+                <select name="priority" id="priority" class="form-control shadow-sm" required>
+                    <option value="Low priority">Low Priority</option>
+                    <option value="Med priority">Med Priority</option>
+                    <option value="High priority">High Priority</option>
+                </select>
+            </div>
+
+            <!-- Details -->
+            <div class="form-group">
+                <label for="details" style="font-size: 15px;">Details</label>
+                <textarea name="details" id="details" class="form-control shadow-sm" required></textarea>
+            </div>
+
+            <!-- Estimated Time -->
+            <div class="form-group">
+                <label for="estimated_time" style="font-size: 15px;">Estimated Time</label>
+                <div class="input-group">
+                    <input type="number" name="estimated_time_number" id="estimated_time_number" class="form-control shadow-sm" required>
+                    <div class="input-group-append">
+                        <select name="estimated_time_unit" id="estimated_time_unit" class="form-control shadow-sm">
+                            <option value="hour">Hour</option>
+                            <option value="day">Day</option>
+                            <option value="month">Month</option>
+                            <option value="year">Year</option>
                         </select>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="details" style="font-size: 15px;">Details</label>
-                    <textarea name="details" id="details" class="form-control shadow-sm" required>{{ strip_tags($task->details) }}</textarea>
+            <!-- Assigned To -->
+            <div class="form-group">
+                <label for="assigned_to" style="font-size: 15px;" class="mt-3 mb-1">Assigned To</label>
+                <div id="assigned-to-wrapper" class="shadow-sm">
+                    <select name="assigned_to[]" id="assigned_to_edit" class="add-card-form__main assigned_to" required multiple>
+                        <!-- Add the options here as provided in the previous response -->
+                    </select>
                 </div>
-            
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="estimated_time" style="font-size: 15px;">Estimated Time</label>
-                        <div class="input-group">
-                            <input type="number" name="estimated_time_number" id="estimated_time_number" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" value="{{ old('estimated_time_number', explode(' ', $task->estimated_time)[0]) }}">
-                            <div class="input-group-append">
-                                <select name="estimated_time_unit" id="estimated_time_unit" class="form-control shadow-sm" style="height:39px; color: #858585; font-size: 14px;">
-                                    <option value="hour" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'hour' ? 'selected' : '' }}>Hour</option>
-                                    <option value="day" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'day' ? 'selected' : '' }}>Day</option>
-                                    <option value="month" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'month' ? 'selected' : '' }}>Month</option>
-                                    <option value="year" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'year' ? 'selected' : '' }}>Year</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>        
-                </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="assigned_to" style="font-size: 15px;" class="mt-3 mb-1">Assigned To</label>
-                    <div id="assigned-to-wrapper" class="shadow-sm">
-                        <select name="assigned_to[]" id="assigned_to_edit" class="add-card-form__main assigned_to" required multiple>
-                            @foreach ($profiles as $profile)
-                              <option value="{{ $profile->id }}"
-                                @if (in_array($profile->id, explode(',', $task->assigned_to)))
-                                  selected
-                                @endif
-                                data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
-                            @endforeach
-                          </select>
-                    </div>
-                </div>
-           
-
+            <!-- Save and Cancel Buttons -->
             <div class="mt-3 text-end">
                 <button type="submit" class="form-add-btn" style="margin-right: 10px;">Save</button>
                 <button type="button" class="form-add-btn" onclick="closeEditModal()">Cancel</button>
             </div>
-        </div>
-    </div>
         </form>
     </div>
 </div>
+
+
 
 
 
