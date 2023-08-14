@@ -1215,6 +1215,11 @@ a {
   font-weight: bold;
   margin: 0 10px;
   word-wrap: break-word;
+  /* margin-top: -17px; */
+}
+
+.edit-ico{
+  margin-right: 8px;
 }
 
 .card__menu {

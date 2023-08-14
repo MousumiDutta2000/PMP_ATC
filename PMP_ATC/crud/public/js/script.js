@@ -233,24 +233,44 @@ function closeModal() {
   modal.style.display = 'none';
 }
 
+// -------------------------edit modal-------------------
 
+function openEditModal(taskId, taskJson) {
+  var taskDetails = JSON.parse(taskJson);
 
-
-// Function to open the edit modal
-function openEditModal(taskId, title) {
+  // Populate the edit form fields with task details
   var editForm = document.querySelector('.edit-card-form');
-  var editFormAction = editForm.getAttribute('action').replace('__task_id__', taskId);
-  editForm.setAttribute('action', editFormAction);
+  editForm.querySelector('#title').value = taskDetails.title;
+  editForm.querySelector('#priority').value = taskDetails.priority;
+  editForm.querySelector('#details').value = taskDetails.details;
+  editForm.querySelector('#estimated_time_unit').value = taskDetails.estimated_time_unit;
+  // editForm.querySelector('#assigned_to').value = taskDetails.assigned_to;
+  
+    // Populate the assigned_to select element with the selected profile IDs
+    var assignedToSelect = editForm.querySelector('#assigned_to_edit');
+    var selectedProfiles = taskDetails.assigned_to.split(',');
+    selectedProfiles.forEach(function(profileId) {
+      var option = assignedToSelect.querySelector(`option[value="${profileId}"]`);
+      if (option) {
+        option.selected = true;
+      }
+    });
 
-  // Populate the edit form fields with existing task data
-  document.getElementById('edit_title').value = title;
+    
+  
   // ... populate other form fields ...
 
+  // Customize the modal form action URL with the task ID
+  var editFormAction = "{{ route('tasks.update', '__task_id__') }}";
+  editFormAction = editFormAction.replace('__task_id__', taskId);
+  editForm.setAttribute('action', editFormAction);
+
+  // Show the edit modal
   var editModal = document.getElementById('editModal');
   editModal.style.display = 'block';
 }
 
-// Function to close the edit modal
+
 function closeEditModal() {
   var editModal = document.getElementById('editModal');
   editModal.style.display = 'none';

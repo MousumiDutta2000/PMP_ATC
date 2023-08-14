@@ -74,45 +74,29 @@ class TaskController extends Controller
     {
         $tasks = Task::all();
         $profiles= Profile::all();
-        $sprints= Sprint::all();
         $projects= Project::all();
-        return view('tasks.edit', compact('tasks','profiles','sprints','projects'));
+        return view('tasks.edit', compact('tasks','profiles','projects'));
     }
 
     public function update(Request $request, Task $task)
     {
         $request->validate([
             'title' => 'required',
-            'sprint_id' => 'required',
-            'type' => 'required',
             'priority' => 'required|in:Low priority,Med priority,High priority',
-            'details' => 'required',
-            // 'attachments' => 'required',
-            'assigned_to' => 'required',
-            'created_by' => 'required',
-            'last_edited_by' => 'required',
             'estimated_time_number' => 'required|numeric',
             'estimated_time_unit' => 'required|in:hour,day,month,year',
-            'time_taken_number' => 'required|numeric',
-            'time_taken_unit' => 'required|in:hour,day,month,year',
-            'status' => 'required',
-            'parent_task' => '',
+            'details' => 'required',
+            'assigned_to' => 'required',
+            // 'project_task_status_id' => 'required',
         ]);
 
         $task->uuid = substr(Str::uuid()->toString(), 0, 8);
         $task->title = $request->title;
-        $task->sprint_id = $request->sprint_id;
-        $task->type = $request->type;
         $task->priority = $request->priority;
+        $task->estimated_time = $request->estimated_time_number . ' ' . $request->estimated_time_unit;
         $task->details = $request->details;
         $task->assigned_to = implode(',', $request->assigned_to);
-        // $task->assigned_to = $request->assigned_to;
-        $task->created_by = $request->created_by;
-        $task->last_edited_by = $request->last_edited_by;
-        $task->estimated_time = $request->estimated_time_number . ' ' . $request->estimated_time_unit;
-        $task->time_taken = $request->time_taken_number . ' ' . $request->time_taken_unit;
-        $task->status = $request->status;
-        $task->parent_task = $request->parent_task;
+        // $task->project_task_status_id = $request->project_task_status_id;
 
         $task->save();
 
