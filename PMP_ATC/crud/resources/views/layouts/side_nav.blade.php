@@ -292,9 +292,9 @@
 
     <div class="d-flex align-items-center justify-content-between logo_adjust">
       <a href="index.html" class="logo d-flex align-items-center">
-        <section class="box">
+        <section class="box" style="width: 132%">
           <img class="logo_img" src="{{ asset('img/adamastech_logo.png') }}" alt="">
-          <span class="logo_name">ATC</span>
+          <span class="logo_name"></span>
         </section>
       </a>
     
