@@ -26,20 +26,18 @@
         <label for="end_time">End Time:</label>
         <input type="time" name="end_time" id="end_time" value="{{ $userWorkDetail->end_time }}" required>
 
-        <label for="notes">Notes:</label>
-        <textarea name="notes" id="notes" rows="3">{{ $userWorkDetail->notes }}</textarea>
-
-        <label for="project_manager">Project Manager:</label>
-        <select name="project_manager" id="project_manager">
-            @foreach ($projectManagers as $manager)
-                <option value="{{ $manager }}" {{ $manager === $userWorkDetail->project_manager ? 'selected' : '' }}>
-                    {{ $manager }}
+        <label for="work_type_id">Work Type:</label>
+        <select name="work_type_id" id="work_type_id">
+            @foreach ($workTypes as $workType)
+                <option value="{{ $workType->id }}" {{ $workType->id === $userWorkDetail->work_type_id ? 'selected' : '' }}>
+                    {{ $workType->name }}
                 </option>
             @endforeach
         </select>
 
-        <label for="action">Action:</label>
-        <input type="text" name="action" id="action" value="{{ $userWorkDetail->action }}" required>
+        <label for="notes">Notes:</label>
+        <textarea name="notes" id="notes" rows="3">{{ $userWorkDetail->notes }}</textarea>
+
 
         <button type="submit">Update</button>
     </form>

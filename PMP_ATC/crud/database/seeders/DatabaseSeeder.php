@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             ProjectItemStatusesSeeder::class,
             TaskStatusSeeder::class,
             TaskTypeSeeder::class,
+            WorkTypesSeeder::class,
         ]);
     }
 }

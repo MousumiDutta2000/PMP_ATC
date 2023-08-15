@@ -12,81 +12,130 @@
     </div>
 @endif
 
-<div class="form-container w-50">
-    <h5>Create User Work Detail</h5>
-    <form action="{{ route('user_work_details.store') }}" method="POST">
-        @csrf
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="project_id">Project:</label>
-                    <select name="project_id" id="project_id" class="form-control">
-                        <option value="">Select Project</option>
-                        @foreach ($projects as $project)
-                            <option value="{{ $project->id }}">{{ $project->project_name }}</option>
-                        @endforeach
-                    </select>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="form-container">
+        <h5>Create User Work Detail</h5>
+        <form action="{{ route('user_work_details.store') }}" method="POST">
+            @csrf
+            <div class="row shadow">
+                <div class="col-md-6">
+                    <div class="form-group mt-2">
+                        <label for="project_id">Project:</label>
+                        <select name="project_id" id="project_id" class="form-control">
+                            <option value="">Select Project</option>
+                            @foreach ($projects as $project)
+                                <option value="{{ $project->id }}">{{ $project->project_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group mt-2">
+                        <label for="task_id">Task:</label>
+                        <select name="task_id" id="task_id" class="form-control">
+                            <option value="">Select Task</option>
+                            @foreach ($tasks as $task)
+                                <option value="{{ $task->id }}">{{ $task->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group mt-2">
+                        <label for="start_time">Start Time:</label>
+                        <input type="time" name="start_time" id="start_time" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mt-2">
+                        <label for="end_time">End Time:</label>
+                        <input type="time" name="end_time" id="end_time" class="form-control" required>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-group mt-2">
+                        <label for="work_type_id">Work Type:</label>
+                        <select name="work_type_id" id="work_type_id" class="form-control" required>
+                            <option value="">Select Work Type</option>
+                            @foreach ($workTypes as $workType)
+                                <option value="{{ $workType->id }}">{{ $workType->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="notes">Notes:</label>
+                    <textarea name="notes" id="notes" rows="3" class="form-control"></textarea>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary mt-4 mb-2 ml-auto">Save</button>
                 </div>
             </div>
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="task_id">Task:</label>
-                    <select name="task_id" id="task_id" class="form-control">
-                        {{-- Task options will be populated dynamically based on the selected project using JavaScript --}}
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="start_time">Start Time:</label>
-                    <input type="time" name="start_time" id="start_time" class="form-control" required>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="end_time">End Time:</label>
-                    <input type="time" name="end_time" id="end_time" class="form-control" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="notes">Notes:</label>
-                <textarea name="notes" id="notes" rows="3" class="form-control"></textarea>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="project_manager">Project Manager:</label>
-                    <input type="text" name="project_manager" id="project_manager" class="form-control" readonly>
-                </div>
-            </div>
-
-
-
-        <button type="submit" class="btn btn-primary mt-2">Save</button>
-    </form>
+        </form>
+    </div>
 </div>
 @endsection
 
-@section('custom_js')
-<script>
-    const projectDropdown = document.getElementById('project_id');
-    const projectManagerInput = document.getElementById('project_manager');
-    const projectManagersByProject = {!! json_encode($projectManagersByProject) !!};
+@section('custom_css')
+<style>
+/* Media query for screens with a maximum width of 576px */
+@media (max-width: 576px) {
+    .form-container {
+        width: 90%; /* Reduce the width for smaller screens */
+    }
+}
 
-    projectDropdown.addEventListener('change', updateProjectManager);
+/* Media query for screens with a maximum width of 720px (Samsung Galaxy A51/A71) */
+@media (max-width: 720px) {
+    .form-container {
+        width: 90%; /* Further reduce the width for medium-sized screens */
+    }
+}
 
-    function updateProjectManager() {
-        const projectId = projectDropdown.value;
-        const projectManagerName = projectManagersByProject[projectId] || 'No Manager';
-        
-        projectManagerInput.value = projectManagerName;
+/* Media query for screens with a maximum width of 768px */
+@media (max-width: 768px) {
+    .form-container {
+        width: 80%; /* Further reduce the width for small tablets */
+    }
+}
+
+/* Media query for screens with a maximum width of 992px */
+@media (max-width: 992px) {
+    .container {
+        padding: 15px; /* Add padding to the container for medium-sized screens */
     }
 
-    // Update the project manager when the page loads
-    updateProjectManager();
-</script>
+    .form-container {
+        width: 70%; /* Reduce the width for medium-sized screens */
+    }
+}
+
+/* Media query for screens with a maximum width of 1200px */
+@media (max-width: 1200px) {
+    .form-container {
+        width: 60%; /* Reduce the width for large screens */
+    }
+}
+
+/* Media query for screens with a minimum width of 1201px (large screens) */
+@media (min-width: 1201px) {
+    .container {
+        padding: 30px; /* Increase padding for large screens */
+    }
+
+    .form-container {
+        width: 50%; /* Adjust the width for large screens */
+    }
+}
+</style>
+@endsection
+
+@section('custom_js')
 @endsection

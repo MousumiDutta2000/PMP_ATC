@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\UserWorkDetail;
+use App\Models\WorkType;
+use App\Models\ProjectTaskStatus;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,15 +16,23 @@ class UserWorkDetailController extends Controller
 {
     public function index()
     {
-        $userWorkDetails = UserWorkDetail::with('project')->currentUser()->get();
+        $userWorkDetails = UserWorkDetail::with('project', 'projectManager')->currentUser()->get();
         return view('user_work_details.index', compact('userWorkDetails'));
     }
 
     public function create()
     {
+        // Fetch distinct project IDs from the ProjectTaskStatus model's relationship with the Project model
+        $distinctProjectIds = ProjectTaskStatus::with('project')->distinct('project_id')->pluck('project_id');
+
+        // Fetch projects based on the distinct project IDs
+        $projects = Project::whereIn('id', $distinctProjectIds)->get();
+
+        $tasks = Task::all();
         $projects = Project::all();
+        $workTypes = WorkType::all();
         $projectManagersByProject = $projects->pluck('project_manager_id', 'id')->toArray();
-        return view('user_work_details.create', compact('projects', 'projectManagersByProject'));
+        return view('user_work_details.create', compact('projects', 'projectManagersByProject', 'tasks', 'workTypes', 'projects',));
     }
       
 
@@ -29,25 +40,33 @@ class UserWorkDetailController extends Controller
     {
         $profile_id = Auth::id();
         $data = $request->validate([
-            'project_id' => 'required|exists:projects,id',
+            'project_id' => 'required|exists:project,id',
             'task_id' => 'required|exists:tasks,id',
+            'work_type_id' => 'required|exists:work_types,id',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
             'notes' => 'nullable|string',
-            'project_manager' => 'required|string',
         ]);
-
+    
+        $project = Project::findOrFail($request->input('project_id'));
+    
         $data['profile_id'] = $profile_id;
+        $data['project_manager_id'] = $project->Project_manager_id; // Retrieve from associated project
+        $data['date'] = now(); // Set the current date
+    
         UserWorkDetail::create($data);
+    
         return redirect()->route('user_work_details.index');
     }
+    
 
     public function edit(UserWorkDetail $userWorkDetail)
     {
         $projects = Project::all();
         $projectManagers = Project::pluck('project_manager')->unique();
         $tasks = Task::where('project_id', $userWorkDetail->project_id)->get();
-        return view('user_work_details.edit', compact('userWorkDetail', 'projects', 'projectManagers', 'tasks'));
+        $workTypes = WorkType::all();
+        return view('user_work_details.edit', compact('userWorkDetail', 'projects', 'projectManagers', 'tasks', 'workTypes',));
     }
 
     public function update(Request $request, UserWorkDetail $userWorkDetail)
@@ -55,10 +74,10 @@ class UserWorkDetailController extends Controller
         $data = $request->validate([
             'project_id' => 'required|exists:projects,id',
             'task_id' => 'required|exists:tasks,id',
+            'work_type_id' => 'required|exists:work_types,id',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
             'notes' => 'nullable|string',
-            'project_manager' => 'required|string',
         ]);
 
         $userWorkDetail->update($data);
@@ -70,4 +89,5 @@ class UserWorkDetailController extends Controller
         $userWorkDetail->delete();
         return redirect()->route('user_work_details.index');
     }
+    
 }

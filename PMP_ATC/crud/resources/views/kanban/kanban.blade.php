@@ -17,6 +17,14 @@
 
 @section('content') 
     <div class="container">
+    <div class="kanban-board-container">
+    <button id="scrollBtn" class="scroll-button" onclick="scrollRight()">
+        <i class="material-icons">keyboard_arrow_right</i>
+        <i class="material-icons" style="display: none;">keyboard_arrow_left</i>
+    </button>
+
+
+
         <div class="kanban-board">
             @foreach($taskStatusesWithIds as $statusObject)
             @php
@@ -44,15 +52,12 @@
                                         <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
                                     @endif
                                 </div>
-                                <div class="card__header-clear"><i class="material-icons">clear</i></div>
+                                <!-- <div class="card__header-clear"><i class="material-icons">clear</i></div> -->
+                                <div class="card__header-clear">
+                                    <i class="material-icons" data-task-id="{{ $task->id }}">clear</i>
+                                </div>
+
                             </div>
-                            {{-- <div class="edit-wrapper" style="margin-right: 6px;">
-                                <div class="edit-ico">
-                                    <i class="material-icons" onclick="openEditModal('{{ route('tasks.edit', $task->id) }}', '{{ json_encode($task) }}')">edit</i> --}}
-                                    {{-- <i class="material-icons" onclick="openEditModal('{{ $task->id }}', '{{ json_encode($task) }}')">edit</i> --}}
-                                    {{-- <i class="material-icons" onclick="openEditModal('{{route('tasks.edit', ['task' => $task->id]) }}', '{{ json_encode($task) }}')">edit</i> --}}
-                               {{-- </div>
-                            </div> --}}
 
                             <div class="edit-wrapper" style="margin-right: 6px;">
                                 <div class="edit-ico">
@@ -68,7 +73,6 @@
                 <!-----comment and attach part------ -->
             
                 <div class="card__menu-left">
-
                     <div class="comments-wrapper">
                         <div class="comments-ico"><i class="material-icons">comment</i></div>
                         <div class="comments-num">1</div>
@@ -83,7 +87,9 @@
                             {{ $task->taskUsers->count() }}
                         </div>
                     </div>
+
                 </div>
+
             </div>
             </div>
             @endif
@@ -105,6 +111,7 @@
             @endforeach
         </div>
     </div>
+</div>
 
     <!-- The Modal -->
     <div class="modal" id="modal" style="z-index:1000;">
@@ -173,7 +180,6 @@
                 <input type="hidden" name="project_task_status_id" id="projectTaskStatusId" value="">
                 <input type="hidden" name="selectedStatus" id="selectedStatus" value=""> 
 
-            
                 <div class="mt-3 text-end">
                     <button type="submit" class="form-add-btn" style="margin-right: 10px;">Create</button>
                     <button type="button" class="form-add-btn" onclick="closeModal()">Close</button>
@@ -182,9 +188,7 @@
         </div>
     </div>
 
-<!-- The Edit Task Modal -->
-<!-- Edit Modal -->
-<!-- Edit Modal -->
+    <!-- Edit Modal -->
 <div class="modal" id="editModal" tabindex="-1" aria-labelledby="editModalLabel">
     <div class="modal-dialog">
         <div class="modal-content modal-design" style="width: 900px;">
@@ -259,93 +263,12 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="saveChanges()">Save Changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeEditModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="saveChanges()">Save</button>
             </div>
         </div>
     </div>
 </div>
-
-
-
-{{-- ------------------------------------- --}}
-
-{{-- <div class="modal" id="editModal" style="z-index: 1000;">
-    <div class="modal-content" style="padding: 15px; max-width: 900px; margin-top: 15px;">
-        <h4>Edit Task</h4>
-        <form class="edit-card-form" style="display: flex;" action="{{ route('tasks.update', $task->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-           
-            <!-- ... edit form fields ... -->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="title" style="font-size: 15px;">Title</label>
-                        <input type="text" name="title" id="title" class="form-control shadow-sm" value="{{ $task->title }}" required>
-                    </div>
-                </div>
-                
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="priority" style="font-size: 15px;">Priority</label>
-                        <select name="priority" id="priority" class="form-control shadow-sm" required>
-                            <option value="Low priority" {{ $task->priority == 'Low priority' ? 'selected' : '' }}>Low Priority</option>
-                            <option value="Med priority" {{ $task->priority == 'Med priority' ? 'selected' : '' }}>Med Priority</option>
-                            <option value="High priority" {{ $task->priority == 'High priority' ? 'selected' : '' }}>High Priority</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="details" style="font-size: 15px;">Details</label>
-                    <textarea name="details" id="details" class="form-control shadow-sm" required>{{ strip_tags($task->details) }}</textarea>
-                </div>
-            
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="estimated_time" style="font-size: 15px;">Estimated Time</label>
-                        <div class="input-group">
-                            <input type="number" name="estimated_time_number" id="estimated_time_number" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" value="{{ old('estimated_time_number', explode(' ', $task->estimated_time)[0]) }}">
-                            <div class="input-group-append">
-                                <select name="estimated_time_unit" id="estimated_time_unit" class="form-control shadow-sm" style="height:39px; color: #858585; font-size: 14px;">
-                                    <option value="hour" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'hour' ? 'selected' : '' }}>Hour</option>
-                                    <option value="day" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'day' ? 'selected' : '' }}>Day</option>
-                                    <option value="month" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'month' ? 'selected' : '' }}>Month</option>
-                                    <option value="year" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'year' ? 'selected' : '' }}>Year</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>        
-                </div>
-
-                <div class="form-group">
-                    <label for="assigned_to" style="font-size: 15px;" class="mt-3 mb-1">Assigned To</label>
-                    <div id="assigned-to-wrapper" class="shadow-sm">
-                        <select name="assigned_to[]" id="assigned_to_edit" class="add-card-form__main assigned_to" required multiple>
-                            @foreach ($profiles as $profile)
-                              <option value="{{ $profile->id }}"
-                                @if (in_array($profile->id, explode(',', $task->assigned_to)))
-                                  selected
-                                @endif
-                                data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
-                            @endforeach
-                          </select>
-                    </div>
-                </div>
-           
-
-            <div class="mt-3 text-end">
-                <button type="submit" class="form-add-btn" style="margin-right: 10px;">Save</button>
-                <button type="button" class="form-add-btn" onclick="closeEditModal()">Cancel</button>
-            </div>
-        </div>
-    </div>
-        </form>
-    </div>
-</div> --}}
-
-
 
 </body>
 <!-- partial -->
@@ -395,6 +318,78 @@ $(document).ready(function() {
   }
 });
 </script>
+
+<script>
+    function updateScrollButtonVisibility() {
+        const scrollButton = document.getElementById('scrollBtn');
+        const statusCards = document.querySelectorAll('.kanban-block');
+
+        // If there are 5 or fewer status cards, hide the right arrow button
+        if (statusCards.length <= 5) {
+            scrollButton.style.display = 'none';
+        } else {
+            scrollButton.style.display = 'block';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        updateScrollButtonVisibility();
+    });
+
+    
+    function scrollRight() {
+        const container = document.querySelector('.kanban-board-container');
+        const scrollButton = document.getElementById('scrollBtn');
+
+        // Calculate maximum scroll position
+        const maxScroll = container.scrollWidth - container.clientWidth;
+
+        // Update scroll position
+        scrollPosition = container.scrollLeft;
+
+        // Update arrow icons and scroll direction
+        if (scrollPosition < maxScroll) {
+            container.scrollLeft += 200; // Scroll right
+            scrollButton.querySelector('i:nth-child(1)').style.display = 'none';
+            scrollButton.querySelector('i:nth-child(2)').style.display = 'block';
+        } else {
+            container.scrollLeft = 0; // Scroll to the beginning
+            scrollButton.querySelector('i:nth-child(1)').style.display = 'block';
+            scrollButton.querySelector('i:nth-child(2)').style.display = 'none';
+        }
+    }
+</script>
+
+<script>
+// Add this code in your JavaScript section
+$(document).ready(function() {
+    $('.card__header-clear i').on('click', function() {
+        const cardId = $(this).data('task-id');
+        deleteCard(cardId);
+    });
+});
+
+function deleteCard(cardId) {
+    if (confirm('Are you sure you want to delete this card?')) {
+        // Send an AJAX request to delete the card
+        $.ajax({
+            type: 'DELETE',
+            url: '/tasks/' + cardId, // Adjust the URL based on your application's routes
+            data: {
+                _token: '{{ csrf_token() }}', // Add CSRF token for security
+            },
+            success: function(response) {
+                // Assuming you want to remove the card from the UI as well
+                $('#task' + cardId).remove();
+            },
+            error: function(error) {
+                console.error('Error deleting card:', error);
+            }
+        });
+    }
+}
+</script>
+
 
 <script>
     var tasks = @json($tasks);
@@ -461,6 +456,12 @@ $(document).ready(function() {
         $('#editModal').modal('hide'); // Hide the modal
         location.reload(); // Refresh the page to reflect the changes
     });
+}
+
+
+function closeEditModal() {
+var modal = document.getElementById('editModal');
+modal.style.display = 'none';
 }
 
 

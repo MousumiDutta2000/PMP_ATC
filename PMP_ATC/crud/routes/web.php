@@ -124,8 +124,7 @@ Route::middleware([
 
         Route::delete('/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     });
-    
-    
+
     
     // Route::resource('tasks', TaskController::class)->except([
     // 'store' // Exclude the store route from the resource routes
