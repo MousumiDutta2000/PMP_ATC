@@ -46,17 +46,27 @@
                                 </div>
                                 <div class="card__header-clear"><i class="material-icons">clear</i></div>
                             </div>
+                            {{-- <div class="edit-wrapper" style="margin-right: 6px;">
+                                <div class="edit-ico">
+                                    <i class="material-icons" onclick="openEditModal('{{ route('tasks.edit', $task->id) }}', '{{ json_encode($task) }}')">edit</i> --}}
+                                    {{-- <i class="material-icons" onclick="openEditModal('{{ $task->id }}', '{{ json_encode($task) }}')">edit</i> --}}
+                                    {{-- <i class="material-icons" onclick="openEditModal('{{route('tasks.edit', ['task' => $task->id]) }}', '{{ json_encode($task) }}')">edit</i> --}}
+                               {{-- </div>
+                            </div> --}}
+
                             <div class="edit-wrapper" style="margin-right: 6px;">
                                 <div class="edit-ico">
-                                    <i class="material-icons" onclick="openEditModal('{{ $task->id }}', '{{ json_encode($task) }}')">edit</i>
+                                     <i class="material-icons" onclick="openEditModal({{ $task->id }})">edit</i>
                                 </div>
                             </div>
+
+
                             <div class="card__text">{{ $task->title }}</div>
                             <div class="card__details">{{ \Illuminate\Support\Str::limit(strip_tags($task->details), 20, $end='...') }}</div>
 
             <div class="card__menu">
                 <!-----comment and attach part------ -->
-
+            
                 <div class="card__menu-left">
 
                     <div class="comments-wrapper">
@@ -173,7 +183,94 @@
     </div>
 
 <!-- The Edit Task Modal -->
-<div class="modal" id="editModal" style="z-index: 1000;">
+<!-- Edit Modal -->
+<!-- Edit Modal -->
+<div class="modal" id="editModal" tabindex="-1" aria-labelledby="editModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content modal-design" style="width: 900px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editTaskForm" action="{{ route('tasks.update', $task->id) }}" method="POST">
+                    @csrf
+                    @method('PUT') <!-- Add this line to specify the HTTP method for updating -->
+                    
+                <div class="row">
+                   <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="editTaskTitle">Title</label>
+                        <input type="text" class="form-control" id="editTaskTitle" name="title">
+                    </div>
+                </div>
+                
+                <div class="col-md-6">  
+                    <div class="form-group">
+                        <label for="editTaskPriority">Priority</label>
+                        <select class="form-control" id="editTaskPriority" name="priority">
+                            <option value="Low priority">Low priority</option>
+                            <option value="Med priority">Med priority</option>
+                            <option value="High priority">High priority</option>
+                        </select>
+                    </div>
+                </div>   
+                
+                    <div class="form-group mb-3 mt-3">
+                        <label for="editTaskDetails" style="font-size: 15px;">Details</label>
+                        <textarea name="details" id="editTaskDetails" class="ckeditor form-control shadow-sm" required>{{ $task->details }}</textarea>
+                    </div>
+                   
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="estimated_time" style="font-size: 15px;">Estimated Time</label>
+                        <div class="input-group">
+                            <!-- Input field for estimated time number -->
+                            <input type="number" name="estimated_time_number" id="estimated_time_number" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" value="{{ old('estimated_time_number', explode(' ', $task->estimated_time)[0]) }}">
+                            <div class="input-group-append">
+                                <!-- Dropdown for estimated time unit -->
+                                <select name="estimated_time_unit" id="estimated_time_unit" class="form-control shadow-sm" style="height:39px; color: #858585; font-size: 14px;">
+                                    <option value="hour" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'hour' ? 'selected' : '' }}>Hour</option>
+                                    <option value="day" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'day' ? 'selected' : '' }}>Day</option>
+                                    <option value="month" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'month' ? 'selected' : '' }}>Month</option>
+                                    <option value="year" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'year' ? 'selected' : '' }}>Year</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label for="editAssignedTo" style="font-size: 15px;">Assigned To</label>
+                        <select name="assigned_to[]" id="editAssignedTo" class="form-control shadow-sm" multiple>
+                            @foreach ($profiles as $profile)
+                                <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div> 
+            </div>   
+                    
+                    <!-- Add more form fields here for editing -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="saveChanges()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{{-- ------------------------------------- --}}
+
+{{-- <div class="modal" id="editModal" style="z-index: 1000;">
     <div class="modal-content" style="padding: 15px; max-width: 900px; margin-top: 15px;">
         <h4>Edit Task</h4>
         <form class="edit-card-form" style="display: flex;" action="{{ route('tasks.update', $task->id) }}" method="POST" enctype="multipart/form-data">
@@ -246,13 +343,13 @@
     </div>
         </form>
     </div>
-</div>
+</div> --}}
 
 
 
 </body>
 <!-- partial -->
-    
+
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/bundle.fa06bd827b69c86d1e5c.js') }}"></script>
 <script src="{{ asset('js/bundle.779c8b3edfadced3283a.js') }}"></script>
@@ -299,5 +396,74 @@ $(document).ready(function() {
 });
 </script>
 
+<script>
+    var tasks = @json($tasks);
+</script>
+
+
+<script>
+    function openEditModal(taskId) {
+        var task = tasks.find(function(item) {
+            return item.id == taskId;
+        });
+
+        if (task) {
+            $('#editTaskTitle').val(task.title);
+            $('#editTaskPriority').val(task.priority);
+            $('#editTaskDetails').val(task.details);
+            $('#editEstimatedTimeNumber').val(task.estimated_time_number);
+            $('#editEstimatedTimeUnit').val(task.estimated_time_unit); 
+            // Populate other form fields similarly
+
+          // Fetch assigned user IDs from the task object
+        var assignedToIds = task.assigned_to;
+
+        // Fetch user profiles from the TaskController data
+        var profiles = @json($profiles);
+
+        // Filter profiles based on assigned user IDs
+        var assignedProfiles = profiles.filter(function(profile) {
+            return assignedToIds.includes(profile.id);
+        });
+
+        // Populate "Assigned To" dropdown using filtered profiles
+        var $editAssignedTo = $('#editAssignedTo');
+        $editAssignedTo.empty(); // Clear previous options
+
+        assignedProfiles.forEach(function(profile) {
+            $editAssignedTo.append($('<option>', {
+                value: profile.id,
+                text: profile.profile_name,
+                selected: 'selected'
+            }));
+        });
+
+        // Initialize Select2 for the populated dropdown
+        $editAssignedTo.select2({
+            placeholder: 'Select users',
+            // Add any additional configuration options as needed
+        });
+
+            $('#editModal').modal('show');
+        }
+    }
+
+    function saveChanges() {
+    // Get the form data
+    var formData = $('#editTaskForm').serialize();
+
+    // Get the task ID from the form action attribute
+    var taskId = $('#editTaskForm').attr('action').split('/').pop();
+
+    // Perform the form submission using POST request
+    $.post('{{ route('tasks.update', ['task' => ':task_id']) }}'.replace(':task_id', taskId), formData, function(response) {
+        // Handle response if needed
+        $('#editModal').modal('hide'); // Hide the modal
+        location.reload(); // Refresh the page to reflect the changes
+    });
+}
+
+
+</script>
 
 @endsection

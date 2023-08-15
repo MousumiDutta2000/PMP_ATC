@@ -75,7 +75,7 @@ class TaskController extends Controller
         $tasks = Task::all();
         $profiles= Profile::all();
         $projects= Project::all();
-        return view('tasks.edit', compact('tasks','profiles','projects'));
+        return view('tasks.edit', compact('task','tasks','profiles','projects'));
     }
 
     public function update(Request $request, Task $task)
