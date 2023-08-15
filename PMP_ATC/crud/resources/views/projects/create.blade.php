@@ -352,24 +352,122 @@ $(document).ready(function() {
 
 <!-- ADD Member $ EDIT Member JS -->
 <script>
+    $(document).ready(function() {
+        // Plus sign click event handler: show the add member modal
+        $('#plusSign').click(function() {
+            $('#myModal').modal('show');
+        });
 
-function checkFieldsInSection(sectionNumber) {
-    var sectionSelector = "#section-" + sectionNumber;
+        // Add member button click event handler
 
-    var requiredInputs = $(sectionSelector + " :input[required]");
-    var isValid = true;
+        $("#addMemberBtn").click(function() {
+            var memberName = $("#project_members_id option:selected").text();
+            var memberId = $("#project_members_id").val();
+            var role = $("#project_role_id option:selected").text();
+            var roleId = $("#project_role_id").val();
 
-    requiredInputs.each(function () {
-        if (!$(this).val()) {
-            isValid = false;
-            return false; // Exit the loop if an empty required field is found
+            if (memberName && role) {
+                var cardHtml = `
+                <div class="col-md-3 member-container">
+                    <div class="card mb-0 mt-3">
+                        <div class="card-body mb-2">
+                            <div class="avatar avatar-blue">
+                            <img class="rounded_circle mb-1 mt-3" src="${getProfileImage(memberId)}" alt="Profile Image">
+                            </div>
+                            <p class="card-title user-name">${memberName}</p>
+                            <p class="card-text role">${role}</p>
+                            <i class="fa fa-edit edit-icon"></i>
+                            <input type="hidden" name="project_members_id[]" value="${memberId}">
+                            <input type="hidden" name="project_role_id[]" value="${roleId}">
+                        </div>
+                    </div>
+                </div>`;
+
+                $("#memberCardContainer").append(cardHtml);
+            }
+
+            $("#myModal").modal("hide");
+
+            $('#myModal').on('show.bs.modal', function () {
+                $('#project_members_id').val(null).trigger('change');
+                $('#project_role_id').val(null).trigger('change');
+            });
+        });
+        
+        // Function to get profile image URL by member ID
+        function getProfileImage(memberId) {
+            @foreach ($projectMembers as $projectMember)
+                if ('{{ $projectMember->id }}' === memberId) {
+                    return '{{ asset($projectMember->image) }}';
+                }
+            @endforeach
+            // If no matching member ID is found, return a default image URL
+            return '{{ asset('images/default-profile-image.png') }}'; // Replace 'images/default-profile-image.png' with the path to your default profile image
         }
+
+        // Edit Member button click event handler
+        $(document).on('click', '.edit-icon', function() {
+            // Get the current member name and role from the card
+            var card = $(this).closest('.card');
+            var memberName = card.find('.user-name').text();
+            var memberRole = card.find('.role').text();
+
+            // Set the values in the edit modal input fields
+            // $('#editFieldName').val(memberName);
+            $('#editRoleSelect').val(memberRole).trigger('change'); // Trigger change event to update select2 dropdown
+
+            // Store a reference to the card being edited
+            $('#editModal').data('card', card);
+
+            // Show the edit modal
+            $('#editModal').modal('show');
+        });
+
+        // Update Member button click event handler
+        $('#updateMemberBtn').click(function() {
+            // Get the updated member role from the edit modal input field
+            var updatedMemberRole = $('#edit_project_role_id option:selected').text();
+
+            // Get the reference to the card being edited
+            var card = $('#editModal').data('card');
+
+            // Update the card with the new member role
+            card.find('.role').text(updatedMemberRole);
+
+            // Hide the edit modal
+            $('#editModal').modal('hide');
+        });
+
+        // Remove Member button click event handler
+        $('#removeBtn').click(function() {
+        // Get the reference to the card being edited
+        var card = $('#editModal').data('card');
+
+        // Remove the card from the container
+        card.parent().remove();
+
+        // Hide the edit modal
+        $('#editModal').modal('hide');
+        });
     });
 
-    return isValid;
-}
+    function checkFieldsInSection(sectionNumber) {
+        var sectionSelector = "#section-" + sectionNumber;
 
-$("#nextButton").click(function () {
+        var requiredInputs = $(sectionSelector + " :input[required]");
+        var isValid = true;
+
+        requiredInputs.each(function () {
+            if (!$(this).val()) {
+                isValid = false;
+                return false; // Exit the loop if an empty required field is found
+            }
+        });
+
+        return isValid;
+    }
+
+    $("#nextButton").click(function () {
         var currentSectionNumber = 1; // Change this to the current section number
 
         if (checkFieldsInSection(currentSectionNumber)) {
@@ -405,108 +503,6 @@ $("#nextButton").click(function () {
             document.getElementById('page-number-2').style.display = 'block';
         } 
     }
-
-
-
-
-$(document).ready(function() {
-    // Plus sign click event handler: show the add member modal
-    $('#plusSign').click(function() {
-        $('#myModal').modal('show');
-    });
-
-    // Add member button click event handler
-
-    $("#addMemberBtn").click(function() {
-        var memberName = $("#project_members_id option:selected").text();
-        var memberId = $("#project_members_id").val();
-        var role = $("#project_role_id option:selected").text();
-        var roleId = $("#project_role_id").val();
-
-        if (memberName && role) {
-            var cardHtml = `
-            <div class="col-md-3 member-container">
-                <div class="card mb-0 mt-3">
-                    <div class="card-body mb-2">
-                        <div class="avatar avatar-blue">
-                        <img class="rounded_circle mb-1 mt-3" src="${getProfileImage(memberId)}" alt="Profile Image">
-                        </div>
-                        <p class="card-title user-name">${memberName}</p>
-                        <p class="card-text role">${role}</p>
-                        <i class="fa fa-edit edit-icon"></i>
-                        <input type="hidden" name="project_members_id[]" value="${memberId}">
-                        <input type="hidden" name="project_role_id[]" value="${roleId}">
-                    </div>
-                </div>
-            </div>`;
-
-            $("#memberCardContainer").append(cardHtml);
-        }
-
-        $("#myModal").modal("hide");
-
-        $('#myModal').on('show.bs.modal', function () {
-            $('#project_members_id').val(null).trigger('change');
-            $('#project_role_id').val(null).trigger('change');
-        });
-    });
-    
-    // Function to get profile image URL by member ID
-    function getProfileImage(memberId) {
-        @foreach ($projectMembers as $projectMember)
-            if ('{{ $projectMember->id }}' === memberId) {
-                return '{{ asset($projectMember->image) }}';
-            }
-        @endforeach
-        // If no matching member ID is found, return a default image URL
-        return '{{ asset('images/default-profile-image.png') }}'; // Replace 'images/default-profile-image.png' with the path to your default profile image
-    }
-
-    // Edit Member button click event handler
-    $(document).on('click', '.edit-icon', function() {
-        // Get the current member name and role from the card
-        var card = $(this).closest('.card');
-        var memberName = card.find('.user-name').text();
-        var memberRole = card.find('.role').text();
-
-        // Set the values in the edit modal input fields
-        // $('#editFieldName').val(memberName);
-        $('#editRoleSelect').val(memberRole).trigger('change'); // Trigger change event to update select2 dropdown
-
-        // Store a reference to the card being edited
-        $('#editModal').data('card', card);
-
-        // Show the edit modal
-        $('#editModal').modal('show');
-    });
-
-    // Update Member button click event handler
-    $('#updateMemberBtn').click(function() {
-        // Get the updated member role from the edit modal input field
-        var updatedMemberRole = $('#edit_project_role_id option:selected').text();
-
-        // Get the reference to the card being edited
-        var card = $('#editModal').data('card');
-
-        // Update the card with the new member role
-        card.find('.role').text(updatedMemberRole);
-
-        // Hide the edit modal
-        $('#editModal').modal('hide');
-    });
-
-    // Remove Member button click event handler
-    $('#removeBtn').click(function() {
-    // Get the reference to the card being edited
-    var card = $('#editModal').data('card');
-
-    // Remove the card from the container
-    card.parent().remove();
-
-    // Hide the edit modal
-    $('#editModal').modal('hide');
-    });
-});
 
 </script>
 

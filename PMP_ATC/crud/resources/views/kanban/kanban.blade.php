@@ -271,6 +271,21 @@ $(document).ready(function() {
 
 <script>
 // Add this code in your JavaScript section
+
+function deleteCard(cardId) {
+    if (confirm('Are you sure you want to delete this card?')) {
+        // Send an AJAX request to delete the card
+        $('#task' + cardId).remove();
+        $.ajax({
+            type: 'DELETE',
+            url: '/tasks/' + cardId, // Adjust the URL based on your application's routes
+            data: {
+                _token: '{{ csrf_token() }}', // Add CSRF token for security
+            },
+        });
+    }
+}
+
 $(document).ready(function() {
     $('.card__header-clear i').on('click', function() {
         const cardId = $(this).data('task-id');
@@ -278,24 +293,5 @@ $(document).ready(function() {
     });
 });
 
-function deleteCard(cardId) {
-    if (confirm('Are you sure you want to delete this card?')) {
-        // Send an AJAX request to delete the card
-        $.ajax({
-            type: 'DELETE',
-            url: '/tasks/' + cardId, // Adjust the URL based on your application's routes
-            data: {
-                _token: '{{ csrf_token() }}', // Add CSRF token for security
-            },
-            success: function(response) {
-                // Assuming you want to remove the card from the UI as well
-                $('#task' + cardId).remove();
-            },
-            error: function(error) {
-                console.error('Error deleting card:', error);
-            }
-        });
-    }
-}
 </script>
 @endsection
