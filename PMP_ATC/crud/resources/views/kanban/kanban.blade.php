@@ -190,7 +190,7 @@
     </div>
 
     <!-- Edit Modal -->
-    <div class="modal" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" data-bs-backdrop="static">
+    <div class="modal" id="editModal" tabindex="-1" aria-labelledby="editModalLabel">
         <div class="modal-dialog">
             <div class="modal-content modal-design" style="width: 900px;">
                 <div class="modal-header">
@@ -249,20 +249,21 @@
                             </div>
                         </div> 
 
-                    <div class="col-md-6">
-
                         <div class="form-group">
+                            
                             <label for="editAssignedTo" style="font-size: 15px;">Assigned To</label>
-                            <select name="assigned_to[]" id="editAssignedTo" class="form-control shadow-sm" multiple>
-                                @foreach ($profiles as $profile)
-                                    <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
-                                @endforeach
-                            </select>
+                            <div id="editAssigned-wrapper" class="shadow-sm" style="font-size: 14px;">
+                                <select name="assigned_to[]" id="editAssignedTo" class="form-control" required style="width: 100%;" multiple>
+                                    <option value="">Select usrs</option>
+                                    @foreach ($profiles as $profile)
+                                        <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div> 
-                </div>   
+                    </div>   
                         
-                        <!-- Add more form fields here for editing -->
+                     
                     </form>
                     @endisset
                 </div>
@@ -446,10 +447,31 @@ $(document).ready(function() {
 <script>
     var tasks = @json($tasks);
 </script>
+<script>
+    $(document).ready(function() {
+        $('#editAssignedTo').select2({
+            placeholder: 'Select users',
+            dropdownParent: $('#editAssigned-wrapper'),
+            templateResult: formatUser,
+            templateSelection: formatUser
+        });
+    
+        function formatUser(profile) {
+            if (!profile.id) {
+                return profile.text;
+            }
+            
+            return $('<span><img class="avatar" src="' + profile.avatar + '"> ' + profile.text + '</span>');
+            
+        }
+    });
+    </script>
 
 
 <script>
+
     function openEditModal(taskId) {
+        
         var task = tasks.find(function(item) {
             return item.id == taskId;
         });
@@ -465,35 +487,24 @@ $(document).ready(function() {
             $('#editEstimatedTimeUnit').val(estimatedTimeParts[1]);
         }
 
-          // Fetch assigned user IDs from the task object
-        var assignedToIds = task.assigned_to;
+        // Populate Assigned To field
 
-        // Fetch user profiles from the TaskController data
-        var profiles = @json($profiles);
-
-        // Filter profiles based on assigned user IDs
-        var assignedProfiles = profiles.filter(function(profile) {
-            return assignedToIds.includes(profile.id);
-        });
-
-        // Populate "Assigned To" dropdown using filtered profiles
+        var assignedToIds = task.assigned_to.split(','); // Convert comma-separated string to array
         var $editAssignedTo = $('#editAssignedTo');
         $editAssignedTo.empty(); // Clear previous options
 
-        assignedProfiles.forEach(function(profile) {
+        var profiles = @json($profiles);
+
+        profiles.forEach(function(profile) {
+            var isSelected = assignedToIds.includes(profile.id.toString()); // Check if profile ID is in the assignedToIds array
             $editAssignedTo.append($('<option>', {
                 value: profile.id,
                 text: profile.profile_name,
-                selected: 'selected'
+                selected: isSelected
             }));
         });
 
-        // Initialize Select2 for the populated dropdown
-        $editAssignedTo.select2({
-            placeholder: 'Select users',
-            // Add any additional configuration options as needed
-        });
-
+       
         // Set the form action dynamically using the task ID
         $('#editTaskForm').attr('action', '/tasks/' + task.id);
 
