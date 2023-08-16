@@ -121,8 +121,8 @@ Route::middleware([
         Route::get('/create', [TaskController::class, 'create'])->name('tasks.create');
         Route::get('/{task}', [TaskController::class, 'show'])->name('tasks.show');
         Route::get('/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
-        // Route::put('/{task}', [TaskController::class, 'update'])->name('tasks.update');
-        Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+        Route::put('/{task}', [TaskController::class, 'update'])->name('tasks.update');
+        // Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
 
         Route::delete('/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     });

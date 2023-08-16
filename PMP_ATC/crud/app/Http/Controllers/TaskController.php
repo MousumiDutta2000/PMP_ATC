@@ -102,12 +102,14 @@ class TaskController extends Controller
 
         $assignedTo = $request->assigned_to;
         foreach ($assignedTo as $userId) {
-            $taskUser = new TaskUser([
-                'task_id' => $task->id,
-                'assigned_to' => auth()->user()->id,
-            ]);
-            $taskUser->assigned_to = $userId;
-            $taskUser->save();
+            // Check if the relationship already exists before creating a new entry
+            if (!$task->taskUsers->contains('assigned_to', $userId)) {
+                $taskUser = new TaskUser([
+                    'task_id' => $task->id,
+                    'assigned_to' => $userId,
+                ]);
+                $taskUser->save();
+            }
         }
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
     }

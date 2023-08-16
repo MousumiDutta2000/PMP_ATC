@@ -19,7 +19,10 @@ class Task extends Model
         return $this->hasMany(TaskUser::class, 'task_id');
     }
 
-    
+    // public function assignedToUserIds()
+    // {
+    //     return explode(',', $this->assigned_to);
+    // }
 
     public function projectTaskStatus()
     {
