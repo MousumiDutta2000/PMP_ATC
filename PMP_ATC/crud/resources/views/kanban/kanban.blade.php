@@ -258,9 +258,8 @@
                     </div>
                 </div> 
             </div>   
-                    
-                    <!-- Add more form fields here for editing -->
-                </form>
+                 
+            </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeEditModal()">Cancel</button>
@@ -439,9 +438,13 @@ function deleteCard(cardId) {
             // Add any additional configuration options as needed
         });
 
+        // Set the form action dynamically using the task ID
+        $('#editTaskForm').attr('action', '/tasks/' + task.id);
+
             $('#editModal').modal('show');
         }
     }
+    
 
     function saveChanges() {
     // Get the form data
@@ -450,13 +453,65 @@ function deleteCard(cardId) {
     // Get the task ID from the form action attribute
     var taskId = $('#editTaskForm').attr('action').split('/').pop();
 
-    // Perform the form submission using POST request
-    $.post('{{ route('tasks.update', ['task' => ':task_id']) }}'.replace(':task_id', taskId), formData, function(response) {
-        // Handle response if needed
+    // Perform the form submission using PUT request
+    $.ajax({
+        type: 'PUT',
+        url: '/tasks/' + taskId,
+        data: formData,
+        success: function(response) {
+    // Handle response if needed
         $('#editModal').modal('hide'); // Hide the modal
         location.reload(); // Refresh the page to reflect the changes
+},
+
+        error: function(error) {
+            console.error('Error updating task:', error);
+        }
     });
 }
+
+
+
+
+//     function saveChanges() {
+//     // Get the form data
+//     var formData = $('#editTaskForm').serialize();
+
+//     // Get the task ID from the form action attribute
+//     var taskId = $('#editTaskForm').attr('action').split('/').pop();
+
+//     // Perform the form submission using PUT request
+//     $.ajax({
+//         type: 'PUT',
+//         url: '/tasks/' + taskId,
+//         data: formData,
+//         success: function(response) {
+//             // Handle response if needed
+//             $('#editModal').modal('hide'); // Hide the modal
+//             location.reload(); // Refresh the page to reflect the changes
+//         },
+//         error: function(error) {
+//             console.error('Error updating task:', error);
+//         }
+//     });
+// }
+
+    
+
+//     function saveChanges() {
+//     // Get the form data
+//     var formData = $('#editTaskForm').serialize();
+
+//     // Get the task ID from the form action attribute
+//     var taskId = $('#editTaskForm').attr('action').split('/').pop();
+
+//     // Perform the form submission using POST request
+//     $.post('{{ route('tasks.update', ['task' => ':task_id']) }}'.replace(':task_id', taskId), formData, function(response) {
+//         // Handle response if needed
+//         $('#editModal').modal('hide'); // Hide the modal
+//         location.reload(); // Refresh the page to reflect the changes
+//     });
+// }
 
 
 function closeEditModal() {
