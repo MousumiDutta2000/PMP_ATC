@@ -94,6 +94,9 @@ Route::middleware([
     Route::resource('designations', DesignationController::class);
     Route::resource('user_work_details', UserWorkDetailController::class);
 
+    Route::post('/get-tasks/{projectId}', [UserWorkDetailController::class,'getTasksForProject']);
+
+
     Route::resource('technologies', TechnologyController::class);
     Route::resource('sprints', SprintController::class);
     Route::get('/exports', [SprintController::class, 'export'])->name('sprints.export');
@@ -118,12 +121,11 @@ Route::middleware([
         Route::get('/create', [TaskController::class, 'create'])->name('tasks.create');
         Route::get('/{task}', [TaskController::class, 'show'])->name('tasks.show');
         Route::get('/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
-        Route::put('/{task}', [TaskController::class, 'update'])->name('tasks.update');
+        // Route::put('/{task}', [TaskController::class, 'update'])->name('tasks.update');
+        Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+
         Route::delete('/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     });
-       
-    
-    
     
     // Route::resource('tasks', TaskController::class)->except([
     // 'store' // Exclude the store route from the resource routes

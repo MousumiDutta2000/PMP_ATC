@@ -22,18 +22,19 @@ class UserWorkDetailController extends Controller
 
     public function create()
     {
-        // Fetch distinct project IDs from the ProjectTaskStatus model's relationship with the Project model
         $distinctProjectIds = ProjectTaskStatus::with('project')->distinct('project_id')->pluck('project_id');
 
-        // Fetch projects based on the distinct project IDs
-        $projects = Project::whereIn('id', $distinctProjectIds)->get();
-
-        $tasks = Task::all();
+        $projectTaskStatusIds = ProjectTaskStatus::whereIn('project_id', $distinctProjectIds)->pluck('id');
+    
+        $tasks = Task::whereIn('project_task_status_id', $projectTaskStatusIds)->get();
+    
         $projects = Project::all();
         $workTypes = WorkType::all();
         $projectManagersByProject = $projects->pluck('project_manager_id', 'id')->toArray();
-        return view('user_work_details.create', compact('projects', 'projectManagersByProject', 'tasks', 'workTypes', 'projects',));
-    }
+    
+        return view('user_work_details.create', compact('projects', 'projectManagersByProject', 'tasks', 'workTypes', 'distinctProjectIds', 'projectTaskStatusIds',));
+    }    
+    
       
 
     public function store(Request $request)
@@ -89,5 +90,15 @@ class UserWorkDetailController extends Controller
         $userWorkDetail->delete();
         return redirect()->route('user_work_details.index');
     }
+
+    public function getTasksForProject($projectId)
+    {
+        $tasks = Task::whereHas('projectTaskStatus', function ($query) use ($projectId) {
+            $query->where('project_id', $projectId);
+        })->get();
     
+        return response()->json($tasks);
+    }
+    
+
 }

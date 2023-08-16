@@ -14,5 +14,10 @@ class ProjectTaskStatus extends Model
     {
         return $this->belongsTo(Project::class, 'project_id');
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'project_task_status_id');
+    }
 }
 

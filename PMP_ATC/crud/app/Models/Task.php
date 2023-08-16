@@ -19,8 +19,10 @@ class Task extends Model
         return $this->hasMany(TaskUser::class, 'task_id');
     }
 
+    
+
     public function projectTaskStatus()
     {
-        return $this->belongsTo(ProjectTaskStatus::class, 'project_task_status_id');
+        return $this->belongsTo(ProjectTaskStatus::class);
     }
 }

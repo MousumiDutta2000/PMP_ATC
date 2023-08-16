@@ -537,6 +537,15 @@ a {
   margin-top: 5px;
 }
 
+.modal-design{
+  /* width: 900px; */
+  padding: 15px;
+  margin-top: 15px;
+  position: fixed;
+  /* left: 266px; */
+  right: 133px;
+}
+
 .active-area .kanban__sidebar-settings {
   color: var(--colorLogo);
 }

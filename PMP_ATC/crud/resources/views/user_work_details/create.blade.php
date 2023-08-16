@@ -21,27 +21,31 @@
                 <div class="col-md-6">
                     <div class="form-group mt-2">
                         <label for="project_id">Project:</label>
-                        <select name="project_id" id="project_id" class="form-control">
+                        <select name="project_id" id="project_id" class="form-control" onchange="onchangeDropdown(this.value);">
                             <option value="">Select Project</option>
-                            @foreach ($projects as $project)
+                            @foreach ($distinctProjectIds as $projectId)
+                                @php
+                                    $project = App\Models\Project::find($projectId);
+                                @endphp
                                 <option value="{{ $project->id }}">{{ $project->project_name }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-                
+ 
                 <div class="col-md-6">
                     <div class="form-group mt-2">
                         <label for="task_id">Task:</label>
                         <select name="task_id" id="task_id" class="form-control">
                             <option value="">Select Task</option>
                             @foreach ($tasks as $task)
-                                <option value="{{ $task->id }}">{{ $task->title }}</option>
+                                <option value="{{ $task->id }}" data-project-id="{{ $task->projectTaskStatus->project_id }}">
+                                    {{ $task->title }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-
 
                 <div class="col-md-6">
                     <div class="form-group mt-2">
@@ -82,6 +86,8 @@
     </div>
 </div>
 @endsection
+
+
 
 @section('custom_css')
 <style>
@@ -138,4 +144,34 @@
 @endsection
 
 @section('custom_js')
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script>
+    function onchangeDropdown(projectId) {
+        var taskDropdown = document.getElementById('task_id');
+        taskDropdown.innerHTML = '<option value="">Select Task</option>'; // Reset tasks dropdown
+
+        if (projectId) {
+            jQuery.ajax({
+                method: "POST",
+                url: '/get-tasks/' + projectId,
+                data: {"_token": "{{ csrf_token() }}"}
+            })
+            .done(function(data) {
+                if (data.length > 0) {
+                    data.forEach(task => {                        
+                        var option = document.createElement('option');
+                        option.value = task.id;
+                        option.text = task.title;
+                        taskDropdown.appendChild(option);
+                    });
+                } else {
+                    var option = document.createElement('option');
+                    option.value = "";
+                    option.text = "No tasks available for this project";
+                    taskDropdown.appendChild(option);
+                }
+            });
+        }
+    }
+</script>
 @endsection
