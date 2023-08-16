@@ -190,7 +190,7 @@
     </div>
 
     <!-- Edit Modal -->
-    <div class="modal" id="editModal" tabindex="-1" aria-labelledby="editModalLabel">
+    <div class="modal" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" data-bs-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content modal-design" style="width: 900px;">
                 <div class="modal-header">
@@ -199,7 +199,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                
                 <div class="modal-body">
+                    @isset($task)
                     <form id="editTaskForm" action="{{ route('tasks.update', $task->id) }}" method="POST">
                         @csrf
                         @method('PUT') <!-- Add this line to specify the HTTP method for updating -->
@@ -223,31 +225,29 @@
                         </div>
                     </div>   
                     
-                    <div class="col-md-6">
+                    
                         <div class="form-group">
                             <label for="editTaskDetails">Details</label>
                             <textarea class="form-control" id="editTaskDetails" name="details"></textarea>
                         </div>
-                    </div>
                     
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="estimated_time" style="font-size: 15px;">Estimated Time</label>
-                            <div class="input-group">
-                                <!-- Input field for estimated time number -->
-                                <input type="number" name="estimated_time_number" id="estimated_time_number" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" value="{{ old('estimated_time_number', explode(' ', $task->estimated_time)[0]) }}">
-                                <div class="input-group-append">
-                                    <!-- Dropdown for estimated time unit -->
-                                    <select name="estimated_time_unit" id="estimated_time_unit" class="form-control shadow-sm" style="height:39px; color: #858585; font-size: 14px;">
-                                        <option value="hour" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'hour' ? 'selected' : '' }}>Hour</option>
-                                        <option value="day" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'day' ? 'selected' : '' }}>Day</option>
-                                        <option value="month" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'month' ? 'selected' : '' }}>Month</option>
-                                        <option value="year" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'year' ? 'selected' : '' }}>Year</option>
-                                    </select>
+                    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="editEstimatedTime">Estimated Time</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="editEstimatedTimeNumber" name="estimated_time_number">
+                                    <div class="input-group-append">
+                                        <select class="form-control" id="editEstimatedTimeUnit" name="estimated_time_unit">
+                                            <option value="hour">Hour</option>
+                                            <option value="day">Day</option>
+                                            <option value="month">Month</option>
+                                            <option value="year">Year</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>   
+                        </div> 
 
                     <div class="col-md-6">
 
@@ -264,6 +264,7 @@
                         
                         <!-- Add more form fields here for editing -->
                     </form>
+                    @endisset
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeEditModal()">Cancel</button>
@@ -457,9 +458,12 @@ $(document).ready(function() {
             $('#editTaskTitle').val(task.title);
             $('#editTaskPriority').val(task.priority);
             $('#editTaskDetails').val(task.details);
-            $('#editEstimatedTimeNumber').val(task.estimated_time_number);
-            $('#editEstimatedTimeUnit').val(task.estimated_time_unit); 
-            // Populate other form fields similarly
+           
+            var estimatedTimeParts = task.estimated_time.split(' ');
+        if (estimatedTimeParts.length === 2) {
+            $('#editEstimatedTimeNumber').val(estimatedTimeParts[0]);
+            $('#editEstimatedTimeUnit').val(estimatedTimeParts[1]);
+        }
 
           // Fetch assigned user IDs from the task object
         var assignedToIds = task.assigned_to;
@@ -497,59 +501,6 @@ $(document).ready(function() {
         }
     }
     
-
-//     function saveChanges() {
-//     // Get the form data
-//     var formData = $('#editTaskForm').serialize();
-
-//     // Get the task ID from the form action attribute
-//     var taskId = $('#editTaskForm').attr('action').split('/').pop();
-
-//     // Perform the form submission using PUT request
-//     $.ajax({
-//         type: 'PUT',
-//         url: '/tasks/' + taskId,
-//         data: formData,
-//         success: function(response) {
-//     // Handle response if needed
-//         $('#editModal').modal('hide'); // Hide the modal
-//         location.reload(); // Refresh the page to reflect the changes
-// },
-
-//         error: function(error) {
-//             console.error('Error updating task:', error);
-//         }
-//     });
-// }
-
-
-
-
-//     function saveChanges() {
-//     // Get the form data
-//     var formData = $('#editTaskForm').serialize();
-
-//     // Get the task ID from the form action attribute
-//     var taskId = $('#editTaskForm').attr('action').split('/').pop();
-
-//     // Perform the form submission using PUT request
-//     $.ajax({
-//         type: 'PUT',
-//         url: '/tasks/' + taskId,
-//         data: formData,
-//         success: function(response) {
-//             // Handle response if needed
-//             $('#editModal').modal('hide'); // Hide the modal
-//             location.reload(); // Refresh the page to reflect the changes
-//         },
-//         error: function(error) {
-//             console.error('Error updating task:', error);
-//         }
-//     });
-// }
-
-    
-
     function saveChanges() {
     // Get the form data
     var formData = $('#editTaskForm').serialize();
