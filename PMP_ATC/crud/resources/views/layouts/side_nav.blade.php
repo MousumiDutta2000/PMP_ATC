@@ -2,12 +2,10 @@
 <html lang="en">
 
 <head>
-  @yield('custom_css')
-  @yield('custom_js')
+  @yield('custom_css') 
   @yield('project_css')
-  @yield('project_js')
   @yield('kanban_css')
-  @yield('kanban_js')
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title></title>
@@ -364,7 +362,7 @@
 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+  
   <!-- Vendor JS Files -->
   <script src="{{ asset('vendor/apexcharts/apexcharts.min.js') }}"></script>
   <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -377,7 +375,9 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('js/main.js') }}"></script>
-
+  @yield('custom_js')
+  @yield('project_js')  
+  @yield('kanban_js')
 </body>
 
 </html>
