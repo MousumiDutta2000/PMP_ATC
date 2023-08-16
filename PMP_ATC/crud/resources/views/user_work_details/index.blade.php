@@ -58,7 +58,7 @@
                             <td>{{ $userWorkDetail->date }}</td>
                             <td>{{ $userWorkDetail->start_time }}</td>
                             <td>{{ $userWorkDetail->end_time }}</td>
-                            <td>{{ $userWorkDetail->workType->name }}</td>
+                            <td>{{ $userWorkDetail->workType ? $userWorkDetail->workType->name : 'N/A' }}</td>
                             <td>{{ $userWorkDetail->notes }}</td>
                             <td>{{ $userWorkDetail->projectManager->name }}</td>
                             <td>
