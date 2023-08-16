@@ -118,7 +118,7 @@
             </div>
 
             <div style="text-align: right;">
-                <button type="button" class="btn btn-primary" onclick="showSection(2)">Next</button>
+            <button type="button" class="btn btn-primary" id="nextButton" onclick="showSection(2)">Next</button>
             </div>
         </div>
 
@@ -353,22 +353,60 @@ $(document).ready(function() {
 <!-- ADD Member $ EDIT Member JS -->
 <script>
 
-function showSection(sectionNumber) {
-    document.getElementById('section-1').style.display = 'none';
-    document.getElementById('section-2').style.display = 'none';
+function checkFieldsInSection(sectionNumber) {
+    var sectionSelector = "#section-" + sectionNumber;
 
-    document.getElementById('page-number-1').style.display = 'none';
-    document.getElementById('page-number-2').style.display = 'none';
+    var requiredInputs = $(sectionSelector + " :input[required]");
+    var isValid = true;
 
-    if (sectionNumber === 1) {
-        document.getElementById('section-1').style.display = 'block';
-        document.getElementById('page-number-1').style.display = 'block';
-    } else if (sectionNumber === 2) {
-        document.getElementById('section-2').style.display = 'block';
-        document.getElementById('page-number-2').style.display = 'block';
-    } 
-        
+    requiredInputs.each(function () {
+        if (!$(this).val()) {
+            isValid = false;
+            return false; // Exit the loop if an empty required field is found
+        }
+    });
+
+    return isValid;
 }
+
+$("#nextButton").click(function () {
+        var currentSectionNumber = 1; // Change this to the current section number
+
+        if (checkFieldsInSection(currentSectionNumber)) {
+            showSection(currentSectionNumber + 1);
+        } else {
+            // Do not proceed if required fields are missing
+            alert("Please fill in all the required fields before proceeding.");
+        }
+    });
+
+    function showSection(sectionNumber) {
+        var currentSectionNumber = 1; // Change this to the current section number
+
+        if (sectionNumber === currentSectionNumber + 1) {
+            // Check if all required fields in the current section are filled
+            if (!checkFieldsInSection(currentSectionNumber)) {
+                alert("Please fill in all the required fields before proceeding.");
+                return; // Prevent moving to the next section
+            }
+        }
+
+        document.getElementById('section-1').style.display = 'none';
+        document.getElementById('section-2').style.display = 'none';
+
+        document.getElementById('page-number-1').style.display = 'none';
+        document.getElementById('page-number-2').style.display = 'none';
+
+        if (sectionNumber === 1) {
+            document.getElementById('section-1').style.display = 'block';
+            document.getElementById('page-number-1').style.display = 'block';
+        } else if (sectionNumber === 2) {
+            document.getElementById('section-2').style.display = 'block';
+            document.getElementById('page-number-2').style.display = 'block';
+        } 
+    }
+
+
 
 
 $(document).ready(function() {

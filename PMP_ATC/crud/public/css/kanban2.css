@@ -30,6 +30,8 @@
 
 .kanban-block,
 .create-new-task-block {
+  margin-left: 8px;
+  margin-right: 54px;
   padding: 0.6rem;
   width: 22.5%;
   min-width: 14rem;
@@ -1215,11 +1217,6 @@ a {
   font-weight: bold;
   margin: 0 10px;
   word-wrap: break-word;
-  /* margin-top: -17px; */
-}
-
-.edit-ico{
-  margin-right: 8px;
 }
 
 .card__menu {
@@ -1619,4 +1616,36 @@ font-family: Roboto, sans-serif !important;
   margin-left: -4px;
   margin-top: -2px;top: 50%;
   width: 0;cursor: pointer
+}
+
+.scroll-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  width: 40px; /* Set width and height for a circular button */
+  height: 40px;
+  border-radius: 50%; /* Create a circular shape */
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.scroll-button i {
+  margin-top: 4px;
+  margin-right: 7px;
+  font-size: 28px;
+  color: #333;
+}
+
+.kanban-board-container {
+  display: flex;
+  overflow-x: hidden;
+  scroll-behavior: smooth; /* Enable smooth scrolling */
+  padding-right: 60px; /* Add padding to make space for the scroll button */
 }

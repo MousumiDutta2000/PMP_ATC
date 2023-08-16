@@ -124,6 +124,7 @@ Route::middleware([
        
     
     
+    
     // Route::resource('tasks', TaskController::class)->except([
     // 'store' // Exclude the store route from the resource routes
     // ]);
