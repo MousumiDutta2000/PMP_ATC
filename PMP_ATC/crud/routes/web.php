@@ -113,7 +113,8 @@ Route::middleware([
     Route::resource('task_status', TaskStatusController::class);
     
     Route::get('/kanban/{projectId}', [KanbanController::class, 'showKanban'])->name('kanban');
-    // Route::post('/kanban/store', [KanbanController::class, 'store'])->name('kanban.store');
+    Route::post('/update-task-status', [KanbanController::class, 'updateTaskStatus'])->name('update-task-status');
+
 
     Route::prefix('tasks')->group(function () {
         Route::post('/store', [TaskController::class, 'store'])->name('tasks.store');
