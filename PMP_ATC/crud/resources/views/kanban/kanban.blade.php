@@ -54,18 +54,16 @@
                                         <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
                                     @endif
                                 </div>
-                                <!-- <div class="card__header-clear"><i class="material-icons">clear</i></div> -->
-                                <div class="card__header-clear">
-                                    <i class="material-icons" data-task-id="{{ $task->id }}">clear</i>
-                                </div>
-
-                            </div>
-
-                            <div class="edit-wrapper" style="margin-right: 6px;">
+                                
                                 <div class="edit-ico">
-                                     <i class="material-icons" onclick="openEditModal({{ $task->id }})">edit</i>
-                                </div>
+                                    <i class="fa-regular fa-pen-to-square" onclick="openEditModal({{ $task->id }})"></i>
+                               </div>
+
                             </div>
+
+                            {{-- <div class="edit-wrapper" style="margin-right: 6px;">
+                               
+                            </div> --}}
 
                             <div class="card__text">{{ $task->title }}</div>
                             <div class="card__details">{{ \Illuminate\Support\Str::limit(strip_tags($task->details), 20, $end='...') }}</div>
