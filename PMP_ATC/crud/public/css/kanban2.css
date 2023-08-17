@@ -1210,6 +1210,7 @@ a {
 }
 
 .card:hover .card__header-clear {
+  
   display: flex;
 }
 
