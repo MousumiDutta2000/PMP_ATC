@@ -39,4 +39,19 @@ class KanbanController extends Controller
         
         return view('kanban.kanban', compact('taskStatusesWithIds', 'projectId', 'projectTypes','profiles','tasks','project'));
     }
+
+    public function updateTaskStatus(Request $request)
+{
+    $taskId = $request->input('taskId');
+    $statusId = $request->input('statusId');
+
+    // Update the task status in the database
+    $task = Task::findOrFail($taskId);
+    $task->project_task_status_id = $statusId;
+    $task->save();
+
+    // You can return a success response if needed
+    return response()->json(['message' => 'Task status updated successfully']);
+}
+
 }
