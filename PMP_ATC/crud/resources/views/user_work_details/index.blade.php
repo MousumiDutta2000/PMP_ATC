@@ -62,12 +62,39 @@
                             <td>{{ $userWorkDetail->notes }}</td>
                             <td>{{ $userWorkDetail->projectManager->name }}</td>
                             <td>
-                                <a href="{{ route('user_work_details.edit', $userWorkDetail->id) }}">Edit</a>
-                                <form method="post" action="{{ route('user_work_details.destroy', $userWorkDetail->id) }}" style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit">Delete</button>
-                                </form>
+                                <div class="d-flex">
+                                    <a href="{{ route('user_work_details.edit', $userWorkDetail->id) }}" data-toggle="tooltip" data-placement="top" title="Edit" class="mr-3">
+                                        <i class="fas fa-edit text-primary"></i>
+                                    </a>
+                                    <form method="post" action="{{ route('user_work_details.destroy', $userWorkDetail->id) }}">
+                                        @method('delete')
+                                        @csrf
+                                        <button type="button" class="btn btn-link p-0 delete-button" data-toggle="modal" data-placement="top" title="Delete" data-target="#deleteModal{{ $userWorkDetail->id }}">
+                                            <i class="fas fa-trash-alt text-danger mb-2" style="border: none;"></i>
+                                        </button>
+                                        <!-- Delete Modal start -->
+                                        <div class="modal fade" id="deleteModal{{ $userWorkDetail->id }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header flex-column">
+                                                        <div class="icon-box">
+                                                            <i class="material-icons">&#xE5CD;</i>
+                                                        </div>
+                                                        <h3 class="modal-title w-100">Are you sure?</h3>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Do you really want to delete this record?</p>
+                                                    </div>
+                                                    <div class="modal-footer justify-content-center">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Delete Modal end -->
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

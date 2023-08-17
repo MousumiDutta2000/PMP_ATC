@@ -54,36 +54,46 @@ class UserWorkDetailController extends Controller
         $data['profile_id'] = $profile_id;
         $data['project_manager_id'] = $project->Project_manager_id; // Retrieve from associated project
         $data['date'] = now(); // Set the current date
+
+        // dd($data);
     
-        UserWorkDetail::create($data);
+            // Find the WorkType model instance
+            $workType = WorkType::findOrFail($data['work_type_id']);
+
+            // Create a new UserWorkDetail instance
+            $userWorkDetail = new UserWorkDetail($data);
+
+            // Associate the WorkType with the UserWorkDetail
+            $userWorkDetail->workType()->associate($workType);
+
+            // Save the UserWorkDetail to the database
+            $userWorkDetail->save();
+
     
         return redirect()->route('user_work_details.index');
     }
     
+    
 
     public function edit(UserWorkDetail $userWorkDetail)
     {
-        $projects = Project::all();
-        $projectManagers = Project::pluck('project_manager')->unique();
-        $tasks = Task::where('project_id', $userWorkDetail->project_id)->get();
+        $projectManagers = Project::pluck('project_manager_id')->unique();
         $workTypes = WorkType::all();
-        return view('user_work_details.edit', compact('userWorkDetail', 'projects', 'projectManagers', 'tasks', 'workTypes',));
+        return view('user_work_details.edit', compact('userWorkDetail', 'projectManagers', 'workTypes',));
     }
 
     public function update(Request $request, UserWorkDetail $userWorkDetail)
     {
         $data = $request->validate([
-            'project_id' => 'required|exists:projects,id',
-            'task_id' => 'required|exists:tasks,id',
-            'work_type_id' => 'required|exists:work_types,id',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
+            'work_type_id' => 'required|exists:work_types,id',
             'notes' => 'nullable|string',
         ]);
-
+    
         $userWorkDetail->update($data);
         return redirect()->route('user_work_details.index');
-    }
+    }    
 
     public function destroy(UserWorkDetail $userWorkDetail)
     {

@@ -200,6 +200,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    @isset($task)
                     <form id="editTaskForm" action="{{ route('tasks.update', $task->id) }}" method="POST">
                         @csrf
                         @method('PUT') <!-- Add this line to specify the HTTP method for updating -->
@@ -263,6 +264,7 @@
                         
                         <!-- Add more form fields here for editing -->
                     </form>
+                    @endisset
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeEditModal()">Cancel</button>
