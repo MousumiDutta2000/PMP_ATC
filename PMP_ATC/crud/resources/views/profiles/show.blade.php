@@ -299,42 +299,43 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <div class="btn-group" role="group">
-                                        <a href="#" data-toggle="modal" data-target="#showModal_{{ $user_technology->id }}">
-                                            <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
-                                        </a>
-                                        <a href="#" data-toggle="modal" data-target="#editModal_{{ $user_technology->id }}">
-                                            <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
-                                        </a>
-                                        <form method="post" action="{{ route('user_technologies.destroy', $user_technology->id) }}">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#deleteskill{{$user_technology->id}}">
-                                                <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
-                                            </button>
-                                            <!-- Delete Skill Modal start -->
-                                            <div class="modal fade" id="deleteskill{{$user_technology->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteskillLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header flex-column">
-                                                            <div class="icon-box">
-                                                                <i class="material-icons">&#xE5CD;</i>
-                                                            </div>
-                                                            <h3 class="modal-title w-100">Are you sure?</h3>
+                                  <div class="btn-group d-flex align-items-center justify-content-center" role="group">
+                                    <a href="#" data-toggle="modal" data-target="#showModal_{{ $user_technology->id }}">
+                                        <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
+                                    </a>
+                                    <a href="#" data-toggle="modal" data-target="#editModal_{{ $user_technology->id }}">
+                                        <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
+                                    </a>
+                                    <form method="post" action="{{ route('user_technologies.destroy', $user_technology->id) }}">
+                                        @method('delete')
+                                        @csrf
+                                        <button type="button" class="btn btn-link p-0" data-toggle="modal" data-target="#deleteskill{{$user_technology->id}}">
+                                            <i class="fas fa-trash-alt text-danger" style="border: none;"></i>
+                                        </button>
+                                        <!-- Delete Skill Modal start -->
+                                        <div class="modal fade" id="deleteskill{{$user_technology->id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteskillLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header flex-column">
+                                                        <div class="icon-box">
+                                                            <i class="material-icons">&#xE5CD;</i>
                                                         </div>
-                                                        <div class="modal-body">
-                                                            <p>Do you really want to delete this skill?</p>
-                                                        </div>
-                                                        <div class="modal-footer justify-content-center">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                                        </div>
-                                                      </div>
+                                                        <h3 class="modal-title w-100">Are you sure?</h3>
                                                     </div>
-                                                  </div>
-                                            <!-- Delete Modal end-->
-                                        </form>
-                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Do you really want to delete this skill?</p>
+                                                    </div>
+                                                    <div class="modal-footer justify-content-center">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Delete Modal end-->
+                                    </form>
+                                </div>
+
                                 </td>
                             </tr>
                         @endif

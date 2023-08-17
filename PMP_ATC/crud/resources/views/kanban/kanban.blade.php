@@ -200,8 +200,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                
                 <div class="modal-body">
-                @isset($task)
+                    @isset($task)
                     <form id="editTaskForm" action="{{ route('tasks.update', $task->id) }}" method="POST">
                         @csrf
                         @method('PUT') <!-- Add this line to specify the HTTP method for updating -->
@@ -225,44 +226,45 @@
                             </div>
                         </div>   
                     
-                        <div class="form-group mb-3 mt-3">
-                            <label for="editTaskDetails" style="font-size: 15px;">Details</label>
-                            <textarea name="details" id="editTaskDetails" class="ckeditor form-control shadow-sm" required>{{ $task->details }}</textarea>
+                    
+                        <div class="form-group">
+                            <label for="editTaskDetails">Details</label>
+                            <textarea class="form-control" id="editTaskDetails" name="details"></textarea>
                         </div>
+                    
                     
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="estimated_time" style="font-size: 15px;">Estimated Time</label>
+                                <label for="editEstimatedTime">Estimated Time</label>
                                 <div class="input-group">
-                                    <!-- Input field for estimated time number -->
-                                    <input type="number" name="estimated_time_number" id="estimated_time_number" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" value="{{ old('estimated_time_number', explode(' ', $task->estimated_time)[0]) }}">
+                                    <input type="number" class="form-control" id="editEstimatedTimeNumber" name="estimated_time_number">
                                     <div class="input-group-append">
-                                        <!-- Dropdown for estimated time unit -->
-                                        <select name="estimated_time_unit" id="estimated_time_unit" class="form-control shadow-sm" style="height:39px; color: #858585; font-size: 14px;">
-                                            <option value="hour" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'hour' ? 'selected' : '' }}>Hour</option>
-                                            <option value="day" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'day' ? 'selected' : '' }}>Day</option>
-                                            <option value="month" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'month' ? 'selected' : '' }}>Month</option>
-                                            <option value="year" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'year' ? 'selected' : '' }}>Year</option>
+                                        <select class="form-control" id="editEstimatedTimeUnit" name="estimated_time_unit">
+                                            <option value="hour">Hour</option>
+                                            <option value="day">Day</option>
+                                            <option value="month">Month</option>
+                                            <option value="year">Year</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                        </div>   
+                        </div> 
 
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-                                <label for="editAssignedTo" style="font-size: 15px;">Assigned To</label>
-                                <select name="assigned_to[]" id="editAssignedTo" class="form-control shadow-sm" multiple>
+                        <div class="form-group">
+                            
+                            <label for="editAssignedTo" style="font-size: 15px;">Assigned To</label>
+                            <div id="editAssigned-wrapper" class="shadow-sm" style="font-size: 14px;">
+                                <select name="assigned_to[]" id="editAssignedTo" class="form-control" required style="width: 100%;" multiple>
+                                    <option value="">Select usrs</option>
                                     @foreach ($profiles as $profile)
                                         <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                        </div> 
+                        </div>
                     </div>   
                         
-                        <!-- Add more form fields here for editing -->
+                     
                     </form>
                     @endisset
                 </div>
@@ -446,10 +448,31 @@ $(document).ready(function() {
 <script>
     var tasks = @json($tasks);
 </script>
+<script>
+    $(document).ready(function() {
+        $('#editAssignedTo').select2({
+            placeholder: 'Select users',
+            dropdownParent: $('#editAssigned-wrapper'),
+            templateResult: formatUser,
+            templateSelection: formatUser
+        });
+    
+        function formatUser(profile) {
+            if (!profile.id) {
+                return profile.text;
+            }
+            
+            return $('<span><img class="avatar" src="' + profile.avatar + '"> ' + profile.text + '</span>');
+            
+        }
+    });
+    </script>
 
 
 <script>
+
     function openEditModal(taskId) {
+        
         var task = tasks.find(function(item) {
             return item.id == taskId;
         });
@@ -458,43 +481,38 @@ $(document).ready(function() {
             $('#editTaskTitle').val(task.title);
             $('#editTaskPriority').val(task.priority);
             $('#editTaskDetails').val(task.details);
-            $('#editEstimatedTimeNumber').val(task.estimated_time_number);
-            $('#editEstimatedTimeUnit').val(task.estimated_time_unit); 
-            // Populate other form fields similarly
+           
+            var estimatedTimeParts = task.estimated_time.split(' ');
+        if (estimatedTimeParts.length === 2) {
+            $('#editEstimatedTimeNumber').val(estimatedTimeParts[0]);
+            $('#editEstimatedTimeUnit').val(estimatedTimeParts[1]);
+        }
 
-          // Fetch assigned user IDs from the task object
-        var assignedToIds = task.assigned_to;
+        // Populate Assigned To field
 
-        // Fetch user profiles from the TaskController data
-        var profiles = @json($profiles);
-
-        // Filter profiles based on assigned user IDs
-        var assignedProfiles = profiles.filter(function(profile) {
-            return assignedToIds.includes(profile.id);
-        });
-
-        // Populate "Assigned To" dropdown using filtered profiles
+        var assignedToIds = task.assigned_to.split(','); // Convert comma-separated string to array
         var $editAssignedTo = $('#editAssignedTo');
         $editAssignedTo.empty(); // Clear previous options
 
-        assignedProfiles.forEach(function(profile) {
+        var profiles = @json($profiles);
+
+        profiles.forEach(function(profile) {
+            var isSelected = assignedToIds.includes(profile.id.toString()); // Check if profile ID is in the assignedToIds array
             $editAssignedTo.append($('<option>', {
                 value: profile.id,
                 text: profile.profile_name,
-                selected: 'selected'
+                selected: isSelected
             }));
         });
 
-        // Initialize Select2 for the populated dropdown
-        $editAssignedTo.select2({
-            placeholder: 'Select users',
-            // Add any additional configuration options as needed
-        });
+       
+        // Set the form action dynamically using the task ID
+        $('#editTaskForm').attr('action', '/tasks/' + task.id);
 
             $('#editModal').modal('show');
         }
     }
-
+    
     function saveChanges() {
     // Get the form data
     var formData = $('#editTaskForm').serialize();

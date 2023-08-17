@@ -94,6 +94,9 @@ Route::middleware([
     Route::resource('designations', DesignationController::class);
     Route::resource('user_work_details', UserWorkDetailController::class);
 
+    Route::post('/get-tasks/{projectId}', [UserWorkDetailController::class,'getTasksForProject']);
+
+
     Route::resource('technologies', TechnologyController::class);
     Route::resource('sprints', SprintController::class);
     Route::get('/exports', [SprintController::class, 'export'])->name('sprints.export');
@@ -112,19 +115,17 @@ Route::middleware([
     Route::get('/kanban/{projectId}', [KanbanController::class, 'showKanban'])->name('kanban');
     // Route::post('/kanban/store', [KanbanController::class, 'store'])->name('kanban.store');
 
-    Route::post('/tasks/store', [TaskController::class, 'store'])->name('tasks.store');
-
-    Route::group(['prefix' => 'tasks'], function () {
+    Route::prefix('tasks')->group(function () {
+        Route::post('/store', [TaskController::class, 'store'])->name('tasks.store');
         Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
         Route::get('/create', [TaskController::class, 'create'])->name('tasks.create');
         Route::get('/{task}', [TaskController::class, 'show'])->name('tasks.show');
         Route::get('/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
-        // Route::put('/{task}', [TaskController::class, 'update'])->name('tasks.update');
-        Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+        Route::put('/{task}', [TaskController::class, 'update'])->name('tasks.update');
+        // Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
 
         Route::delete('/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     });
-
     
     // Route::resource('tasks', TaskController::class)->except([
     // 'store' // Exclude the store route from the resource routes
