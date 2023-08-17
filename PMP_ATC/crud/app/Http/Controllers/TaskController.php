@@ -112,6 +112,14 @@ public function edit(Task $task)
                 $taskUser->save();
             }
         }
+        // foreach ($assignedTo as $userId) {
+        //     $taskUser = new TaskUser([
+        //         'task_id' => $task->id,
+        //         'assigned_to' => auth()->user()->id,
+        //     ]);
+        //     $taskUser->assigned_to = $userId;
+        //     $taskUser->save();
+        // }
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
     }
 

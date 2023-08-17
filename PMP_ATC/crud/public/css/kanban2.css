@@ -219,6 +219,7 @@ textarea {
 
 .material-icons {
   font-family: "Material Icons";
+  font-size: 18px;
   float: right;
   font-weight: normal;
   font-style: normal;
@@ -1209,8 +1210,17 @@ a {
 }
 
 .card:hover .card__header-clear {
+
   display: flex;
 }
+ 
+.edit-ico {
+  margin-top: 6px;
+  margin-right: 4px;
+  color: grey;
+}
+
+
 
 .card__details {
   color: var(--colorName);

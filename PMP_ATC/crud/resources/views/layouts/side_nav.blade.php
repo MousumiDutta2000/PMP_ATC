@@ -6,7 +6,6 @@
   @yield('project_css')
   @yield('kanban_css')
   @yield('project_js') 
-
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title></title>
@@ -376,7 +375,8 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('js/main.js') }}"></script>
-  @yield('custom_js') 
+  @yield('custom_js')
+   
   @yield('kanban_js')
 </body>
 
