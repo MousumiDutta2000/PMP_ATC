@@ -189,6 +189,7 @@
         </div>
     </div>
 
+    
     <!-- Edit Modal -->
     <div class="modal" id="editModal" tabindex="-1" aria-labelledby="editModalLabel">
         <div class="modal-dialog">
@@ -200,68 +201,70 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                @isset($task)
                     <form id="editTaskForm" action="{{ route('tasks.update', $task->id) }}" method="POST">
                         @csrf
                         @method('PUT') <!-- Add this line to specify the HTTP method for updating -->
                         
-                    <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="editTaskTitle">Title</label>
-                            <input type="text" class="form-control" id="editTaskTitle" name="title">
+                        <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="editTaskTitle">Title</label>
+                                <input type="text" class="form-control" id="editTaskTitle" name="title">
+                            </div>
                         </div>
-                    </div>
                     
-                    <div class="col-md-6">  
-                        <div class="form-group">
-                            <label for="editTaskPriority">Priority</label>
-                            <select class="form-control" id="editTaskPriority" name="priority">
-                                <option value="Low priority">Low priority</option>
-                                <option value="Med priority">Med priority</option>
-                                <option value="High priority">High priority</option>
-                            </select>
-                        </div>
-                    </div>   
+                        <div class="col-md-6">  
+                            <div class="form-group">
+                                <label for="editTaskPriority">Priority</label>
+                                <select class="form-control" id="editTaskPriority" name="priority">
+                                    <option value="Low priority">Low priority</option>
+                                    <option value="Med priority">Med priority</option>
+                                    <option value="High priority">High priority</option>
+                                </select>
+                            </div>
+                        </div>   
                     
                         <div class="form-group mb-3 mt-3">
                             <label for="editTaskDetails" style="font-size: 15px;">Details</label>
                             <textarea name="details" id="editTaskDetails" class="ckeditor form-control shadow-sm" required>{{ $task->details }}</textarea>
                         </div>
                     
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="estimated_time" style="font-size: 15px;">Estimated Time</label>
-                            <div class="input-group">
-                                <!-- Input field for estimated time number -->
-                                <input type="number" name="estimated_time_number" id="estimated_time_number" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" value="{{ old('estimated_time_number', explode(' ', $task->estimated_time)[0]) }}">
-                                <div class="input-group-append">
-                                    <!-- Dropdown for estimated time unit -->
-                                    <select name="estimated_time_unit" id="estimated_time_unit" class="form-control shadow-sm" style="height:39px; color: #858585; font-size: 14px;">
-                                        <option value="hour" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'hour' ? 'selected' : '' }}>Hour</option>
-                                        <option value="day" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'day' ? 'selected' : '' }}>Day</option>
-                                        <option value="month" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'month' ? 'selected' : '' }}>Month</option>
-                                        <option value="year" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'year' ? 'selected' : '' }}>Year</option>
-                                    </select>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="estimated_time" style="font-size: 15px;">Estimated Time</label>
+                                <div class="input-group">
+                                    <!-- Input field for estimated time number -->
+                                    <input type="number" name="estimated_time_number" id="estimated_time_number" class="form-control shadow-sm" style="padding-top:5px; padding-bottom:5px; height:39px; color: #858585; font-size: 14px;" value="{{ old('estimated_time_number', explode(' ', $task->estimated_time)[0]) }}">
+                                    <div class="input-group-append">
+                                        <!-- Dropdown for estimated time unit -->
+                                        <select name="estimated_time_unit" id="estimated_time_unit" class="form-control shadow-sm" style="height:39px; color: #858585; font-size: 14px;">
+                                            <option value="hour" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'hour' ? 'selected' : '' }}>Hour</option>
+                                            <option value="day" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'day' ? 'selected' : '' }}>Day</option>
+                                            <option value="month" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'month' ? 'selected' : '' }}>Month</option>
+                                            <option value="year" {{ old('estimated_time_unit', explode(' ', $task->estimated_time)[1]) === 'year' ? 'selected' : '' }}>Year</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>   
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="editAssignedTo" style="font-size: 15px;">Assigned To</label>
+                                <select name="assigned_to[]" id="editAssignedTo" class="form-control shadow-sm" multiple>
+                                    @foreach ($profiles as $profile)
+                                        <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div> 
                     </div>   
-
-                    <div class="col-md-6">
-
-                        <div class="form-group">
-                            <label for="editAssignedTo" style="font-size: 15px;">Assigned To</label>
-                            <select name="assigned_to[]" id="editAssignedTo" class="form-control shadow-sm" multiple>
-                                @foreach ($profiles as $profile)
-                                    <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div> 
-                </div>   
                         
                         <!-- Add more form fields here for editing -->
                     </form>
+                    @endisset
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeEditModal()">Cancel</button>
