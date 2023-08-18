@@ -55,17 +55,18 @@
                                     @endif
                                 </div>
                                 <!-- <div class="card__header-clear"><i class="material-icons">clear</i></div> -->
-                                <div class="card__header-clear">
+                                {{-- <div class="card__header-clear">
                                     <i class="material-icons" data-task-id="{{ $task->id }}">clear</i>
-                                </div>
-
-                            </div>
-
-                            <div class="edit-wrapper" style="margin-right: 6px;">
+                                </div> --}}
                                 <div class="edit-ico">
-                                     <i class="material-icons" onclick="openEditModal({{ $task->id }})">edit</i>
-                                </div>
+                                    <i class="material-icons" onclick="openEditModal({{ $task->id }})">edit</i>
+                               </div>
+
                             </div>
+
+                            {{-- <div class="edit-wrapper" style="margin-right: 6px;">
+                               
+                            </div> --}}
 
                             <div class="card__text">{{ $task->title }}</div>
                             <div class="card__details">{{ \Illuminate\Support\Str::limit(strip_tags($task->details), 20, $end='...') }}</div>
@@ -189,7 +190,6 @@
         </div>
     </div>
 
-    
     <!-- Edit Modal -->
     <div class="modal" id="editModal" tabindex="-1" aria-labelledby="editModalLabel">
         <div class="modal-dialog">
@@ -207,24 +207,24 @@
                         @csrf
                         @method('PUT') <!-- Add this line to specify the HTTP method for updating -->
                         
-                        <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="editTaskTitle">Title</label>
-                                <input type="text" class="form-control" id="editTaskTitle" name="title">
-                            </div>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="editTaskTitle">Title</label>
+                            <input type="text" class="form-control" id="editTaskTitle" name="title">
                         </div>
+                    </div>
                     
-                        <div class="col-md-6">  
-                            <div class="form-group">
-                                <label for="editTaskPriority">Priority</label>
-                                <select class="form-control" id="editTaskPriority" name="priority">
-                                    <option value="Low priority">Low priority</option>
-                                    <option value="Med priority">Med priority</option>
-                                    <option value="High priority">High priority</option>
-                                </select>
-                            </div>
-                        </div>   
+                    <div class="col-md-6">  
+                        <div class="form-group">
+                            <label for="editTaskPriority">Priority</label>
+                            <select class="form-control" id="editTaskPriority" name="priority">
+                                <option value="Low priority">Low priority</option>
+                                <option value="Med priority">Med priority</option>
+                                <option value="High priority">High priority</option>
+                            </select>
+                        </div>
+                    </div>   
                     
                     
                         <div class="form-group">
