@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", function() {
         $(this).removeClass("collapsed");
       }
 
+      if (section === "projects" && currentUrl.includes("/kanban")) {
+        $(this).addClass("active");
+        $(this).removeClass("collapsed");
+      }
+
       
     });
   });

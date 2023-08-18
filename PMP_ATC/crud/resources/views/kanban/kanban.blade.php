@@ -33,7 +33,7 @@
                 $status = $statusObject->status; // Access the 'status' property of the object
                 $statusId = $statusObject->project_task_status_id; // Access the 'project_task_status_id'
             @endphp
-                <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event, {{ $statusId }})" ondragover="allowDrop(event)">
                     <div class="backlog-name">{{ $status }}</div>
 
                     <div class="backlog-dots">
@@ -54,12 +54,9 @@
                                         <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
                                     @endif
                                 </div>
-                                <!-- <div class="card__header-clear"><i class="material-icons">clear</i></div> -->
-                                {{-- <div class="card__header-clear">
-                                    <i class="material-icons" data-task-id="{{ $task->id }}">clear</i>
-                                </div> --}}
+                                
                                 <div class="edit-ico">
-                                    <i class="material-icons" onclick="openEditModal({{ $task->id }})">edit</i>
+                                    <i class="fa-regular fa-pen-to-square" onclick="openEditModal({{ $task->id }})"></i>
                                </div>
 
                             </div>
@@ -293,11 +290,8 @@
             </div>
         </div>
     </div>
-</body>
 
-@endsection
 
-@section('kanban_js')
 <!-- partial -->
 
 <script src="{{ asset('js/script.js') }}"></script>
@@ -516,5 +510,5 @@ modal.style.display = 'none';
 
 
 </script>
-
+</body>
 @endsection
