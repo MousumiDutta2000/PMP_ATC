@@ -5,6 +5,7 @@
   @yield('custom_css') 
   @yield('project_css')
   @yield('kanban_css')
+  @yield('user_work_css')
   @yield('project_js') 
   @yield('custom_js')
   
