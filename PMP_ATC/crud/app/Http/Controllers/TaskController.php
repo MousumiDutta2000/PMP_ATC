@@ -70,13 +70,14 @@ class TaskController extends Controller
         return view('tasks.show', compact('task'));
     }
 
-    public function edit(Task $task)
-    {
-        $tasks = Task::all();
-        $profiles= Profile::all();
-        $projects= Project::all();
-        return view('tasks.edit', compact('task','tasks','profiles','projects'));
-    }
+public function edit(Task $task)
+{
+    $tasks = Task::all();
+    $profiles = Profile::all();
+    $projects = Project::all();
+    return view('tasks.edit', compact('task', 'tasks', 'profiles', 'projects'));
+}
+
 
     public function update(Request $request, Task $task)
     {
