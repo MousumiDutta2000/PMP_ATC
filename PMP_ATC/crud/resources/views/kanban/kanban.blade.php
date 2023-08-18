@@ -33,7 +33,7 @@
                 $status = $statusObject->status; // Access the 'status' property of the object
                 $statusId = $statusObject->project_task_status_id; // Access the 'project_task_status_id'
             @endphp
-                <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event, {{ $statusId }})" ondragover="allowDrop(event)">
+                <div class="kanban-block shadow" id="{{ strtolower(str_replace(' ', '', $status)) }}" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="backlog-name">{{ $status }}</div>
 
                     <div class="backlog-dots">
@@ -54,9 +54,12 @@
                                         <div class="badge text-white font-weight-bold" style="background: linear-gradient(138.6789deg, #c781ff 17%, #e57373 83%);">{{ $task->priority }}</div>
                                     @endif
                                 </div>
-                                
+                                <!-- <div class="card__header-clear"><i class="material-icons">clear</i></div> -->
+                                {{-- <div class="card__header-clear">
+                                    <i class="material-icons" data-task-id="{{ $task->id }}">clear</i>
+                                </div> --}}
                                 <div class="edit-ico">
-                                    <i class="fa-regular fa-pen-to-square" onclick="openEditModal({{ $task->id }})"></i>
+                                    <i class="material-icons" onclick="openEditModal({{ $task->id }})">edit</i>
                                </div>
 
                             </div>
@@ -306,45 +309,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-
-{{-- ----------dran and drop part----------------------- --}}
-<script>
-    function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-function drop(ev, statusId) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.currentTarget.appendChild(document.getElementById(data));
-
-  // Update the task status in the database
-  var taskId = data.replace("task", "");
-  updateTaskStatus(taskId, statusId);
-}
-
-function updateTaskStatus(taskId, statusId) {
-  // Make an AJAX request to update the task status
-  // You can use jQuery or fetch API for the AJAX request
-  // Example using jQuery:
-  $.ajax({
-    method: "POST",
-    url: "/update-task-status",
-    data: { taskId: taskId, statusId: statusId, _token: '{{ csrf_token() }}' }, // Add _token field
-    success: function (response) {
-        // Handle success response if needed
-    },
-    error: function (error) {
-        // Handle error response if needed
-    },
-});
-
-}
-</script>
 
 <script>
 // assigned_to user select2 function
