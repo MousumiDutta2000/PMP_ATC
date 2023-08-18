@@ -196,9 +196,6 @@
             <div class="modal-content modal-design" style="width: 900px;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editModalLabel">Edit Task</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
                 
                 <div class="modal-body">
@@ -304,6 +301,7 @@
 <!-- partial -->
 
 <script src="{{ asset('js/script.js') }}"></script>
+<script src="{{ asset('js/side_highlight.js') }}"></script>
 <script src="{{ asset('js/bundle.fa06bd827b69c86d1e5c.js') }}"></script>
 <script src="{{ asset('js/bundle.779c8b3edfadced3283a.js') }}"></script>
 <script src="{{ asset('js/bundle.24f6873edaef6bd85f9e.js') }}"></script>
@@ -313,6 +311,43 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+
+{{-- ----------dran and drop part----------------------- --}}
+<script>
+    function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drop(ev, statusId) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.currentTarget.appendChild(document.getElementById(data));
+
+  // Update the task status in the database
+  var taskId = data.replace("task", "");
+  updateTaskStatus(taskId, statusId);
+}
+
+function updateTaskStatus(taskId, statusId) {
+ 
+  $.ajax({
+    method: "POST",
+    url: "/update-task-status",
+    data: { taskId: taskId, statusId: statusId, _token: '{{ csrf_token() }}' }, // Add _token field
+    success: function (response) {
+        // Handle success response if needed
+    },
+    error: function (error) {
+        // Handle error response if needed
+    },
+});
+
+}
+</script>
 
 <script>
 // assigned_to user select2 function
@@ -389,65 +424,6 @@ $(document).ready(function() {
         }
     }
 </script>
-
-<!-- card delete -->
-<script>
-$(document).ready(function() {
-    // Function to open the delete confirmation modal
-    function openDeleteConfirmation(taskId) {
-        console.log('Delete confirmation opened for task ID:', taskId);
-        $('#deleteModal').modal('show');
-        $('#deleteCardButton').data('task-id', taskId);
-    }
-
-    // Event handler for the "Clear" button click
-    $('.card__header-clear i').on('click', function() {
-        const taskId = $(this).data('task-id');
-        openDeleteConfirmation(taskId);
-    });
-
-    // Function to delete a task using AJAX
-    function deleteCard(cardId) {
-        if (confirm) {
-            $('#task' + cardId).remove(); // Remove the task from the UI
-            $.ajax({
-                type: 'DELETE',
-                url: '/tasks/' + cardId, // Adjust the URL based on your application's routes
-                data: {
-                    _token: '{{ csrf_token() }}', // Add CSRF token for security
-                },
-                success: function(response) {
-                    console.log('Task deleted successfully:', response);
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    var errorMessage = xhr.responseText || 'An error occurred while deleting the card.';
-                    console.error('Error deleting task:', errorMessage);
-                    showDeleteModal(errorMessage);
-                }
-            });
-        }
-    }
-
-    // Event handler for the "Delete" button in the confirmation modal
-    $('#deleteCardButton').on('click', function() {
-        var taskId = $(this).data('task-id');
-        deleteCard(taskId);
-        $('#deleteModal').modal('hide');
-    });
-
-    // Function to show the delete modal with an error message
-    function showDeleteModal(errorMessage) {
-        $('#deleteErrorModalMessage').text(errorMessage);
-        $('#deleteErrorModal').modal('show');
-    }
-
-    // Event handler for cancel button inside the delete modal
-    $('#deleteModal .btn-cancel').on('click', function() {
-        $('#deleteModal').modal('hide');
-    });
-});
-</script>
-
 
 <script>
     var tasks = @json($tasks);
