@@ -294,6 +294,10 @@
         </div>
     </div>
 </body>
+
+@endsection
+
+@section('kanban_js')
 <!-- partial -->
 
 <script src="{{ asset('js/script.js') }}"></script>

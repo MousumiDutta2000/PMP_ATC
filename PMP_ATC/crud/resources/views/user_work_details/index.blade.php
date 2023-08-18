@@ -56,8 +56,8 @@
                             <td>{{ $userWorkDetail->project->project_name }}</td>
                             <td>{{ $userWorkDetail->task->title }}</td>
                             <td>{{ $userWorkDetail->date }}</td>
-                            <td>{{ $userWorkDetail->start_time }}</td>
-                            <td>{{ $userWorkDetail->end_time }}</td>
+                            <td>{{ date('h:i A', strtotime($userWorkDetail->start_time)) }}</td>
+                            <td>{{ date('h:i A', strtotime($userWorkDetail->end_time)) }}</td>
                             <td>{{ $userWorkDetail->workType ? $userWorkDetail->workType->name : 'N/A' }}</td>
                             <td>{{ $userWorkDetail->notes }}</td>
                             <td>{{ $userWorkDetail->projectManager->name }}</td>
