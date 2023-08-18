@@ -64,13 +64,15 @@
                 <div>
                     <div class="form-group mt-2">
                         <label for="work_type_id">Work Type:</label>
-                        <select name="work_type_id" id="work_type_id" class="form-control" required>
+                        <select name="work_type_id" id="work_type_id" class="form-control">
                             <option value="">Select Work Type</option>
                             @foreach ($workTypes as $workType)
                                 <option value="{{ $workType->id }}">{{ $workType->name }}</option>
                             @endforeach
                         </select>
                     </div>
+
+
                 </div>
 
                 <div class="form-group mt-2">
@@ -146,6 +148,12 @@
 @section('custom_js')
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // This function will be called when the page is loaded
+        var taskDropdown = document.getElementById('task_id');
+        taskDropdown.innerHTML = '<option value="">Select Task</option>';
+    });
+
     function onchangeDropdown(projectId) {
         var taskDropdown = document.getElementById('task_id');
         taskDropdown.innerHTML = '<option value="">Select Task</option>'; // Reset tasks dropdown
@@ -175,3 +183,4 @@
     }
 </script>
 @endsection
+
