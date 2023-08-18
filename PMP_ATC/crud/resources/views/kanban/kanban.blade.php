@@ -298,6 +298,7 @@
 <!-- partial -->
 
 <script src="{{ asset('js/script.js') }}"></script>
+<script src="{{ asset('js/side_highlight.js') }}"></script>
 <script src="{{ asset('js/bundle.fa06bd827b69c86d1e5c.js') }}"></script>
 <script src="{{ asset('js/bundle.779c8b3edfadced3283a.js') }}"></script>
 <script src="{{ asset('js/bundle.24f6873edaef6bd85f9e.js') }}"></script>
