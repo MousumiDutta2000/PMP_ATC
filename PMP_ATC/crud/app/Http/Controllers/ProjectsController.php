@@ -19,7 +19,7 @@ class ProjectsController extends Controller
     public function index()
     {
         // $projects = Project::all();
-        $projects = Project::with('technologies')->get();
+        $projects = Project::with('technologies', 'projectMembers')->get();
         return view('projects.index', compact('projects'));
     }
 
