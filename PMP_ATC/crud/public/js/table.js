@@ -341,11 +341,12 @@ $(document).ready(function() {
     ]
   });
 
+console.log("Executing placeholder code");
   $(".dataTables_filter input")
     .attr("placeholder", "Search here...")
     .css({
       width: "300px",
-      display: "inline-block"
+      display: "inline-block",
     });
 
   $('[data-toggle="tooltip"]').tooltip();
