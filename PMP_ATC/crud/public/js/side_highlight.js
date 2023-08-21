@@ -14,12 +14,16 @@ document.addEventListener("DOMContentLoaded", function() {
         $(this).addClass("active");
         $(this).removeClass("collapsed");
       }
-
+      // Handle the special case for projects kanban URLs
       if (section === "projects" && currentUrl.includes("/kanban")) {
         $(this).addClass("active");
         $(this).removeClass("collapsed");
       }
-
+      // Handle the special case for projects sprint URLs
+      if (section === "projects" && currentUrl.includes("/sprints")) {
+        $(this).addClass("active");
+        $(this).removeClass("collapsed");
+      }
       
     });
   });

@@ -304,9 +304,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-
-{{-- ----------dran and drop part----------------------- --}}
 <script>
+
     function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
 }
@@ -340,9 +339,7 @@ function updateTaskStatus(taskId, statusId) {
 });
 
 }
-</script>
 
-<script>
 // assigned_to user select2 function
 $(document).ready(function() {
   $('.assigned_to').select2({
@@ -375,9 +372,7 @@ $(document).ready(function() {
       return $selection;
   }
 });
-</script>
 
-<script>
     function updateScrollButtonVisibility() {
         const scrollButton = document.getElementById('scrollBtn');
         const statusCards = document.querySelectorAll('.kanban-block');
@@ -416,15 +411,11 @@ $(document).ready(function() {
             scrollButton.querySelector('i:nth-child(2)').style.display = 'none';
         }
     }
-</script>
 
-<script>
     var tasks = @json($tasks);
-</script>
 
-<script>
-        $(document).ready(function() {
-            $('#editAssignedTo').select2({
+    $(document).ready(function() {
+        $('#editAssignedTo').select2({
             placeholder: 'Select users',
             dropdownParent: $('#editAssigned-wrapper'),
             templateResult: formatUser,
@@ -436,14 +427,12 @@ $(document).ready(function() {
                 return profile.text;
             }
             
-            return $('<span><img class="avatar" src="' + profile.avatar + '"> ' + profile.text + '</span>');
+            // return $('<span><img class="avatar" src="' + profile.avatar + '"> ' + profile.text + '</span>');
+            return $('<span>' + profile.text + '</span>');
             
         }
     });
-</script>
-
-
-<script>
+  
 
     function openEditModal(taskId) {
         
@@ -475,7 +464,8 @@ $(document).ready(function() {
             $editAssignedTo.append($('<option>', {
                 value: profile.id,
                 text: profile.profile_name,
-                selected: isSelected
+                selected: isSelected,
+                // 'data-avatar': profile.image
             }));
         });
 
@@ -508,7 +498,7 @@ var modal = document.getElementById('editModal');
 modal.style.display = 'none';
 }
 
-
 </script>
-</body>
+
+
 @endsection

@@ -26,6 +26,7 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     
     <script src="{{ asset('js/table.js') }}"></script>
+    <script src="{{ asset('js/userworkdetails.js') }}"></script>
 @endsection
 
 @section('content')
@@ -34,8 +35,9 @@
         <div class="titlebar" style="display: flex; justify-content: flex-end; margin-top: -67px; margin-bottom: 50px; padding: 2px 30px; margin-right: -30px;">
             <a href="{{ route('user_work_details.create') }}" class="btn btn-primary">Add Work</a>
         </div>
+
         <div>
-            <table id="profileTable" class="table table-hover responsive table-sm" style="width: 100%;border-spacing: 0 10px;">
+            <table id="userWorkTable" class="table table-hover responsive table-sm" style="width: 100%;border-spacing: 0 10px;">
                 <thead style="border-radius:7px">
                 <tr>
                     <th>Project Name</th>
