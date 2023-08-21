@@ -93,7 +93,7 @@
                                     <a href="#" data-toggle="modal" data-placement="top" title="Show" data-target="#showModal_{{ $sprint->id }}">
                                         <i class="fas fa-eye text-info" style="margin-right: 10px"></i>
                                     </a>
-                                    <a href="{{ route('sprints.edit', ['sprint' => $sprint->id]) }}" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <a href="{{ route('sprints.edit', ['sprint' => $sprint->id]) }}" data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="fas fa-edit text-primary" style="margin-right: 10px"></i>
                                     </a>
                                     <form method="post" action="{{ route('sprints.destroy', ['sprint' => $sprint->id]) }}">
