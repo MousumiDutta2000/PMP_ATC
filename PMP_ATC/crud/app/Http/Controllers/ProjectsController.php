@@ -18,7 +18,8 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        $projects = Project::all();
+        // $projects = Project::all();
+        $projects = Project::with('technologies')->get();
         return view('projects.index', compact('projects'));
     }
 
@@ -86,6 +87,9 @@ class ProjectsController extends Controller
         // $project->project_role_id = json_encode($request->project_role_id);
 
         $project->save();
+
+         // Attach selected technologies to the project
+        $project->technologies()->attach($request->technology_id);
 
         // Attach project members and roles to the project
         $projectMembersIds = $request->input('project_members_id', []);

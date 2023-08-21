@@ -25,6 +25,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('js/table.js') }}"></script>
+    <script src="{{ asset('js/project.js') }}"></script>
 @endsection
 
 @section('content')
@@ -35,19 +36,44 @@
             <a href="{{ route('projects.create') }}" class="btn btn-primary">Add New</a>
         </div>
 
-            <table id="projectTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
+            <table id="projectsTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
+            <button id="filterButton" class="btn btn-primary" style="float: right;"><i class="bi bi-funnel"></i></button>
+
+            <div id="filterForm" style="display: none;">
+                <label for="filterType"></label>
+                <select id="filterType" class="form-control">
+                    <option value="date">Selected filter type</option>
+                    <option value="date">Date</option>
+                    <option value="technology">Technology</option>
+                </select>
+
+                <div id="dateFilter" style="display: none;">
+                    <label for="date">Select Date:</label>
+                    <input type="date" id="date" class="form-control">
+                </div>
+
+                <div id="technologyFilter" style="display: none;">
+                    <label for="technology">Select Technology:</label>
+                    <input type="text" id="technology" class="form-control" placeholder="Enter Technology">
+                </div>
+
+                <button id="applyFilter" class="btn btn-success" style="margin-top: 10px;">Apply</button>
+            </div>
+
+
                 <thead>
                     <tr>
                         <th style="width: 150px; padding-left: 37px;">ID</th>
                         <th style="width: 380px;">Project Name</th>
                         <th style="width: 182px;">Status</th>
+                        <th style="width: 113px;">Start Date</th>
+                        <th style="width: 113px;">Technology</th>
                         <th style="width: 113px;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($projects as $project)
                     <tr class="shadow" style="border-radius:15px;">
-                        <!-- <td>{{ $project->short_uuid }}</td> -->
                         <td style="padding-left:37px;">{{ $project->uuid }}</td>
                         <td>{{ $project->project_name }}</td>
                         <td>
@@ -63,6 +89,20 @@
                                 <div class="badge badge-info-light text-white font-weight-bold" style="background-color: #17b85d">{{ $project->project_status }}</div>
                             @endif
                         </td>
+                        <td>{{ ($project->project_startDate) }}</td>
+                        <td>
+                            @if($project->technologies->count() > 0)
+                                @foreach($project->technologies as $technology)
+                                    {{ $technology->technology_name }}
+                                    @if(!$loop->last)
+                                        , <!-- Add a comma if it's not the last technology -->
+                                    @endif
+                                @endforeach
+                            @else
+                                No Technologies
+                            @endif
+                        </td>
+
                         
                         <td>
                             <div class="btn-group" role="group">

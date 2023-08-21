@@ -10,4 +10,11 @@ class Technology extends Model
         'technology_name',
         'expertise',
     ];
+
+    public function projects()
+{
+    return $this->belongsToMany(Project::class, 'project_technology', 'technology_id', 'project_id');
+}
+
+
 }
