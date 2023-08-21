@@ -244,18 +244,32 @@
                             </div>
                         </div> 
 
-                        <div class="form-group">
-                            
-                            <label for="editAssignedTo" style="font-size: 15px;">Assigned To</label>
-                            <div id="editAssigned-wrapper" class="shadow-sm" style="font-size: 14px;">
-                                <select name="assigned_to[]" id="editAssignedTo" class="form-control" required style="width: 100%;" multiple>
-                                    <option value="">Select usrs</option>
-                                    @foreach ($profiles as $profile)
-                                        <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+                        <!-- ... (previous code) -->
+
+<div class="form-group">
+    <label for="editAssignedTo" style="font-size: 15px;">Assigned To</label>
+    <div id="editAssigned-wrapper" class="shadow-sm" style="font-size: 14px;">
+        <select name="edit_assigned_to[]" id="edit_assigned_to" class="form-control edit_assigned_to" required style="width: 100%;" multiple>
+            <option value="">Select users</option>
+            @php
+                $oldAssignedTo = is_array(old('edit_assigned_to')) ? old('edit_assigned_to') : [];
+                $taskAssignedTo = isset($task) ? (is_array($task->assigned_to) ? $task->assigned_to : []) : [];
+            @endphp
+            @foreach ($profiles as $profile)
+                <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}"
+                    @if(in_array($profile->id, $oldAssignedTo) || in_array($profile->id, $taskAssignedTo))
+                        selected
+                    @endif
+                >{{ $profile->profile_name }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<!-- ... (remaining code) -->
+
+
+
                     </div>   
                         
                      
@@ -269,28 +283,6 @@
             </div>
         </div>
     </div>
-    
-    <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header flex-column">
-                    <div class="icon-box">
-                        <i class="material-icons" style="margin-right: 10px;">&#xE5CD;</i>
-                    </div>
-                    <h3 class="modal-title w-100">Are you sure?</h3>
-                </div>
-                <div class="modal-body">
-                    <p>Do you really want to delete this card?</p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-secondary btn-cancel" data-dismiss="modal">Cancel</button>
-                    <button id="deleteCardButton" type="button" class="btn btn-danger">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 <!-- partial -->
 
@@ -342,37 +334,37 @@ function updateTaskStatus(taskId, statusId) {
 }
 
 // assigned_to user select2 function
-$(document).ready(function() {
-  $('.assigned_to').select2({
-      placeholder: 'Select user',
-      templateSelection: formatUserSelection,
-      templateResult: formatUserOption
-  });
+// $(document).ready(function() {
+//   $('.assigned_to').select2({
+//       placeholder: 'Select user',
+//       templateSelection: formatUserSelection,
+//       templateResult: formatUserOption
+//   });
 
-  function formatUserOption(option) {
-      if (!option.id) return option.text;
+//   function formatUserOption(option) {
+//       if (!option.id) return option.text;
 
-      var avatar = $(option.element).data('avatar');
-      var optionText = option.text;
+//       var avatar = $(option.element).data('avatar');
+//       var optionText = option.text;
 
-      var $option = $(
-          `<span><img class="user-avatar" src="${avatar}">${optionText}</span>`
-      );
+//       var $option = $(
+//           `<span><img class="user-avatar" src="${avatar}">${optionText}</span>`
+//       );
 
-      return $option;
-  }
+//       return $option;
+//   }
 
-  function formatUserSelection(selection) {
-      var avatar = $(selection.element).data('avatar');
-      var selectionText = selection.text;
+//   function formatUserSelection(selection) {
+//       var avatar = $(selection.element).data('avatar');
+//       var selectionText = selection.text;
 
-      var $selection = $(
-          `<span><img class="user-avatar" src="${avatar}" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px;">${selectionText}</span>`
-      );
+//       var $selection = $(
+//           `<span><img class="user-avatar" src="${avatar}" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px;">${selectionText}</span>`
+//       );
 
-      return $selection;
-  }
-});
+//       return $selection;
+//   }
+// });
 
     function updateScrollButtonVisibility() {
         const scrollButton = document.getElementById('scrollBtn');
@@ -415,24 +407,56 @@ $(document).ready(function() {
 
     var tasks = @json($tasks);
 
-    $(document).ready(function() {
-        $('#editAssignedTo').select2({
-            placeholder: 'Select users',
-            dropdownParent: $('#editAssigned-wrapper'),
-            templateResult: formatUser,
-            templateSelection: formatUser
-        });
+    // $(document).ready(function() {
+    //     $('#editAssignedTo').select2({
+    //         placeholder: 'Select users',
+    //         dropdownParent: $('#editAssigned-wrapper'),
+    //         templateResult: formatUser,
+    //         templateSelection: formatUser
+    //     });
     
-        function formatUser(profile) {
-            if (!profile.id) {
-                return profile.text;
-            }
+    //     function formatUser(profile) {
+    //         if (!profile.id) {
+    //             return profile.text;
+    //         }
             
-            return $('<span><img class="avatar" src="' + profile.avatar + '"> ' + profile.text + '</span>');
+    //         return $('<span><img class="avatar" src="' + profile.avatar + '"> ' + profile.text + '</span>');
             
+    //     }
+    // });
+  
+    $(document).ready(function() {
+        $('.edit_assigned_to').select2({
+            placeholder: 'Select user',
+            dropdownParent: $('#editAssigned-wrapper'),
+            templateSelection: formatUserSelection,
+            templateResult: formatUserOption
+        });
+
+        function formatUserOption(option) {
+            if (!option.id) return option.text;
+
+            var avatar = $(option.element).data('avatar');
+            var optionText = option.text;
+
+            var $option = $(
+                `<span><img class="user-avatar" src="${avatar}">${optionText}</span>`
+            );
+
+            return $option;
+        }
+
+        function formatUserSelection(selection) {
+            var avatar = $(selection.element).data('avatar');
+            var selectionText = selection.text;
+
+            var $selection = $(
+                `<span><img class="user-avatar" src="${avatar}" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px;">${selectionText}</span>`
+            );
+
+            return $selection;
         }
     });
-  
 
     function openEditModal(taskId) {
         
