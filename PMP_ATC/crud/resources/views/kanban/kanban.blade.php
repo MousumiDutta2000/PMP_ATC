@@ -428,7 +428,8 @@ $(document).ready(function() {
                 return profile.text;
             }
             
-            return $('<span><img class="avatar" src="' + profile.avatar + '"> ' + profile.text + '</span>');
+            // return $('<span><img class="avatar" src="' + profile.avatar + '"> ' + profile.text + '</span>');
+            return $('<span>' + profile.text + '</span>');
             
         }
     });
@@ -464,7 +465,8 @@ $(document).ready(function() {
             $editAssignedTo.append($('<option>', {
                 value: profile.id,
                 text: profile.profile_name,
-                selected: isSelected
+                selected: isSelected,
+                // 'data-avatar': profile.image
             }));
         });
 
