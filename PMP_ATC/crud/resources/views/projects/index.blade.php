@@ -39,7 +39,7 @@
             <table id="projectsTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
             <button id="filterButton" class="btn btn-primary" style="float: right;"><i class="bi bi-funnel"></i></button>
 
-            <div id="filterForm" style="display: none;">
+            <div id="filterForm" style="display: none; margin-right: 10px; margin-top: -22px;float: right;">
                 <label for="filterType"></label>
                 <select id="filterType" class="form-control">
                     <option value="date">Selected filter type</option>
@@ -57,7 +57,7 @@
                     <input type="text" id="technology" class="form-control" placeholder="Enter Technology">
                 </div>
 
-                <button id="applyFilter" class="btn btn-success" style="margin-top: 10px;">Apply</button>
+                <button id="applyFilter" class="btn btn-success" style="margin-top: 10px; position: absolute; right: 20px;">Apply</button>
             </div>
 
 
