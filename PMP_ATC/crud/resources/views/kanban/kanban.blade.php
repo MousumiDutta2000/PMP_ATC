@@ -248,13 +248,13 @@
                             <label for="editAssignedTo" style="font-size: 15px;">Assigned To</label>
                             <div id="editAssigned-wrapper" class="shadow-sm" style="font-size: 14px;">
                                 <select name="assigned_to[]" id="editAssignedTo" class="form-control" required style="width: 100%;" multiple>
-                                    <option value="">Select users</option>
                                     @foreach ($profiles as $profile)
-                                        <option value="{{ $profile->id }}">{{ $profile->profile_name }}</option>
+                                        <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+
   
                         
                      
@@ -421,17 +421,16 @@ $(document).ready(function() {
             templateResult: formatUser,
             templateSelection: formatUser
         });
-    
+
         function formatUser(profile) {
             if (!profile.id) {
                 return profile.text;
             }
             
-            // return $('<span><img class="avatar" src="' + profile.avatar + '"> ' + profile.text + '</span>');
-            return $('<span>' + profile.text + '</span>');
-            
+            return $('<span><img class="avatar" src="' + profile.image + '"> ' + profile.text + '</span>');
         }
     });
+
   
 
     function openEditModal(taskId) {
@@ -465,7 +464,7 @@ $(document).ready(function() {
                 value: profile.id,
                 text: profile.profile_name,
                 selected: isSelected,
-                // 'data-avatar': profile.image
+                'data-avatar': profile.image
             }));
         });
 

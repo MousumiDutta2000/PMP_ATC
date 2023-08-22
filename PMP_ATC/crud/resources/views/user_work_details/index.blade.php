@@ -54,7 +54,7 @@
 
                 <tbody>
                     @foreach ($userWorkDetails as $userWorkDetail)
-                        <tr>
+                        <tr class="shadow" style="border-radius:15px;">
                             <td>{{ $userWorkDetail->project->project_name }}</td>
                             <td>{{ $userWorkDetail->task->title }}</td>
                             <td>{{ $userWorkDetail->date }}</td>
@@ -62,7 +62,12 @@
                             <td>{{ date('h:i A', strtotime($userWorkDetail->end_time)) }}</td>
                             <td>{{ $userWorkDetail->workType ? $userWorkDetail->workType->name : 'N/A' }}</td>
                             <td>{{ $userWorkDetail->notes }}</td>
-                            <td>{{ $userWorkDetail->projectManager->name }}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ asset($userWorkDetail->projectManager->profile->image) }}" alt="Profile Picture" class="rounded-circle mr-2" style="width: 30px; height: 30px;">
+                                    {{ $userWorkDetail->projectManager->name }}
+                                </div>
+                            </td>
                             <td>
                                 <div class="d-flex">
                                     <a href="{{ route('user_work_details.edit', $userWorkDetail->id) }}" data-toggle="tooltip" data-placement="top" title="Edit" class="mr-3">
