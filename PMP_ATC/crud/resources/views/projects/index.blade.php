@@ -37,14 +37,15 @@
         </div>
 
             <table id="projectsTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
-            <button id="filterButton" class="btn btn-primary" style="float: right;"><i class="bi bi-funnel"></i></button>
+            <i id="filterButton" class="bi bi-funnel" style="float: right; box-sizing: border-box; margin-top: 1px; cursor: pointer; padding: 2px;">Filter</i>
 
-            <div id="filterForm" style="display: none; margin-right: 10px; margin-top: -22px;float: right;">
+            <div id="filterForm" style="display: none; margin-right:10px; margin-top: -22px; float: right;">
                 <label for="filterType"></label>
                 <select id="filterType" class="form-control">
                     <option value="date">Selected filter type</option>
                     <option value="date">Date</option>
                     <option value="technology">Technology</option>
+                    <option value="member">Member</option>
                 </select>
 
                 <div id="dateFilter" style="display: none;">
@@ -57,9 +58,13 @@
                     <input type="text" id="technology" class="form-control" placeholder="Enter Technology">
                 </div>
 
+                <div id="memberFilter" style="display: none;">
+                    <label for="member">Select Member:</label>
+                    <input type="text" id="member" class="form-control" placeholder="Enter Member">
+                </div>
+
                 <button id="applyFilter" class="btn btn-success" style="margin-top: 10px; position: absolute; right: 20px;">Apply</button>
             </div>
-
 
                 <thead>
                     <tr>
@@ -68,6 +73,7 @@
                         <th style="width: 182px;">Status</th>
                         <th style="width: 113px;">Start Date</th>
                         <th style="width: 113px;">Technology</th>
+                        <th style="width: 113px;">Member</th>
                         <th style="width: 113px;">Actions</th>
                     </tr>
                 </thead>
@@ -102,8 +108,16 @@
                                 No Technologies
                             @endif
                         </td>
+                        <td>
+                            @if($project->projectMembers->count() > 0) <!-- Assuming you have a relationship set up -->
+                            @foreach ($project->projectMembers as $member)
+                                {{ $member->profile_name }}
+                            @endforeach
+                            @else
+                                No Members
+                            @endif
+                        </td>
 
-                        
                         <td>
                             <div class="btn-group" role="group">
                             <a href="{{ route('sprints.index', ['sprints' => $project->id]) }}" data-toggle="tooltip" data-placement="top" title="View Sprints">

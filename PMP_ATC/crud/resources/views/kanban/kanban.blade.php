@@ -188,7 +188,7 @@
     </div>
 
     <!-- Edit Modal -->
-    <div class="modal" id="editModal" tabindex="-1" aria-labelledby="editModalLabel">
+    <div class="modal" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content modal-design" style="width: 900px;">
                 <div class="modal-header">
@@ -263,7 +263,7 @@
                     @endisset
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeEditModal()">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary" onclick="saveChanges()">Save</button>
                 </div>
             </div>
@@ -444,7 +444,8 @@ $(document).ready(function() {
         if (task) {
             $('#editTaskTitle').val(task.title);
             $('#editTaskPriority').val(task.priority);
-            $('#editTaskDetails').val(task.details);
+            // Use strip_tags to remove HTML tags from task.details
+            $('#editTaskDetails').val(strip_tags(task.details));
            
             var estimatedTimeParts = task.estimated_time.split(' ');
         if (estimatedTimeParts.length === 2) {
@@ -466,7 +467,7 @@ $(document).ready(function() {
                 value: profile.id,
                 text: profile.profile_name,
                 selected: isSelected,
-                // 'data-avatar': profile.image
+                'data-avatar': profile.image
             }));
         });
 
@@ -477,6 +478,11 @@ $(document).ready(function() {
             $('#editModal').modal('show');
         }
     }
+
+    // Helper function to strip HTML tags from a string
+    function strip_tags(input) {
+        return input.replace(/<\/?[^>]+(>|$)/g, "");
+}
     
     function saveChanges() {
     // Get the form data
