@@ -292,3 +292,78 @@ font-size: 14px;
   margin-top: -2px;top: 50%;
   width: 0;cursor: pointer
 }
+
+/* Advance filter search */
+
+#filterButton {
+  width: 56px;
+  height: 30px;
+  float: right;
+  box-sizing: border-box;
+  border-radius: 5%;
+  margin-top: 0px;
+  cursor: pointer;
+  padding: 2px;
+  transition: color 0.3s;
+}
+
+#filterButton:hover { 
+  color: #9ea7fc; 
+  border-radius: 5%; 
+}
+
+/* Styles for the modal */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.7); /* Black background with transparency */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  /* margin: 15% auto; 15% from the top and centered */
+  padding: 12px;
+  border: 1px solid #888;
+  margin-right: 30px !important;
+  float: right !important;
+  width: 16% !important;
+  height: 32% !important;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-backdrop.show {
+  backdrop-filter: none;
+  background-color: rgba(0, 0, 0, 0.7); /* You can adjust the background color as needed */
+}
+
+
+/* Add this to your existing CSS file or style tag */
+.filter-card {
+  display: none;
+  padding: 10px; /* Add padding to create a square shape */
+  width: 100px; /* Set the width to create a square shape */
+  height: 100px; /* Set the height to create a square shape */
+  background-color: #fff; /* Add a background color for clarity */
+  border: 1px solid #ccc; /* Add a border for clarity */
+  border-radius: 5px; /* Add border radius for rounded corners */
+  cursor: pointer;
+}
+
+/* Add this to your existing CSS file or style tag */
+#dateFilter input[type="date"] {
+  display: none; /* Hide the input box */
+}

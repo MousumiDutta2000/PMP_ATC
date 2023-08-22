@@ -15,6 +15,24 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/project.css') }}">
+    <style>
+    /* Add this to your existing CSS file or style tag */
+    .modal {
+        display: none; /* Initially hide the modal */
+    }
+
+    .modal.show {
+        display: block; /* Show the modal when it has the 'show' class */
+    }
+
+    .filter-card {
+        display: none; /* Initially hide the filter cards */
+    }
+
+    /* Add your other CSS styles as needed */
+</style>
+
 @endsection
 
 @section('custom_js')
@@ -37,34 +55,38 @@
         </div>
 
             <table id="projectsTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
-            <i id="filterButton" class="bi bi-funnel" style="float: right; box-sizing: border-box; margin-top: 1px; cursor: pointer; padding: 2px;">Filter</i>
+            <i id="filterButton" class="bi bi-funnel">Filter</i>
+            <!-- Add a search bar initially hidden -->
+<div id="searchBar" style="display: none;">
+    <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+</div>
 
-            <div id="filterForm" style="display: none; margin-right:10px; margin-top: -22px; float: right;">
-                <label for="filterType"></label>
-                <select id="filterType" class="form-control">
-                    <option value="date">Selected filter type</option>
-                    <option value="date">Date</option>
-                    <option value="technology">Technology</option>
-                    <option value="member">Member</option>
-                </select>
-
-                <div id="dateFilter" style="display: none;">
-                    <label for="date">Select Date:</label>
-                    <input type="date" id="date" class="form-control">
+            <div id="myModal" class="modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-content">
+                    <!-- Filter cards -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="filter-card mb-2 text-center" id="dateFilter" style="display: none;">
+                                <i class="fa-regular fa-calendar" style="color: #9ea7fc; margin-right: 25px; margin-top: 17px; margin-left: 25px;"></i>
+                                <label for="date">Date</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="filter-card mb-2 text-center" id="technologyFilter" style="display: none; margin-left: -15px;">
+                            <i class="fa-solid fa-laptop" style="color: #9ea7fc; margin-top: 17px;"></i>
+                                <label for="technology">Technology</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="filter-card text-center" id="memberFilter" style="display: none;">
+                                <i class="fa-solid fa-users" style="color: #9ea7fc; margin-top: 17px;"></i>
+                                <label for="member">Member</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div id="technologyFilter" style="display: none;">
-                    <label for="technology">Select Technology:</label>
-                    <input type="text" id="technology" class="form-control" placeholder="Enter Technology">
-                </div>
-
-                <div id="memberFilter" style="display: none;">
-                    <label for="member">Select Member:</label>
-                    <input type="text" id="member" class="form-control" placeholder="Enter Member">
-                </div>
-
-                <button id="applyFilter" class="btn btn-success" style="margin-top: 10px; position: absolute; right: 20px;">Apply</button>
             </div>
+
 
                 <thead>
                     <tr>
@@ -169,5 +191,35 @@
             </table>
     </section>
 </main>
+
+
+<script>
+$(document).ready(function () {
+    // When the filter icon is clicked, open the filter modal
+    $('#filterButton').click(function () {
+        $('#myModal').addClass('show'); // Add 'show' class to the modal
+        $('#dateFilter').show(); // Show the "Date" filter card
+        $('#technologyFilter').show(); // Show the "Technology" filter card
+        $('#memberFilter').show(); // Show the "Member" filter card
+    });
+
+    // When a filter card is clicked, close the modal and show the search bar
+    $('.filter-card').click(function () {
+        $('#myModal').removeClass('show'); // Remove 'show' class from the modal
+        $('#searchBar').show(); // Show the search bar
+    });
+
+    // When the close button or outside the modal is clicked, close the modal
+    $('.close, .modal').click(function () {
+        $('#myModal').removeClass('show'); // Remove 'show' class from the modal
+    });
+
+    // Prevent modal from closing when clicking inside the modal content
+    $('.modal-content').click(function (event) {
+        event.stopPropagation();
+    });
+});
+
+</script>
 
 @endsection
