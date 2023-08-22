@@ -8,6 +8,7 @@ use App\Models\UserWorkDetail;
 use App\Models\WorkType;
 use App\Models\ProjectTaskStatus;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,8 @@ class UserWorkDetailController extends Controller
 {
     public function index()
     {
+        $users = User::all();
+        $profiles = Profile::all();
         $userWorkDetails = UserWorkDetail::with('project', 'projectManager')->currentUser()->get();
         return view('user_work_details.index', compact('userWorkDetails'));
     }

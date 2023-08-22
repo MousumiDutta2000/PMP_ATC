@@ -249,16 +249,12 @@
                             <label for="editAssignedTo" style="font-size: 15px;">Assigned To</label>
                             <div id="editAssigned-wrapper" class="shadow-sm" style="font-size: 14px;">
                                 <select name="assigned_to[]" id="editAssignedTo" class="form-control" required style="width: 100%;" multiple>
-                                    <option value="">Select usrs</option>
                                     @foreach ($profiles as $profile)
                                         <option value="{{ $profile->id }}" data-avatar="{{ asset($profile->image) }}">{{ $profile->profile_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                    </div>   
-                        
-                     
                     </form>
                     @endisset
                 </div>
@@ -270,27 +266,6 @@
         </div>
     </div>
     
-    <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header flex-column">
-                    <div class="icon-box">
-                        <i class="material-icons" style="margin-right: 10px;">&#xE5CD;</i>
-                    </div>
-                    <h3 class="modal-title w-100">Are you sure?</h3>
-                </div>
-                <div class="modal-body">
-                    <p>Do you really want to delete this card?</p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-secondary btn-cancel" data-dismiss="modal">Cancel</button>
-                    <button id="deleteCardButton" type="button" class="btn btn-danger">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 <!-- partial -->
 
@@ -422,17 +397,16 @@ $(document).ready(function() {
             templateResult: formatUser,
             templateSelection: formatUser
         });
-    
+
         function formatUser(profile) {
             if (!profile.id) {
                 return profile.text;
             }
             
-            // return $('<span><img class="avatar" src="' + profile.avatar + '"> ' + profile.text + '</span>');
-            return $('<span>' + profile.text + '</span>');
-            
+            return $('<span><img class="avatar" src="' + profile.image + '"> ' + profile.text + '</span>');
         }
     });
+
   
 
     function openEditModal(taskId) {

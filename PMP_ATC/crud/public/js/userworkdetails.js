@@ -1,7 +1,20 @@
-if (!$.fn.DataTable.isDataTable('#userWorkTable')) {
-    $(document).ready(function () {
+$(document).ready(function () {
+    if (!$.fn.DataTable.isDataTable('#userWorkTable')) {
         var table = $('#userWorkTable').DataTable({
-            responsive: true
+            aaSorting: [],
+            responsive: true,
+            lengthMenu: [5, 10, 25, 50, 100],
+
+            columnDefs: [
+                {
+                    responsivePriority: 1,
+                    targets: 0
+                },
+                {
+                    responsivePriority: 2,
+                    targets: -1
+                }
+            ]
         });
 
         // Add the date filter input dynamically
@@ -22,5 +35,27 @@ if (!$.fn.DataTable.isDataTable('#userWorkTable')) {
             var selectedDate = $(this).val();
             table.column(2).search(selectedDate).draw();
         });
+    }
+
+    adjustNameFieldWidth();
+
+    $(window).resize(function () {
+        adjustNameFieldWidth();
     });
-}
+
+    function adjustNameFieldWidth() {
+        $('.name-container').each(function () {
+            var maxWidth = 150; // Maximum width for the name field
+            var containerWidth = $(this).parent().width();
+            var nameWidth = $(this).find('.name').width();
+
+            if (nameWidth > maxWidth && nameWidth > containerWidth) {
+                $(this).css('max-width', nameWidth + 10 + 'px');
+            } else {
+                $(this).css('max-width', '');
+            }
+        });
+    }
+
+    $('[data-toggle="tooltip"]').tooltip();
+});
