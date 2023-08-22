@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Profile;
 use App\Models\Task;
 use App\Models\TaskUser;
-
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class TaskController extends Controller
@@ -73,10 +73,13 @@ class TaskController extends Controller
     public function edit(Task $task)
     {
         $tasks = Task::all();
-        $profiles= Profile::all();
-        $projects= Project::all();
-        return view('tasks.edit', compact('task','tasks','profiles','projects'));
+        $profiles = Profile::all();
+        $projects = Project::all();
+        $users = User::all(); // Fetch all users
+    
+        return view('tasks.edit', compact('task', 'tasks', 'profiles', 'projects', 'users'));
     }
+    
 
     public function update(Request $request, Task $task)
     {

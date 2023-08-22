@@ -31,7 +31,7 @@ $(document).ready(function() {
         targets: -1
       }
     ]
-  });
+  }); 
 
   $("#projectTable").DataTable({
     aaSorting: [],
