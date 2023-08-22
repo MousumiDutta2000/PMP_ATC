@@ -39,7 +39,7 @@
             <table id="projectsTable" class="table table-hover responsive" style="width: 100%; border-spacing: 0 10px;">
             <i id="filterButton" class="bi bi-funnel" style="float: right; box-sizing: border-box; margin-top: 1px; cursor: pointer; padding: 2px;">Filter</i>
 
-            <div id="filterForm" style="display: none;">
+            <div id="filterForm" style="display: none; margin-right:10px; margin-top: -22px; float: right;">
                 <label for="filterType"></label>
                 <select id="filterType" class="form-control">
                     <option value="date">Selected filter type</option>
@@ -63,7 +63,7 @@
                     <input type="text" id="member" class="form-control" placeholder="Enter Member">
                 </div>
 
-                <button id="applyFilter" class="btn btn-success" style="margin-top: 10px;">Apply</button>
+                <button id="applyFilter" class="btn btn-success" style="margin-top: 10px; position: absolute; right: 20px;">Apply</button>
             </div>
 
                 <thead>
