@@ -188,7 +188,7 @@
     </div>
 
     <!-- Edit Modal -->
-    <div class="modal" id="editModal" tabindex="-1" aria-labelledby="editModalLabel">
+    <div class="modal" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content modal-design" style="width: 900px;">
                 <div class="modal-header">
@@ -245,6 +245,7 @@
                         </div> 
 
                         <div class="form-group">
+                            
                             <label for="editAssignedTo" style="font-size: 15px;">Assigned To</label>
                             <div id="editAssigned-wrapper" class="shadow-sm" style="font-size: 14px;">
                                 <select name="assigned_to[]" id="editAssignedTo" class="form-control" required style="width: 100%;" multiple>
@@ -254,42 +255,17 @@
                                 </select>
                             </div>
                         </div>
-
-  
-                        
-                     
                     </form>
                     @endisset
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeEditModal()">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary" onclick="saveChanges()">Save</button>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-confirm modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header flex-column">
-                    <div class="icon-box">
-                        <i class="material-icons" style="margin-right: 10px;">&#xE5CD;</i>
-                    </div>
-                    <h3 class="modal-title w-100">Are you sure?</h3>
-                </div>
-                <div class="modal-body">
-                    <p>Do you really want to delete this card?</p>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-secondary btn-cancel" data-dismiss="modal">Cancel</button>
-                    <button id="deleteCardButton" type="button" class="btn btn-danger">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 <!-- partial -->
 
@@ -442,7 +418,8 @@ $(document).ready(function() {
         if (task) {
             $('#editTaskTitle').val(task.title);
             $('#editTaskPriority').val(task.priority);
-            $('#editTaskDetails').val(task.details);
+            // Use strip_tags to remove HTML tags from task.details
+            $('#editTaskDetails').val(strip_tags(task.details));
            
             var estimatedTimeParts = task.estimated_time.split(' ');
         if (estimatedTimeParts.length === 2) {
@@ -475,6 +452,11 @@ $(document).ready(function() {
             $('#editModal').modal('show');
         }
     }
+
+    // Helper function to strip HTML tags from a string
+    function strip_tags(input) {
+        return input.replace(/<\/?[^>]+(>|$)/g, "");
+}
     
     function saveChanges() {
     // Get the form data
