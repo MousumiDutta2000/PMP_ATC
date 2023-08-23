@@ -59,7 +59,7 @@
 
             <!-- Add a search bar initially hidden -->
             <div id="searchBar" style="display: none; float:right;">
-                <input type="date" id="searchInput" class="form-control" style="height:31px;" placeholder="Search...">
+                <input type="date" id="searchInput" class="form-control" style="height:31px; width:180px;" placeholder="Search...">
             </div>
 
             <!-- Add a search bar for technology, initially hidden -->
