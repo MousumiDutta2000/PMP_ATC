@@ -403,7 +403,8 @@ $(document).ready(function() {
                 return profile.text;
             }
             
-            return $('<span><img class="avatar" src="' + profile.image + '"> ' + profile.text + '</span>');
+            // return $('<span><img class="avatar" src="' + profile.image + '"> ' + profile.text + '</span>');
+            return $('<span>' + profile.text + '</span>');
         }
     });
 
@@ -471,12 +472,6 @@ $(document).ready(function() {
         $('#editModal').modal('hide'); // Hide the modal
         location.reload(); // Refresh the page to reflect the changes
     });
-}
-
-
-function closeEditModal() {
-var modal = document.getElementById('editModal');
-modal.style.display = 'none';
 }
 
 </script>
