@@ -107,7 +107,7 @@
                     <div class="form-group">
                         <label for="technology_id" class="mb-1" style="font-size: 15px;">Technologies</label>
                         <div id="technology-wrapper" class="shadow-sm" style="font-size: 14px;">
-                            <select id="technology_id" name="technology_id[]" class="technology" required style="width: 100%;" multiple>
+                            <select id="technology_id" name="technology_id[]" class="Technology" required style="width: 100%;" multiple>
                                 @foreach($technologies as $technology)
                                     <option value="{{ $technology->id }}">{{ substr($technology->technology_name, 0, 1) . $technology->technology_name }}</option>
                                 @endforeach
@@ -239,7 +239,7 @@
                                             <select id="project_members_id" name="project_members_id[]" class="addmember" required style="width:100%;">
                                                 <option value="">Select Member</option>
                                                 @foreach($projectMembers as $projectMember)
-                                                <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
+                                                    <option value="{{ $projectMember->id }}">{{ $projectMember->profile_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -332,7 +332,7 @@
 
 <script>
 $(document).ready(function() {
-    $('.technology').select2({
+    $('.Technology').select2({
         placeholder: 'Select technologies',
         dropdownParent: $('#technology-wrapper'),
         templateResult: formatTechnology,

@@ -362,6 +362,32 @@ font-size: 14px;
   display: none;
 }
 
-.dataTables_filter input {
-	width: 180px !important;
+.circle-letter {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50%;
+  background-color: #012970; /* You can change the background color as needed */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 10px; /* Adjust as needed for spacing */
+  display: inline-block;
+}
+
+.filterOptions{
+  margin-right: 90%;
+}
+
+#filterDiv{
+  display: none; 
+  width: 1386px;  
+  text-align: center; 
+  padding: 10px; 
+  border: 1px solid aliceblue; 
+  border-radius: 8px; 
+  background-color: aliceblue; 
+  margin-bottom:-6%; 
+  margin-top:-1%;
 }
