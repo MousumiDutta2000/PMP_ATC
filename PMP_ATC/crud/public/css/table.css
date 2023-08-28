@@ -196,3 +196,7 @@ table.dataTable {
   .body{
     margin-left: -13px;
   }
+
+  .dataTables_filter input {
+    width: 180px !important;
+  }

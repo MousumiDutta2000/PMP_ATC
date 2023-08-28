@@ -28,6 +28,33 @@ class ProjectsController extends Controller
 
     public function index()
 {
+    
+        $technologies = Technology::all();
+        $projectMembers = Profile::all();
+
+        // Get filter options and selected values from the request
+        $filterOption = request('filterOption');
+        $selectedTechnology = request('selectedTechnology');
+        $selectedMember = request('selectedMember'); // Get selected member from the request
+
+        // Initialize a query to retrieve projects
+        $projectsQuery = Project::query();
+
+        if ($filterOption === 'technology' && $selectedTechnology) {
+            // Filter projects based on the selected technology
+            $projectsQuery->whereHas('technologies', function ($query) use ($selectedTechnology) {
+                $query->where('technology_id', $selectedTechnology);
+            });
+        } elseif ($filterOption === 'member' && $selectedMember) {
+            // Filter projects based on the selected member
+            $projectsQuery->whereHas('projectMembers', function ($query) use ($selectedMember) {
+                $query->where('profile_id', $selectedMember); // Adjust the column name if necessary
+            });
+        }
+
+        // Retrieve the filtered projects
+        $projects = $projectsQuery->get();
+
     // Get the currently logged-in user's profile_id
     $profileId = Auth::user()->profile->id;
 
@@ -41,23 +68,59 @@ class ProjectsController extends Controller
     })
     ->get();
 
-    return view('projects.index', compact('projects'));
+    return view('projects.index', compact('projects', 'technologies', 'projectMembers'));
 }
 
-    public function create()
-    {
-        $users = User::all();
-        $verticals = Vertical::all();
-        $clients = Client::all();
-        $projectManagers = User::all();
-        $technologies = Technology::all();
-        $projectMembers = Profile::all();
-        $projectRoles = ProjectRole::all();
-        $task_types = taskType::all();
-        $task_statuses = TaskStatus::all();
+    // return view('projects.index', compact('projects'));
 
-        return view('projects.create', compact('users', 'verticals', 'clients', 'projectManagers', 'technologies', 'projectMembers', 'projectRoles','task_types','task_statuses'));
-    }
+    //     $technologies = Technology::all();
+    //     $projectMembers = Profile::all();
+
+    //     // Get filter options and selected values from the request
+    //     $filterOption = request('filterOption');
+    //     $selectedTechnology = request('selectedTechnology');
+    //     $selectedMember = request('selectedMember');
+
+    //     // Initialize a query to retrieve projects
+    //     $projectsQuery = Project::query();
+
+    //     if ($filterOption === 'technology' && $selectedTechnology) {
+    //         // Filter projects based on the selected technology
+    //         $projectsQuery->whereHas('technologies', function ($query) use ($selectedTechnology) {
+    //             $query->where('technology_id', $selectedTechnology);
+    //         });
+    //     } elseif ($filterOption === 'member' && $selectedMember) {
+    //         // Filter projects based on the selected member
+    //         $projectsQuery->whereHas('projectMembers', function ($query) use ($selectedMember) {
+    //             $query->where('project_members_id', $selectedMember);
+    //         });
+    //     }
+
+    //     // Retrieve the filtered projects
+    //     $projects = $projectsQuery->get();
+
+    //     // Return the projects and other data to your view
+    //     return view('projects.index', compact('projects', 'technologies', 'projectMembers'));
+    // }
+
+   
+
+
+
+    // public function create()
+    // {
+    //     $users = User::all();
+    //     $verticals = Vertical::all();
+    //     $clients = Client::all();
+    //     $projectManagers = User::all();
+    //     $technologies = Technology::all();
+    //     $projectMembers = Profile::all();
+    //     $projectRoles = ProjectRole::all();
+    //     $task_types = taskType::all();
+    //     $task_statuses = TaskStatus::all();
+
+    //     return view('projects.create', compact('users', 'verticals', 'clients', 'projectManagers', 'technologies', 'projectMembers', 'projectRoles','task_types','task_statuses'));
+    
 
     public function store(Request $request)
     {
