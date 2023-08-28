@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\Vertical;
@@ -13,15 +14,35 @@ use App\Models\taskType;
 use App\Models\TaskStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+
 
 class ProjectsController extends Controller
 {
+    // public function index()
+    // {
+    //     // $projects = Project::all();
+    //     $projects = Project::with('technologies', 'projectMembers')->get();
+    //     return view('projects.index', compact('projects'));
+    // }
+
     public function index()
-    {
-        // $projects = Project::all();
-        $projects = Project::with('technologies', 'projectMembers')->get();
-        return view('projects.index', compact('projects'));
-    }
+{
+    // Get the currently logged-in user's profile_id
+    $profileId = Auth::user()->profile->id;
+
+    // Retrieve projects where the logged-in user's profile is a project member
+    $projects = Project::with('technologies', 'projectMembers')
+    ->whereExists(function ($query) {
+        $query->select(DB::raw(1))
+            ->from('project_members')
+            ->whereRaw('project_members.project_id = project.id')
+            ->where('project_members.project_members_id', auth()->user()->profile->id); // Join using the profile ID
+    })
+    ->get();
+
+    return view('projects.index', compact('projects'));
+}
 
     public function create()
     {

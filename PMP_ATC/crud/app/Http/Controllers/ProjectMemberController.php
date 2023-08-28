@@ -6,15 +6,28 @@ use App\Models\ProjectMember;
 use App\Models\User;
 use App\Models\Project;
 use App\Models\ProjectRole;
+use Auth;
 use Illuminate\Http\Request;
 
 class ProjectMemberController extends Controller
 {
+    // public function index()
+    // {
+    //     $projectMembers = ProjectMember::all();
+    //     return view('project_member.index', compact('projectMembers'));
+    // }
     public function index()
-    {
-        $projectMembers = ProjectMember::all();
-        return view('project_member.index', compact('projectMembers'));
-    }
+{
+    // Get the currently logged-in user's profile_id
+    $profileId = Auth::user()->profile->id;
+
+    // Retrieve project members associated with the logged-in user's profile_id
+    $projectMembers = ProjectMember::whereHas('user.profile', function ($query) use ($profileId) {
+        $query->where('id', $profileId);
+    })->get();
+
+    return view('project_member.index', compact('projectMembers'));
+}
 
     public function create()
     {

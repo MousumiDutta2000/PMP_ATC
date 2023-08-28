@@ -1667,4 +1667,5 @@ font-family: Roboto, sans-serif !important;
   overflow-x: hidden;
   scroll-behavior: smooth; /* Enable smooth scrolling */
   padding-right: 60px; /* Add padding to make space for the scroll button */
+  padding-bottom:30px;
 }
